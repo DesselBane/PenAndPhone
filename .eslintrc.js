@@ -1,31 +1,71 @@
 module.exports = {
   root: true,
-  env: {
-    node: true
+  parserOptions: {
+    sourceType: 'script',
+    ecmaVersion: 10,
   },
   extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/prettier/@typescript-eslint"
+    // https://github.com/vuejs/eslint-plugin-vue#bulb-rules
+    'plugin:vue/recommended',
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    'standard',
+    // https://github.com/prettier/eslint-config-prettier
+    'prettier',
+    'prettier/standard',
+    'prettier/vue',
   ],
-  parserOptions: {
-    ecmaVersion: 2020
-  },
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    'prefer-const': 'error',
+    'object-shorthand': ['error', 'always'],
+    // Only allow debugger in development
+    'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
+    // Only allow `console.log` in development
+    'no-console': process.env.PRE_COMMIT
+      ? ['error', { allow: ['warn', 'error'] }]
+      : 'off',
+    'prefer-template': 'error',
+    'no-unused-vars': ['error', { vars: 'all' }],
+    'vue/component-name-in-template-casing': [
+      'error',
+      'PascalCase',
+      {
+        ignores: [
+          'component',
+          'template',
+          'transition',
+          'transition-group',
+          'keep-alive',
+          'slot',
+        ],
+      },
+    ],
   },
   overrides: [
     {
-      files: [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)"
-      ],
+      files: ['src/**/*', 'tests/unit/**/*', 'tests/e2e/**/*'],
+      parserOptions: {
+        parser: 'babel-eslint',
+        sourceType: 'module',
+      },
       env: {
-        jest: true
-      }
-    }
-  ]
-};
+        browser: true,
+      },
+    },
+    {
+      files: ['**/*.unit.js'],
+      parserOptions: {
+        parser: 'babel-eslint',
+        sourceType: 'module',
+      },
+      env: { jest: true },
+      globals: {
+        mount: false,
+        shallowMount: false,
+        shallowMountView: false,
+        createComponentMocks: false,
+        createModuleStore: false,
+        createMultiModuleStore: false,
+      },
+    },
+  ],
+}
