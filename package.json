@@ -5,11 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "cross-env IS_GITHUB_DEPLOY=true vue-cli-service build --dest docs/",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0-0",
     "vue-router": "^4.0.0-0",

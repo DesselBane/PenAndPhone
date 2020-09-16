@@ -2,7 +2,7 @@
   "version": 3,
   "sources": [
     "webpack:///./src/views/About.vue",
-    "webpack:///./src/views/About.vue?008a"
+    "webpack:///./src/views/About.vue?ca95"
   ],
   "names": [
     "class",
