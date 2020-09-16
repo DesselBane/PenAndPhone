@@ -1,0 +1,6 @@
+**/dist/**
+**/dist-storybook/**
+**/docs/**
+/tests/unit/coverage/
+/dist_electron/**
+/_templates/**
