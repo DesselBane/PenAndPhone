@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/PenAndPhone/precache-manifest.3886e29bba5986711f343a0f37644157.js"
+  "/precache-manifest.56a474335df809a6ec5de9d89b87404b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pen-and-phone"});
