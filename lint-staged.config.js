@@ -12,12 +12,11 @@ module.exports = {
   'package.json': ['yarn lint:prettier', 'git add'],
   '*.vue': [
     'yarn lint:eslint --ext .vue',
-    'yarn lint:stylelint',
     'yarn lint:prettier',
     'git add',
     'yarn test:unit:file',
   ],
-  '*.scss': ['yarn lint:stylelint', 'yarn lint:prettier', 'git add'],
+  '*.scss': [ 'yarn lint:prettier', 'git add'],
   '*.md': ['yarn lint:markdownlint', 'yarn lint:prettier', 'git add'],
   '*.{png,jpeg,jpg,gif}': ['imagemin-lint-staged', 'git add'],
 }
