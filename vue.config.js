@@ -1,6 +1,17 @@
+const path = require('path');
+
 const config = {
   lintOnSave: process.env.NODE_ENV !== 'production',
   publicPath: process.env.IS_GITHUB_DEPLOY === 'true' ? '' : '/',
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@views': path.resolve(__dirname, 'src/views'),
+        '@models': path.resolve(__dirname, 'src/models'),
+      }
+    }
+  },
   css: {
     // Enable CSS source maps.
     sourceMap: false,

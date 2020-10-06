@@ -19,9 +19,12 @@
     "lint:prettier": "prettier --write --loglevel warn"
   },
   "dependencies": {
+    "@vue/reactivity": "^3.0.0",
     "ant-design-vue": "^2.0.0-beta.10",
     "core-js": "3.6.5",
+    "reflect-metadata": "^0.1.13",
     "register-service-worker": "1.7.1",
+    "typedjson": "^1.6.0-rc2",
     "vue": "3.0.0",
     "vue-router": "4.0.0-beta.12"
   },
