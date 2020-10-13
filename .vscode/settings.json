@@ -3,6 +3,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "files.autoSave": "off",
-  "eslint.trace.server": "messages"
+  "files.autoSave": "off"
 }
