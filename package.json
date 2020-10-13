@@ -69,7 +69,8 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.18.0",
     "typescript": "3.9.3",
-    "vue-jest": "5.0.0-alpha.4"
+    "vue-jest": "5.0.0-alpha.4",
+    "vue-svg-loader": "^0.17.0-beta.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

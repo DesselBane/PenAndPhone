@@ -5,23 +5,18 @@
   <div id="nav">
     <router-link to="/">Home</router-link>
     <router-link to="/edit-char">Edit</router-link>
+    <router-link to="/playground">Playground</router-link>
   </div>
 </template>
 
 <style lang="scss">
-#body {
-  height: 100%;
-}
-
 #app {
-  height: 100%;
   display: grid;
   grid-template-rows: 1fr auto;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  max-width: 480px;
+  height: 100%;
+  margin: 0 auto;
   text-align: center;
-  color: #2c3e50;
 }
 
 #nav {
