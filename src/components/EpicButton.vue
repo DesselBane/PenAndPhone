@@ -1,5 +1,5 @@
 <template>
-  <button class="base-button">
+  <button class="epic-button">
     <slot />
   </button>
 </template>
@@ -8,14 +8,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BaseButton',
+  name: 'EpicButton',
 })
 </script>
 
 <style lang="scss" scoped>
 @import '@styles/shared.scss';
 
-.base-button {
+.epic-button {
   all: initial;
   padding: 0.7rem 1.6rem;
   font-size: 1.1rem;

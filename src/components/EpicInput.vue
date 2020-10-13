@@ -1,8 +1,8 @@
 <template>
-  <label class="base-input-wrapper">
+  <label class="epic-input-wrapper">
     {{ label }}
     <input
-      class="base-input"
+      class="epic-input"
       v-bind="$attrs"
       :value="modelValue"
       @input="updateValue($event.target.value)"
@@ -14,7 +14,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BaseInput',
+  name: 'EpicInput',
   props: ['modelValue', 'label'],
   methods: {
     updateValue(value: string) {
@@ -27,7 +27,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@styles/shared.scss';
 
-.base-input-wrapper {
+.epic-input-wrapper {
   display: grid;
   gap: 0.5rem;
   font-weight: 600;
@@ -36,7 +36,7 @@ export default defineComponent({
   letter-spacing: 0.05em;
 }
 
-.base-input {
+.epic-input {
   all: initial;
   padding: 0.7rem 1.2rem;
   font-size: 1.1rem;

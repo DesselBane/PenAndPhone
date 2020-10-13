@@ -1,5 +1,5 @@
 <template>
-  <component :is="as" class="base-heading">
+  <component :is="as" class="epic-heading">
     <slot />
   </component>
 </template>
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BaseHeading',
+  name: 'EpicHeading',
   props: {
     as: {
       type: String,
@@ -21,7 +21,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@styles/shared.scss';
 
-.base-heading {
+.epic-heading {
   position: relative;
   font-style: italic;
   font-weight: 400;

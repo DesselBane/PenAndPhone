@@ -1,5 +1,5 @@
 <template>
-  <div class="base-card">
+  <div class="epic-card">
     <slot />
   </div>
 </template>
@@ -8,14 +8,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'BaseCard',
+  name: 'EpicCard',
 })
 </script>
 
 <style lang="scss" scoped>
 @import '@styles/shared.scss';
 
-.base-card {
+.epic-card {
   padding: 2rem;
   border-radius: 0.2rem;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 0 4px 16px -6px rgba(0, 0, 0, 0.6),
