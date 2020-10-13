@@ -21,6 +21,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '@styles/shared.scss';
 
+h1 {
+  color: $primary;
+}
+
 .epic-heading {
   position: relative;
   font-style: italic;

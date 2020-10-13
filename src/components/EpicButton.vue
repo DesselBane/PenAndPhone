@@ -1,5 +1,5 @@
 <template>
-  <button class="epic-button">
+  <button class="epic-button" :class="[primary && 'epic-button--primary']">
     <slot />
   </button>
 </template>
@@ -9,6 +9,12 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'EpicButton',
+  props: {
+    primary: {
+      type: Boolean,
+      default: false,
+    },
+  },
 })
 </script>
 
@@ -32,6 +38,10 @@ export default defineComponent({
   transition: box-shadow 0.1s ease-out;
 
   @include bg-rock($secondary);
+
+  &--primary {
+    @include bg-rock($primary);
+  }
 
   &:hover {
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px -8px rgba(0, 0, 0, 0.8),

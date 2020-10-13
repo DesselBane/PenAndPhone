@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Playground</h1>
+    <EpicHeading class="mb-7">Playground</EpicHeading>
     <EpicCard class="mb-8">
       <EpicHeading as="h2" class="mb-7">Epic Attributes</EpicHeading>
       <p class="epic mb-7">
@@ -20,11 +20,12 @@
       />
       <EpicButton @click="editAttributes">Edit Attributes</EpicButton>
     </EpicCard>
-    <EpicCard>
+    <EpicCard class="mb-7">
       <EpicHeading as="h2" class="mb-7">Epic Items</EpicHeading>
       <p class="mb-7">Your hero's epic items go here.</p>
       <EpicButton>Edit Items</EpicButton>
     </EpicCard>
+    <EpicButton primary>Save The Epicness</EpicButton>
   </div>
 </template>
 
