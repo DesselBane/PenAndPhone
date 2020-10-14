@@ -8,20 +8,6 @@ export class DataStore {
 
 export const storeInstance = new DataStore()
 
-export function createGameMockData() {
-  let game = new Game()
-  game.name.value = 'Foo'
-  storeInstance.games.value.push(game)
-
-  game = new Game()
-  game.name.value = 'Bar'
-  storeInstance.games.value.push(game)
-
-  game = new Game()
-  game.name.value = 'Baz'
-  storeInstance.games.value.push(game)
-}
-
 export function createCharMockData(gameId: number) {
   const game = storeInstance.games.value.find((x) => x.id === gameId)
 
@@ -36,4 +22,21 @@ export function createCharMockData(gameId: number) {
   char = new Character()
   char.name.value = 'Khaldir'
   game.characters.push(char)
+}
+
+export function createGameMockData() {
+  let game = new Game()
+  game.name.value = 'Foo'
+  storeInstance.games.value.push(game)
+  createCharMockData(game.id)
+
+  game = new Game()
+  game.name.value = 'Bar'
+  storeInstance.games.value.push(game)
+  createCharMockData(game.id)
+
+  game = new Game()
+  game.name.value = 'Baz'
+  storeInstance.games.value.push(game)
+  createCharMockData(game.id)
 }

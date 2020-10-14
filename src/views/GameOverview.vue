@@ -10,7 +10,7 @@
 import { defineComponent } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import { computed } from '@vue/reactivity'
-import { storeInstance, createCharMockData } from '../store/data-store'
+import { storeInstance } from '../store/data-store'
 import CList from '@components/CList'
 import CListItem from '@components/CListItem'
 
@@ -27,10 +27,6 @@ export default defineComponent({
         (x) => x.id === Number(route.params.gameId)
       )
     })
-
-    console.log(selectedGame.value)
-
-    createCharMockData(Number(route.params.gameId))
 
     return {
       chars: selectedGame.value?.characters,

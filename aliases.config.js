@@ -11,6 +11,7 @@ const aliases = {
   '@components': 'src/components',
   '@views': 'src/views',
   '@models': 'src/models',
+  '@helper': 'src/helper',
 }
 
 module.exports = {
