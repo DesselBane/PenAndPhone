@@ -1,7 +1,17 @@
-$body: #ecece4;
-$text: #20170c;
-$primary: #962150;
-$secondary: #7a6751;
+$color-body: #ecece4;
+$color-text: #20170c;
+$color-primary: #962150;
+$color-secondary: #7a6751;
+$color-light: #fff;
+$color-shadow: #000;
+
+@function shadow($opacity) {
+  @return rgba($color-shadow, $opacity);
+}
+
+@function light($opacity) {
+  @return rgba($color-light, $opacity);
+}
 
 @mixin bg-paper($color) {
   background-color: $color;

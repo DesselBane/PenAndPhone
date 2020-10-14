@@ -11,11 +11,11 @@
 
 body {
   font-family: 'Piazzolla', serif;
-  color: $text;
+  color: $color-text;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @include bg-paper($body);
+  @include bg-paper($color-body);
 }
 
 h1 {
@@ -36,7 +36,7 @@ p.epic {
     padding-left: 0.1em;
     font-size: 2.8em;
     line-height: 0.9;
-    color: $primary;
+    color: $color-primary;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   }
 }
