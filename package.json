@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@vue/reactivity": "^3.0.0",
-    "ant-design-vue": "^2.0.0-beta.10",
     "core-js": "3.6.5",
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "1.7.1",
