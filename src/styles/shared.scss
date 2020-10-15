@@ -1,0 +1,26 @@
+$color-body: #ecece4;
+$color-text: #20170c;
+$color-primary: #962150;
+$color-secondary: #7a6751;
+$color-light: #fff;
+$color-shadow: #000;
+
+@function shadow($opacity) {
+  @return rgba($color-shadow, $opacity);
+}
+
+@function light($opacity) {
+  @return rgba($color-light, $opacity);
+}
+
+@mixin bg-paper($color) {
+  background-color: $color;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughpaper' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='white' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect x='0' y='0' width='100%25' height='100%25' filter='url(%23roughpaper)' fill='none' /%3E%3C/svg%3E");
+  background-blend-mode: luminosity;
+}
+
+@mixin bg-rock($color) {
+  background-color: $color;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='roughpaper' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.1' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='white' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='58' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect x='0' y='0' width='100%25' height='100%25' filter='url(%23roughpaper)' fill='none' /%3E%3C/svg%3E");
+  background-blend-mode: color-burn;
+}
