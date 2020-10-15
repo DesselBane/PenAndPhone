@@ -1,13 +1,15 @@
 <template>
-  <div
-    class="epic-modal"
-    v-show="isOpen"
-    @click="$emit('update:isOpen', false)"
-  >
-    <div class="epic-modal-window" @click.stop ref="windowEl">
-      <slot />
+  <transition name="modal">
+    <div
+      class="epic-modal"
+      v-show="isOpen"
+      @click="$emit('update:isOpen', false)"
+    >
+      <div class="epic-modal-window" @click.stop ref="windowEl">
+        <slot />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -63,6 +65,16 @@ export default defineComponent({
   box-shadow: inset 0 0 140px 1px shadow(0.8);
 }
 
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
 .epic-modal-window {
   width: 100%;
   max-width: 480px;
@@ -72,5 +84,15 @@ export default defineComponent({
     inset 0 0 1px 2px light(0.9), inset 0 0 4px 1px shadow(0.4);
 
   @include bg-paper('white');
+
+  .modal-enter-active &,
+  .modal-leave-active & {
+    transition: all 0.25s ease-out;
+  }
+
+  .modal-enter-from &,
+  .modal-leave-to & {
+    transform: scale(0.9);
+  }
 }
 </style>
