@@ -16,7 +16,7 @@ module.exports = {
     'git add',
     'yarn test:unit:file',
   ],
-  '*.scss': [ 'yarn lint:prettier', 'git add'],
+  '*.scss': ['yarn lint:prettier', 'git add'],
   '*.md': ['yarn lint:markdownlint', 'yarn lint:prettier', 'git add'],
   '*.{png,jpeg,jpg,gif}': ['imagemin-lint-staged', 'git add'],
 }
