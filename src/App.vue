@@ -14,7 +14,6 @@
   display: grid;
   grid-template-rows: 1fr auto;
   max-width: 480px;
-  height: 100%;
   padding: 0 0.5rem;
   margin: 0 auto;
   text-align: center;

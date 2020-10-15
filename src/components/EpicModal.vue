@@ -59,7 +59,8 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   padding: 1.2rem;
-  background-color: shadow(0.8);
+  background-color: shadow(0.7);
+  box-shadow: inset 0 0 140px 1px shadow(0.8);
 }
 
 .epic-modal-window {
