@@ -27,7 +27,7 @@ for (const alias in aliases) {
   const aliasHasExtension = /\.\w+$/.test(aliasTo)
   module.exports.jest[`^${alias}$`] = aliasHasExtension
     ? `<rootDir>/${aliasTo}`
-    : `<rootDir>/${aliasTo}/index.js`
+    : `<rootDir>/${aliasTo}/index.ts`
   module.exports.jest[`^${alias}/(.*)$`] = `<rootDir>/${aliasTo}/$1`
   module.exports.tsconfig[`${alias}/*`] = [
     `${aliasTo}/*`,
