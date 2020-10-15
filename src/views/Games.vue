@@ -34,7 +34,7 @@ export default defineComponent({
       storeInstance.games.value.push(game)
       const char = new Character(0)
       char.name = 'Sinthoras'
-      game.characters.value.push(char)
+      game.characters.push(char)
 
       storeInstance.saveToLocalStorage()
     }

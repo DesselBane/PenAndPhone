@@ -3,10 +3,10 @@ import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 
 @jsonObject
 export class Game {
-  @jsonMember({ constructor: Number })
+  @jsonMember
   public id: number = -1
 
-  @jsonMember({ constructor: String })
+  @jsonMember
   public name: string = ''
 
   @jsonArrayMember(Character)

@@ -1,20 +1,26 @@
-import { serializableRefArrayOptions } from '@helper/serializerOptions'
 import { Game } from '@models/game'
 import { jsonArrayMember, jsonMember, jsonObject, TypedJSON } from 'typedjson'
-import { ref, Ref } from '@vue/reactivity'
+import { ref, Ref, unref } from '@vue/reactivity'
 import { watch } from 'vue'
 
 const LOCAL_STORAGE_KEY = 'pap.store.data'
 
-@jsonObject({ onDeserialized: 'initialize' })
+@jsonObject
 export class DataStore {
-  @jsonMember({ constructor: Number })
-  private gameIdSeed = 0
+  @jsonMember
+  private gameIdSeed: number = 0
 
-  @jsonArrayMember(Game, serializableRefArrayOptions())
-  public readonly games: Ref<Game[]> = ref([])
+  public games: Ref<Game[]> = ref([])
 
-  private initialize(): void {
+  @jsonArrayMember(Game, { name: 'games' })
+  private get gamesJson(): Game[] {
+    return unref(this.games)
+  }
+  private set gamesJson(games: Game[]) {
+    this.games.value = games
+  }
+
+  constructor() {
     watch(
       () => this.games,
       () => {
@@ -27,7 +33,6 @@ export class DataStore {
   }
 
   public saveToLocalStorage(): void {
-    console.log('save')
     const serializer = new TypedJSON(DataStore)
     localStorage.setItem(LOCAL_STORAGE_KEY, serializer.stringify(this))
   }
