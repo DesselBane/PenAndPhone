@@ -1,50 +1,68 @@
 <template>
-  <CList>
-    <CListItem v-for="char in chars" :key="char.id">
-      {{ char.name }}
-    </CListItem>
-    <CListItem>
-      <EpicButton @click="handleAddChar">+</EpicButton>
-    </CListItem>
-  </CList>
+  <EpicHeading class="mb-7">Deine Helden</EpicHeading>
+  <EpicCard class="mb-8" v-for="{ id, name } in chars" :key="id">
+    <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
+  </EpicCard>
+  <EpicButton primary @click="openCreateModal">+ Helden erstellen</EpicButton>
+  <EpicModal v-model:is-open="createModalIsOpen">
+    <EpicHeading as="h2" class="mb-6">Neuen Helden erstellen</EpicHeading>
+    <form @submit.prevent="createChar">
+      <EpicInput v-model="newChar.name" label="Spielname" class="mb-6" />
+      <EpicButton primary fullwidth>Held erstellen</EpicButton>
+    </form>
+  </EpicModal>
 </template>
 
 <script lang="ts">
 import { computed } from '@vue/reactivity'
 import { defineComponent } from '@vue/runtime-core'
+import { ref, unref } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeInstance } from '../store/data-store'
-import CList from '@components/CList'
-import CListItem from '@components/CListItem'
 import { Character } from '@models/character'
+import EpicModal from '@components/EpicModal'
 import EpicButton from '@components/EpicButton'
+import EpicHeading from '@components/EpicHeading'
+import EpicCard from '@components/EpicCard'
+import EpicInput from '@components/EpicInput'
 
 export default defineComponent({
   name: 'GameOverview',
   components: {
-    CList,
-    CListItem,
     EpicButton,
+    EpicHeading,
+    EpicCard,
+    EpicModal,
+    EpicInput,
   },
   setup() {
     const route = useRoute()
-    const selectedChars = computed(() => {
+    const game = computed(() => {
       return storeInstance.games.value.find(
         (x) => x.id === Number(route.params.gameId)
-      )?.characters
+      )
     })
+    const chars = game.value.characters
+    const newChar = ref(new Character())
 
-    const handleAddChar = () => {
-      const char = new Character()
-      char.name = 'Bar'
-      storeInstance.games.value
-        .find((x) => x.id === Number(route.params.gameId))
-        .characters.push(char)
+    const createModalIsOpen = ref(false)
+
+    function openCreateModal() {
+      createModalIsOpen.value = true
+    }
+
+    function createChar() {
+      game.value.addCharacter(unref(newChar))
+      createModalIsOpen.value = false
+      newChar.value = new Character()
     }
 
     return {
-      chars: selectedChars,
-      handleAddChar,
+      chars,
+      newChar,
+      createChar,
+      openCreateModal,
+      createModalIsOpen,
     }
   },
 })
