@@ -87,12 +87,12 @@ export default defineComponent({
 
   .modal-enter-active &,
   .modal-leave-active & {
-    transition: all 0.25s ease-out;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.2, 1.2);
   }
 
   .modal-enter-from &,
   .modal-leave-to & {
-    transform: scale(0.9);
+    transform: translateY(100%);
   }
 }
 </style>
