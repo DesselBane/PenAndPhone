@@ -1,11 +1,9 @@
-import { Ref, ref } from '@vue/reactivity'
+import { jsonMember, jsonObject } from 'typedjson'
 
+@jsonObject
 export class Character {
-  private static idSeed = 0
-  public readonly id: number
-  public readonly name: Ref<string> = ref('')
+  @jsonMember({ constructor: Number })
+  public id: number = -1
 
-  constructor() {
-    this.id = Character.idSeed++
-  }
+  public name: string = ''
 }

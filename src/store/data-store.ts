@@ -1,42 +1,48 @@
-import { ref, Ref } from '@vue/reactivity'
+import { serializableRefArrayOptions } from '@helper/serializerOptions'
 import { Game } from '@models/game'
-import { Character } from '@models/character'
+import { jsonArrayMember, jsonMember, jsonObject, TypedJSON } from 'typedjson'
+import { ref, Ref } from '@vue/reactivity'
+import { watch } from 'vue'
 
+const LOCAL_STORAGE_KEY = 'pap.store.data'
+
+@jsonObject({ onDeserialized: 'initialize' })
 export class DataStore {
+  @jsonMember({ constructor: Number })
+  private gameIdSeed = 0
+
+  @jsonArrayMember(Game, serializableRefArrayOptions())
   public readonly games: Ref<Game[]> = ref([])
-}
 
-export const storeInstance = new DataStore()
-
-export function createCharMockData(gameId: number) {
-  const game = storeInstance.games.value.find((x) => x.id === gameId)
-
-  if (game == null) {
-    return
+  private initialize(): void {
+    watch(
+      () => this.games,
+      () => {
+        this.saveToLocalStorage()
+      },
+      {
+        deep: true,
+      }
+    )
   }
 
-  let char = new Character()
-  char.name.value = 'Sinthoras'
-  game.characters.push(char)
+  public saveToLocalStorage(): void {
+    console.log('save')
+    const serializer = new TypedJSON(DataStore)
+    localStorage.setItem(LOCAL_STORAGE_KEY, serializer.stringify(this))
+  }
 
-  char = new Character()
-  char.name.value = 'Khaldir'
-  game.characters.push(char)
+  public addGame(game: Game) {
+    game.id = this.gameIdSeed++
+    this.games.value.push(game)
+  }
 }
 
-export function createGameMockData() {
-  let game = new Game()
-  game.name.value = 'Foo'
-  storeInstance.games.value.push(game)
-  createCharMockData(game.id)
-
-  game = new Game()
-  game.name.value = 'Bar'
-  storeInstance.games.value.push(game)
-  createCharMockData(game.id)
-
-  game = new Game()
-  game.name.value = 'Baz'
-  storeInstance.games.value.push(game)
-  createCharMockData(game.id)
+function loadDataStore() {
+  const store = new TypedJSON(DataStore).parse(
+    localStorage.getItem(LOCAL_STORAGE_KEY)
+  )
+  return store != null ? store : new DataStore()
 }
+
+export const storeInstance = loadDataStore()
