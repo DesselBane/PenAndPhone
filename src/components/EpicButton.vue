@@ -1,7 +1,14 @@
 <template>
-  <button class="epic-button" :class="[primary && 'epic-button--primary']">
+  <component
+    :is="as"
+    class="epic-button"
+    :class="[
+      primary && 'epic-button--primary',
+      fullwidth && 'epic-button--fullwidth',
+    ]"
+  >
     <slot />
-  </button>
+  </component>
 </template>
 
 <script lang="ts">
@@ -14,6 +21,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    fullwidth: {
+      type: Boolean,
+      default: false,
+    },
+    as: {
+      type: String,
+      default: 'button',
+    },
   },
 })
 </script>
@@ -23,11 +38,14 @@ export default defineComponent({
 
 .epic-button {
   all: initial;
+  box-sizing: border-box;
+  display: inline-block;
   padding: 0.7rem 1.6rem;
   font-size: 1.1rem;
   font-style: italic;
   font-weight: 400;
   color: $color-body;
+  text-align: center;
   text-shadow: 1px 1px 1px shadow(0.5);
   letter-spacing: 0.15em;
   cursor: pointer;
@@ -40,6 +58,11 @@ export default defineComponent({
 
   &--primary {
     @include bg-rock($color-primary);
+  }
+
+  &--fullwidth {
+    display: block;
+    width: 100%;
   }
 
   &:hover {

@@ -9,6 +9,11 @@
   margin: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: 'Piazzolla', serif;
   color: $color-text;

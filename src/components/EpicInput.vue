@@ -2,6 +2,7 @@
   <label class="epic-input-wrapper">
     {{ label }}
     <input
+      ref="inputEl"
       class="epic-input"
       v-bind="$attrs"
       :value="modelValue"
@@ -11,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, Ref } from 'vue'
 
 export default defineComponent({
   name: 'EpicInput',
@@ -25,10 +26,25 @@ export default defineComponent({
       default: '',
     },
   },
-  methods: {
-    updateValue(value: string) {
-      this.$emit('update:modelValue', value)
-    },
+  setup(_, { emit }) {
+    const inputEl: Ref<HTMLElement | null> = ref(null)
+
+    function updateValue(value: string) {
+      emit('update:modelValue', value)
+    }
+
+    function focus() {
+      console.log('hallo')
+      if (inputEl.value != null) {
+        inputEl.value.focus()
+      }
+    }
+
+    return {
+      inputEl,
+      updateValue,
+      focus,
+    }
   },
 })
 </script>
