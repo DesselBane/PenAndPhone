@@ -1,25 +1,52 @@
 <template>
-  <EpicHeading class="mb-7">Deine Spiele</EpicHeading>
-  <EpicCard class="mb-8" v-for="{ id, name } in games" :key="id">
-    <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
-    <EpicButton as="router-link" :to="`/game/${id}/overview`"
-      >Spiel öffnen
-    </EpicButton>
-  </EpicCard>
-  <EpicButton primary @click="openCreateModal">+ Spiel erstellen</EpicButton>
-  <EpicModal v-model:is-open="createModalIsOpen">
-    <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
-    <form @submit.prevent="createGame">
-      <EpicInput v-model="newGame.name" label="Spielname" class="mb-6" />
-      <EpicButton primary fullwidth>Spiel erstellen</EpicButton>
-    </form>
-  </EpicModal>
+  <div class="v-games">
+    <EpicHeading class="mb-7 heading">Deine Spiele</EpicHeading>
+    <div>
+      <EpicCard class="mb-8 game-card" v-for="game in games" :key="game.id">
+        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 ">{{
+          game.name
+        }}</EpicHeading>
+        <EpicButton
+          class="gr-3 gc-1"
+          as="router-link"
+          :to="`/game/${game.id}/overview`"
+          >Spiel öffnen
+        </EpicButton>
+
+        <EpicButton
+          class="gr-3 gc-2"
+          as="button"
+          @click="() => openDeleteModal(game)"
+          >Spiel löschen
+        </EpicButton>
+      </EpicCard>
+    </div>
+    <EpicButton primary @click="openCreateModal">Spiel erstellen</EpicButton>
+    <EpicModal v-model:is-open="createModalIsOpen">
+      <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
+      <form @submit.prevent="createGame">
+        <EpicInput v-model="newGame.name" label="Spielname" class="mb-6" />
+        <EpicButton primary fullwidth>Spiel erstellen</EpicButton>
+      </form>
+    </EpicModal>
+
+    <EpicModal v-model:is-open="confirmDeleteModalIsOpen">
+      <EpicHeading as="h2" class="mb-6"
+        >Soll dieses Spiel wirklich gelöscht werden?</EpicHeading
+      >
+      <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 "
+        >Spiel: {{ deleteGameRef.name }}
+      </EpicHeading>
+      <EpicButton fullwidth @click="cancleDeleteGame">Abbrechen</EpicButton>
+      <EpicButton primary fullwidth @click="deleteGame">Löschen</EpicButton>
+    </EpicModal>
+  </div>
 </template>
 
 <script lang="ts">
 import EpicModal from '@components/EpicModal'
 import { Game } from '@models/game'
-import { defineComponent, ref, unref } from 'vue'
+import { defineComponent, Ref, ref, unref } from 'vue'
 import { storeInstance } from '../store/data-store'
 import EpicButton from '@components/EpicButton'
 import EpicHeading from '@components/EpicHeading'
@@ -40,6 +67,8 @@ export default defineComponent({
     const newGame = ref(new Game())
 
     const createModalIsOpen = ref(false)
+    const confirmDeleteModalIsOpen = ref(false)
+    const deleteGameRef: Ref<Game> = ref(new Game())
 
     function openCreateModal() {
       createModalIsOpen.value = true
@@ -51,12 +80,33 @@ export default defineComponent({
       newGame.value = new Game()
     }
 
+    function deleteGame() {
+      storeInstance.removeGame(deleteGameRef.value)
+      deleteGameRef.value = new Game()
+      confirmDeleteModalIsOpen.value = false
+    }
+
+    function openDeleteModal(game: Game) {
+      deleteGameRef.value = game
+      confirmDeleteModalIsOpen.value = true
+    }
+
+    function cancleDeleteGame() {
+      deleteGameRef.value = new Game()
+      confirmDeleteModalIsOpen.value = false
+    }
+
     return {
       games,
       newGame,
       createModalIsOpen,
+      deleteGame,
       openCreateModal,
       createGame,
+      confirmDeleteModalIsOpen,
+      deleteGameRef,
+      openDeleteModal,
+      cancleDeleteGame,
     }
   },
 
@@ -70,4 +120,20 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-games {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.heading {
+  place-self: center;
+}
+
+.game-card {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: 1fr 1fr;
+}
+</style>
