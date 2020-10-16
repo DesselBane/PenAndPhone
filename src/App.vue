@@ -16,7 +16,11 @@
   max-width: 480px;
   padding: 0 0.5rem;
   margin: 0 auto;
-  text-align: center;
+  height: 100vh;
+}
+
+#main {
+  height: 100%;
 }
 
 #nav {

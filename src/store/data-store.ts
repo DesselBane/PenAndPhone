@@ -16,6 +16,7 @@ export class DataStore {
   private get gamesJson(): Game[] {
     return unref(this.games)
   }
+  // noinspection JSUnusedLocalSymbols
   private set gamesJson(games: Game[]) {
     this.games.value = games
   }
@@ -40,6 +41,14 @@ export class DataStore {
   public addGame(game: Game) {
     game.id = this.gameIdSeed++
     this.games.value.push(game)
+  }
+
+  public removeGame(game: Game) {
+    game.id = -1
+    this.games.value.splice(
+      this.games.value.findIndex((x) => x.id === game.id),
+      1
+    )
   }
 }
 

@@ -89,7 +89,8 @@ export default defineComponent({
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     box-shadow: 0 0 2px shadow(0.5), 0 8px 24px -8px shadow(0.8),
       inset 0 0 0 1px light(0.7), inset 0 0 6px 1px shadow(0.6);
   }
