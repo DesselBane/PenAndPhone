@@ -60,7 +60,6 @@ export default defineComponent({
   justify-content: center;
   padding: 0.7rem 1.6rem;
   font-size: 1.1rem;
-  font-style: italic;
   font-weight: 400;
   color: $color-body;
   text-shadow: 1px 1px 1px shadow(0.5);
@@ -104,6 +103,7 @@ export default defineComponent({
 .epic-button-icon {
   flex-shrink: 0;
   margin-right: 0.5rem;
+  filter: drop-shadow(1px 1px 1px shadow(0.5));
 
   .epic-button--icononly & {
     margin-right: 0;
