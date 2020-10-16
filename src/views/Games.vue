@@ -2,11 +2,16 @@
   <EpicHeading class="mb-7">Deine Spiele</EpicHeading>
   <EpicCard class="mb-8" v-for="{ id, name } in games" :key="id">
     <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
-    <EpicButton as="router-link" :to="`/game/${id}/overview`"
-      >Spiel öffnen
-    </EpicButton>
+    <EpicGroup>
+      <EpicButton as="router-link" :to="`/game/${id}/overview`"
+        >Spiel öffnen
+      </EpicButton>
+      <EpicButton icononly icon="delete">Spiel löschen</EpicButton>
+    </EpicGroup>
   </EpicCard>
-  <EpicButton primary @click="openCreateModal">+ Spiel erstellen</EpicButton>
+  <EpicButton primary @click="openCreateModal" icon="add">
+    Spiel erstellen
+  </EpicButton>
   <EpicModal v-model:is-open="createModalIsOpen">
     <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
     <form @submit.prevent="createGame">
@@ -25,6 +30,7 @@ import EpicButton from '@components/EpicButton'
 import EpicHeading from '@components/EpicHeading'
 import EpicCard from '@components/EpicCard'
 import EpicInput from '@components/EpicInput'
+import EpicGroup from '@components/EpicGroup'
 
 export default defineComponent({
   name: 'Games',
@@ -34,6 +40,7 @@ export default defineComponent({
     EpicCard,
     EpicModal,
     EpicInput,
+    EpicGroup,
   },
   setup() {
     const games = storeInstance.games

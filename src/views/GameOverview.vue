@@ -3,7 +3,9 @@
   <EpicCard class="mb-8" v-for="{ id, name } in chars" :key="id">
     <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
   </EpicCard>
-  <EpicButton primary @click="openCreateModal">+ Helden erstellen</EpicButton>
+  <EpicButton primary @click="openCreateModal" icon="add">
+    Helden erstellen
+  </EpicButton>
   <EpicModal v-model:is-open="createModalIsOpen">
     <EpicHeading as="h2" class="mb-6">Neuen Helden erstellen</EpicHeading>
     <form @submit.prevent="createChar">
