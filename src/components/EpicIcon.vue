@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, shallowRef, watch } from 'vue'
+import { defineComponent, shallowRef, watchEffect } from 'vue'
 
 export default defineComponent({
   name: 'EpicIcon',
@@ -16,19 +16,13 @@ export default defineComponent({
   setup(props) {
     const svg = shallowRef(null)
 
-    watch(
-      () => props.name,
-      (name) => {
-        try {
-          svg.value = require(`./icons/${name}.vue`).default
-        } catch (e) {
-          console.warn(`Icon component for '${name}' does not exist.`)
-        }
-      },
-      {
-        immediate: true,
+    watchEffect(() => {
+      try {
+        svg.value = require(`./icons/${props.name}.vue`).default
+      } catch (e) {
+        console.warn(`Icon component for '${name}' does not exist.`)
       }
-    )
+    })
 
     return {
       svg,

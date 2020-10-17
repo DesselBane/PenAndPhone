@@ -1,7 +1,7 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
     <path
-      d="M14 9V13.0059H10V15.0059H14V19H16V15.0059H20V13.0059H16V9H14Z"
+      d="M14 7V11.0059H10V13.0059H14V20.5H16V13.0059H20V11.0059H16V7H14Z"
       fill="currentColor"
     />
     <path
