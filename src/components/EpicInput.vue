@@ -34,7 +34,6 @@ export default defineComponent({
     }
 
     function focus() {
-      console.log('hallo')
       if (inputEl.value != null) {
         inputEl.value.focus()
       }

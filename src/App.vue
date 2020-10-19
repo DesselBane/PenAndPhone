@@ -16,7 +16,7 @@
   max-width: 480px;
   padding: 0 0.5rem;
   margin: 0 auto;
-  height: 100vh;
+  height: 100%;
 }
 
 #main {
