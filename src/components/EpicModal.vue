@@ -15,6 +15,7 @@
 <script lang="ts">
 import { defineComponent, watch, ref, Ref, nextTick } from 'vue'
 import { getTabbableElements } from '@helper'
+import { onBeforeRouteLeave } from 'vue-router'
 
 export default defineComponent({
   name: 'EpicModal',
@@ -23,8 +24,15 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /**
+     * When set to true and the modal is open any navigation which would leave the current view is blocked and the modal is closed instead.
+     */
+    blockNavigationOnOpen: {
+      type: Boolean,
+      default: true,
+    },
   },
-  setup(props) {
+  setup(props, context) {
     const windowEl: Ref<HTMLElement | null> = ref(null)
 
     watch(
@@ -41,6 +49,13 @@ export default defineComponent({
         immediate: true,
       }
     )
+
+    onBeforeRouteLeave(() => {
+      if (props.blockNavigationOnOpen === true && props.isOpen === true) {
+        context.emit('update:isOpen', false)
+        return false
+      }
+    })
     return {
       windowEl,
     }
