@@ -45,11 +45,13 @@ export class DataStore {
   }
 
   public removeGame(game: Game) {
-    game.id = -1
-    this.games.value.splice(
-      this.games.value.findIndex((x) => x.id === game.id),
-      1
-    )
+    const gameIndex = this.games.value.findIndex((x) => x.id === game.id)
+
+    if (gameIndex === -1) {
+      throw `Could not remove Game(${game.id}) from dataStore because it wasn't found.`
+    } else {
+      this.games.value.splice(gameIndex, 1)
+    }
   }
 
   public getGameById(gameId: number): Game | null {

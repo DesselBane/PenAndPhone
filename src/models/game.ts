@@ -23,10 +23,9 @@ export class Game {
   public removeCharacter(character: Character) {
     const charIndex = this.characters.findIndex((x) => character.id === x.id)
     if (charIndex === -1) {
-      throw `Could not remove Character(${character.id}) from Game(${this.id}) because it wasnt found.`
+      throw `Could not remove Character(${character.id}) from Game(${this.id}) because it wasn't found.`
     } else {
       this.characters.splice(charIndex, 1)
-      character.id = -1
     }
   }
 }
