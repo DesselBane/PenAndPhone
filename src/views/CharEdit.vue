@@ -30,10 +30,9 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const char = computed(() =>
-      storeInstance.getCharById(
-        Number(route.params.gameId),
-        Number(route.params.charId)
-      )
+      storeInstance
+        .getGameById(Number(route.params.gameId))
+        ?.getCharById(Number(route.params.charId))
     )
     const generalTagTraits = computed<Trait[]>(() => {
       const character = char.value

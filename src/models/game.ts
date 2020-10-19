@@ -28,4 +28,8 @@ export class Game {
       this.characters.splice(charIndex, 1)
     }
   }
+
+  public getCharById(charId: number): Character | null {
+    return this.characters?.find((x) => x.id === charId) || null
+  }
 }
