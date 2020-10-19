@@ -71,7 +71,7 @@ export default defineComponent({
     })
     const chars = game.value.characters
     const newChar = ref(new Character())
-    const deleteCharRef = ref(new Character())
+    const deleteCharRef = ref(new Character(true))
     const confirmDeleteModalIsOpen = ref(false)
 
     const createModalIsOpen = ref(false)

@@ -1,3 +1,4 @@
+import { Character } from '@models/character'
 import { Game } from '@models/game'
 import { jsonArrayMember, jsonMember, jsonObject, TypedJSON } from 'typedjson'
 import { ref, Ref, unref } from '@vue/reactivity'
@@ -48,6 +49,16 @@ export class DataStore {
     this.games.value.splice(
       this.games.value.findIndex((x) => x.id === game.id),
       1
+    )
+  }
+
+  public getGameById(gameId: number): Game | null {
+    return this.games.value.find((x) => x.id === gameId) || null
+  }
+
+  public getCharById(gameId: number, charId: number): Character | null {
+    return (
+      this.getGameById(gameId)?.characters?.find((x) => x.id === charId) || null
     )
   }
 }
