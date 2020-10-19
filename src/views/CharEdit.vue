@@ -7,7 +7,7 @@
     :key="trait.name"
     v-model="trait.value"
     :label="trait.name"
-    class="input mb-2"
+    class="mb-2"
   />
 </template>
 

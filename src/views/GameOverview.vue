@@ -1,25 +1,32 @@
 <template>
-  <EpicHeading class="mb-7">Deine Helden</EpicHeading>
-  <EpicCard class="mb-8" v-for="char in chars" :key="char.id">
-    <EpicHeading as="h3" class="mb-4">{{ char.name }}</EpicHeading>
-    <EpicButton
-      class="gr-3 gc-1"
-      as="router-link"
-      :to="`/game/${game.id}/char/${char.id}/edit`"
-      >Editieren
+  <div class="view-container">
+    <EpicHeading class="mb-7 gr-1 heading">Deine Helden</EpicHeading>
+    <div class="gr-2">
+      <EpicCard class="mb-8 char-card" v-for="char in chars" :key="char.id">
+        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3">{{
+          char.name
+        }}</EpicHeading>
+        <EpicButton
+          class="gr-2 gc-1"
+          as="router-link"
+          :to="`/game/${game.id}/char/${char.id}/edit`"
+          >Editieren
+        </EpicButton>
+        <EpicButton
+          class="gr-2 gc-2"
+          as="button"
+          @click="() => openDeleteModal(char)"
+          icon="delete"
+          icononly
+          >Löschen
+        </EpicButton>
+      </EpicCard>
+    </div>
+    <EpicButton class="gr-3" primary @click="openCreateModal" icon="add">
+      Held erstellen
     </EpicButton>
-    <EpicButton
-      class="gr-3 gc-2"
-      as="button"
-      @click="() => openDeleteModal(char)"
-      icon="delete"
-      icononly
-      >Löschen
-    </EpicButton>
-  </EpicCard>
-  <EpicButton primary @click="openCreateModal" icon="add">
-    Held erstellen
-  </EpicButton>
+  </div>
+
   <EpicModal v-model:is-open="createModalIsOpen">
     <EpicHeading as="h2" class="mb-6">Neuen Helden erstellen</EpicHeading>
     <form @submit.prevent="createChar">
@@ -118,3 +125,21 @@ export default defineComponent({
   },
 })
 </script>
+<style lang="scss" scoped>
+.view-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.heading {
+  place-self: center;
+}
+
+.char-card {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+</style>
