@@ -51,7 +51,7 @@
 <script lang="ts">
 import EpicModal from '@components/EpicModal'
 import { Game } from '@models/game'
-import { defineComponent, Ref, ref, unref } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import { storeInstance } from '../store/data-store'
 import EpicButton from '@components/EpicButton'
 import EpicHeading from '@components/EpicHeading'
@@ -73,7 +73,7 @@ export default defineComponent({
 
     const createModalIsOpen = ref(false)
     const confirmDeleteModalIsOpen = ref(false)
-    const deleteGameRef: Ref<Game> = ref(new Game())
+    const deleteGameRef = ref(new Game())
 
     function openCreateModal() {
       createModalIsOpen.value = true
