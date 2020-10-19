@@ -25,7 +25,7 @@ export class DataStore {
     watch(
       () => this.games,
       () => {
-        this.saveToLocalStorage()
+        this.save()
       },
       {
         deep: true,
@@ -33,7 +33,11 @@ export class DataStore {
     )
   }
 
-  public saveToLocalStorage(): void {
+  public save() {
+    this._saveToLocalStorage()
+  }
+
+  private _saveToLocalStorage(): void {
     const serializer = new TypedJSON(DataStore)
     localStorage.setItem(LOCAL_STORAGE_KEY, serializer.stringify(this))
   }
