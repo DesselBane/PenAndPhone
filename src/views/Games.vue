@@ -114,14 +114,6 @@ export default defineComponent({
       cancleDeleteGame,
     }
   },
-
-  methods: {
-    handleAddGame() {
-      const game = new Game()
-      game.name = 'foo'
-      storeInstance.addGame(game)
-    },
-  },
 })
 </script>
 
