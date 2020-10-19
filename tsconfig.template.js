@@ -13,7 +13,7 @@ module.exports = {
     baseUrl: '.',
     emitDecoratorMetadata: true,
     experimentalDecorators: true,
-    types: ['webpack-env', 'jest'],
+    types: ['webpack-env', 'jest', 'shims-vue.d.ts'],
 
     lib: ['esnext', 'dom', 'dom.iterable', 'scripthost'],
   },
