@@ -10,26 +10,29 @@
           class="gr-3 gc-1"
           as="router-link"
           :to="`/game/${game.id}/overview`"
-          >Spiel öffnen
+          >Öffnen
         </EpicButton>
-
         <EpicButton
           class="gr-3 gc-2"
           as="button"
           @click="() => openDeleteModal(game)"
+          icon="delete"
+          icononly
           >Spiel löschen
         </EpicButton>
       </EpicCard>
     </div>
-    <EpicButton primary @click="openCreateModal">Spiel erstellen</EpicButton>
+    <EpicButton primary @click="openCreateModal" icon="add">
+      Spiel erstellen
+    </EpicButton>
+
     <EpicModal v-model:is-open="createModalIsOpen">
       <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
       <form @submit.prevent="createGame">
-        <EpicInput v-model="newGame.name" label="Spielname" class="mb-6" />
+        <EpicInput v-model="newGame.name" label="Spielname" class="mb-4" />
         <EpicButton primary fullwidth>Spiel erstellen</EpicButton>
       </form>
     </EpicModal>
-
     <EpicModal v-model:is-open="confirmDeleteModalIsOpen">
       <EpicHeading as="h2" class="mb-6"
         >Soll dieses Spiel wirklich gelöscht werden?</EpicHeading
@@ -37,7 +40,9 @@
       <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 "
         >Spiel: {{ deleteGameRef.name }}
       </EpicHeading>
-      <EpicButton fullwidth @click="cancleDeleteGame">Abbrechen</EpicButton>
+      <EpicButton fullwidth @click="cancleDeleteGame" class="mb-2"
+        >Abbrechen</EpicButton
+      >
       <EpicButton primary fullwidth @click="deleteGame">Löschen</EpicButton>
     </EpicModal>
   </div>
@@ -122,9 +127,9 @@ export default defineComponent({
 
 <style scoped>
 .v-games {
-  height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  height: 100%;
 }
 
 .heading {
@@ -134,6 +139,7 @@ export default defineComponent({
 .game-card {
   display: grid;
   grid-template-rows: repeat(3, auto);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.5rem;
 }
 </style>

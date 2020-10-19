@@ -5,27 +5,27 @@ $sizes: 12;
 
   /* margin #{$margin} */
   .m-#{$i} {
-    margin: $margin;
+    margin: $margin !important;
   }
   .ml-#{$i} {
-    margin-left: $margin;
+    margin-left: $margin !important;
   }
   .mr-#{$i} {
-    margin-right: $margin;
+    margin-right: $margin !important;
   }
   .mt-#{$i} {
-    margin-top: $margin;
+    margin-top: $margin !important;
   }
   .mb-#{$i} {
-    margin-bottom: $margin;
+    margin-bottom: $margin !important;
   }
   .mx-#{$i} {
-    margin-right: $margin;
-    margin-left: $margin;
+    margin-right: $margin !important;
+    margin-left: $margin !important;
   }
   .my-#{$i} {
-    margin-top: $margin;
-    margin-bottom: $margin;
+    margin-top: $margin !important;
+    margin-bottom: $margin !important;
   }
 }
 
@@ -34,26 +34,26 @@ $sizes: 12;
 
   /* padding #{$padding} */
   .p-#{$i} {
-    padding: $padding;
+    padding: $padding !important;
   }
   .pl-#{$i} {
-    padding-left: $padding;
+    padding-left: $padding !important;
   }
   .pr-#{$i} {
-    padding-right: $padding;
+    padding-right: $padding !important;
   }
   .pt-#{$i} {
-    padding-top: $padding;
+    padding-top: $padding !important;
   }
   .pb-#{$i} {
-    padding-bottom: $padding;
+    padding-bottom: $padding !important;
   }
   .px-#{$i} {
-    padding-right: $padding;
-    padding-left: $padding;
+    padding-right: $padding !important;
+    padding-left: $padding !important;
   }
   .py-#{$i} {
-    padding-top: $padding;
-    padding-bottom: $padding;
+    padding-top: $padding !important;
+    padding-bottom: $padding !important;
   }
 }
