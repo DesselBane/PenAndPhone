@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache
-          uses: actions/cache@v2.1.2
-          with:
+        uses: actions/cache@v2.1.2
+        with:
             # A list of files, directories, and wildcard patterns to cache and restore
             path: node_modules/*
             # An explicit key for restoring and saving the cache
@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache
-          uses: actions/cache@v2.1.2
-          with:
+        uses: actions/cache@v2.1.2
+        with:
             # A list of files, directories, and wildcard patterns to cache and restore
             path: node_modules/*
             # An explicit key for restoring and saving the cache
