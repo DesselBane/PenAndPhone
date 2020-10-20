@@ -4,20 +4,13 @@ name: verify
 
 on:
   - pull_request
-    
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache
-        uses: actions/cache@v2.1.2
-        with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          path: node_modules/*
-          # An explicit key for restoring and saving the cache
-          key: PAP_NODE_MODULES
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -28,13 +21,6 @@ jobs:
   cypress:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache
-        uses: actions/cache@v2.1.2
-        with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          path: node_modules/*
-          # An explicit key for restoring and saving the cache
-          key: PAP_NODE_MODULES
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -45,13 +31,6 @@ jobs:
   unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache
-        uses: actions/cache@v2.1.2
-        with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          path: node_modules/*
-          # An explicit key for restoring and saving the cache
-          key: PAP_NODE_MODULES
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
