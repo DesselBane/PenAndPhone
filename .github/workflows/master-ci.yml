@@ -33,8 +33,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Test
-        run: yarn test --coverage
+      - name: Unit Tests
+        run: yarn test:unit --coverage
   
   build-and-deploy-docs:
     runs-on: ubuntu-latest
