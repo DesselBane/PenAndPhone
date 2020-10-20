@@ -3,7 +3,10 @@
 name: verify
 
 on:
-  - pull_request
+  pull_request:
+  push:
+     branches:
+       - master
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
