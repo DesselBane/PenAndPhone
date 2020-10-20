@@ -66,33 +66,31 @@ export default defineComponent({
   },
   setup() {
     const games = storeInstance.games
+
+    // Create Game
     const newGame = ref(new Game())
-
     const createModalIsOpen = ref(false)
-    const confirmDeleteModalIsOpen = ref(false)
-    const deleteGameRef = ref(new Game())
-
     function openCreateModal() {
       createModalIsOpen.value = true
     }
-
     function createGame() {
       storeInstance.addGame(unref(newGame))
       createModalIsOpen.value = false
       newGame.value = new Game()
     }
 
+    // Delete Game
+    const confirmDeleteModalIsOpen = ref(false)
+    const deleteGameRef = ref(new Game())
     function deleteGame() {
       storeInstance.removeGame(deleteGameRef.value)
       deleteGameRef.value = new Game()
       confirmDeleteModalIsOpen.value = false
     }
-
     function openDeleteModal(game: Game) {
       deleteGameRef.value = game
       confirmDeleteModalIsOpen.value = true
     }
-
     function cancleDeleteGame() {
       deleteGameRef.value = new Game()
       confirmDeleteModalIsOpen.value = false
@@ -100,13 +98,15 @@ export default defineComponent({
 
     return {
       games,
+      // Create Game
       newGame,
       createModalIsOpen,
-      deleteGame,
       openCreateModal,
       createGame,
+      // Delete Game
       confirmDeleteModalIsOpen,
       deleteGameRef,
+      deleteGame,
       openDeleteModal,
       cancleDeleteGame,
     }
