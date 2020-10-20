@@ -110,7 +110,7 @@ export class Character {
       unref(this.attributes)?.filter((x) => x instanceof TextAttribute) || []
     )
   }
-  private set textAttributes(values: TextAttribute[]) {
+  public set textAttributes(values: TextAttribute[]) {
     unref(this.attributes).push(...values)
   }
 
