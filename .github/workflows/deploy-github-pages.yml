@@ -19,8 +19,10 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: yarn --frozen-lockfile
-      - run: export GH_TOKEN=${{ secrets.GH_TOKEN }}
-      - run: yarn semantic-release
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: yarn semantic-release
 
   build-and-deploy-docs:
     runs-on: ubuntu-latest
