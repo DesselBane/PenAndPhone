@@ -5,7 +5,15 @@ on:
 jobs:
   release-github-tag:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
+      - name: Cache
+        uses: actions/cache@v2.1.2
+        with:
+            # A list of files, directories, and wildcard patterns to cache and restore
+            path: node_modules/*
+            # An explicit key for restoring and saving the cache
+            key: PAP_NODE_MODULES
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -19,7 +27,15 @@ jobs:
 
   build-and-deploy-docs:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
+      - name: Cache
+        uses: actions/cache@v2.1.2
+        with:
+            # A list of files, directories, and wildcard patterns to cache and restore
+            path: node_modules/*
+            # An explicit key for restoring and saving the cache
+            key: PAP_NODE_MODULES
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
