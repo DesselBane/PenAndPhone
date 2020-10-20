@@ -13,7 +13,7 @@ module.exports = {
     baseUrl: '.',
     emitDecoratorMetadata: true,
     experimentalDecorators: true,
-    types: ['webpack-env', 'jest'],
+    types: ['webpack-env', 'jest', 'cypress'],
 
     lib: ['esnext', 'dom', 'dom.iterable', 'scripthost'],
   },
