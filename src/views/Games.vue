@@ -6,10 +6,7 @@
         <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 ">{{
           game.name
         }}</EpicHeading>
-        <EpicButton
-          class="gr-2 gc-1"
-          as="router-link"
-          :to="`/game/${game.id}/overview`"
+        <EpicButton class="gr-2 gc-1" as="router-link" :to="`/game/${game.id}`"
           >Öffnen
         </EpicButton>
         <EpicButton

@@ -3,9 +3,7 @@
     <EpicHeading class="mb-7">Deine Spiele</EpicHeading>
     <EpicCard class="mb-8" v-for="{ id, name } in games" :key="id">
       <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
-      <EpicButton as="router-link" :to="`/game/${id}/overview`"
-        >Spiel öffnen</EpicButton
-      >
+      <EpicButton as="router-link" :to="`/game/${id}`">Spiel öffnen</EpicButton>
     </EpicCard>
     <EpicButton primary @click="openCreateModal">+ Spiel erstellen</EpicButton>
     <EpicModal v-model:is-open="createModalIsOpen">

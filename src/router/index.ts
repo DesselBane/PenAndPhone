@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Games,
   },
   {
-    path: '/game/:gameId/overview',
+    path: '/game/:gameId',
     name: 'GameOverview',
     component: GameOverview,
   },
