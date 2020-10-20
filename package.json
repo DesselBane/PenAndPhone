@@ -74,5 +74,8 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
+  },
+  "resolutions": {
+    "cypress": "5.4.0"
   }
 }
