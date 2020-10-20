@@ -1,6 +1,6 @@
 module.exports = {
-  '*.js': [
-    'yarn lint:eslint --ext .js',
+  '*.ts': [
+    'yarn lint:eslint --ext .ts',
     'yarn lint:prettier',
     'git add',
     'yarn test:unit:file',

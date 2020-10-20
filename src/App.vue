@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main data-ta="app-main">
     <router-view />
   </main>
   <div id="nav">

@@ -14,8 +14,16 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'prefer-const': 'error',
+    'object-shorthand': ['error', 'always'],
+    // Only allow debugger in development
+    'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
+    // Only allow `console.log` in development
+    'no-console': process.env.PRE_COMMIT
+      ? ['error', { allow: ['warn', 'error'] }]
+      : 'off',
+    'prefer-template': 'error',
+    'no-unused-vars': ['error', { vars: 'all' }],
     '@typescript-eslint/no-inferrable-types': 'off',
   },
   overrides: [
