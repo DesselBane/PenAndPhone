@@ -1,0 +1,24 @@
+name: deploy-github-pages
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build-and-deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: yarn --frozen-lockfile
+      - run: yarn deploy
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          SSH: ${{ secrets.ACTION_DEPLOY_TOKEN }}
+          BRANCH: pages/master # The branch the action should deploy to.
+          FOLDER: docs # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+
+
