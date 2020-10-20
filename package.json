@@ -7,18 +7,19 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "deploy": "cross-env IS_GITHUB_DEPLOY=true vue-cli-service build --dest docs/",
-    "test:unit": "vue-cli-service test:unit",
-    "test:unit:ci": "yarn test:unit --coverage --ci",
-    "test:unit:file": "yarn test:unit --bail --findRelatedTests",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:e2e:ci": "cross-env VUE_APP_TEST=e2e vue-cli-service test:e2e --mode=stage --headless --browser chrome",
     "lint": "vue-cli-service lint",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.vue .",
     "lint:all:markdownlint": "yarn lint:markdownlint \"docs/*.md\" \"*.md\"",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,css,scss,vue,html,md}\"",
     "lint:eslint": "npx eslint --fix .",
     "lint:markdownlint": "markdownlint",
-    "lint:prettier": "prettier --write --loglevel warn"
+    "lint:prettier": "prettier --write --loglevel warn",
+    "precommithook": "cross-env PRE_COMMIT=true lint-staged",
+    "test:unit": "vue-cli-service test:unit",
+    "test:unit:ci": "yarn test:unit --coverage --ci",
+    "test:unit:file": "yarn test:unit --bail --findRelatedTests",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:ci": "cross-env VUE_APP_TEST=e2e vue-cli-service test:e2e --mode=stage --headless --browser chrome"
   },
   "dependencies": {
     "@vue/reactivity": "^3.0.0",
@@ -73,7 +74,7 @@
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "yarn precommithook"
   },
   "resolutions": {
     "cypress": "5.4.0"
