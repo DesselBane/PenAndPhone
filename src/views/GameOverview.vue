@@ -30,7 +30,7 @@
   <EpicModal v-model:is-open="createModalIsOpen">
     <EpicHeading as="h2" class="mb-6">Neuen Helden erstellen</EpicHeading>
     <form @submit.prevent="createChar">
-      <EpicInput v-model="newChar.name" label="Spielname" class="mb-6" />
+      <EpicInput v-model="newChar.name" label="Name" class="mb-6" />
       <EpicButton primary fullwidth>Held erstellen</EpicButton>
     </form>
   </EpicModal>

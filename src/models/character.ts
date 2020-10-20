@@ -9,7 +9,7 @@ import { Trait } from './trait'
   },
 })
 export class Character {
-  @jsonMember({ constructor: Number })
+  @jsonMember
   public id: number = -1
 
   @jsonMember
