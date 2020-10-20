@@ -12,4 +12,3 @@
 .dockerignore
 .yarnrc
 **/docs/**
-*.config.js
