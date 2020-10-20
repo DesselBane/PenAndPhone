@@ -76,34 +76,32 @@ export default defineComponent({
     const game = computed(() => {
       return storeInstance.getGameById(Number(route.params.gameId))
     })
-    const chars = game.value.characters
+    const chars = computed(() => unref(game).characters)
+
+    // Create Char
     const newChar = ref(new Character())
-    const deleteCharRef = ref(new Character(true))
-    const confirmDeleteModalIsOpen = ref(false)
-
     const createModalIsOpen = ref(false)
-
     function openCreateModal() {
       createModalIsOpen.value = true
     }
-
     function createChar() {
       game.value.addCharacter(unref(newChar))
       createModalIsOpen.value = false
       newChar.value = new Character()
     }
 
+    // Delete Char
+    const deleteCharRef = ref(new Character(true))
+    const confirmDeleteModalIsOpen = ref(false)
     function deleteChar() {
       game.value.removeCharacter(deleteCharRef.value)
       deleteCharRef.value = new Character()
       confirmDeleteModalIsOpen.value = false
     }
-
     function openDeleteModal(char: Character) {
       deleteCharRef.value = char
       confirmDeleteModalIsOpen.value = true
     }
-
     function cancleDeleteChar() {
       deleteCharRef.value = new Character()
       confirmDeleteModalIsOpen.value = false
@@ -112,15 +110,17 @@ export default defineComponent({
     return {
       game,
       chars,
+      // CreateChar
       newChar,
+      createModalIsOpen,
       createChar,
       openCreateModal,
-      createModalIsOpen,
+      //Delete Char
+      deleteCharRef,
+      confirmDeleteModalIsOpen,
       deleteChar,
       openDeleteModal,
       cancleDeleteChar,
-      deleteCharRef,
-      confirmDeleteModalIsOpen,
     }
   },
 })
