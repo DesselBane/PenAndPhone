@@ -1,5 +1,12 @@
+import { jsonArrayMember } from 'typedjson'
+
 export interface Taggable {
   tags: string[]
+}
+
+export abstract class TaggableBase implements Taggable {
+  @jsonArrayMember(String)
+  public tags: string[] = []
 }
 
 export enum DefaultTags {
