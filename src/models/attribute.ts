@@ -13,6 +13,8 @@ export class Attribute extends ReferenceableBase
   public tags: string[] = []
   @jsonMember
   public parentId: string = ''
+  @jsonMember
+  public label: string = ''
 
   public readonly canAddModification: ComputedRef<boolean> = computed(
     () => true
@@ -33,11 +35,36 @@ export class Attribute extends ReferenceableBase
       : (storeInstance.getReference(this.parentId) as Character)
   )
 
+  public readonly currentValue = computed(() =>
+    unref(this.modifications).reduce(
+      (previousValue, currentValue) => previousValue + currentValue.amount,
+      0
+    )
+  )
+
   public addModification(): Modification | null {
-    return null
+    const parent = unref(this.parent)
+    if (parent == null) {
+      return null
+    }
+
+    const mod = new Modification()
+    mod.targetId = this.id
+    mod.amount = 1
+    parent.addModification(mod)
+    return mod
   }
 
   public removeModification(): boolean {
-    return false
+    const parent = unref(this.parent)
+    const modifications = unref(this.modifications)
+
+    if (parent == null || modifications.length === 0) {
+      return false
+    }
+
+    const mod = modifications[modifications.length - 1]
+
+    return parent.removeModification(mod)
   }
 }

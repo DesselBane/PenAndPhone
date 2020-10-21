@@ -44,6 +44,15 @@ export class Character extends ReferenceableBase {
     storeInstance.addReference(mod)
     this.modifications.push(mod)
   }
+  public removeModification(mod: Modification): boolean {
+    const modIndex = this.modifications.findIndex((x) => x.id === mod.id)
+    if (modIndex === -1) {
+      return false
+    }
+    this.modifications.splice(modIndex, 1)
+    storeInstance.removeReference(mod)
+    return true
+  }
 
   private _hardcodedSetup() {
     this.traits = [
@@ -61,18 +70,22 @@ export class Character extends ReferenceableBase {
       'Kulturkunde',
     ].map((name) => new Trait(name, '', DefaultTags.generelles))
 
-    const fooAttr = new Attribute()
-    fooAttr.tags.push(DefaultTags.attribute)
-    this.addAttribute(fooAttr)
+    const attributes = [
+      'Ausstrahlung',
+      'Beweglichkeit',
+      'Intuition',
+      'Konsitution',
+      'Mystik',
+      'Stärke',
+      'Verstand',
+      'Willenskraft',
+    ]
 
-    const mod1 = new Modification()
-    mod1.targetId = fooAttr.id
-    mod1.amount = 5
-    this.addModification(mod1)
-
-    const mod2 = new Modification()
-    mod2.targetId = fooAttr.id
-    mod2.amount = -8
-    this.addModification(mod2)
+    attributes.forEach((attrName) => {
+      const attr = new Attribute()
+      attr.tags.push(DefaultTags.attribute)
+      attr.label = attrName
+      this.addAttribute(attr)
+    })
   }
 }

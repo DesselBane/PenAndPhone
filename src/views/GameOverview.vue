@@ -86,7 +86,7 @@ export default defineComponent({
       createModalIsOpen.value = true
     }
     function createChar() {
-      game.value.addCharacter(unref(newChar))
+      unref(game).addCharacter(unref(newChar))
       createModalIsOpen.value = false
       newChar.value = new Character()
     }
