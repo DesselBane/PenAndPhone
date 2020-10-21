@@ -6,6 +6,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/games">Games</router-link>
     <router-link to="/playground">Playground</router-link>
+    <button @click="handleClick">Log data store</button>
   </div>
 </template>
 
@@ -36,3 +37,15 @@
   }
 }
 </style>
+<script>
+import { storeInstance } from '@/store/data-store'
+
+export default {
+  methods: {
+    handleClick() {
+      // eslint-disable-next-line no-console
+      console.log(storeInstance._referenceStore)
+    },
+  },
+}
+</script>

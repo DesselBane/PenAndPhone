@@ -14,6 +14,7 @@
 <script lang="ts">
 import EpicHeading from '@components/EpicHeading'
 import EpicInput from '@components/EpicInput'
+import { Character } from '@models/character'
 import { Trait } from '@models/trait'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
@@ -29,16 +30,18 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
-    const char = computed(() =>
-      storeInstance
-        .getGameById(Number(route.params.gameId))
-        ?.getCharById(Number(route.params.charId))
-    )
+    const char = computed(() => {
+      const data = storeInstance.getReference(route.params.charId) as
+        | Character
+        | undefined
+      return data
+    })
     const generalTagTraits = computed<Trait[]>(() => {
       const character = char.value
-      if (character === null) {
+      if (character == undefined) {
         return []
       }
+
       return character.traits.filter((x) =>
         x.tags.includes(DefaultTags.generelles)
       )

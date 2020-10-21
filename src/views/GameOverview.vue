@@ -9,7 +9,7 @@
         <EpicButton
           class="gr-2 gc-1"
           as="router-link"
-          :to="`/game/${game.id}/char/${char.id}/edit`"
+          :to="`/char/${char.id}/edit`"
           >Editieren
         </EpicButton>
         <EpicButton
@@ -50,6 +50,7 @@
 </template>
 
 <script lang="ts">
+import { Game } from '@models/game'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from '@vue/runtime-core'
 import { ref, unref } from 'vue'
@@ -74,9 +75,9 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const game = computed(() => {
-      return storeInstance.getGameById(Number(route.params.gameId))
+      return storeInstance.getReference(route.params.gameId) as Game | undefined
     })
-    const chars = computed(() => unref(game).characters)
+    const chars = computed(() => unref(game)?.characters)
 
     // Create Char
     const newChar = ref(new Character())

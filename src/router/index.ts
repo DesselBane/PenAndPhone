@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     component: GameOverview,
   },
   {
-    path: '/game/:gameId/char/:charId/edit',
+    path: '/char/:charId/edit',
     name: 'CharEdit',
     component: CharEdit,
   },
