@@ -1,7 +1,9 @@
+import CharEdit from '@views/CharEdit'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-import EditChar from '../views/EditChar.vue'
-import Playground from '../views/Playground.vue'
+import Home from '@views/Home'
+import Games from '@views/Games'
+import GameOverview from '@views/GameOverview'
+import Playground from '@views/Playground'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,10 +11,21 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     component: Home,
   },
+
   {
-    path: '/edit-char',
-    name: 'EditChar',
-    component: EditChar,
+    path: '/games',
+    name: 'Games',
+    component: Games,
+  },
+  {
+    path: '/game/:gameId',
+    name: 'GameOverview',
+    component: GameOverview,
+  },
+  {
+    path: '/game/:gameId/char/:charId/edit',
+    name: 'CharEdit',
+    component: CharEdit,
   },
   {
     path: '/playground',

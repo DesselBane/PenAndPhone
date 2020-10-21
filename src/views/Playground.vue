@@ -1,39 +1,27 @@
 <template>
   <div>
-    <EpicHeading class="mb-7">Playground</EpicHeading>
-    <EpicCard class="mb-8">
-      <EpicHeading as="h2" class="mb-7">Epic Attributes</EpicHeading>
-      <p class="epic mb-7">
-        Your hero's epic attributes go here. It smells like adventure and old
-        socks. But mostly old socks. Your hero's epic attributes go here. It
-        smells like adventure and old socks. But mostly old socks.
-      </p>
-      <EpicInput
-        class="mb-7"
-        label="New Attribute"
-        placeholder="New epic attribute ..."
-      />
-      <EpicInput
-        class="mb-10"
-        label="New Attribute"
-        placeholder="New epic attribute ..."
-      />
-      <EpicButton @click="editAttributes">Edit Attributes</EpicButton>
+    <EpicHeading class="mb-7">Deine Spiele</EpicHeading>
+    <EpicCard class="mb-8" v-for="{ id, name } in games" :key="id">
+      <EpicHeading as="h3" class="mb-4">{{ name }}</EpicHeading>
+      <EpicButton as="router-link" :to="`/game/${id}`">Spiel öffnen</EpicButton>
     </EpicCard>
-    <EpicCard class="mb-7">
-      <EpicHeading as="h2" class="mb-7">Epic Items</EpicHeading>
-      <p class="mb-7">Your hero's epic items go here.</p>
-      <EpicButton>Edit Items</EpicButton>
-    </EpicCard>
-    <EpicButton primary>Save The Epicness</EpicButton>
+    <EpicButton primary @click="openCreateModal">+ Spiel erstellen</EpicButton>
+    <EpicModal v-model:is-open="createModalIsOpen">
+      <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
+      <form @submit.prevent="createGame">
+        <EpicInput modelValue="" label="Spielname" class="mb-6" />
+        <EpicButton primary fullwidth>Spiel erstellen</EpicButton>
+      </form>
+    </EpicModal>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import EpicCard from '@components/EpicCard.vue'
 import EpicHeading from '@components/EpicHeading.vue'
 import EpicButton from '@components/EpicButton.vue'
+import EpicModal from '@components/EpicModal.vue'
 import EpicInput from '@components/EpicInput.vue'
 
 export default defineComponent({
@@ -42,13 +30,36 @@ export default defineComponent({
     EpicCard,
     EpicHeading,
     EpicButton,
+    EpicModal,
     EpicInput,
   },
   setup() {
-    return {
-      editAttributes() {
-        alert('Edit Epic Attributes')
+    const games = ref([
+      {
+        id: '1',
+        name: 'Episches Splittermondgemetzel',
       },
+      {
+        id: '2',
+        name: 'Dragonland Witch Hunt',
+      },
+    ])
+
+    const createModalIsOpen = ref(false)
+    function openCreateModal() {
+      createModalIsOpen.value = true
+    }
+
+    function createGame() {
+      // Create da epic game HEEEERRREEE
+      createModalIsOpen.value = false
+    }
+
+    return {
+      games,
+      createModalIsOpen,
+      openCreateModal,
+      createGame,
     }
   },
 })

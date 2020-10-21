@@ -13,10 +13,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@styles/shared.scss';
+@import 'src/styles/shared.scss';
 
 .epic-card {
-  padding: 2rem;
+  padding: 1.2rem;
   border-radius: 0.2rem;
   box-shadow: 0 0 2px shadow(0.3), 0 4px 16px -6px shadow(0.6),
     inset 0 0 1px 2px light(0.9), inset 0 0 4px 1px shadow(0.4);

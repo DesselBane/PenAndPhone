@@ -13,7 +13,7 @@ module.exports = {
     baseUrl: '.',
     emitDecoratorMetadata: true,
     experimentalDecorators: true,
-    types: ['webpack-env', 'jest', 'cypress'],
+    types: ['webpack-env', 'jest', 'shims-vue.d.ts', 'cypress'],
 
     lib: ['esnext', 'dom', 'dom.iterable', 'scripthost'],
   },

@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@styles/shared.scss';
+@import 'src/styles/shared.scss';
 
 h1 {
   color: $color-primary;

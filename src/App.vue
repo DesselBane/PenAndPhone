@@ -4,7 +4,7 @@
   </main>
   <div id="nav">
     <router-link to="/">Home</router-link>
-    <router-link to="/edit-char">Edit</router-link>
+    <router-link to="/games">Games</router-link>
     <router-link to="/playground">Playground</router-link>
   </div>
 </template>
@@ -14,9 +14,13 @@
   display: grid;
   grid-template-rows: 1fr auto;
   max-width: 480px;
-  height: 100%;
+  padding: 0 0.5rem;
   margin: 0 auto;
-  text-align: center;
+  height: 100%;
+}
+
+#main {
+  height: 100%;
 }
 
 #nav {
