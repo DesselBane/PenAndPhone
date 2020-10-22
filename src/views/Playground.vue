@@ -1,10 +1,12 @@
 <template>
   <div>
-    <EpicHeading class="mb-7">Deine Spiele</EpicHeading>
+    <EpicHeading class="mb-7">Brandur Boraldin</EpicHeading>
     <EpicCard class="mb-8" v-for="{ id, name } in games" :key="id">
       <EpicHeading as="h3" class="mb-6">{{ name }}</EpicHeading>
-      <EpicAttributeInput :modelValue="2" class="mb-6" />
-      <EpicButton as="router-link" :to="`/game/${id}`">Spiel öffnen</EpicButton>
+      <EpicAttributeInput label="Stärke" :modelValue="2" class="mb-6" />
+      <EpicAttributeInput label="Ausdauer" :modelValue="3" class="mb-6" />
+      <EpicAttributeInput label="Willenskraft" :modelValue="1" class="mb-6" />
+      <EpicButton as="router-link" :to="`/game/${id}`">Speichern</EpicButton>
     </EpicCard>
     <EpicButton primary @click="openCreateModal">+ Spiel erstellen</EpicButton>
     <EpicModal v-model:is-open="createModalIsOpen">
@@ -40,7 +42,7 @@ export default defineComponent({
     const games = ref([
       {
         id: '1',
-        name: 'Episches Splittermondgemetzel',
+        name: 'Attribute',
       },
       {
         id: '2',
