@@ -70,7 +70,7 @@ export default defineComponent({
 
 .epic-attribute-input-controls {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr 3rem 3rem;
   gap: 0.5rem;
 }
 
@@ -80,6 +80,7 @@ $input-base-shadow: 0 0 2px shadow(0.3), 0 4px 12px -4px shadow(0.2),
 
 .epic-attribute-input {
   all: initial;
+  min-width: 0;
   padding: 0.7rem 1.2rem;
   font-size: 1.1rem;
   color: $color-text;
