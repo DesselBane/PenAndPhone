@@ -2,7 +2,7 @@ import { ref, computed, SetupContext } from 'vue'
 
 export const inputProps = {
   modelValue: {
-    type: String,
+    type: [String, Number],
     required: true,
   },
   label: {
