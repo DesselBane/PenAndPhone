@@ -19,7 +19,7 @@ export function useInput({ emit, attrs }: SetupContext) {
   }
 
   const inputAttrs = computed(() => {
-    const attributes = { ...attrs, ref: 'inputEl' }
+    const attributes = { ...attrs, ref: 'inputEl' } as Record<string, unknown>
     delete attributes.class
     delete attributes.style
     return attributes
