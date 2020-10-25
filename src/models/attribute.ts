@@ -1,5 +1,5 @@
 import { Taggable } from '@models/tags'
-import { computed, ComputedRef } from '@vue/reactivity'
+import { computed, ComputedRef, reactive } from 'vue'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 import { Referenceable, ReferenceableBase } from './reference'
 import { generate } from 'shortid'
@@ -23,10 +23,10 @@ class IncrementImpl implements Increment {
   }
 }
 
-export interface Incrementable {
-  readonly currentValue: ComputedRef<number>
+export interface Incrementable extends Referenceable {
   addIncrement(amount: number): Increment
   removeIncrement(id?: string): boolean
+  readonly currentValue: ComputedRef<number>
 }
 
 @jsonObject(ReferenceableBase.options)
@@ -46,21 +46,35 @@ export class Attribute extends ReferenceableBase
     return this._increments
   }
 
-  public readonly currentValue = computed(() =>
-    this.increments.reduce(
-      (previousValue, { amount }) => previousValue + amount,
-      0
+  public currentValue: ComputedRef<number> = computed(() => 0)
+
+  constructor() {
+    super()
+
+    const that = reactive(this) as Attribute
+
+    that.currentValue = computed(() =>
+      that._increments.reduce(
+        (previousValue, { amount }) => previousValue + amount,
+        0
+      )
     )
-  )
+
+    return that
+  }
 
   public addIncrement(amount = 1): Increment {
     const increment = new IncrementImpl(amount)
     this._increments.push(increment)
+
     return increment
   }
 
   public removeIncrement(id?: string): boolean {
-    const incrementIndex = this._increments.findIndex((x) => x.id === id)
+    const incrementIndex =
+      id === undefined
+        ? this._increments.length - 1
+        : this._increments.findIndex((x) => x.id === id)
 
     if (incrementIndex === -1) {
       return false
