@@ -14,6 +14,7 @@ export class Game extends ReferenceableBase {
   public addCharacter(char: Character) {
     this.characters.push(char)
     storeInstance.addReference(char)
+    storeInstance.save()
   }
 
   public removeCharacter(character: Character) {
@@ -23,6 +24,7 @@ export class Game extends ReferenceableBase {
     } else {
       this.characters.splice(charIndex, 1)
       storeInstance.removeReference(character)
+      storeInstance.save()
     }
   }
 }

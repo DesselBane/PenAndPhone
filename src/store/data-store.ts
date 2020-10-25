@@ -1,7 +1,6 @@
 import { Game } from '@models/game'
 import { TypedJSON } from 'typedjson'
 import { reactive } from '@vue/reactivity'
-import { watch } from 'vue'
 import { Referenceable } from '@models/reference'
 
 const LOCAL_STORAGE_KEY = 'pap.store.data'
@@ -12,17 +11,9 @@ export class DataStore {
   public games: Game[] = []
 
   public load() {
+    this._referenceStore.clear()
     const json = localStorage.getItem(LOCAL_STORAGE_KEY)
     this.games = TypedJSON.parseAsArray(json, Game) || []
-    watch(
-      () => this.games,
-      () => {
-        this.save()
-      },
-      {
-        deep: true,
-      }
-    )
   }
   public save() {
     this._saveToLocalStorage()
@@ -36,6 +27,7 @@ export class DataStore {
   public addGame(game: Game) {
     this.games.push(game)
     this.addReference(game)
+    this.save()
   }
   public removeGame(game: Game) {
     const gameIndex = this.games.findIndex((x) => x.id === game.id)
@@ -45,6 +37,7 @@ export class DataStore {
     } else {
       this.games.splice(gameIndex, 1)
       this.removeReference(game)
+      this.save()
     }
   }
 
