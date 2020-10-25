@@ -1,72 +1,66 @@
 import { Game } from '@models/game'
-import { jsonArrayMember, jsonMember, jsonObject, TypedJSON } from 'typedjson'
-import { ref, Ref, unref } from '@vue/reactivity'
-import { watch } from 'vue'
+import { TypedJSON } from 'typedjson'
+import { reactive } from '@vue/reactivity'
+import { Referenceable } from '@models/reference'
 
 const LOCAL_STORAGE_KEY = 'pap.store.data'
 
-@jsonObject
 export class DataStore {
-  @jsonMember
-  private gameIdSeed: number = 0
+  public _referenceStore = new Map<string, object>()
 
-  public games: Ref<Game[]> = ref([])
+  public games: Game[] = []
+  private _lastSave = Date.now()
 
-  @jsonArrayMember(Game, { name: 'games' })
-  private get gamesJson(): Game[] {
-    return unref(this.games)
-  }
-  // noinspection JSUnusedLocalSymbols
-  private set gamesJson(games: Game[]) {
-    this.games.value = games
+  public get lastSave() {
+    return this._lastSave
   }
 
-  constructor() {
-    watch(
-      () => this.games,
-      () => {
-        this.save()
-      },
-      {
-        deep: true,
-      }
-    )
+  public load() {
+    this._referenceStore.clear()
+    const json = localStorage.getItem(LOCAL_STORAGE_KEY)
+    this.games = TypedJSON.parseAsArray(json, Game) || []
   }
-
   public save() {
+    this._lastSave = Date.now()
     this._saveToLocalStorage()
   }
 
   private _saveToLocalStorage(): void {
-    const serializer = new TypedJSON(DataStore)
-    localStorage.setItem(LOCAL_STORAGE_KEY, serializer.stringify(this))
+    const json = TypedJSON.stringifyAsArray(this.games, Game)
+    localStorage.setItem(LOCAL_STORAGE_KEY, json)
   }
 
   public addGame(game: Game) {
-    game.id = this.gameIdSeed++
-    this.games.value.push(game)
+    this.games.push(game)
+    this.addReference(game)
   }
-
   public removeGame(game: Game) {
-    const gameIndex = this.games.value.findIndex((x) => x.id === game.id)
+    const gameIndex = this.games.findIndex((x) => x.id === game.id)
 
     if (gameIndex === -1) {
       throw `Could not remove Game(${game.id}) from dataStore because it wasn't found.`
     } else {
-      this.games.value.splice(gameIndex, 1)
+      this.games.splice(gameIndex, 1)
+      this.removeReference(game)
     }
   }
 
-  public getGameById(gameId: number): Game | null {
-    return this.games.value.find((x) => x.id === gameId) || null
+  public addReference(value: Referenceable) {
+    this._referenceStore.set(value.id, value)
+  }
+  public getReference(id: string | Referenceable): object | undefined {
+    if (typeof id !== 'string') {
+      id = id.id
+    }
+    return this._referenceStore.get(id)
+  }
+  public removeReference(id: string | Referenceable) {
+    if (typeof id !== 'string') {
+      id = id.id
+    }
+    this._referenceStore.delete(id)
   }
 }
 
-function loadDataStore() {
-  const store = new TypedJSON(DataStore).parse(
-    localStorage.getItem(LOCAL_STORAGE_KEY)
-  )
-  return store != null ? store : new DataStore()
-}
-
-export const storeInstance = loadDataStore()
+export const storeInstance = reactive(new DataStore())
+storeInstance.load()

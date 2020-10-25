@@ -31,3 +31,5 @@ pnpm-debug.log*
 tsconfig.json
 /coverage/
 /.idea/shelf/
+/.idea/codestream.xml
+/.idea/compiler.xml

@@ -1,14 +1,10 @@
 import { Character } from '@models/character'
+import { ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { storeInstance } from '../store/data-store'
 
-@jsonObject
-export class Game {
-  @jsonMember
-  private charIdSeed: number = 0
-
-  @jsonMember
-  public id: number = -1
-
+@jsonObject(ReferenceableBase.options)
+export class Game extends ReferenceableBase {
   @jsonMember
   public name: string = ''
 
@@ -16,8 +12,8 @@ export class Game {
   public characters: Character[] = []
 
   public addCharacter(char: Character) {
-    char.id = this.charIdSeed++
     this.characters.push(char)
+    storeInstance.addReference(char)
   }
 
   public removeCharacter(character: Character) {
@@ -26,10 +22,7 @@ export class Game {
       throw `Could not remove Character(${character.id}) from Game(${this.id}) because it wasn't found.`
     } else {
       this.characters.splice(charIndex, 1)
+      storeInstance.removeReference(character)
     }
-  }
-
-  public getCharById(charId: number): Character | null {
-    return this.characters?.find((x) => x.id === charId) || null
   }
 }

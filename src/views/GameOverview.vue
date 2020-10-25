@@ -9,7 +9,7 @@
         <EpicButton
           class="gr-2 gc-1"
           as="router-link"
-          :to="`/game/${game.id}/char/${char.id}/edit`"
+          :to="`/char/${char.id}/edit`"
           >Editieren
         </EpicButton>
         <EpicButton
@@ -50,6 +50,7 @@
 </template>
 
 <script lang="ts">
+import { Game } from '@models/game'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from '@vue/runtime-core'
 import { ref, unref } from 'vue'
@@ -74,9 +75,9 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const game = computed(() => {
-      return storeInstance.getGameById(Number(route.params.gameId))
+      return storeInstance.getReference(route.params.gameId) as Game | undefined
     })
-    const chars = computed(() => unref(game).characters)
+    const chars = computed(() => unref(game)?.characters)
 
     // Create Char
     const newChar = ref(new Character())
@@ -85,7 +86,8 @@ export default defineComponent({
       createModalIsOpen.value = true
     }
     function createChar() {
-      game.value.addCharacter(unref(newChar))
+      unref(game).addCharacter(unref(newChar))
+      storeInstance.save()
       createModalIsOpen.value = false
       newChar.value = new Character()
     }
@@ -94,7 +96,8 @@ export default defineComponent({
     const deleteCharRef = ref(new Character(true))
     const confirmDeleteModalIsOpen = ref(false)
     function deleteChar() {
-      game.value.removeCharacter(deleteCharRef.value)
+      unref(game).removeCharacter(deleteCharRef.value)
+      storeInstance.save()
       deleteCharRef.value = new Character()
       confirmDeleteModalIsOpen.value = false
     }

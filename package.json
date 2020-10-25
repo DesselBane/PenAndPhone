@@ -42,10 +42,12 @@
     "test:e2e:ci": "cross-env VUE_APP_TEST=e2e vue-cli-service test:e2e --mode=stage --headless --browser chrome"
   },
   "dependencies": {
+    "@types/shortid": "^0.0.29",
     "@vue/reactivity": "^3.0.0",
     "core-js": "3.6.5",
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "1.7.1",
+    "shortid": "^2.2.15",
     "typedjson": "^1.6.0-rc2",
     "vue": "3.0.0",
     "vue-router": "4.0.0-beta.12"
