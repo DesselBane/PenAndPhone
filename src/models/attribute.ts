@@ -2,6 +2,7 @@ import { Increment, Incrementable, IncrementImpl } from '@models/increment'
 import { Taggable } from '@models/tags'
 import { computed, ComputedRef, reactive } from 'vue'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { storeInstance } from '../store/data-store'
 import { ReferenceableBase } from './reference'
 
 @jsonObject(ReferenceableBase.options)
@@ -41,6 +42,7 @@ export class Attribute extends ReferenceableBase
   public addIncrement(amount = 1): Increment {
     const increment = new IncrementImpl(amount)
     this._increments.push(increment)
+    storeInstance.addReference(increment)
 
     return increment
   }
@@ -54,6 +56,7 @@ export class Attribute extends ReferenceableBase
     if (incrementIndex === -1) {
       return false
     } else {
+      storeInstance.removeReference(this._increments[incrementIndex])
       this._increments.splice(incrementIndex, 1)
       return true
     }
