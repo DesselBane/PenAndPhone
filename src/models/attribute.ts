@@ -1,33 +1,8 @@
+import { Increment, Incrementable, IncrementImpl } from '@models/increment'
 import { Taggable } from '@models/tags'
 import { computed, ComputedRef, reactive } from 'vue'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
-import { Referenceable, ReferenceableBase } from './reference'
-import { generate } from 'shortid'
-
-export interface Increment extends Referenceable {
-  readonly timestamp: number
-  readonly amount: number
-}
-
-@jsonObject
-class IncrementImpl implements Increment {
-  @jsonMember
-  public readonly amount: number
-  @jsonMember
-  public readonly id: string = generate()
-  @jsonMember
-  public readonly timestamp: number = Date.now()
-
-  constructor(amount = 1) {
-    this.amount = amount
-  }
-}
-
-export interface Incrementable extends Referenceable {
-  addIncrement(amount: number): Increment
-  removeIncrement(id?: string): boolean
-  readonly currentValue: ComputedRef<number>
-}
+import { ReferenceableBase } from './reference'
 
 @jsonObject(ReferenceableBase.options)
 export class Attribute extends ReferenceableBase
