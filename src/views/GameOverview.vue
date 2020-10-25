@@ -87,6 +87,7 @@ export default defineComponent({
     }
     function createChar() {
       unref(game).addCharacter(unref(newChar))
+      storeInstance.save()
       createModalIsOpen.value = false
       newChar.value = new Character()
     }
@@ -95,7 +96,8 @@ export default defineComponent({
     const deleteCharRef = ref(new Character(true))
     const confirmDeleteModalIsOpen = ref(false)
     function deleteChar() {
-      game.value.removeCharacter(deleteCharRef.value)
+      unref(game).removeCharacter(deleteCharRef.value)
+      storeInstance.save()
       deleteCharRef.value = new Character()
       confirmDeleteModalIsOpen.value = false
     }

@@ -1,14 +1,37 @@
-import { Character } from '@models/character'
-import { Modifiable, Modification } from '@models/modification'
 import { Taggable } from '@models/tags'
-import { computed, ComputedRef, unref } from '@vue/reactivity'
+import { computed, ComputedRef } from '@vue/reactivity'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
-import { storeInstance } from '../store/data-store'
-import { ReferenceableBase } from './reference'
+import { Referenceable, ReferenceableBase } from './reference'
+import { generate } from 'shortid'
+
+export interface Increment extends Referenceable {
+  readonly timestamp: number
+  readonly amount: number
+}
+
+@jsonObject
+class IncrementImpl implements Increment {
+  @jsonMember
+  public readonly amount: number
+  @jsonMember
+  public readonly id: string = generate()
+  @jsonMember
+  public readonly timestamp: number = Date.now()
+
+  constructor(amount = 1) {
+    this.amount = amount
+  }
+}
+
+export interface Incrementable {
+  readonly currentValue: ComputedRef<number>
+  addIncrement(amount: number): Increment
+  removeIncrement(id?: string): boolean
+}
 
 @jsonObject(ReferenceableBase.options)
 export class Attribute extends ReferenceableBase
-  implements Taggable, Modifiable {
+  implements Taggable, Incrementable {
   @jsonArrayMember(String)
   public tags: string[] = []
   @jsonMember
@@ -16,55 +39,34 @@ export class Attribute extends ReferenceableBase
   @jsonMember
   public label: string = ''
 
-  public readonly canAddModification: ComputedRef<boolean> = computed(
-    () => true
-  )
-  public readonly canRemoveModification: ComputedRef<boolean> = computed(
-    () => true
-  )
-  public readonly modifications: ComputedRef<Modification[]> = computed(
-    () =>
-      unref(this.parent)?.modifications?.filter(
-        (mod) => mod.targetId === this.id
-      ) || []
-  )
+  @jsonArrayMember(IncrementImpl)
+  private _increments: Increment[] = []
 
-  public readonly parent = computed(() =>
-    this.parentId == null
-      ? null
-      : (storeInstance.getReference(this.parentId) as Character)
-  )
+  public get increments(): Increment[] {
+    return this._increments
+  }
 
   public readonly currentValue = computed(() =>
-    unref(this.modifications).reduce(
-      (previousValue, currentValue) => previousValue + currentValue.amount,
+    this.increments.reduce(
+      (previousValue, { amount }) => previousValue + amount,
       0
     )
   )
 
-  public addModification(): Modification | null {
-    const parent = unref(this.parent)
-    if (parent == null) {
-      return null
-    }
-
-    const mod = new Modification()
-    mod.targetId = this.id
-    mod.amount = 1
-    parent.addModification(mod)
-    return mod
+  public addIncrement(amount = 1): Increment {
+    const increment = new IncrementImpl(amount)
+    this._increments.push(increment)
+    return increment
   }
 
-  public removeModification(): boolean {
-    const parent = unref(this.parent)
-    const modifications = unref(this.modifications)
+  public removeIncrement(id?: string): boolean {
+    const incrementIndex = this._increments.findIndex((x) => x.id === id)
 
-    if (parent == null || modifications.length === 0) {
+    if (incrementIndex === -1) {
       return false
+    } else {
+      this._increments.splice(incrementIndex, 1)
+      return true
     }
-
-    const mod = modifications[modifications.length - 1]
-
-    return parent.removeModification(mod)
   }
 }

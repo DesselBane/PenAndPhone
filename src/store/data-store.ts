@@ -9,6 +9,11 @@ export class DataStore {
   public _referenceStore = new Map<string, object>()
 
   public games: Game[] = []
+  private _lastSave = Date.now()
+
+  public get lastSave() {
+    return this._lastSave
+  }
 
   public load() {
     this._referenceStore.clear()
@@ -16,6 +21,7 @@ export class DataStore {
     this.games = TypedJSON.parseAsArray(json, Game) || []
   }
   public save() {
+    this._lastSave = Date.now()
     this._saveToLocalStorage()
   }
 
@@ -27,7 +33,6 @@ export class DataStore {
   public addGame(game: Game) {
     this.games.push(game)
     this.addReference(game)
-    this.save()
   }
   public removeGame(game: Game) {
     const gameIndex = this.games.findIndex((x) => x.id === game.id)
@@ -37,7 +42,6 @@ export class DataStore {
     } else {
       this.games.splice(gameIndex, 1)
       this.removeReference(game)
-      this.save()
     }
   }
 

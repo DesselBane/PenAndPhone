@@ -1,5 +1,4 @@
 import { Attribute } from '@models/attribute'
-import { Modification } from '@models/modification'
 import { ReferenceableBase } from '@models/reference'
 import { DefaultTags } from '@models/tags'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
@@ -23,9 +22,6 @@ export class Character extends ReferenceableBase {
   @jsonArrayMember(Attribute)
   public readonly attributes: Attribute[] = []
 
-  @jsonArrayMember(Modification)
-  public readonly modifications: Modification[] = []
-
   constructor(skipHardcodedSetup = false) {
     super()
 
@@ -38,20 +34,6 @@ export class Character extends ReferenceableBase {
     attr.parentId = this.id
     storeInstance.addReference(attr)
     this.attributes.push(attr)
-  }
-  public addModification(mod: Modification) {
-    //TODO check if target is valid
-    storeInstance.addReference(mod)
-    this.modifications.push(mod)
-  }
-  public removeModification(mod: Modification): boolean {
-    const modIndex = this.modifications.findIndex((x) => x.id === mod.id)
-    if (modIndex === -1) {
-      return false
-    }
-    this.modifications.splice(modIndex, 1)
-    storeInstance.removeReference(mod)
-    return true
   }
 
   private _hardcodedSetup() {

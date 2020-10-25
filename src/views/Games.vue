@@ -75,6 +75,7 @@ export default defineComponent({
     }
     function createGame() {
       storeInstance.addGame(unref(newGame))
+      storeInstance.save()
       createModalIsOpen.value = false
       newGame.value = new Game()
     }
@@ -84,6 +85,7 @@ export default defineComponent({
     const deleteGameRef = ref(new Game())
     function deleteGame() {
       storeInstance.removeGame(deleteGameRef.value)
+      storeInstance.save()
       deleteGameRef.value = new Game()
       confirmDeleteModalIsOpen.value = false
     }
