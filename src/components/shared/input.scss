@@ -1,0 +1,27 @@
+@import 'src/styles/shared.scss';
+
+$input-base-shadow: 0 0 2px shadow(0.3), 0 4px 12px -4px shadow(0.2),
+  inset 0 0 0 1px shadow(0.3), inset 0 0 0 2px light(0.9),
+  inset 0 0 5px 1px shadow(0.15);
+
+@mixin input {
+  all: initial;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.1rem;
+  color: $color-text;
+  letter-spacing: 0.05em;
+  border-radius: 0.1rem;
+  box-shadow: $input-base-shadow;
+  transition: box-shadow 0.05s ease-out;
+
+  @include bg-paper($color-body);
+
+  &:focus {
+    box-shadow: $input-base-shadow, 0 10px 26px -10px rgba($color-primary, 0.5),
+      0 0 5px rgba($color-primary, 0.3);
+  }
+
+  &::placeholder {
+    color: rgba($color-text, 0.35);
+  }
+}
