@@ -24,7 +24,7 @@ export class Attribute extends ReferenceableBase
 
   public currentValue: ComputedRef<number> = computed(() => 0)
 
-  constructor() {
+  constructor(label = '') {
     super()
 
     const that = reactive(this) as Attribute
@@ -35,6 +35,8 @@ export class Attribute extends ReferenceableBase
         0
       )
     )
+
+    that.label = label
 
     return that
   }

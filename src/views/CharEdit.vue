@@ -8,11 +8,7 @@
     v-for="attr in getAttributeTagAttributes"
     :key="attr.id"
     class="mb-2"
-    :label="attr.label"
-    :model-value="attr.currentValue"
-    type="number"
-    @increment="() => attr.addIncrement()"
-    @decrement="() => attr.removeIncrement()"
+    :attribute="attr"
   />
   <EpicHeading as="h2" class="mb-4 mt-6">{{
     defaultTags.generelles

@@ -1,22 +1,29 @@
 <template>
-  <EpicInputItem :label="label">
+  <EpicInputItem :label="attribute.label">
     <div class="epic-attribute-input-controls">
-      <EpicButton icon="arrow-down" icononly @click="() => emit('decrement')" />
+      <EpicButton
+        icon="arrow-down"
+        icononly
+        @click="() => attribute.removeIncrement()"
+      />
       <input
-        v-bind="inputAttrs"
         class="epic-attribute-input"
-        :value="modelValue"
+        :value="attribute.currentValue"
         type="number"
         readonly
       />
-      <EpicButton icon="arrow-up" icononly @click="() => emit('increment')" />
+      <EpicButton
+        icon="arrow-up"
+        icononly
+        @click="() => attribute.addIncrement()"
+      />
     </div>
   </EpicInputItem>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from 'vue'
-import { inputProps, useInput } from './shared/input'
+import { Attribute } from '@models/attribute'
+import { defineComponent } from 'vue'
 import EpicButton from '@components/EpicButton'
 import EpicInputItem from '@components/EpicInputItem'
 
@@ -27,29 +34,9 @@ export default defineComponent({
     EpicInputItem,
   },
   props: {
-    ...inputProps,
-    modelValue: {
-      type: Number,
+    attribute: {
+      type: Attribute,
       required: true,
-    },
-  },
-  setup(_, ctx: SetupContext) {
-    const { inputEl, inputAttrs, updateValue, focus } = useInput(ctx)
-
-    return {
-      inputEl,
-      inputAttrs,
-      updateValue,
-      focus,
-      emit: ctx.emit,
-    }
-  },
-  methods: {
-    handleIncrement() {
-      this.$emit('increment')
-    },
-    handleDecrement() {
-      this.$emit('decrement')
     },
   },
 })
