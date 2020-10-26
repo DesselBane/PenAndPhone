@@ -27,6 +27,14 @@
       <EpicButton as="router-link" to="#">Speichern</EpicButton>
     </EpicCard>
   </div>
+  <EpicTabbar>
+    <EpicTabbarItem icon="delete" as="router-link" to="/playground"
+      >Übersicht</EpicTabbarItem
+    >
+    <EpicTabbarItem icon="add" as="router-link" to="/test">
+      Bearbeiten
+    </EpicTabbarItem>
+  </EpicTabbar>
 </template>
 
 <script lang="ts">
@@ -38,6 +46,8 @@ import EpicButton from '@components/EpicButton.vue'
 import EpicInput from '@components/EpicInput.vue'
 import EpicAttributeInput from '@components/EpicAttributeInput.vue'
 import EpicToggleSection from '@components/EpicToggleSection.vue'
+import EpicTabbar from '@components/EpicTabbar.vue'
+import EpicTabbarItem from '@components/EpicTabbarItem.vue'
 
 export default defineComponent({
   name: 'Playground',
@@ -48,6 +58,8 @@ export default defineComponent({
     EpicInput,
     EpicAttributeInput,
     EpicToggleSection,
+    EpicTabbar,
+    EpicTabbarItem,
   },
   setup() {
     const toggleIsOpen = ref(true)

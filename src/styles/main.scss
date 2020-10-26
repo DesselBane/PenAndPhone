@@ -8,6 +8,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  // Prevent accidentally zooming in
+  touch-action: manipulation;
 }
 
 html,
