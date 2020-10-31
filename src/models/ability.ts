@@ -1,22 +1,18 @@
 import { Composable, CompositionSource } from '@models/composable'
-import { Incrementable, Increment, IncrementImpl } from '@models/increment'
+import { Incrementable, IncrementableBase } from '@models/increment'
 import { ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonObject } from 'typedjson'
 import { computed, nextTick, reactive } from 'vue'
 import { storeInstance } from '../store/data-store'
 
 @jsonObject(ReferenceableBase.options)
-export class Ability extends ReferenceableBase
+export class Ability extends IncrementableBase
   implements Composable, Incrementable {
   @jsonArrayMember(String)
   private _compositionSourceIds: string[] = []
 
-  @jsonArrayMember(IncrementImpl)
-  private _increments: Increment[] = []
-
   public compositionSources: CompositionSource[] = []
   public currentValue = 0
-  public increments: Increment[] = []
 
   constructor(name = '') {
     super(name)
@@ -63,28 +59,5 @@ export class Ability extends ReferenceableBase
       return true
     }
     return false
-  }
-
-  public addIncrement(amount = 1): Increment {
-    const increment = new IncrementImpl(amount)
-    this._increments.push(increment)
-    storeInstance.addReference(increment)
-
-    return increment
-  }
-
-  public removeIncrement(id?: string): boolean {
-    const incrementIndex =
-      id === undefined
-        ? this._increments.length - 1
-        : this._increments.findIndex((x) => x.id === id)
-
-    if (incrementIndex === -1) {
-      return false
-    } else {
-      storeInstance.removeReference(this._increments[incrementIndex])
-      this._increments.splice(incrementIndex, 1)
-      return true
-    }
   }
 }
