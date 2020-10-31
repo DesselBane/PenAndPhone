@@ -34,6 +34,34 @@ export class Character extends ReferenceableBase {
     storeInstance.addReference(attr)
     this.attributes.push(attr)
   }
+  public removeAttribute(attr: Attribute): boolean {
+    const index = this.attributes.findIndex((x) => x.id === attr.id)
+
+    if (index === -1) {
+      return false
+    }
+
+    this.attributes.splice(index, 1)
+    storeInstance.removeReference(attr)
+    return true
+  }
+
+  public addAbility(ability: Ability) {
+    this.abilities.push(ability)
+    storeInstance.addReference(ability)
+  }
+
+  public removeAbility(ability: Ability): boolean {
+    const index = this.abilities.findIndex((x) => x.id === ability.id)
+
+    if (index === -1) {
+      return false
+    }
+
+    this.abilities.splice(index, 1)
+    storeInstance.removeReference(ability)
+    return true
+  }
 
   private _hardcodedSetup() {
     this.traits = [
@@ -106,8 +134,7 @@ export class Character extends ReferenceableBase {
       ability.addCompositionSource(attributeMap.get(attributeName1))
       ability.addCompositionSource(attributeMap.get(attributeName2))
 
-      this.abilities.push(ability)
-      storeInstance.addReference(ability)
+      this.addAbility(ability)
     })
   }
 }
