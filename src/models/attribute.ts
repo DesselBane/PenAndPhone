@@ -1,19 +1,13 @@
 import { CompositionSource } from '@models/composable'
 import { Increment, Incrementable, IncrementImpl } from '@models/increment'
-import { Taggable } from '@models/tags'
 import { computed, reactive, nextTick } from 'vue'
-import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { jsonArrayMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 import { ReferenceableBase } from './reference'
 
 @jsonObject(ReferenceableBase.options)
 export class Attribute extends ReferenceableBase
-  implements Taggable, Incrementable, CompositionSource {
-  @jsonArrayMember(String)
-  public tags: string[] = []
-  @jsonMember
-  public parentId: string = ''
-
+  implements Incrementable, CompositionSource {
   @jsonArrayMember(IncrementImpl)
   private _increments: Increment[] = []
 

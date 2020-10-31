@@ -1,29 +1,23 @@
 <template>
   <EpicHeading>Editiere: {{ char.name }}</EpicHeading>
   <EpicInput v-model="char.name" label="Name" class="mb-4" />
-  <EpicHeading as="h2" class="mb-4 mt-6">{{
-    defaultTags.attribute
-  }}</EpicHeading>
+  <EpicHeading as="h2" class="mb-4 mt-6">Attribute</EpicHeading>
   <EpicIncrementInput
-    v-for="attr in getAttributeTagAttributes"
+    v-for="attr in attributes"
     :key="attr.id"
     class="mb-2"
     :incrementable="attr"
   />
-  <EpicHeading as="h2" class="mb-4 mt-6"
-    >{{ defaultTags.fertigkeiten }}
-  </EpicHeading>
+  <EpicHeading as="h2" class="mb-4 mt-6">Fertigkeiten</EpicHeading>
   <EpicIncrementInput
     v-for="ability in abilities"
     :key="ability.id"
     :incrementable="ability"
     class="mb-4"
   />
-  <EpicHeading as="h2" class="mb-4 mt-6">{{
-    defaultTags.generelles
-  }}</EpicHeading>
+  <EpicHeading as="h2" class="mb-4 mt-6">Generelles</EpicHeading>
   <EpicInput
-    v-for="trait in generalTagTraits"
+    v-for="trait in traits"
     :key="trait.name"
     v-model="trait.value"
     :label="trait.name"
@@ -38,9 +32,9 @@
 <script lang="ts">
 import EpicHeading from '@components/EpicHeading'
 import EpicInput from '@components/EpicInput'
+import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
-import { DefaultTags } from '@models/tags'
 import { Trait } from '@models/trait'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
@@ -64,49 +58,22 @@ export default defineComponent({
         | Character
         | undefined
     })
-    const generalTagTraits = computed<Trait[]>(() => {
-      const character = char.value
-      if (character == undefined) {
-        return []
-      }
-
-      return character.traits.filter((x) =>
-        x.tags.includes(DefaultTags.generelles)
-      )
-    })
-
-    const getAttributeTagAttributes = computed<Attribute[]>(() => {
-      const character = char.value
-      if (character == undefined) {
-        return []
-      }
-
-      return character.attributes.filter((x) =>
-        x.tags.includes(DefaultTags.attribute)
-      )
-    })
-
-    const abilities = computed(() => {
-      const character = char.value
-      if (character == undefined) {
-        return []
-      }
-
-      return character.abilities
-    })
+    const traits = computed<Trait[]>(() => char.value?.traits || [])
+    const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
+    const abilities = computed<Ability[]>(() => char.value?.abilities || [])
 
     function save() {
       storeInstance.save()
     }
+
     function cancel() {
       storeInstance.load()
     }
 
     return {
       char,
-      defaultTags: DefaultTags,
-      generalTagTraits,
-      getAttributeTagAttributes,
+      traits,
+      attributes,
       abilities,
       save,
       cancel,

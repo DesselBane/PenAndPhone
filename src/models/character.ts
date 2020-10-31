@@ -1,7 +1,6 @@
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { ReferenceableBase } from '@models/reference'
-import { DefaultTags } from '@models/tags'
 import { jsonArrayMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 import { Trait } from './trait'
@@ -32,7 +31,6 @@ export class Character extends ReferenceableBase {
   }
 
   public addAttribute(attr: Attribute) {
-    attr.parentId = this.id
     storeInstance.addReference(attr)
     this.attributes.push(attr)
   }
@@ -51,7 +49,7 @@ export class Character extends ReferenceableBase {
       'Schwächen',
       'Sprachen',
       'Kulturkunde',
-    ].map((name) => new Trait(name, '', DefaultTags.generelles))
+    ].map((name) => new Trait(name, ''))
 
     const attributesNames = [
       'Ausstrahlung',
@@ -68,7 +66,6 @@ export class Character extends ReferenceableBase {
 
     attributesNames.forEach((attrName) => {
       const attr = new Attribute(attrName)
-      attr.tags.push(DefaultTags.attribute)
       attributeMap.set(attrName, attr)
       this.addAttribute(attr)
     })
