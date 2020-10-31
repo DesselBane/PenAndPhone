@@ -1,18 +1,17 @@
 import { Composable, CompositionSource } from '@models/composable'
-import { Incrementable, IncrementableBase } from '@models/increment'
+import { Incrementable, IncrementableImpl } from '@models/increment'
 import { ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonObject } from 'typedjson'
 import { computed, nextTick, reactive } from 'vue'
 import { storeInstance } from '../store/data-store'
 
 @jsonObject(ReferenceableBase.options)
-export class Ability extends IncrementableBase
+export class Ability extends IncrementableImpl
   implements Composable, Incrementable {
   @jsonArrayMember(String)
   private _compositionSourceIds: string[] = []
 
   public compositionSources: CompositionSource[] = []
-  public currentValue = 0
 
   constructor(name = '') {
     super(name)
