@@ -77,7 +77,7 @@ export class Character extends ReferenceableBase {
       'Schwächen',
       'Sprachen',
       'Kulturkunde',
-    ].map((name) => new Trait(name, ''))
+    ].map((name) => new Trait(name))
 
     const attributesNames = [
       'Ausstrahlung',
