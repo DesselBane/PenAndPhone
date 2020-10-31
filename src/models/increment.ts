@@ -1,6 +1,6 @@
+import { Calculated } from '@models/calculated'
 import { Referenceable, ReferenceableBase } from '@models/reference'
 import { jsonMember, jsonObject } from 'typedjson'
-import { ComputedRef } from 'vue'
 
 export interface Increment extends Referenceable {
   readonly timestamp: number
@@ -20,10 +20,8 @@ export class IncrementImpl extends ReferenceableBase implements Increment {
   }
 }
 
-export interface Incrementable extends Referenceable {
+export interface Incrementable extends Referenceable, Calculated {
+  readonly increments: Increment[]
   addIncrement(amount: number): Increment
-
   removeIncrement(id?: string): boolean
-
-  readonly currentValue: ComputedRef<number>
 }
