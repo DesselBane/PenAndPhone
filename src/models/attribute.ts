@@ -1,7 +1,7 @@
 import { CompositionSource } from '@models/composable'
 import { Increment, Incrementable, IncrementImpl } from '@models/increment'
 import { Taggable } from '@models/tags'
-import { computed, reactive } from 'vue'
+import { computed, reactive, nextTick } from 'vue'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 import { ReferenceableBase } from './reference'
@@ -13,8 +13,6 @@ export class Attribute extends ReferenceableBase
   public tags: string[] = []
   @jsonMember
   public parentId: string = ''
-  @jsonMember
-  public label: string = ''
 
   @jsonArrayMember(IncrementImpl)
   private _increments: Increment[] = []
@@ -26,18 +24,18 @@ export class Attribute extends ReferenceableBase
   public currentValue = 0
 
   constructor(label = '') {
-    super()
+    super(label)
 
     const that = reactive(this) as Attribute
 
-    that.currentValue = (computed(() =>
-      that._increments.reduce(
-        (previousValue, { amount }) => previousValue + amount,
-        0
-      )
-    ) as unknown) as number
-
-    that.label = label
+    nextTick(() => {
+      that.currentValue = (computed(() =>
+        that._increments.reduce(
+          (previousValue, { amount }) => previousValue + amount,
+          0
+        )
+      ) as unknown) as number
+    })
 
     return that
   }

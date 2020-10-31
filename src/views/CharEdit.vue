@@ -4,11 +4,20 @@
   <EpicHeading as="h2" class="mb-4 mt-6">{{
     defaultTags.attribute
   }}</EpicHeading>
-  <EpicAttributeInput
+  <EpicIncrementInput
     v-for="attr in getAttributeTagAttributes"
     :key="attr.id"
     class="mb-2"
-    :attribute="attr"
+    :incrementable="attr"
+  />
+  <EpicHeading as="h2" class="mb-4 mt-6"
+    >{{ defaultTags.fertigkeiten }}
+  </EpicHeading>
+  <EpicIncrementInput
+    v-for="ability in abilities"
+    :key="ability.id"
+    :incrementable="ability"
+    class="mb-4"
   />
   <EpicHeading as="h2" class="mb-4 mt-6">{{
     defaultTags.generelles
@@ -37,15 +46,15 @@ import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeInstance } from '../store/data-store'
-import EpicAttributeInput from '@components/EpicAttributeInput'
 import EpicButton from '@components/EpicButton'
+import EpicIncrementInput from '@components/EpicIncrementInput'
 
 export default defineComponent({
   name: 'CharEdit',
   components: {
     EpicHeading,
     EpicInput,
-    EpicAttributeInput,
+    EpicIncrementInput,
     EpicButton,
   },
   setup() {
@@ -77,6 +86,15 @@ export default defineComponent({
       )
     })
 
+    const abilities = computed(() => {
+      const character = char.value
+      if (character == undefined) {
+        return []
+      }
+
+      return character.abilities
+    })
+
     function save() {
       storeInstance.save()
     }
@@ -89,6 +107,7 @@ export default defineComponent({
       defaultTags: DefaultTags,
       generalTagTraits,
       getAttributeTagAttributes,
+      abilities,
       save,
       cancel,
     }

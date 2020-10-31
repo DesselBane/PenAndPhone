@@ -5,6 +5,6 @@ export interface CompositionSource extends Calculated, Referenceable {}
 
 export interface Composable extends Calculated {
   readonly compositionSources: CompositionSource[]
-  addCompositionSource(source: CompositionSource): boolean
-  removeCompostionSource(source: CompositionSource): boolean
+  addCompositionSource(source: CompositionSource | undefined): boolean
+  removeCompostionSource(source: CompositionSource | undefined): boolean
 }

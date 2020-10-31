@@ -4,6 +4,7 @@ import { storeInstance } from '../store/data-store'
 
 export interface Referenceable {
   readonly id: string
+  name: string
 }
 
 export class ReferenceableBase implements Referenceable {
@@ -11,6 +12,13 @@ export class ReferenceableBase implements Referenceable {
 
   @jsonMember
   public id: string = generate()
+
+  @jsonMember
+  public name: string
+
+  constructor(name = '') {
+    this.name = name
+  }
 
   // noinspection JSUnusedLocalSymbols
   protected onDeserialized() {

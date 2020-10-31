@@ -1,7 +1,8 @@
+import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { ReferenceableBase } from '@models/reference'
 import { DefaultTags } from '@models/tags'
-import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { jsonArrayMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 import { Trait } from './trait'
 
@@ -13,14 +14,14 @@ import { Trait } from './trait'
   },
 })
 export class Character extends ReferenceableBase {
-  @jsonMember
-  public name: string = ''
-
   @jsonArrayMember(Trait)
   public traits: Trait[] = []
 
   @jsonArrayMember(Attribute)
   public readonly attributes: Attribute[] = []
+
+  @jsonArrayMember(Ability)
+  public readonly abilities: Ability[] = []
 
   constructor(skipHardcodedSetup = false) {
     super()
@@ -52,7 +53,7 @@ export class Character extends ReferenceableBase {
       'Kulturkunde',
     ].map((name) => new Trait(name, '', DefaultTags.generelles))
 
-    const attributes = [
+    const attributesNames = [
       'Ausstrahlung',
       'Beweglichkeit',
       'Intuition',
@@ -63,11 +64,53 @@ export class Character extends ReferenceableBase {
       'Willenskraft',
     ]
 
-    attributes.forEach((attrName) => {
-      const attr = new Attribute()
+    const attributeMap = new Map<string, Attribute>()
+
+    attributesNames.forEach((attrName) => {
+      const attr = new Attribute(attrName)
       attr.tags.push(DefaultTags.attribute)
-      attr.label = attrName
+      attributeMap.set(attrName, attr)
       this.addAttribute(attr)
+    })
+
+    const abilities = [
+      ['Akrobatik', 'Beweglichkeit', 'Stärke'],
+      ['Alchemie', 'Mystik', 'Verstand'],
+      ['Anführen', 'Ausstrahlung', 'Willenskraft'],
+      ['Arkane Kunde', 'Mystik', 'Verstand'],
+      ['Athletik', 'Beweglichkeit', 'Stärke'],
+      ['Darbietung', 'Ausstrahlung', 'Willenskraft'],
+      ['Diplomatie', 'Ausstrahlung', 'Willenskraft'],
+      ['Edelhandwerk', 'Intuition', 'Verstand'],
+      ['Empathie', 'Intuition', 'Verstand'],
+      ['Enstschlossenheit', 'Ausstrahlung', 'Willenskraft'],
+      ['Fingerfertigkeit', 'Beweglichkeit', 'Ausstrahlung'],
+      ['Geschichten und Mythen', 'Mystik', 'Verstand'],
+      ['Handwerk', 'Konsitution', 'Verstand'],
+      ['Heilkunde', 'Intuition', 'Verstand'],
+      ['Heimlichkeit', 'Beweglichkeit', 'Intuition'],
+      ['Jagdkunst', 'Konsitution', 'Verstand'],
+      ['Länderkunde', 'Intuition', 'Verstand'],
+      ['Naturkunde', 'Intuition', 'Verstand'],
+      ['Redegewandheit', 'Ausstrahlung', 'Willenskraft'],
+      ['Schlösser und Fallen', 'Beweglichkeit', 'Intuition'],
+      ['Schwimmen', 'Konsitution', 'Stärke'],
+      ['Seefahrt', 'Beweglichkeit', 'Konsitution'],
+      ['Straßenkunde', 'Ausstrahlung', 'Intuition'],
+      ['Tierführung', 'Beweglichkeit', 'Ausstrahlung'],
+      ['Überleben', 'Intuition', 'Konsitution'],
+      ['Wahrnehmung', 'Intuition', 'Willenskraft'],
+      ['Zähigkeit', 'Konsitution', 'Willenskraft'],
+    ]
+
+    abilities.forEach(([abilityName, attributeName1, attributeName2]) => {
+      const ability = new Ability(abilityName)
+
+      ability.addCompositionSource(attributeMap.get(attributeName1))
+      ability.addCompositionSource(attributeMap.get(attributeName2))
+
+      this.abilities.push(ability)
+      storeInstance.addReference(ability)
     })
   }
 }

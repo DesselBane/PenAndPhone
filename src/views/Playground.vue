@@ -5,25 +5,25 @@
       <EpicToggleSection v-model:isOpen="toggleIsOpen">
         <template v-slot:heading>Attributes</template>
         <EpicInput label="Name" v-model="name" class="mb-6" />
-        <EpicAttributeInput :attribute="strenght" class="mb-6" />
-        <EpicAttributeInput :attribute="stamina" class="mb-6" />
-        <EpicAttributeInput :attribute="willpower" class="mb-6" />
+        <EpicAttributeInput :incrementable="strenght" class="mb-6" />
+        <EpicAttributeInput :incrementable="stamina" class="mb-6" />
+        <EpicAttributeInput :incrementable="willpower" class="mb-6" />
       </EpicToggleSection>
     </EpicCard>
     <EpicCard class="mb-8">
       <EpicToggleSection v-model:isOpen="toggleIsOpen2">
         <template v-slot:heading>Attributes</template>
         <EpicInput label="Name" v-model="name" class="mb-6" />
-        <EpicAttributeInput :attribute="strenght" class="mb-6" />
-        <EpicAttributeInput :attribute="stamina" class="mb-6" />
-        <EpicAttributeInput :attribute="willpower" class="mb-6" />
+        <EpicAttributeInput :incrementable="strenght" class="mb-6" />
+        <EpicAttributeInput :incrementable="stamina" class="mb-6" />
+        <EpicAttributeInput :incrementable="willpower" class="mb-6" />
       </EpicToggleSection>
     </EpicCard>
     <EpicCard class="mb-8">
       <EpicInput label="Name" v-model="name" class="mb-6" />
-      <EpicAttributeInput :attribute="strenght" class="mb-6" />
-      <EpicAttributeInput :attribute="stamina" class="mb-6" />
-      <EpicAttributeInput :attribute="willpower" class="mb-6" />
+      <EpicAttributeInput :incrementable="strenght" class="mb-6" />
+      <EpicAttributeInput :incrementable="stamina" class="mb-6" />
+      <EpicAttributeInput :incrementable="willpower" class="mb-6" />
       <EpicButton as="router-link" to="#">Speichern</EpicButton>
     </EpicCard>
   </div>
@@ -44,7 +44,7 @@ import EpicCard from '@components/EpicCard.vue'
 import EpicHeading from '@components/EpicHeading.vue'
 import EpicButton from '@components/EpicButton.vue'
 import EpicInput from '@components/EpicInput.vue'
-import EpicAttributeInput from '@components/EpicAttributeInput.vue'
+import EpicAttributeInput from '@components/EpicIncrementInput'
 import EpicToggleSection from '@components/EpicToggleSection.vue'
 import EpicTabbar from '@components/EpicTabbar.vue'
 import EpicTabbarItem from '@components/EpicTabbarItem.vue'
