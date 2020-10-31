@@ -62,21 +62,13 @@ export default defineComponent({
     const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
     const abilities = computed<Ability[]>(() => char.value?.abilities || [])
 
-    function save() {
-      storeInstance.save()
-    }
-
-    function cancel() {
-      storeInstance.load()
-    }
-
     return {
       char,
       traits,
       attributes,
       abilities,
-      save,
-      cancel,
+      save: () => storeInstance.save(),
+      cancel: () => storeInstance.load(),
     }
   },
 })
