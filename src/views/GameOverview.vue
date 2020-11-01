@@ -3,17 +3,20 @@
     <EpicHeading class="mb-7 gr-1 heading">Deine Helden</EpicHeading>
     <div class="gr-2">
       <EpicCard class="mb-8 char-card" v-for="char in chars" :key="char.id">
-        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3">{{
+        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-4">{{
           char.name
         }}</EpicHeading>
+        <EpicButton class="gr-2 gc-1" as="router-link" :to="`/char/${char.id}`">
+          Übersicht
+        </EpicButton>
         <EpicButton
-          class="gr-2 gc-1"
+          class="gr-2 gc-2"
           as="router-link"
           :to="`/char/${char.id}/edit`"
           >Editieren
         </EpicButton>
         <EpicButton
-          class="gr-2 gc-2"
+          class="gr-2 gc-3"
           as="button"
           @click="() => openDeleteModal(char)"
           icon="delete"
@@ -142,7 +145,7 @@ export default defineComponent({
 .char-card {
   display: grid;
   grid-template-rows: repeat(2, auto);
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 </style>

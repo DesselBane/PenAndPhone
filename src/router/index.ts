@@ -1,6 +1,6 @@
 import CharEdit from '@views/CharEdit'
+import CharOverview from '@views/CharOverview'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@views/Home'
 import Games from '@views/Games'
 import GameOverview from '@views/GameOverview'
 import Playground from '@views/Playground'
@@ -8,10 +8,8 @@ import Playground from '@views/Playground'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    redirect: '/games',
   },
-
   {
     path: '/games',
     name: 'Games',
@@ -26,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/char/:charId/edit',
     name: 'CharEdit',
     component: CharEdit,
+  },
+  {
+    path: '/char/:charId',
+    name: 'CharOverview',
+    component: CharOverview,
   },
   {
     path: '/playground',

@@ -1,5 +1,5 @@
 <template>
-  <EpicInputItem :label="label">
+  <EpicInputItem :label="label" :input-id="id">
     <input
       class="epic-input"
       v-bind="inputAttrs"
@@ -28,6 +28,7 @@ export default defineComponent({
       inputAttrs,
       updateValue,
       focus,
+      id: ctx._uid,
     }
   },
 })

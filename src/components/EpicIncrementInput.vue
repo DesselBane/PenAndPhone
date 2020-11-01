@@ -1,5 +1,5 @@
 <template>
-  <EpicInputItem :label="incrementable.name">
+  <EpicInputItem :label="incrementable.name" :input-id="id">
     <div class="epic-increment-input-controls">
       <EpicButton
         icon="arrow-down"
@@ -38,6 +38,11 @@ export default defineComponent({
     incrementable: {
       type: Object as PropType<Incrementable>,
       required: true,
+    },
+  },
+  computed: {
+    id() {
+      return this._uid
     },
   },
 })
