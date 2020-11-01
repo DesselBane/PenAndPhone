@@ -16,24 +16,10 @@ export default defineComponent({
 @import 'src/styles/shared.scss';
 
 .epic-tabbar {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
   display: flex;
   justify-content: space-evenly;
   overflow: hidden;
   box-shadow: 0 0 2px shadow(0.3), 0 -4px 20px 0 shadow(0.3);
-
-  &::before {
-    position: absolute;
-    top: 0;
-    right: -1rem;
-    bottom: -1rem;
-    left: -1rem;
-    content: '';
-    box-shadow: inset 0 0 1px 2px light(0.9), inset 0 0 4px 1px shadow(0.4);
-  }
 
   @include bg-paper('white');
 }
