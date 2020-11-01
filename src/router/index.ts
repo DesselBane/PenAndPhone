@@ -1,6 +1,5 @@
 import CharEdit from '@views/CharEdit'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@views/Home'
 import Games from '@views/Games'
 import GameOverview from '@views/GameOverview'
 import Playground from '@views/Playground'
@@ -8,10 +7,8 @@ import Playground from '@views/Playground'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    redirect: '/games',
   },
-
   {
     path: '/games',
     name: 'Games',
