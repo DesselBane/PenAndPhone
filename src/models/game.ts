@@ -1,13 +1,10 @@
 import { Character } from '@models/character'
 import { ReferenceableBase } from '@models/reference'
-import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { jsonArrayMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 
 @jsonObject(ReferenceableBase.options)
 export class Game extends ReferenceableBase {
-  @jsonMember
-  public name: string = ''
-
   @jsonArrayMember(Character)
   public characters: Character[] = []
 

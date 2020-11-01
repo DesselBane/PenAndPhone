@@ -1,20 +1,15 @@
-import { Taggable } from '@models/tags'
-import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
+import { jsonMember, jsonObject } from 'typedjson'
 
 @jsonObject
-export class Trait implements Taggable {
+export class Trait {
   @jsonMember
   public name: string = ''
 
   @jsonMember
   public value: string = ''
 
-  @jsonArrayMember(String)
-  public tags: string[] = []
-
-  constructor(name = '', value = '', ...tags: string[]) {
+  constructor(name = '', value = '') {
     this.name = name
     this.value = value
-    this.tags = tags
   }
 }
