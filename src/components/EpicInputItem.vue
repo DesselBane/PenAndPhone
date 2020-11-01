@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <label :id="id" class="epic-input-label" :for="inputId">
+    <label class="epic-input-label" :for="inputId">
       {{ label }}
     </label>
-    <slot :labelId="id" />
+    <slot />
   </div>
 </template>
 
