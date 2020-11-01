@@ -8,6 +8,7 @@
       />
       <!--suppress HtmlFormInputWithoutLabel -->
       <input
+        :id="id"
         class="epic-increment-input"
         :value="incrementable.currentValue"
         type="number"
@@ -27,6 +28,7 @@ import { Incrementable } from '@models/increment'
 import { defineComponent, PropType } from 'vue'
 import EpicButton from '@components/EpicButton'
 import EpicInputItem from '@components/EpicInputItem'
+import { generate } from 'shortid'
 
 export default defineComponent({
   name: 'EpicIncrementInput',
@@ -40,10 +42,10 @@ export default defineComponent({
       required: true,
     },
   },
-  computed: {
-    id() {
-      return this._uid
-    },
+  setup() {
+    return {
+      id: generate(),
+    }
   },
 })
 </script>

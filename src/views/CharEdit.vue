@@ -1,6 +1,12 @@
 <template>
   <EpicHeading>Editiere: {{ char.name }}</EpicHeading>
   <EpicInput v-model="char.name" label="Name" class="mb-4" />
+  <EpicSelect
+    label="Race"
+    :options="raceOptions"
+    :selected-item="char.race"
+    @update:selected-item="handleRaceUpdate"
+  />
   <EpicHeading as="h2" class="mb-4 mt-6">Attribute</EpicHeading>
   <EpicIncrementInput
     v-for="attr in attributes"
@@ -32,11 +38,13 @@
 <script lang="ts">
 import EpicHeading from '@components/EpicHeading'
 import EpicInput from '@components/EpicInput'
+import EpicSelect, { EpicSelectOption } from '@components/EpicSelect'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
+import { Race, Races } from '@models/race'
 import { Trait } from '@models/trait'
-import { computed } from '@vue/reactivity'
+import { computed, unref } from '@vue/reactivity'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeInstance } from '../store/data-store'
@@ -50,6 +58,7 @@ export default defineComponent({
     EpicInput,
     EpicIncrementInput,
     EpicButton,
+    EpicSelect,
   },
   setup() {
     const route = useRoute()
@@ -62,11 +71,22 @@ export default defineComponent({
     const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
     const abilities = computed<Ability[]>(() => char.value?.abilities || [])
 
+    const raceOptions = []
+    for (const race in Races) {
+      raceOptions.push(new EpicSelectOption(new Race(race), race, race))
+    }
+
+    function handleRaceUpdate(value: Race) {
+      unref(char).race = value
+    }
+
     return {
       char,
       traits,
       attributes,
       abilities,
+      raceOptions,
+      handleRaceUpdate,
       save: () => storeInstance.save(),
       cancel: () => storeInstance.load(),
     }
