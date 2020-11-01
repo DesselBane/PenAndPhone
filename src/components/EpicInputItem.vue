@@ -1,5 +1,5 @@
 <template>
-  <label class="epic-input-item">
+  <label class="epic-input-label">
     {{ label }}
     <slot />
   </label>
@@ -20,7 +20,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/styles/shared.scss';
 
-.epic-input-item {
+.epic-input-label {
   display: grid;
   gap: 0.5rem;
   font-weight: 600;

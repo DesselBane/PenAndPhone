@@ -1,6 +1,8 @@
 <template>
   <main data-ta="app-main">
-    <router-view />
+    <div>
+      <router-view />
+    </div>
   </main>
   <EpicTabbar id="app-nav">
     <EpicTabbarItem icon="arrow-left" as="button" @click="handleBackButton"
@@ -20,6 +22,7 @@
 <style lang="scss">
 .dev-stuff {
   position: absolute;
+  top: 0;
 }
 
 #app {
@@ -29,7 +32,13 @@
 
 main {
   height: 100%;
-  padding: 0 0.5rem 6rem;
+  padding: 0 0.5rem 4rem;
+
+  & > div {
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
 }
 </style>
 <script>
