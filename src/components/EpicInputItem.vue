@@ -1,8 +1,10 @@
 <template>
-  <label class="epic-input-label">
-    {{ label }}
-    <slot />
-  </label>
+  <div class="container">
+    <label :id="id" class="epic-input-label" :for="inputId">
+      {{ label }}
+    </label>
+    <slot :labelId="id" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,6 +15,10 @@ export default defineComponent({
   name: 'EpicInputItem',
   props: {
     label: inputProps.label,
+    inputId: {
+      type: String,
+      required: true,
+    },
   },
 })
 </script>
@@ -20,9 +26,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/styles/shared.scss';
 
-.epic-input-label {
+.container {
   display: grid;
   gap: 0.5rem;
+}
+
+.epic-input-label {
   font-weight: 600;
   color: rgba($color-text, 0.65);
   text-align: left;
