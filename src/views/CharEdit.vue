@@ -4,8 +4,7 @@
   <EpicSelect
     label="Race"
     :options="raceOptions"
-    :selected-item="char.race"
-    @update:selected-item="handleRaceUpdate"
+    v-model:selected-item="char.race.name"
   />
   <EpicHeading as="h2" class="mb-4 mt-6">Attribute</EpicHeading>
   <EpicIncrementInput
@@ -42,9 +41,9 @@ import EpicSelect, { EpicSelectOption } from '@components/EpicSelect'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
-import { Race, Races } from '@models/race'
+import { Races } from '@models/race'
 import { Trait } from '@models/trait'
-import { computed, unref } from '@vue/reactivity'
+import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeInstance } from '../store/data-store'
@@ -73,11 +72,7 @@ export default defineComponent({
 
     const raceOptions = []
     for (const race in Races) {
-      raceOptions.push(new EpicSelectOption(new Race(race), race, race))
-    }
-
-    function handleRaceUpdate(value: Race) {
-      unref(char).race = value
+      raceOptions.push(new EpicSelectOption(race, race, race))
     }
 
     return {
@@ -86,7 +81,6 @@ export default defineComponent({
       attributes,
       abilities,
       raceOptions,
-      handleRaceUpdate,
       save: () => storeInstance.save(),
       cancel: () => storeInstance.load(),
     }

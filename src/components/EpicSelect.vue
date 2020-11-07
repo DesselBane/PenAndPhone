@@ -1,17 +1,22 @@
 <template>
   <EpicInputItem :label="label" :input-id="id">
-    <select :id="id" @input="handleInput">
-      <option v-for="option in options" :key="option.id" :value="option.id">{{
-        option.display
-      }}</option>
+    <select :id="id" @input="handleSelectInput" :value="selectedId">
+      <option
+        v-for="option in options"
+        :key="option.id"
+        :value="option.id"
+        :selected="selectedId === option.id"
+        >{{ option.display }}</option
+      >
     </select>
   </EpicInputItem>
 </template>
 
 <script lang="ts">
 import EpicInputItem from '@components/EpicInputItem'
-import { defineComponent, PropType, ref, unref, watchEffect } from 'vue'
+import { computed, reactive } from '@vue/reactivity'
 import { generate } from 'shortid'
+import { defineComponent, PropType } from 'vue'
 
 export class EpicSelectOption {
   /**
@@ -23,7 +28,9 @@ export class EpicSelectOption {
     public readonly value: unknown,
     public readonly id: string = generate(),
     public readonly display: string = String(value)
-  ) {}
+  ) {
+    return reactive(this)
+  }
 }
 
 export default defineComponent({
@@ -37,7 +44,6 @@ export default defineComponent({
       required: true,
     },
     selectedItem: {
-      type: Object as PropType<unknown>,
       default() {
         return null
       },
@@ -47,43 +53,26 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, context) {
-    const select = ref(null)
-
-    watchEffect(() => {
-      const selectValue = unref(select)
-      if (selectValue == null) {
-        return
-      }
-
-      selectValue.value = props.selectedItem?.id
-    })
-
+  setup(
+    props: { options: EpicSelectOption[]; selectedItem: unknown },
+    context
+  ) {
     function handleSelectInput($event: InputEvent) {
       const value = props.options.find((x) => x.id === $event.target.value)
-      $event.target.value = props.options.find(
-        (x) => x.value === props.selectedItem
-      )
+        ?.value
+
       context.emit('update:selected-item', value)
     }
 
+    const selectedId = computed(
+      () => props.options.find((x) => x.value === props.selectedItem)?.id
+    )
+
     return {
-      select,
       id: generate(),
+      handleSelectInput,
+      selectedId,
     }
-  },
-  methods: {
-    handleInput($event) {
-      const value = this.options.find((x) => x.value === $event.target.value)
-      console.log(
-        typeof $event.target.value,
-        JSON.stringify($event.target.value, null, '\t'),
-        value,
-        this.options
-      )
-      $event.target.value = this.selectedItem?.value
-      this.$emit('update:selected-item', value)
-    },
   },
 })
 </script>

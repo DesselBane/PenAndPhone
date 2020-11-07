@@ -13,15 +13,13 @@ export enum Races {
 @jsonObject(ReferenceableBase.options)
 export class Race extends ReferenceableBase implements CompositionSource {
   @jsonMember({ constructor: String })
-  private readonly _race: Races = Races.Alb
+  private _race: Races = Races.Alb
 
   public get name() {
     return this._race
   }
-  public set name(value: string) {
-    if (value != null && value.trim() !== '') {
-      console.error('The name should not be set on a race')
-    }
+  public set name(value: Races) {
+    this._race = value
   }
 
   public get currentValue() {
