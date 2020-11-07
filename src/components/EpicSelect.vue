@@ -22,7 +22,7 @@ import { defineComponent, PropType } from 'vue'
 export class EpicSelectOption extends ReactiveBase {
   /**
    * @param value
-   * @param id If no id is present the select will create on using the shortId package
+   * @param id If no id is present the select will create one using the shortId package
    * @param display if no display is specified and no slot is provided the value will be interpreted as string
    */
   constructor(
