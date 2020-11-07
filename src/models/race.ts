@@ -1,3 +1,4 @@
+import { computedProp } from '@helper/ReactiveBase'
 import { CompositionSource } from '@models/composable'
 import { ReferenceableBase } from '@models/reference'
 import { jsonMember, jsonObject } from 'typedjson'
@@ -22,6 +23,7 @@ export class Race extends ReferenceableBase implements CompositionSource {
     this._race = value
   }
 
+  @computedProp
   public get currentValue() {
     switch (this._race) {
       case Races.Alb:
