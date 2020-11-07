@@ -1,7 +1,7 @@
 import { Calculated } from '@models/calculated'
 import { Referenceable, ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
-import { computed, nextTick, reactive } from 'vue'
+import { computed, nextTick } from 'vue'
 import { storeInstance } from '../store/data-store'
 
 export interface Increment extends Referenceable {
@@ -42,18 +42,14 @@ export class IncrementableImpl extends ReferenceableBase
   constructor(label = '') {
     super(label)
 
-    const that = reactive(this) as IncrementableImpl
-
     nextTick(() => {
-      that.currentValue = (computed(() =>
-        that.increments.reduce(
+      this.currentValue = (computed(() =>
+        this.increments.reduce(
           (previousValue, { amount }) => previousValue + amount,
           0
         )
       ) as unknown) as number
     })
-
-    return that
   }
 
   public addIncrement(amount = 1): Increment {

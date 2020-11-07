@@ -14,11 +14,12 @@
 
 <script lang="ts">
 import EpicInputItem from '@components/EpicInputItem'
-import { computed, reactive } from '@vue/reactivity'
+import { ReactiveBase } from '@helper/ReactiveBase'
+import { computed } from '@vue/reactivity'
 import { generate } from 'shortid'
 import { defineComponent, PropType } from 'vue'
 
-export class EpicSelectOption {
+export class EpicSelectOption extends ReactiveBase {
   /**
    * @param value
    * @param id If no id is present the select will create on using the shortId package
@@ -29,7 +30,7 @@ export class EpicSelectOption {
     public readonly id: string = generate(),
     public readonly display: string = String(value)
   ) {
-    return reactive(this)
+    super()
   }
 }
 

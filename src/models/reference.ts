@@ -1,3 +1,4 @@
+import { ReactiveBase } from '@helper/ReactiveBase'
 import { generate } from 'shortid'
 import { jsonMember } from 'typedjson'
 import { storeInstance } from '../store/data-store'
@@ -7,7 +8,7 @@ export interface Referenceable {
   name: string
 }
 
-export class ReferenceableBase implements Referenceable {
+export class ReferenceableBase extends ReactiveBase implements Referenceable {
   static options = { onDeserialized: 'onDeserialized' }
 
   @jsonMember
@@ -17,6 +18,7 @@ export class ReferenceableBase implements Referenceable {
   public name: string
 
   constructor(name = '') {
+    super()
     this.name = name
   }
 
