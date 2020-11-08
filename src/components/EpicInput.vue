@@ -2,6 +2,7 @@
   <EpicInputItem :label="label" :input-id="id">
     <input
       class="epic-input"
+      :id="id"
       v-bind="inputAttrs"
       :value="modelValue"
       @input="updateValue($event.target.value)"
@@ -10,6 +11,7 @@
 </template>
 
 <script lang="ts">
+import { generate } from 'shortid'
 import { defineComponent } from 'vue'
 import { inputProps, useInput } from './shared/input'
 import EpicInputItem from '@components/EpicInputItem'
@@ -28,7 +30,7 @@ export default defineComponent({
       inputAttrs,
       updateValue,
       focus,
-      id: ctx._uid,
+      id: generate(),
     }
   },
 })

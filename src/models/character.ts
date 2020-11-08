@@ -1,7 +1,8 @@
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
+import { Race, Races } from '@models/race'
 import { ReferenceableBase } from '@models/reference'
-import { jsonArrayMember, jsonObject } from 'typedjson'
+import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
 import { Trait } from './trait'
 
@@ -13,6 +14,9 @@ import { Trait } from './trait'
   },
 })
 export class Character extends ReferenceableBase {
+  @jsonMember
+  public readonly race = new Race(Races.Alb)
+
   @jsonArrayMember(Trait)
   public traits: Trait[] = []
 
