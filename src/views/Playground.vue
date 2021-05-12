@@ -38,16 +38,16 @@
 </template>
 
 <script lang="ts">
-import { Attribute } from '@models/attribute'
-import { defineComponent, ref } from 'vue'
+import EpicButton from '@components/EpicButton.vue'
 import EpicCard from '@components/EpicCard.vue'
 import EpicHeading from '@components/EpicHeading.vue'
-import EpicButton from '@components/EpicButton.vue'
+import EpicAttributeInput from '@components/EpicIncrementInput.vue'
 import EpicInput from '@components/EpicInput.vue'
-import EpicAttributeInput from '@components/EpicIncrementInput'
-import EpicToggleSection from '@components/EpicToggleSection.vue'
 import EpicTabbar from '@components/EpicTabbar.vue'
 import EpicTabbarItem from '@components/EpicTabbarItem.vue'
+import EpicToggleSection from '@components/EpicToggleSection.vue'
+import { Attribute } from '@models/attribute'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'Playground',

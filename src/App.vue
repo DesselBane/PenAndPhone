@@ -37,9 +37,9 @@ main {
 }
 </style>
 <script>
-import { storeInstance } from '@/store/data-store'
-import EpicTabbar from '@components/EpicTabbar'
-import EpicTabbarItem from '@components/EpicTabbarItem'
+import EpicTabbar from '@components/EpicTabbar.vue'
+import EpicTabbarItem from '@components/EpicTabbarItem.vue'
+import { storeInstance } from '@store/data-store'
 
 export default {
   components: {
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     showDevStuff() {
-      return process.env.NODE_ENV === 'development'
+      return import.meta.env.NODE_ENV === 'development'
     },
   },
   methods: {

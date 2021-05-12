@@ -16,11 +16,11 @@ export default defineComponent({
   setup(props) {
     const svg = shallowRef(null)
 
-    watchEffect(() => {
+    watchEffect(async () => {
       try {
-        svg.value = require(`./icons/${props.name}.vue`).default
+        svg.value = (await import(`./icons/${props.name}.vue`)).default
       } catch (e) {
-        console.warn(`Icon component for '${name}' does not exist.`)
+        console.warn(`Icon component for '${props.name}' does not exist.`)
       }
     })
 

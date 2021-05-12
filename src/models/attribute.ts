@@ -4,5 +4,6 @@ import { jsonObject } from 'typedjson'
 import { ReferenceableBase } from './reference'
 
 @jsonObject(ReferenceableBase.options)
-export class Attribute extends IncrementableImpl
+export class Attribute
+  extends IncrementableImpl
   implements Incrementable, CompositionSource {}

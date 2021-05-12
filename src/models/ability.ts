@@ -2,24 +2,26 @@ import { computedProp } from '@helper/ReactiveBase'
 import { Composable, CompositionSource } from '@models/composable'
 import { Incrementable, IncrementableImpl } from '@models/increment'
 import { ReferenceableBase } from '@models/reference'
+import { storeInstance } from '@store/data-store'
 import { jsonArrayMember, jsonObject } from 'typedjson'
-import { storeInstance } from '../store/data-store'
 
 @jsonObject(ReferenceableBase.options)
-export class Ability extends IncrementableImpl
-  implements Composable, Incrementable {
+export class Ability
+  extends IncrementableImpl
+  implements Composable, Incrementable
+{
   @jsonArrayMember(String)
   private _compositionSourceIds: string[] = []
 
   @computedProp
-  public get compositionSources() {
+  public get compositionSources(): CompositionSource[] {
     return this._compositionSourceIds.map((id) =>
       storeInstance.getReference(id)
     ) as CompositionSource[]
   }
 
   @computedProp
-  public get currentValue() {
+  public get currentValue(): number {
     const composeValue = this.compositionSources.reduce(
       (previousValue, source) => previousValue + source.currentValue,
       0

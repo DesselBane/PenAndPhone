@@ -1,8 +1,8 @@
 import { computedProp } from '@helper/ReactiveBase'
 import { Calculated } from '@models/calculated'
 import { Referenceable, ReferenceableBase } from '@models/reference'
+import { storeInstance } from '@store/data-store'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
-import { storeInstance } from '../store/data-store'
 
 export interface Increment extends Referenceable {
   readonly timestamp: number
@@ -11,9 +11,9 @@ export interface Increment extends Referenceable {
 
 @jsonObject(ReferenceableBase.options)
 export class IncrementImpl extends ReferenceableBase implements Increment {
-  @jsonMember
+  @jsonMember(Number)
   public readonly amount: number
-  @jsonMember
+  @jsonMember(Number)
   public readonly timestamp: number = Date.now()
 
   constructor(amount = 1) {
@@ -29,8 +29,10 @@ export interface Incrementable extends Referenceable, Calculated {
 }
 
 @jsonObject(ReferenceableBase.options)
-export class IncrementableImpl extends ReferenceableBase
-  implements Incrementable {
+export class IncrementableImpl
+  extends ReferenceableBase
+  implements Incrementable
+{
   @jsonArrayMember(IncrementImpl)
   protected _increments: Increment[] = []
 
@@ -39,7 +41,7 @@ export class IncrementableImpl extends ReferenceableBase
   }
 
   @computedProp
-  public get currentValue() {
+  public get currentValue(): number {
     return this.increments.reduce(
       (previousValue, { amount }) => previousValue + amount,
       0

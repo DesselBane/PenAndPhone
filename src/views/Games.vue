@@ -3,9 +3,9 @@
     <EpicHeading class="mb-7 heading gr-1">Deine Spiele</EpicHeading>
     <div class="gr-2">
       <EpicCard class="mb-8 game-card" v-for="game in games" :key="game.id">
-        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 ">{{
-          game.name
-        }}</EpicHeading>
+        <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3"
+          >{{ game.name }}
+        </EpicHeading>
         <EpicButton class="gr-2 gc-1" as="router-link" :to="`/game/${game.id}`"
           >Öffnen
         </EpicButton>
@@ -35,7 +35,7 @@
     <EpicHeading as="h2" class="mb-6"
       >Soll dieses Spiel wirklich gelöscht werden?</EpicHeading
     >
-    <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 "
+    <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3"
       >Spiel: {{ deleteGameRef.name }}
     </EpicHeading>
     <EpicButton fullwidth @click="cancleDeleteGame" class="mb-2"
@@ -46,14 +46,14 @@
 </template>
 
 <script lang="ts">
-import EpicModal from '@components/EpicModal'
+import EpicButton from '@components/EpicButton.vue'
+import EpicCard from '@components/EpicCard.vue'
+import EpicHeading from '@components/EpicHeading.vue'
+import EpicInput from '@components/EpicInput.vue'
+import EpicModal from '@components/EpicModal.vue'
 import { Game } from '@models/game'
+import { storeInstance } from '@store/data-store'
 import { defineComponent, ref, unref } from 'vue'
-import { storeInstance } from '../store/data-store'
-import EpicButton from '@components/EpicButton'
-import EpicHeading from '@components/EpicHeading'
-import EpicCard from '@components/EpicCard'
-import EpicInput from '@components/EpicInput'
 
 export default defineComponent({
   name: 'Games',

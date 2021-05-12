@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import EpicHeading from './EpicHeading'
-import EpicIcon from './EpicIcon'
+import EpicHeading from '@components/EpicHeading.vue'
+import EpicIcon from '@components/EpicIcon.vue'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'EpicToggleSection',

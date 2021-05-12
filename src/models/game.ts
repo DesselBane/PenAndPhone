@@ -8,12 +8,12 @@ export class Game extends ReferenceableBase {
   @jsonArrayMember(Character)
   public characters: Character[] = []
 
-  public addCharacter(char: Character) {
+  public addCharacter(char: Character): void {
     this.characters.push(char)
     storeInstance.addReference(char)
   }
 
-  public removeCharacter(character: Character) {
+  public removeCharacter(character: Character): void {
     const charIndex = this.characters.findIndex((x) => character.id === x.id)
     if (charIndex === -1) {
       throw `Could not remove Character(${character.id}) from Game(${this.id}) because it wasn't found.`

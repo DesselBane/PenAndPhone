@@ -1,9 +1,9 @@
-import CharEdit from '@views/CharEdit'
-import CharOverview from '@views/CharOverview'
+import CharEdit from '@views/CharEdit.vue'
+import CharOverview from '@views/CharOverview.vue'
+import GameOverview from '@views/GameOverview.vue'
+import Games from '@views/Games.vue'
+import Playground from '@views/Playground.vue'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Games from '@views/Games'
-import GameOverview from '@views/GameOverview'
-import Playground from '@views/Playground'
 
 const routes: Array<RouteRecordRaw> = [
   {
