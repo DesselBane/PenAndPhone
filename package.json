@@ -26,7 +26,7 @@
     "dev": "yarn serve",
     "serve": "vite",
     "build": "vite build",
-    "deploy": "vite build --outDir docs/",
+    "deploy": "vite build --base /PenAndPhone/ --outDir docs/",
     "lint": "eslint src",
     "lint:all:eslint": "yarn lint:eslint --ext .js, .vue .",
     "lint:all:markdownlint": "yarn lint:markdownlint \"docs/*.md\" \"*.md\"",
