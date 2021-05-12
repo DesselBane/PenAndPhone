@@ -14,14 +14,14 @@ export class Ability
   private _compositionSourceIds: string[] = []
 
   @computedProp
-  public get compositionSources() {
+  public get compositionSources(): CompositionSource[] {
     return this._compositionSourceIds.map((id) =>
       storeInstance.getReference(id)
     ) as CompositionSource[]
   }
 
   @computedProp
-  public get currentValue() {
+  public get currentValue(): number {
     const composeValue = this.compositionSources.reduce(
       (previousValue, source) => previousValue + source.currentValue,
       0

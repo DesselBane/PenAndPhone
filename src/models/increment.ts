@@ -11,9 +11,9 @@ export interface Increment extends Referenceable {
 
 @jsonObject(ReferenceableBase.options)
 export class IncrementImpl extends ReferenceableBase implements Increment {
-  @jsonMember
+  @jsonMember(Number)
   public readonly amount: number
-  @jsonMember
+  @jsonMember(Number)
   public readonly timestamp: number = Date.now()
 
   constructor(amount = 1) {
@@ -41,7 +41,7 @@ export class IncrementableImpl
   }
 
   @computedProp
-  public get currentValue() {
+  public get currentValue(): number {
     return this.increments.reduce(
       (previousValue, { amount }) => previousValue + amount,
       0

@@ -13,10 +13,11 @@ export enum Races {
 
 @jsonObject(ReferenceableBase.options)
 export class Race extends ReferenceableBase implements CompositionSource {
-  @jsonMember(() => String)
+  @jsonMember(String)
   private _race: Races = Races.Alb
 
-  public get name() {
+  // TODO(Jan) maybe make this prettier
+  public get name(): Races {
     return this._race
   }
   public set name(value: Races) {
@@ -24,7 +25,7 @@ export class Race extends ReferenceableBase implements CompositionSource {
   }
 
   @computedProp
-  public get currentValue() {
+  public get currentValue(): number {
     switch (this._race) {
       case Races.Alb:
         return 5

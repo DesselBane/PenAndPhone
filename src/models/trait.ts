@@ -2,10 +2,10 @@ import { jsonMember, jsonObject } from 'typedjson'
 
 @jsonObject
 export class Trait {
-  @jsonMember
+  @jsonMember(String)
   public name: string = ''
 
-  @jsonMember
+  @jsonMember(String)
   public value: string = ''
 
   constructor(name = '', value = '') {

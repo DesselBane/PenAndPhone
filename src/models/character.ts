@@ -14,7 +14,7 @@ import { Trait } from './trait'
   },
 })
 export class Character extends ReferenceableBase {
-  @jsonMember
+  @jsonMember(Race)
   public readonly race = new Race(Races.Alb)
 
   @jsonArrayMember(Trait)
@@ -34,7 +34,7 @@ export class Character extends ReferenceableBase {
     }
   }
 
-  public addAttribute(attr: Attribute) {
+  public addAttribute(attr: Attribute): void {
     storeInstance.addReference(attr)
     this.attributes.push(attr)
   }
@@ -50,7 +50,7 @@ export class Character extends ReferenceableBase {
     return true
   }
 
-  public addAbility(ability: Ability) {
+  public addAbility(ability: Ability): void {
     this.abilities.push(ability)
     storeInstance.addReference(ability)
   }

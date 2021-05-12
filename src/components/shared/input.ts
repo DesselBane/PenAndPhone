@@ -1,4 +1,4 @@
-import { ref, computed, SetupContext } from 'vue'
+import { computed, ComputedRef, Ref, ref, SetupContext, UnwrapRef } from 'vue'
 
 export const inputProps = {
   modelValue: {
@@ -11,7 +11,12 @@ export const inputProps = {
   },
 }
 
-export function useInput({ emit, attrs }: SetupContext) {
+export function useInput({ emit, attrs }: SetupContext): {
+  updateValue: (value: string) => void
+  inputEl: Ref<UnwrapRef<HTMLElement | null>>
+  inputAttrs: ComputedRef<Record<string, unknown>>
+  focus: () => void
+} {
   const inputEl = ref<HTMLElement | null>(null)
 
   function updateValue(value: string) {

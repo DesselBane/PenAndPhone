@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { computed, reactive } from '@vue/reactivity'
 
 export class ReactiveBase {
@@ -7,16 +8,13 @@ export class ReactiveBase {
 }
 
 export function computedProp(
-  // eslint-disable-next-line
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
 ): void {
+  const propName = `__${String(propertyKey)}`
   const newDescriptor: PropertyDescriptor = {
-    // eslint-disable-next-line
     get(this: any) {
-      const propName = `__${String(propertyKey)}`
-
       if (!this[propName]) {
         if (descriptor.get === undefined) {
           throw 'Need a getter'
@@ -31,5 +29,5 @@ export function computedProp(
     enumerable: descriptor.enumerable,
   }
 
-  Object.defineProperty(target, name, newDescriptor)
+  Object.defineProperty(target, propName, newDescriptor)
 }

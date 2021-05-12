@@ -11,7 +11,7 @@ module.exports = {
     emitDecoratorMetadata: true,
     experimentalDecorators: true,
     lib: ['esnext', 'dom'],
-    types: ['vite/client'],
+    types: ['vite/client', 'jest'],
     baseUrl: '.',
   },
   include: ['src/**/*.ts', 'src/**/*.d.ts', 'src/**/*.tsx', 'src/**/*.vue'],

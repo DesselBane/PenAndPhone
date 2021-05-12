@@ -11,10 +11,10 @@ export interface Referenceable {
 export class ReferenceableBase extends ReactiveBase implements Referenceable {
   static options = { onDeserialized: 'onDeserialized' }
 
-  @jsonMember(() => String)
+  @jsonMember(String)
   public id: string = generate()
 
-  @jsonMember(() => String)
+  @jsonMember(String)
   public name: string
 
   constructor(name = '') {
@@ -23,7 +23,7 @@ export class ReferenceableBase extends ReactiveBase implements Referenceable {
   }
 
   // noinspection JSUnusedLocalSymbols
-  protected onDeserialized() {
+  protected onDeserialized(): void {
     storeInstance.addReference(this)
   }
 }

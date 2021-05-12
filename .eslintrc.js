@@ -23,7 +23,6 @@ module.exports = {
       ? ['error', { allow: ['warn', 'error'] }]
       : 'off',
     'prefer-template': 'error',
-    'no-unused-vars': ['error', { vars: 'all' }],
     '@typescript-eslint/no-inferrable-types': 'off',
   },
   overrides: [
