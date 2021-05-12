@@ -6,14 +6,15 @@
         :key="option.id"
         :value="option.id"
         :selected="selectedId === option.id"
-        >{{ option.display }}</option
       >
+        {{ option.display }}
+      </option>
     </select>
   </EpicInputItem>
 </template>
 
 <script lang="ts">
-import EpicInputItem from '@components/EpicInputItem'
+import EpicInputItem from '@components/EpicInputItem.vue'
 import { ReactiveBase } from '@helper/ReactiveBase'
 import { computed } from '@vue/reactivity'
 import { generate } from 'shortid'
@@ -59,8 +60,9 @@ export default defineComponent({
     context
   ) {
     function handleSelectInput($event: InputEvent) {
-      const value = props.options.find((x) => x.id === $event.target.value)
-        ?.value
+      const value = props.options.find(
+        (x) => x.id === $event.target.value
+      )?.value
 
       context.emit('update:selected-item', value)
     }

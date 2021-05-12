@@ -13,21 +13,28 @@ const aliases = {
   '@views': 'src/views',
   '@models': 'src/models',
   '@helper': 'src/helper',
+  '@store': 'src/store',
 }
 
 module.exports = {
-  webpack: {},
   jest: {},
   tsconfig: {},
+  vite: [],
 }
 
 for (const alias in aliases) {
   const aliasTo = aliases[alias]
-  module.exports.webpack[alias] = resolveSrc(aliasTo)
+
+  module.exports.vite.push({
+    find: alias,
+    replacement: resolveSrc(aliasTo),
+  })
+
   const aliasHasExtension = /\.\w+$/.test(aliasTo)
   module.exports.jest[`^${alias}$`] = aliasHasExtension
     ? `<rootDir>/${aliasTo}`
     : `<rootDir>/${aliasTo}/index.ts`
+
   module.exports.jest[`^${alias}/(.*)$`] = `<rootDir>/${aliasTo}/$1`
   module.exports.tsconfig[`${alias}/*`] = [
     `${aliasTo}/*`,

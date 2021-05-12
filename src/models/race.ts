@@ -13,7 +13,7 @@ export enum Races {
 
 @jsonObject(ReferenceableBase.options)
 export class Race extends ReferenceableBase implements CompositionSource {
-  @jsonMember({ constructor: String })
+  @jsonMember(() => String)
   private _race: Races = Races.Alb
 
   public get name() {

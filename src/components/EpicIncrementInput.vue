@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
+import EpicButton from '@components/EpicButton.vue'
+import EpicInputItem from '@components/EpicInputItem.vue'
 import { Incrementable } from '@models/increment'
-import { defineComponent, PropType } from 'vue'
-import EpicButton from '@components/EpicButton'
-import EpicInputItem from '@components/EpicInputItem'
 import { generate } from 'shortid'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'EpicIncrementInput',

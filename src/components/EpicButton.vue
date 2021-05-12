@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
+import EpicIcon from '@components/EpicIcon.vue'
 import { defineComponent } from 'vue'
-import EpicIcon from '@components/EpicIcon'
 
 export default defineComponent({
   name: 'EpicButton',

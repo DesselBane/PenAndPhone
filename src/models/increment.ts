@@ -1,8 +1,8 @@
 import { computedProp } from '@helper/ReactiveBase'
 import { Calculated } from '@models/calculated'
 import { Referenceable, ReferenceableBase } from '@models/reference'
+import { storeInstance } from '@store/data-store'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
-import { storeInstance } from '../store/data-store'
 
 export interface Increment extends Referenceable {
   readonly timestamp: number
@@ -29,8 +29,10 @@ export interface Incrementable extends Referenceable, Calculated {
 }
 
 @jsonObject(ReferenceableBase.options)
-export class IncrementableImpl extends ReferenceableBase
-  implements Incrementable {
+export class IncrementableImpl
+  extends ReferenceableBase
+  implements Incrementable
+{
   @jsonArrayMember(IncrementImpl)
   protected _increments: Increment[] = []
 

@@ -7,13 +7,13 @@ export class ReactiveBase {
 }
 
 export function computedProp(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
-) {
+): void {
   const newDescriptor: PropertyDescriptor = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line
     get(this: any) {
       const propName = `__${String(propertyKey)}`
 

@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts">
+import EpicInputItem from '@components/EpicInputItem.vue'
 import { generate } from 'shortid'
 import { defineComponent } from 'vue'
 import { inputProps, useInput } from './shared/input'
-import EpicInputItem from '@components/EpicInputItem'
 
 export default defineComponent({
   name: 'EpicInput',

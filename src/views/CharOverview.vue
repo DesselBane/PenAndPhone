@@ -26,15 +26,15 @@
 </template>
 
 <script lang="ts">
-import EpicHeading from '@components/EpicHeading'
+import EpicHeading from '@components/EpicHeading.vue'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
 import { Trait } from '@models/trait'
+import { storeInstance } from '@store/data-store'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import { storeInstance } from '../store/data-store'
 
 export default defineComponent({
   name: 'CharOverview',

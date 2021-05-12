@@ -4,4 +4,4 @@
 /tests/unit/coverage/
 /dist_electron/**
 /_templates/**
-vue.config.js
+*.config.js

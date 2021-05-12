@@ -35,20 +35,20 @@
 </template>
 
 <script lang="ts">
-import EpicHeading from '@components/EpicHeading'
-import EpicInput from '@components/EpicInput'
-import EpicSelect, { EpicSelectOption } from '@components/EpicSelect'
+import EpicButton from '@components/EpicButton.vue'
+import EpicHeading from '@components/EpicHeading.vue'
+import EpicIncrementInput from '@components/EpicIncrementInput.vue'
+import EpicInput from '@components/EpicInput.vue'
+import EpicSelect, { EpicSelectOption } from '@components/EpicSelect.vue'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
 import { Races } from '@models/race'
 import { Trait } from '@models/trait'
+import { storeInstance } from '@store/data-store'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import { storeInstance } from '../store/data-store'
-import EpicButton from '@components/EpicButton'
-import EpicIncrementInput from '@components/EpicIncrementInput'
 
 export default defineComponent({
   name: 'CharEdit',

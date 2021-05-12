@@ -42,7 +42,7 @@
     <EpicHeading as="h2" class="mb-6"
       >Soll dieser Held wirklich gelöscht werden?
     </EpicHeading>
-    <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3 "
+    <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3"
       >Character: {{ deleteCharRef.name }}
     </EpicHeading>
     <EpicButton fullwidth @click="cancleDeleteChar" class="mb-2"
@@ -53,18 +53,18 @@
 </template>
 
 <script lang="ts">
+import EpicButton from '@components/EpicButton.vue'
+import EpicCard from '@components/EpicCard.vue'
+import EpicHeading from '@components/EpicHeading.vue'
+import EpicInput from '@components/EpicInput.vue'
+import EpicModal from '@components/EpicModal.vue'
+import { Character } from '@models/character'
 import { Game } from '@models/game'
+import { storeInstance } from '@store/data-store'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from '@vue/runtime-core'
 import { ref, unref } from 'vue'
 import { useRoute } from 'vue-router'
-import { storeInstance } from '../store/data-store'
-import { Character } from '@models/character'
-import EpicModal from '@components/EpicModal'
-import EpicButton from '@components/EpicButton'
-import EpicHeading from '@components/EpicHeading'
-import EpicCard from '@components/EpicCard'
-import EpicInput from '@components/EpicInput'
 
 export default defineComponent({
   name: 'GameOverview',

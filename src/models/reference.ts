@@ -1,7 +1,7 @@
 import { ReactiveBase } from '@helper/ReactiveBase'
+import { storeInstance } from '@store/data-store'
 import { generate } from 'shortid'
 import { jsonMember } from 'typedjson'
-import { storeInstance } from '../store/data-store'
 
 export interface Referenceable {
   readonly id: string
@@ -11,10 +11,10 @@ export interface Referenceable {
 export class ReferenceableBase extends ReactiveBase implements Referenceable {
   static options = { onDeserialized: 'onDeserialized' }
 
-  @jsonMember
+  @jsonMember(() => String)
   public id: string = generate()
 
-  @jsonMember
+  @jsonMember(() => String)
   public name: string
 
   constructor(name = '') {
