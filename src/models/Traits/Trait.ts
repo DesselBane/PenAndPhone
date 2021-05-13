@@ -1,5 +1,4 @@
+import { CompositionSource } from '@models/Composition'
 import { Displayable } from '@models/Displayable'
 
-export interface Trait<T> extends Displayable {
-  readonly value: T
-}
+export interface Trait extends Displayable, CompositionSource<string> {}

@@ -3,5 +3,5 @@ import { Displayable } from '@models/Displayable'
 
 export interface DerivedValue
   extends Displayable,
-    CompositionSource,
-    Composable {}
+    CompositionSource<number>,
+    Composable<number> {}

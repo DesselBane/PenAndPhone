@@ -1,8 +1,7 @@
-import { Calculated } from '@models/Calculated'
+import { CompositionSource } from '@models/Composition'
 import { Increment } from '@models/Increments/increment'
-import { Referenceable } from '@models/reference'
 
-export interface Incrementable extends Referenceable, Calculated {
+export interface Incrementable extends CompositionSource<number> {
   readonly increments: Increment[]
 
   addIncrement(amount: number): Increment

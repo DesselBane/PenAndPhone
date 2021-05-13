@@ -1,8 +1,9 @@
+import { ReferenceableBase } from '@models/Reference'
 import { Trait } from '@models/Traits/Trait'
 import { jsonMember, jsonObject } from 'typedjson'
 
-@jsonObject
-export class SimpleTrait implements Trait<string> {
+@jsonObject(ReferenceableBase.options)
+export class SimpleTrait extends ReferenceableBase implements Trait {
   @jsonMember(String)
   public readonly label: string
 
@@ -10,6 +11,7 @@ export class SimpleTrait implements Trait<string> {
   public value: string
 
   constructor(label: string, value?: string) {
+    super()
     this.label = label
     this.value = value || ''
   }

@@ -10,7 +10,7 @@
       <input
         :id="id"
         class="epic-increment-input"
-        :value="incrementable.currentValue"
+        :value="incrementable.value"
         type="number"
         readonly
       />

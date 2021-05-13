@@ -1,4 +1,5 @@
-import { Calculated } from '@models/calculated'
 import { Referenceable } from '@models/reference'
 
-export interface CompositionSource extends Calculated, Referenceable {}
+export interface CompositionSource<T> extends Referenceable {
+  readonly value: T
+}

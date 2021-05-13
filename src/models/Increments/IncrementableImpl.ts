@@ -17,7 +17,7 @@ export class IncrementableImpl
     return this._increments
   }
 
-  public get currentValue(): number {
+  public get value(): number {
     return this.increments.reduce(
       (previousValue, { amount }) => previousValue + amount,
       0

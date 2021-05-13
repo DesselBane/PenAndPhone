@@ -15,8 +15,8 @@ export class CalculatedDerivedValue
 
   constructor(
     label: string,
-    operand1: CompositionSource,
-    operand2: CompositionSource,
+    operand1: CompositionSource<number>,
+    operand2: CompositionSource<number>,
     operation: MathOperations
   ) {
     super(operand1, operand2, operation)

@@ -1,9 +1,10 @@
 import { isNullOrWhitespace } from '@helper/StringHelpers'
+import { ReferenceableBase } from '@models/Reference'
 import { Trait } from '@models/Traits/Trait'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 
-@jsonObject
-export class SelectableTrait implements Trait<string> {
+@jsonObject(ReferenceableBase.options)
+export class SelectableTrait extends ReferenceableBase implements Trait {
   @jsonMember(String)
   public readonly label: string
 
@@ -35,6 +36,7 @@ export class SelectableTrait implements Trait<string> {
   }
 
   constructor(label: string, options: string[], value?: string) {
+    super()
     this.label = label
     this.options = options
     this.value = value || ''

@@ -3,7 +3,7 @@
   <EpicHeading as="h2" class="mb-2">Attribute</EpicHeading>
   <div class="container">
     <template v-for="attr in attributes" :key="attr.id">
-      <span class="value">{{ attr.currentValue }}</span
+      <span class="value">{{ attr.value }}</span
       ><span class="label">{{ attr.label }}</span>
     </template>
   </div>
@@ -11,7 +11,7 @@
   <EpicHeading as="h2" class="mt-6 mb-2">Fertigkeiten</EpicHeading>
   <div class="container">
     <template v-for="ability in abilities" :key="ability.id">
-      <span class="value">{{ ability.currentValue }}</span
+      <span class="value">{{ ability.value }}</span
       ><span class="label">{{ ability.label }}</span>
     </template>
   </div>
@@ -19,7 +19,7 @@
   <EpicHeading as="h2" class="mt-6 mb-2">Abgeleitete Werte</EpicHeading>
   <div class="container">
     <template v-for="derivedValue in derivedValues" :key="derivedValue.id"
-      ><span class="value">{{ derivedValue.currentValue }}</span
+      ><span class="value">{{ derivedValue.value }}</span
       ><span class="label">{{ derivedValue.label }}</span></template
     >
   </div>

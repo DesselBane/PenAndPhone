@@ -5,13 +5,13 @@ import { jsonMember, jsonObject } from 'typedjson'
 @jsonObject(ReferenceableBase.options)
 export class StaticCompositionSource
   extends ReferenceableBase
-  implements CompositionSource
+  implements CompositionSource<number>
 {
   @jsonMember(Number)
-  public readonly currentValue: number
+  public readonly value: number
 
   constructor(value: number) {
     super()
-    this.currentValue = value
+    this.value = value
   }
 }
