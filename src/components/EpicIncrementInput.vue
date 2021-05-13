@@ -27,7 +27,7 @@
 import EpicButton from '@components/EpicButton.vue'
 import EpicInputItem from '@components/EpicInputItem.vue'
 import { Displayable } from '@models/Displayable'
-import { Incrementable } from '@models/increment'
+import { Incrementable } from '@models/Increments'
 import { generate } from 'shortid'
 import { defineComponent, PropType } from 'vue'
 

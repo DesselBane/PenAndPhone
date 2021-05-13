@@ -1,13 +1,24 @@
-import { Composable, CompositionSource } from '@models/composable'
+import { jsonReferenceMember } from '@helper/jsonReferenceMember'
+import { Composable, CompositionSource } from '@models/Composition'
 import { MathOperations } from '@models/MathOperations'
+import { ReferenceableBase } from '@models/Reference'
 import shortid from 'shortid'
+import { jsonMember, jsonObject } from 'typedjson'
 
-export class BinaryMathExpression implements CompositionSource, Composable {
+@jsonObject(ReferenceableBase.options)
+export class BinaryMathExpression
+  extends ReferenceableBase
+  implements CompositionSource, Composable
+{
   public get compositionSources(): CompositionSource[] {
     return [this._operand1, this._operand2]
   }
+
+  @jsonReferenceMember
   private readonly _operand2: CompositionSource
+  @jsonMember(Number)
   private readonly _operation: MathOperations
+  @jsonReferenceMember
   private readonly _operand1: CompositionSource
 
   public get currentValue(): number {
@@ -28,6 +39,7 @@ export class BinaryMathExpression implements CompositionSource, Composable {
     operand2: CompositionSource,
     operation: MathOperations
   ) {
+    super()
     this._operand2 = operand2
     this._operation = operation
     this._operand1 = operand1

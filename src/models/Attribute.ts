@@ -1,6 +1,6 @@
-import { CompositionSource } from '@models/composable'
+import { CompositionSource } from '@models/Composition'
 import { Displayable } from '@models/Displayable'
-import { Incrementable, IncrementableImpl } from '@models/increment'
+import { Incrementable, IncrementableImpl } from '@models/Increments'
 import { jsonMember, jsonObject } from 'typedjson'
 import { ReferenceableBase } from './reference'
 

@@ -1,14 +1,14 @@
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { BinaryMathExpression } from '@models/BinaryMathExpression'
-import { StaticCompositionSource } from '@models/composable'
-import { DerivedValue } from '@models/DerivedValue'
+import { StaticCompositionSource } from '@models/Composition'
+import { CalculatedDerivedValue, DerivedValue } from '@models/DerivedValue'
 import { Displayable } from '@models/Displayable'
 import { MathOperations } from '@models/MathOperations'
 import { ReferenceableBase } from '@models/reference'
+import { SelectableTrait, SimpleTrait } from '@models/Traits'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
-import { SelectableTrait, SimpleTrait } from './trait'
 
 @jsonObject({
   ...ReferenceableBase.options,
@@ -25,20 +25,30 @@ export class Character extends ReferenceableBase implements Displayable {
   @jsonMember(String)
   public name: string = ''
 
-  @jsonArrayMember(SimpleTrait)
+  @jsonArrayMember(BinaryMathExpression)
+  private binaryMathExpressions: BinaryMathExpression[] = []
+
+  @jsonArrayMember(() => SimpleTrait)
   public traits: SimpleTrait[] = []
 
-  @jsonArrayMember(SelectableTrait)
+  @jsonArrayMember(() => SelectableTrait)
   public selectableTraits: SelectableTrait[] = []
 
-  @jsonArrayMember(Attribute)
+  @jsonArrayMember(() => Attribute)
   public readonly attributes: Attribute[] = []
 
-  @jsonArrayMember(Ability)
+  @jsonArrayMember(() => Ability)
   public readonly abilities: Ability[] = []
 
-  @jsonArrayMember(DerivedValue)
-  public readonly derivedValues: DerivedValue[] = []
+  @jsonArrayMember(() => CalculatedDerivedValue)
+  private readonly calculatedDerivedValues: CalculatedDerivedValue[] = []
+
+  @jsonArrayMember(StaticCompositionSource)
+  private staticCompositionSources: StaticCompositionSource[] = []
+
+  public get derivedValues(): DerivedValue[] {
+    return this.calculatedDerivedValues
+  }
 
   constructor(skipHardcodedSetup = false) {
     super()
@@ -68,25 +78,7 @@ export class Character extends ReferenceableBase implements Displayable {
     this.abilities.push(ability)
     storeInstance.addReference(ability)
   }
-
-  public removeAbility(derivedValue: DerivedValue): boolean {
-    const index = this.derivedValues.findIndex((x) => x.id === derivedValue.id)
-
-    if (index === -1) {
-      return false
-    }
-
-    this.abilities.splice(index, 1)
-    storeInstance.removeReference(derivedValue)
-    return true
-  }
-
-  public addDerivedValue(derivedValue: DerivedValue): void {
-    this.derivedValues.push(derivedValue)
-    storeInstance.addReference(derivedValue)
-  }
-
-  public removeDerivedValue(ability: Ability): boolean {
+  public removeAbility(ability: Ability): boolean {
     const index = this.abilities.findIndex((x) => x.id === ability.id)
 
     if (index === -1) {
@@ -95,6 +87,71 @@ export class Character extends ReferenceableBase implements Displayable {
 
     this.abilities.splice(index, 1)
     storeInstance.removeReference(ability)
+    return true
+  }
+
+  public addCalculatedDerivedValue(derivedValue: CalculatedDerivedValue): void {
+    this.calculatedDerivedValues.push(derivedValue)
+    storeInstance.addReference(derivedValue)
+  }
+  public removeCalculatedDerivedValue(
+    derivedValue: CalculatedDerivedValue
+  ): boolean {
+    const index = this.calculatedDerivedValues.findIndex(
+      (x) => x.id === derivedValue.id
+    )
+
+    if (index === -1) {
+      return false
+    }
+
+    this.calculatedDerivedValues.splice(index, 1)
+    storeInstance.removeReference(derivedValue)
+    return true
+  }
+
+  public addStaticCompositionSource(
+    staticCompositionSource: StaticCompositionSource
+  ): void {
+    this.staticCompositionSources.push(staticCompositionSource)
+    storeInstance.addReference(staticCompositionSource)
+  }
+  public removeStaticCompositionSource(
+    staticCompositionSource: StaticCompositionSource
+  ): boolean {
+    const index = this.staticCompositionSources.findIndex(
+      (x) => x.id === staticCompositionSource.id
+    )
+
+    if (index === -1) {
+      return false
+    }
+
+    this.staticCompositionSources.splice(index, 1)
+    storeInstance.removeReference(staticCompositionSource)
+    return true
+  }
+
+  public addBinaryMathExpression(
+    binaryMathExpression: BinaryMathExpression
+  ): void {
+    this.binaryMathExpressions.push(binaryMathExpression)
+    storeInstance.addReference(binaryMathExpression)
+  }
+
+  public removeBinaryMathExpression(
+    binaryMathExpression: BinaryMathExpression
+  ): boolean {
+    const index = this.binaryMathExpressions.findIndex(
+      (x) => x.id === binaryMathExpression.id
+    )
+
+    if (index === -1) {
+      return false
+    }
+
+    this.binaryMathExpressions.splice(index, 1)
+    storeInstance.removeReference(binaryMathExpression)
     return true
   }
 
@@ -195,20 +252,32 @@ export class Character extends ReferenceableBase implements Displayable {
       throw new Error('Willenskraft attribute needed')
     }
 
-    const initiative = new DerivedValue(
+    const staticIniSource = new StaticCompositionSource(10)
+    this.addStaticCompositionSource(staticIniSource)
+    const initiative = new CalculatedDerivedValue(
       'Initiative',
-      new StaticCompositionSource(10),
+      staticIniSource,
       intuition,
       MathOperations.minus
     )
-    this.addDerivedValue(initiative)
+    this.addCalculatedDerivedValue(initiative)
 
-    const focus = new DerivedValue(
+    const staticFocusMulitplier = new StaticCompositionSource(2)
+    this.addStaticCompositionSource(staticFocusMulitplier)
+
+    const focusMWExpression = new BinaryMathExpression(
+      mystik,
+      willenskraft,
+      MathOperations.plus
+    )
+    this.addBinaryMathExpression(focusMWExpression)
+
+    const focus = new CalculatedDerivedValue(
       'Focus',
-      new StaticCompositionSource(2),
-      new BinaryMathExpression(mystik, willenskraft, MathOperations.plus),
+      staticFocusMulitplier,
+      focusMWExpression,
       MathOperations.multiply
     )
-    this.addDerivedValue(focus)
+    this.addCalculatedDerivedValue(focus)
   }
 }

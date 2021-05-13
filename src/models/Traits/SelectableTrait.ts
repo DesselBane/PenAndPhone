@@ -1,25 +1,8 @@
 import { isNullOrWhitespace } from '@helper/StringHelpers'
-import { Displayable } from '@models/Displayable'
+import { Trait } from '@models/Traits/Trait'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 
-export interface Trait<T> extends Displayable {
-  readonly value: T
-}
-
 @jsonObject
-export class SimpleTrait implements Trait<string> {
-  @jsonMember(String)
-  public readonly label: string
-
-  @jsonMember(String)
-  public value: string
-
-  constructor(label: string, value?: string) {
-    this.label = label
-    this.value = value || ''
-  }
-}
-
 export class SelectableTrait implements Trait<string> {
   @jsonMember(String)
   public readonly label: string

@@ -6,7 +6,7 @@ import { storeInstance } from '../store/data-store'
 
 @jsonObject(ReferenceableBase.options)
 export class Game extends ReferenceableBase implements Displayable {
-  @jsonArrayMember(Character)
+  @jsonArrayMember(() => Character)
   public characters: Character[] = []
 
   public addCharacter(char: Character): void {
