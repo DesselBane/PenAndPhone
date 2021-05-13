@@ -1,7 +1,10 @@
+import { jsonReferenceMember } from '@helper/jsonReferenceMember'
 import { CompositionSource } from '@models/Composition'
 import { DerivedValue } from '@models/DerivedValue/DerivedValue'
 import { ReferenceableBase } from '@models/Reference'
+import { jsonMapMember, jsonMember, jsonObject } from 'typedjson'
 
+@jsonObject(ReferenceableBase.options)
 export class LookupDerivedValue
   extends ReferenceableBase
   implements DerivedValue
@@ -21,9 +24,13 @@ export class LookupDerivedValue
     return value
   }
 
+  @jsonReferenceMember
   private readonly _compositionSource: CompositionSource<string>
+
+  @jsonMapMember(String, Number)
   private _mappings: Map<string, number>
 
+  @jsonMember(String)
   public readonly label: string
 
   constructor(

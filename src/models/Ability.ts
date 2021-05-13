@@ -8,7 +8,7 @@ import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 @jsonObject(ReferenceableBase.options)
 export class Ability
   extends IncrementableImpl
-  implements Composable, Incrementable, Displayable
+  implements Composable<number>, Incrementable, Displayable
 {
   @jsonMember(String)
   public readonly label: string
@@ -16,15 +16,15 @@ export class Ability
   @jsonArrayMember(String)
   private _compositionSourceIds: string[] = []
 
-  public get compositionSources(): CompositionSource[] {
+  public get compositionSources(): CompositionSource<number>[] {
     return this._compositionSourceIds.map((id) =>
       storeInstance.getReference(id)
-    ) as CompositionSource[]
+    ) as CompositionSource<number>[]
   }
 
-  public get currentValue(): number {
+  public get value(): number {
     const composeValue = this.compositionSources.reduce(
-      (previousValue, source) => previousValue + source.currentValue,
+      (previousValue, source) => previousValue + source.value,
       0
     )
     const incrementValue = this._increments.reduce(
@@ -35,7 +35,9 @@ export class Ability
     return composeValue + incrementValue
   }
 
-  public addCompositionSource(source: CompositionSource | undefined): boolean {
+  public addCompositionSource(
+    source: CompositionSource<number> | undefined
+  ): boolean {
     if (source == undefined || this._compositionSourceIds.includes(source.id)) {
       return false
     }
@@ -45,7 +47,7 @@ export class Ability
   }
 
   public removeCompostionSource(
-    source: CompositionSource | undefined
+    source: CompositionSource<number> | undefined
   ): boolean {
     const index = this._compositionSourceIds.findIndex((x) => x === source?.id)
 

@@ -7,7 +7,7 @@ import { ReferenceableBase } from './reference'
 @jsonObject(ReferenceableBase.options)
 export class Attribute
   extends IncrementableImpl
-  implements Incrementable, CompositionSource, Displayable
+  implements Incrementable, CompositionSource<number>, Displayable
 {
   @jsonMember(String)
   public readonly label: string
