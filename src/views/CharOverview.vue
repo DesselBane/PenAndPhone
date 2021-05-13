@@ -4,7 +4,7 @@
   <div class="container">
     <template v-for="attr in attributes" :key="attr.id">
       <span class="value">{{ attr.currentValue }}</span
-      ><span class="label">{{ attr.name }}</span>
+      ><span class="label">{{ attr.label }}</span>
     </template>
   </div>
 
@@ -12,14 +12,22 @@
   <div class="container">
     <template v-for="ability in abilities" :key="ability.id">
       <span class="value">{{ ability.currentValue }}</span
-      ><span class="label">{{ ability.name }}</span>
+      ><span class="label">{{ ability.label }}</span>
     </template>
+  </div>
+
+  <EpicHeading as="h2" class="mt-6 mb-2">Abgeleitete Werte</EpicHeading>
+  <div class="container">
+    <template v-for="derivedValue in derivedValues" :key="derivedValue.id"
+      ><span class="value">{{ derivedValue.currentValue }}</span
+      ><span class="label">{{ derivedValue.label }}</span></template
+    >
   </div>
 
   <EpicHeading as="h2" class="mt-6 mb-2">Generelles</EpicHeading>
   <div class="container-single">
     <template v-for="trait in traits" :key="trait.name">
-      <span class="label">{{ trait.name }}</span
+      <span class="label">{{ trait.label }}</span
       ><span class="value">{{ trait.value }}</span>
     </template>
   </div>
@@ -30,6 +38,7 @@ import EpicHeading from '@components/EpicHeading.vue'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
+import { DerivedValue } from '@models/DerivedValue'
 import { Trait } from '@models/trait'
 import { storeInstance } from '@store/data-store'
 import { computed } from '@vue/reactivity'
@@ -52,12 +61,16 @@ export default defineComponent({
     const traits = computed<Trait[]>(() => char.value?.traits || [])
     const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
     const abilities = computed<Ability[]>(() => char.value?.abilities || [])
+    const derivedValues = computed<DerivedValue[]>(
+      () => char.value?.derivedValues || []
+    )
 
     return {
       char,
       traits,
       attributes,
       abilities,
+      derivedValues,
     }
   },
 })

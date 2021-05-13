@@ -4,7 +4,7 @@
     <div class="gr-2">
       <EpicCard class="mb-8 game-card" v-for="game in games" :key="game.id">
         <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3"
-          >{{ game.name }}
+          >{{ game.label }}
         </EpicHeading>
         <EpicButton class="gr-2 gc-1" as="router-link" :to="`/game/${game.id}`"
           >Öffnen
@@ -27,7 +27,7 @@
   <EpicModal v-model:is-open="createModalIsOpen">
     <EpicHeading as="h2" class="mb-6">Neues Spiel erstellen</EpicHeading>
     <form @submit.prevent="createGame">
-      <EpicInput v-model="newGame.name" label="Spielname" class="mb-4" />
+      <EpicInput v-model="newGame.label" label="Spielname" class="mb-4" />
       <EpicButton primary fullwidth>Spiel erstellen</EpicButton>
     </form>
   </EpicModal>
@@ -36,7 +36,7 @@
       >Soll dieses Spiel wirklich gelöscht werden?</EpicHeading
     >
     <EpicHeading as="h3" class="mb-4 gr-1 gcs-1-3"
-      >Spiel: {{ deleteGameRef.name }}
+      >Spiel: {{ deleteGameRef.label }}
     </EpicHeading>
     <EpicButton fullwidth @click="cancleDeleteGame" class="mb-2"
       >Abbrechen</EpicButton

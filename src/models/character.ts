@@ -1,5 +1,10 @@
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
+import { BinaryMathExpression } from '@models/BinaryMathExpression'
+import { StaticCompositionSource } from '@models/composable'
+import { DerivedValue } from '@models/DerivedValue'
+import { Displayable } from '@models/Displayable'
+import { MathOperations } from '@models/MathOperations'
 import { Race, Races } from '@models/race'
 import { ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
@@ -13,7 +18,14 @@ import { Trait } from './trait'
     return new Character(true)
   },
 })
-export class Character extends ReferenceableBase {
+export class Character extends ReferenceableBase implements Displayable {
+  public get label(): string {
+    return this.name
+  }
+
+  @jsonMember(String)
+  public name: string = ''
+
   @jsonMember(Race)
   public readonly race = new Race(Races.Alb)
 
@@ -25,6 +37,9 @@ export class Character extends ReferenceableBase {
 
   @jsonArrayMember(Ability)
   public readonly abilities: Ability[] = []
+
+  @jsonArrayMember(DerivedValue)
+  public readonly derivedValues: DerivedValue[] = []
 
   constructor(skipHardcodedSetup = false) {
     super()
@@ -55,7 +70,24 @@ export class Character extends ReferenceableBase {
     storeInstance.addReference(ability)
   }
 
-  public removeAbility(ability: Ability): boolean {
+  public removeAbility(derivedValue: DerivedValue): boolean {
+    const index = this.derivedValues.findIndex((x) => x.id === derivedValue.id)
+
+    if (index === -1) {
+      return false
+    }
+
+    this.abilities.splice(index, 1)
+    storeInstance.removeReference(derivedValue)
+    return true
+  }
+
+  public addDerivedValue(derivedValue: DerivedValue): void {
+    this.derivedValues.push(derivedValue)
+    storeInstance.addReference(derivedValue)
+  }
+
+  public removeDerivedValue(ability: Ability): boolean {
     const index = this.abilities.findIndex((x) => x.id === ability.id)
 
     if (index === -1) {
@@ -140,5 +172,36 @@ export class Character extends ReferenceableBase {
 
       this.addAbility(ability)
     })
+
+    const intuition = attributeMap.get('Intuition')
+    if (intuition == null) {
+      throw new Error('Intuition attribute needed')
+    }
+
+    const mystik = attributeMap.get('Mystik')
+    if (mystik == null) {
+      throw new Error('Mystik attribute needed')
+    }
+
+    const willenskraft = attributeMap.get('Willenskraft')
+    if (willenskraft == null) {
+      throw new Error('Willenskraft attribute needed')
+    }
+
+    const initiative = new DerivedValue(
+      'Initiative',
+      new StaticCompositionSource(10),
+      intuition,
+      MathOperations.minus
+    )
+    this.addDerivedValue(initiative)
+
+    const focus = new DerivedValue(
+      'Focus',
+      new StaticCompositionSource(2),
+      new BinaryMathExpression(mystik, willenskraft, MathOperations.plus),
+      MathOperations.multiply
+    )
+    this.addDerivedValue(focus)
   }
 }

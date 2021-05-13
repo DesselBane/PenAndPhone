@@ -1,15 +1,20 @@
+import { Displayable } from '@models/Displayable'
 import { jsonMember, jsonObject } from 'typedjson'
 
 @jsonObject
-export class Trait {
+export class Trait implements Displayable {
   @jsonMember(String)
-  public name: string = ''
+  public name: string
 
   @jsonMember(String)
-  public value: string = ''
+  public value: string
 
-  constructor(name = '', value = '') {
+  public get label(): string {
+    return this.name
+  }
+
+  constructor(name: string, value?: string) {
     this.name = name
-    this.value = value
+    this.value = value || ''
   }
 }

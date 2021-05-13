@@ -1,5 +1,5 @@
 <template>
-  <EpicInputItem :label="incrementable.name" :input-id="id">
+  <EpicInputItem :label="incrementable.label" :input-id="id">
     <div class="epic-increment-input-controls">
       <EpicButton
         icon="arrow-down"
@@ -26,6 +26,7 @@
 <script lang="ts">
 import EpicButton from '@components/EpicButton.vue'
 import EpicInputItem from '@components/EpicInputItem.vue'
+import { Displayable } from '@models/Displayable'
 import { Incrementable } from '@models/increment'
 import { generate } from 'shortid'
 import { defineComponent, PropType } from 'vue'
@@ -38,7 +39,7 @@ export default defineComponent({
   },
   props: {
     incrementable: {
-      type: Object as PropType<Incrementable>,
+      type: Object as PropType<Incrementable & Displayable>,
       required: true,
     },
   },

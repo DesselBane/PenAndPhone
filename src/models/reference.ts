@@ -5,7 +5,6 @@ import { jsonMember } from 'typedjson'
 
 export interface Referenceable {
   readonly id: string
-  name: string
 }
 
 export class ReferenceableBase extends ReactiveBase implements Referenceable {
@@ -13,14 +12,6 @@ export class ReferenceableBase extends ReactiveBase implements Referenceable {
 
   @jsonMember(String)
   public id: string = generate()
-
-  @jsonMember(String)
-  public name: string
-
-  constructor(name = '') {
-    super()
-    this.name = name
-  }
 
   // noinspection JSUnusedLocalSymbols
   protected onDeserialized(): void {

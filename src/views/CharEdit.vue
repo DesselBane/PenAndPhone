@@ -25,7 +25,7 @@
     v-for="trait in traits"
     :key="trait.name"
     v-model="trait.value"
-    :label="trait.name"
+    :label="trait.label"
     class="mb-4"
   />
   <div class="buttons mt-8">

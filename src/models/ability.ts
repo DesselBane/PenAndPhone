@@ -1,15 +1,19 @@
 import { computedProp } from '@helper/ReactiveBase'
 import { Composable, CompositionSource } from '@models/composable'
+import { Displayable } from '@models/Displayable'
 import { Incrementable, IncrementableImpl } from '@models/increment'
 import { ReferenceableBase } from '@models/reference'
 import { storeInstance } from '@store/data-store'
-import { jsonArrayMember, jsonObject } from 'typedjson'
+import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 
 @jsonObject(ReferenceableBase.options)
 export class Ability
   extends IncrementableImpl
-  implements Composable, Incrementable
+  implements Composable, Incrementable, Displayable
 {
+  @jsonMember(String)
+  public readonly label: string
+
   @jsonArrayMember(String)
   private _compositionSourceIds: string[] = []
 
@@ -53,5 +57,11 @@ export class Ability
       return true
     }
     return false
+  }
+
+  constructor(label: string) {
+    super()
+
+    this.label = label
   }
 }
