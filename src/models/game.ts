@@ -25,7 +25,7 @@ export class Game extends ReferenceableBase implements Displayable {
   }
 
   @jsonMember(String)
-  public readonly label: string
+  public label: string
 
   constructor(label: string) {
     super()

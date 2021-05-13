@@ -5,11 +5,10 @@ import { StaticCompositionSource } from '@models/composable'
 import { DerivedValue } from '@models/DerivedValue'
 import { Displayable } from '@models/Displayable'
 import { MathOperations } from '@models/MathOperations'
-import { Race, Races } from '@models/race'
 import { ReferenceableBase } from '@models/reference'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
 import { storeInstance } from '../store/data-store'
-import { Trait } from './trait'
+import { SelectableTrait, SimpleTrait } from './trait'
 
 @jsonObject({
   ...ReferenceableBase.options,
@@ -26,11 +25,11 @@ export class Character extends ReferenceableBase implements Displayable {
   @jsonMember(String)
   public name: string = ''
 
-  @jsonMember(Race)
-  public readonly race = new Race(Races.Alb)
+  @jsonArrayMember(SimpleTrait)
+  public traits: SimpleTrait[] = []
 
-  @jsonArrayMember(Trait)
-  public traits: Trait[] = []
+  @jsonArrayMember(SelectableTrait)
+  public selectableTraits: SelectableTrait[] = []
 
   @jsonArrayMember(Attribute)
   public readonly attributes: Attribute[] = []
@@ -113,7 +112,15 @@ export class Character extends ReferenceableBase implements Displayable {
       'Schwächen',
       'Sprachen',
       'Kulturkunde',
-    ].map((name) => new Trait(name))
+    ].map((name) => new SimpleTrait(name))
+
+    const race = new SelectableTrait(
+      'Rasse',
+      ['Alb', 'Gnom', 'Mensch', 'Varg', 'Zwerg'],
+      'Alb'
+    )
+
+    this.selectableTraits.push(race)
 
     const attributesNames = [
       'Ausstrahlung',

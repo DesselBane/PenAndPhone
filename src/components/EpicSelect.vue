@@ -1,13 +1,13 @@
 <template>
   <EpicInputItem :label="label" :input-id="id">
-    <select :id="id" @input="handleSelectInput" :value="selectedId">
+    <select :id="id" @input="handleSelectInput" :value="selectedItem">
       <option
         v-for="option in options"
-        :key="option.id"
-        :value="option.id"
-        :selected="selectedId === option.id"
+        :key="option"
+        :value="option"
+        :selected="selectedItem === option"
       >
-        {{ option.display }}
+        {{ option }}
       </option>
     </select>
   </EpicInputItem>
@@ -15,25 +15,8 @@
 
 <script lang="ts">
 import EpicInputItem from '@components/EpicInputItem.vue'
-import { ReactiveBase } from '@helper/ReactiveBase'
-import { computed } from '@vue/reactivity'
 import { generate } from 'shortid'
 import { defineComponent, PropType } from 'vue'
-
-export class EpicSelectOption extends ReactiveBase {
-  /**
-   * @param value
-   * @param id If no id is present the select will create one using the shortId package
-   * @param display if no display is specified and no slot is provided the value will be interpreted as string
-   */
-  constructor(
-    public readonly value: unknown,
-    public readonly id: string = generate(),
-    public readonly display: string = String(value)
-  ) {
-    super()
-  }
-}
 
 export default defineComponent({
   name: 'EpicSelect',
@@ -42,7 +25,7 @@ export default defineComponent({
   },
   props: {
     options: {
-      type: Array as PropType<EpicSelectOption[]>,
+      type: Array as PropType<unknown>,
       required: true,
     },
     selectedItem: {
@@ -55,26 +38,14 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(
-    props: { options: EpicSelectOption[]; selectedItem: unknown },
-    context
-  ) {
+  setup(props: { options: unknown[]; selectedItem: unknown }, context) {
     function handleSelectInput($event: InputEvent) {
-      const value = props.options.find(
-        (x) => x.id === $event.target.value
-      )?.value
-
-      context.emit('update:selected-item', value)
+      context.emit('update:selected-item', $event.target.value)
     }
-
-    const selectedId = computed(
-      () => props.options.find((x) => x.value === props.selectedItem)?.id
-    )
 
     return {
       id: generate(),
       handleSelectInput,
-      selectedId,
     }
   },
 })

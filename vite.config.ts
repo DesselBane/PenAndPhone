@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [vue(), svgLoader()],
   server: {
     port: 8080,
+    host: '0.0.0.0',
   },
   resolve: {
     alias: vite,

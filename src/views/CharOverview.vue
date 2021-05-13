@@ -26,7 +26,7 @@
 
   <EpicHeading as="h2" class="mt-6 mb-2">Generelles</EpicHeading>
   <div class="container-single">
-    <template v-for="trait in traits" :key="trait.name">
+    <template v-for="trait in traits" :key="trait.label">
       <span class="label">{{ trait.label }}</span
       ><span class="value">{{ trait.value }}</span>
     </template>
@@ -58,7 +58,10 @@ export default defineComponent({
         | undefined
     })
 
-    const traits = computed<Trait[]>(() => char.value?.traits || [])
+    const traits = computed<Trait[]>(() => [
+      ...char.value?.selectableTraits,
+      ...char.value?.traits,
+    ])
     const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
     const abilities = computed<Ability[]>(() => char.value?.abilities || [])
     const derivedValues = computed<DerivedValue[]>(

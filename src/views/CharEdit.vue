@@ -1,11 +1,6 @@
 <template>
   <EpicHeading>Editiere: {{ char.name }}</EpicHeading>
   <EpicInput v-model="char.name" label="Name" class="mb-4" />
-  <EpicSelect
-    label="Race"
-    :options="raceOptions"
-    v-model:selected-item="char.race.name"
-  />
   <EpicHeading as="h2" class="mb-4 mt-6">Attribute</EpicHeading>
   <EpicIncrementInput
     v-for="attr in attributes"
@@ -21,9 +16,16 @@
     class="mb-4"
   />
   <EpicHeading as="h2" class="mb-4 mt-6">Generelles</EpicHeading>
+  <EpicSelect
+    v-for="selectableTrait in selectableTraits"
+    :key="selectableTrait.label"
+    :label="selectableTrait.label"
+    :options="selectableTrait.options"
+    v-model:selected-item="selectableTrait.value"
+  />
   <EpicInput
     v-for="trait in traits"
-    :key="trait.name"
+    :key="trait.label"
     v-model="trait.value"
     :label="trait.label"
     class="mb-4"
@@ -39,12 +41,11 @@ import EpicButton from '@components/EpicButton.vue'
 import EpicHeading from '@components/EpicHeading.vue'
 import EpicIncrementInput from '@components/EpicIncrementInput.vue'
 import EpicInput from '@components/EpicInput.vue'
-import EpicSelect, { EpicSelectOption } from '@components/EpicSelect.vue'
+import EpicSelect from '@components/EpicSelect.vue'
 import { Ability } from '@models/ability'
 import { Attribute } from '@models/attribute'
 import { Character } from '@models/character'
-import { Races } from '@models/race'
-import { Trait } from '@models/trait'
+import { SelectableTrait, SimpleTrait } from '@models/trait'
 import { storeInstance } from '@store/data-store'
 import { computed } from '@vue/reactivity'
 import { defineComponent } from 'vue'
@@ -66,21 +67,19 @@ export default defineComponent({
         | Character
         | undefined
     })
-    const traits = computed<Trait[]>(() => char.value?.traits || [])
+    const traits = computed<SimpleTrait[]>(() => char.value?.traits || [])
     const attributes = computed<Attribute[]>(() => char.value?.attributes || [])
     const abilities = computed<Ability[]>(() => char.value?.abilities || [])
-
-    const raceOptions = []
-    for (const race in Races) {
-      raceOptions.push(new EpicSelectOption(race, race, race))
-    }
+    const selectableTraits = computed<SelectableTrait[]>(
+      () => char.value?.selectableTraits || []
+    )
 
     return {
       char,
       traits,
       attributes,
       abilities,
-      raceOptions,
+      selectableTraits,
       save: () => storeInstance.save(),
       cancel: () => storeInstance.load(),
     }
