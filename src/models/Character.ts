@@ -3,8 +3,9 @@ import { Attribute } from '@models/attribute'
 import { BinaryMathExpression } from '@models/BinaryMathExpression'
 import { StaticCompositionSource } from '@models/Composition'
 import { CalculatedDerivedValue, DerivedValue } from '@models/DerivedValue'
+import { LookupDerivedValue } from '@models/DerivedValue/LookupDerivedValue'
 import { Displayable } from '@models/Displayable'
-import { MathOperations } from '@models/MathOperations'
+import { MathOperations as MO } from '@models/MathOperations'
 import { ReferenceableBase } from '@models/reference'
 import { SelectableTrait, SimpleTrait } from '@models/Traits'
 import { jsonArrayMember, jsonMember, jsonObject } from 'typedjson'
@@ -28,26 +29,29 @@ export class Character extends ReferenceableBase implements Displayable {
   @jsonArrayMember(BinaryMathExpression)
   private binaryMathExpressions: BinaryMathExpression[] = []
 
-  @jsonArrayMember(() => SimpleTrait)
+  @jsonArrayMember(SimpleTrait)
   public traits: SimpleTrait[] = []
 
-  @jsonArrayMember(() => SelectableTrait)
+  @jsonArrayMember(SelectableTrait)
   public selectableTraits: SelectableTrait[] = []
 
-  @jsonArrayMember(() => Attribute)
+  @jsonArrayMember(Attribute)
   public readonly attributes: Attribute[] = []
 
-  @jsonArrayMember(() => Ability)
+  @jsonArrayMember(Ability)
   public readonly abilities: Ability[] = []
 
-  @jsonArrayMember(() => CalculatedDerivedValue)
+  @jsonArrayMember(CalculatedDerivedValue)
   private readonly calculatedDerivedValues: CalculatedDerivedValue[] = []
 
   @jsonArrayMember(StaticCompositionSource)
-  private staticCompositionSources: StaticCompositionSource[] = []
+  private readonly staticCompositionSources: StaticCompositionSource[] = []
+
+  @jsonArrayMember(LookupDerivedValue)
+  private readonly lookupDerivedValues: LookupDerivedValue[] = []
 
   public get derivedValues(): DerivedValue[] {
-    return this.calculatedDerivedValues
+    return [...this.calculatedDerivedValues, ...this.lookupDerivedValues]
   }
 
   constructor(skipHardcodedSetup = false) {
@@ -138,7 +142,6 @@ export class Character extends ReferenceableBase implements Displayable {
     this.binaryMathExpressions.push(binaryMathExpression)
     storeInstance.addReference(binaryMathExpression)
   }
-
   public removeBinaryMathExpression(
     binaryMathExpression: BinaryMathExpression
   ): boolean {
@@ -152,6 +155,44 @@ export class Character extends ReferenceableBase implements Displayable {
 
     this.binaryMathExpressions.splice(index, 1)
     storeInstance.removeReference(binaryMathExpression)
+    return true
+  }
+
+  public addLookupDerivedValue(lookupDerivedValue: LookupDerivedValue): void {
+    this.lookupDerivedValues.push(lookupDerivedValue)
+    storeInstance.addReference(lookupDerivedValue)
+  }
+  public removeLookupDerivedValue(
+    lookupDerivedValue: LookupDerivedValue
+  ): boolean {
+    const index = this.lookupDerivedValues.findIndex(
+      (x) => x.id === lookupDerivedValue.id
+    )
+
+    if (index === -1) {
+      return false
+    }
+
+    this.lookupDerivedValues.splice(index, 1)
+    storeInstance.removeReference(lookupDerivedValue)
+    return true
+  }
+
+  public addSelectableTrait(selectableTrait: SelectableTrait): void {
+    this.selectableTraits.push(selectableTrait)
+    storeInstance.addReference(selectableTrait)
+  }
+  public removeSelectableTrait(selectableTrait: SelectableTrait): boolean {
+    const index = this.selectableTraits.findIndex(
+      (x) => x.id === selectableTrait.id
+    )
+
+    if (index === -1) {
+      return false
+    }
+
+    this.selectableTraits.splice(index, 1)
+    storeInstance.removeReference(selectableTrait)
     return true
   }
 
@@ -176,27 +217,41 @@ export class Character extends ReferenceableBase implements Displayable {
       ['Alb', 'Gnom', 'Mensch', 'Varg', 'Zwerg'],
       'Alb'
     )
-
-    this.selectableTraits.push(race)
-
-    const attributesNames = [
-      'Ausstrahlung',
-      'Beweglichkeit',
-      'Intuition',
-      'Konsitution',
-      'Mystik',
-      'Stärke',
-      'Verstand',
-      'Willenskraft',
-    ]
+    this.addSelectableTrait(race)
 
     const attributeMap = new Map<string, Attribute>()
 
-    attributesNames.forEach((attrName) => {
-      const attr = new Attribute(attrName)
-      attributeMap.set(attrName, attr)
-      this.addAttribute(attr)
-    })
+    const chrisma = new Attribute('Ausstrahlung')
+    attributeMap.set(chrisma.label, chrisma)
+    this.addAttribute(chrisma)
+
+    const agility = new Attribute('Beweglichkeit')
+    attributeMap.set(agility.label, agility)
+    this.addAttribute(agility)
+
+    const intuition = new Attribute('Intuition')
+    attributeMap.set(intuition.label, intuition)
+    this.addAttribute(intuition)
+
+    const constitution = new Attribute('Konstitution')
+    attributeMap.set(constitution.label, constitution)
+    this.addAttribute(constitution)
+
+    const mystic = new Attribute('Mystik')
+    attributeMap.set(mystic.label, mystic)
+    this.addAttribute(mystic)
+
+    const strength = new Attribute('Stärke')
+    attributeMap.set(strength.label, strength)
+    this.addAttribute(strength)
+
+    const intellect = new Attribute('Verstand')
+    attributeMap.set(intellect.label, intellect)
+    this.addAttribute(intellect)
+
+    const willpower = new Attribute('Willenskraft')
+    attributeMap.set(willpower.label, willpower)
+    this.addAttribute(willpower)
 
     const abilities = [
       ['Akrobatik', 'Beweglichkeit', 'Stärke'],
@@ -211,21 +266,21 @@ export class Character extends ReferenceableBase implements Displayable {
       ['Enstschlossenheit', 'Ausstrahlung', 'Willenskraft'],
       ['Fingerfertigkeit', 'Beweglichkeit', 'Ausstrahlung'],
       ['Geschichten und Mythen', 'Mystik', 'Verstand'],
-      ['Handwerk', 'Konsitution', 'Verstand'],
+      ['Handwerk', 'Konstitution', 'Verstand'],
       ['Heilkunde', 'Intuition', 'Verstand'],
       ['Heimlichkeit', 'Beweglichkeit', 'Intuition'],
-      ['Jagdkunst', 'Konsitution', 'Verstand'],
+      ['Jagdkunst', 'Konstitution', 'Verstand'],
       ['Länderkunde', 'Intuition', 'Verstand'],
       ['Naturkunde', 'Intuition', 'Verstand'],
       ['Redegewandheit', 'Ausstrahlung', 'Willenskraft'],
       ['Schlösser und Fallen', 'Beweglichkeit', 'Intuition'],
-      ['Schwimmen', 'Konsitution', 'Stärke'],
-      ['Seefahrt', 'Beweglichkeit', 'Konsitution'],
+      ['Schwimmen', 'Konstitution', 'Stärke'],
+      ['Seefahrt', 'Beweglichkeit', 'Konstitution'],
       ['Straßenkunde', 'Ausstrahlung', 'Intuition'],
       ['Tierführung', 'Beweglichkeit', 'Ausstrahlung'],
-      ['Überleben', 'Intuition', 'Konsitution'],
+      ['Überleben', 'Intuition', 'Konstitution'],
       ['Wahrnehmung', 'Intuition', 'Willenskraft'],
-      ['Zähigkeit', 'Konsitution', 'Willenskraft'],
+      ['Zähigkeit', 'Konstitution', 'Willenskraft'],
     ]
 
     abilities.forEach(([abilityName, attributeName1, attributeName2]) => {
@@ -237,28 +292,13 @@ export class Character extends ReferenceableBase implements Displayable {
       this.addAbility(ability)
     })
 
-    const intuition = attributeMap.get('Intuition')
-    if (intuition == null) {
-      throw new Error('Intuition attribute needed')
-    }
-
-    const mystik = attributeMap.get('Mystik')
-    if (mystik == null) {
-      throw new Error('Mystik attribute needed')
-    }
-
-    const willenskraft = attributeMap.get('Willenskraft')
-    if (willenskraft == null) {
-      throw new Error('Willenskraft attribute needed')
-    }
-
     const staticIniSource = new StaticCompositionSource(10)
     this.addStaticCompositionSource(staticIniSource)
     const initiative = new CalculatedDerivedValue(
       'Initiative',
       staticIniSource,
       intuition,
-      MathOperations.minus
+      MO.minus
     )
     this.addCalculatedDerivedValue(initiative)
 
@@ -266,9 +306,9 @@ export class Character extends ReferenceableBase implements Displayable {
     this.addStaticCompositionSource(staticFocusMulitplier)
 
     const focusMWExpression = new BinaryMathExpression(
-      mystik,
-      willenskraft,
-      MathOperations.plus
+      mystic,
+      willpower,
+      MO.plus
     )
     this.addBinaryMathExpression(focusMWExpression)
 
@@ -276,8 +316,97 @@ export class Character extends ReferenceableBase implements Displayable {
       'Focus',
       staticFocusMulitplier,
       focusMWExpression,
-      MathOperations.multiply
+      MO.multiply
     )
     this.addCalculatedDerivedValue(focus)
+
+    const sizeClass = new LookupDerivedValue(
+      'Größenklasse',
+      race,
+      new Map<string, number>([
+        ['Alb', 5],
+        ['Gnom', 3],
+        ['Mensch', 5],
+        ['Varg', 6],
+        ['Zwerg', 4],
+      ])
+    )
+    this.addLookupDerivedValue(sizeClass)
+
+    const speed = new CalculatedDerivedValue(
+      'Geschwindigkeit',
+      sizeClass,
+      agility,
+      MO.plus
+    )
+    this.addCalculatedDerivedValue(speed)
+
+    const consitution = attributeMap.get('Konstitution')
+    if (consitution == null) {
+      throw new Error('Konstitution attribute missing')
+    }
+
+    const hitpoints = new CalculatedDerivedValue(
+      'Lebenspunkte',
+      sizeClass,
+      consitution,
+      MO.plus
+    )
+    this.addCalculatedDerivedValue(hitpoints)
+
+    const defenseStatic = new StaticCompositionSource(12)
+    this.addStaticCompositionSource(defenseStatic)
+
+    const defenseAttributeExp = new BinaryMathExpression(
+      strength,
+      agility,
+      MO.plus
+    )
+    this.addBinaryMathExpression(defenseAttributeExp)
+
+    const defense = new CalculatedDerivedValue(
+      'Verteidigung',
+      defenseStatic,
+      defenseAttributeExp,
+      MO.plus
+    )
+
+    this.addCalculatedDerivedValue(defense)
+
+    const mentalResistanceStatic = new StaticCompositionSource(12)
+    this.addStaticCompositionSource(mentalResistanceStatic)
+
+    const mentalResistanceAttributeExp = new BinaryMathExpression(
+      willpower,
+      intellect,
+      MO.plus
+    )
+    this.addBinaryMathExpression(mentalResistanceAttributeExp)
+
+    const mentalResistance = new CalculatedDerivedValue(
+      'Geistiger Wiederstand',
+      mentalResistanceStatic,
+      mentalResistanceAttributeExp,
+      MO.plus
+    )
+    this.addCalculatedDerivedValue(mentalResistance)
+
+    const physicalResistanceStatic = new StaticCompositionSource(12)
+    this.addStaticCompositionSource(physicalResistanceStatic)
+
+    const physicalResistanceAttributeExp = new BinaryMathExpression(
+      willpower,
+      constitution,
+      MO.plus
+    )
+    this.addBinaryMathExpression(physicalResistanceAttributeExp)
+
+    const physicalResistance = new CalculatedDerivedValue(
+      'Körperlicher Wiederstand',
+      physicalResistanceStatic,
+      physicalResistanceAttributeExp,
+      MO.plus
+    )
+    this.addCalculatedDerivedValue(physicalResistance)
   }
 }
