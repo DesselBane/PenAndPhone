@@ -77,7 +77,7 @@
     "sass": "^1.32.13",
     "semantic-release": "^17.4.2",
     "typescript": "4.2.4",
-    "vite": "^2.3.1",
+    "vite": "^2.9.13",
     "vite-svg-loader": "^1.5.1",
     "vue-jest": "5.0.0-alpha.9",
     "vue-svg-loader": "^0.17.0-beta.2",
