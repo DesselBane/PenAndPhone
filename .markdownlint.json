@@ -1,7 +1,0 @@
-{
-  "default": true,
-  "line-length": false,
-  "no-multiple-blanks": false,
-  "list-marker-space": false,
-  "MD046": false
-}
