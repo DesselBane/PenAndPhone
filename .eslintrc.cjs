@@ -12,4 +12,8 @@ module.exports = {
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
   ]
+  ,
+  rules: {
+    'prefer-template': 'error',
+  }
 }

@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@vueuse/core": "9.3.0",
+    "@vueuse/firebase": "9.3.0",
+    "firebase": "9.10.0",
     "nanoid": "4.0.0",
     "pinia": "2.0.22",
     "vue": "3.2.37"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.2.0",
+    "@types/gapi": "0.0.42",
     "@vitejs/plugin-vue": "3.1.0",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
