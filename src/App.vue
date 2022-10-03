@@ -1,31 +1,37 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { computed } from 'vue'
+import { useCharacterStore } from './store/CharacterStore'
+
+const charStore = useCharacterStore()
+
+const allChars = computed(() => {
+  return JSON.stringify(charStore.characters, null, '\t')
+})
+
+const wait = (millis: number = 1000) => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      console.log('next')
+      resolve()
+    }, millis)
+  })
+}
+
+async function doWork() {
+  const char = charStore.create()
+  await wait()
+  char.name = 'foo'
+  await wait()
+  char.addExp(20)
+  await wait()
+  char.purchaseAgility()
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>All Chars</h1>
+  <p>{{ allChars }}</p>
+  <button @click="doWork">Do work</button>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
