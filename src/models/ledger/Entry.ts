@@ -1,7 +1,9 @@
+import { AttributeKey } from '../Attribute'
+
 export interface LedgerEntryKindMap {
   [NameChange.KIND]: NameChange
   [AddExp.KIND]: AddExp
-  [PurchaseAgility.KIND]: PurchaseAgility
+  [PurchaseAttribute.KIND]: PurchaseAttribute
 }
 
 export abstract class Entry {
@@ -36,11 +38,14 @@ export class AddExp extends Entry {
   }
 }
 
-export class PurchaseAgility extends Entry {
-  static KIND: 'purchase-agility' = 'purchase-agility'
-  readonly kind = PurchaseAgility.KIND
+export class PurchaseAttribute extends Entry {
+  static KIND: 'purchase-attribute' = 'purchase-attribute'
+  readonly kind = PurchaseAttribute.KIND
+  attribute: AttributeKey
 
-  constructor() {
+  constructor(attribute: AttributeKey) {
     super()
+
+    this.attribute = attribute
   }
 }
