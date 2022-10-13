@@ -103,7 +103,8 @@ async function doWork() {
   await wait()
   char.addExp(20)
   await wait()
-  char.purchaseAgility()
+  char.purchase('agility')
+  char.purchase('constitution')
 }
 </script>
 

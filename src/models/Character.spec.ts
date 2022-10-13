@@ -1,5 +1,6 @@
 import { Character } from './Character'
 import { describe, it, expect } from 'vitest'
+import { AttributeKey } from './Attribute'
 
 describe('Character', () => {
   it('can change name', () => {
@@ -16,16 +17,21 @@ describe('Character', () => {
     expect(character.totalExp).toEqual(exp)
   })
 
-  it('can purchase agility', () => {
-    const character = new Character()
-    character.addExp(30)
-    character.purchaseAgility()
-    expect(character.agility).toEqual(1)
-  })
+  describe.each(['agility', 'constitution'] as AttributeKey[])(
+    'attribute "%s"',
+    (attribute) => {
+      it(`can purchase`, () => {
+        const character = new Character()
+        character.addExp(30)
+        character.purchase(attribute)
+        expect(character[attribute]).toEqual(1)
+      })
 
-  it('cannot purchase agility without exp', () => {
-    const character = new Character()
-    character.purchaseAgility()
-    expect(character.agility).toEqual(0)
-  })
+      it(`cannot purchase without exp`, () => {
+        const character = new Character()
+        character.purchase(attribute)
+        expect(character[attribute]).toEqual(0)
+      })
+    }
+  )
 })
