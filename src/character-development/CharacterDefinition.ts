@@ -53,17 +53,33 @@ type TAttributeState<
 }
 
 export class Character<
-  TCharacterDefinition extends TUnknownCharacterDefinition
+  TCharacterDefinition extends TUnknownCharacterDefinition,
+  TCharacterRules extends CharacterRules<TCharacterDefinition>
 > {
-  currentState: TAttributeState<TCharacterDefinition['attributeDefinitions']>
+  private currentState: TAttributeState<
+    TCharacterDefinition['attributeDefinitions']
+  >
+  state: TAttributeState<TCharacterDefinition['attributeDefinitions']>
 
-  constructor(characterDefinition: TCharacterDefinition) {
+  constructor(definition: TCharacterDefinition, rules: TCharacterRules) {
     this.currentState = Object.fromEntries(
-      characterDefinition.attributeDefinitions.map((definition) => [
+      definition.attributeDefinitions.map((definition) => [
         definition.id,
         definition.type === 'number' ? 0 : '',
       ])
     ) as TAttributeState<TCharacterDefinition['attributeDefinitions']>
+    this.state = new Proxy(this.currentState, {
+      get(state, attributeId, receiver) {
+        const calculation = rules.attributeCalculations?.find(
+          (calculation) => calculation.attributeId === attributeId
+        )
+        const currentValue = Reflect.get(state, attributeId, receiver)
+        if (calculation == null) {
+          return currentValue
+        }
+        return calculation.calculation(state)
+      },
+    })
   }
 }
 
@@ -72,7 +88,10 @@ export interface IAttributeCalculation<
 > {
   attributeId: TCharacterDefinition['attributeDefinitions'][number]['id']
   calculation: (
-    currentState: Character<TCharacterDefinition>['currentState']
+    currentState: Character<
+      TCharacterDefinition,
+      CharacterRules<TCharacterDefinition>
+    >['currentState']
   ) => number
 }
 
@@ -82,44 +101,9 @@ export interface ICharacterEvent<
   id: string
   resolve: <TPayload extends Record<string, any>>(
     payload: TPayload,
-    character: Character<TCharacterDefinition>
+    character: Character<
+      TCharacterDefinition,
+      CharacterRules<TCharacterDefinition>
+    >
   ) => void
 }
-
-const characterDefinition = new CharacterDefinition({
-  attributeDefinitions: [
-    { id: 'xp', type: 'number' },
-    { id: 'name', type: 'text' },
-    { id: 'intelligence', type: 'number' },
-    { id: 'stamina', type: 'number' },
-    { id: 'climbing', type: 'number' },
-    {
-      id: 'race',
-      type: 'single-select',
-      options: [
-        { id: 'human', value: 'Human' },
-        { id: 'warg', value: 'Warg' },
-      ],
-    },
-  ],
-} as const)
-
-const charRules = new CharacterRules({
-  characterDefinition,
-  attributeCalculations: [
-    {
-      attributeId: 'climbing',
-      calculation(state) {
-        return state.intelligence + state.stamina
-      },
-    },
-  ],
-  events: [
-    {
-      id: 'purchaseAttribute',
-      resolve(payload, character) {
-        const xp = character.currentState.xp
-      },
-    },
-  ],
-})
