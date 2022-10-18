@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
   Character,
-  CharacterDefinition,
-  CharacterRules,
+  createCharacterDefinition,
+  createCharacterRules,
 } from './CharacterDefinition'
 
-const characterDefinition = new CharacterDefinition({
+const characterDefinition = createCharacterDefinition({
   attributeDefinitions: [
     { id: 'xp', type: 'number' },
     { id: 'name', type: 'text' },
@@ -21,7 +21,7 @@ const characterDefinition = new CharacterDefinition({
   ],
 } as const)
 
-const charRules = new CharacterRules({
+const charRules = createCharacterRules<typeof characterDefinition>({
   characterDefinition,
   attributeCalculations: [
     {
@@ -56,7 +56,7 @@ const charRules = new CharacterRules({
       },
     },
   ],
-})
+} as const)
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {
@@ -78,7 +78,7 @@ describe('CharacterDefinition', () => {
 
   it('can purchase attribute', () => {
     const char = new Character(characterDefinition, charRules)
-    char.execute('purchase-attribute', {
+    char.execute('', {
       attributeId: 'stamina',
     })
     expect(char.state.stamina).toBe(0)
