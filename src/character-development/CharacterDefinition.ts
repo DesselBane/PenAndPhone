@@ -1,4 +1,7 @@
-import { TUnknownAttributeDefinition } from './AttributeDefinition'
+import {
+  TAttributeState,
+  TUnknownAttributeDefinition,
+} from './AttributeDefinition'
 
 export class CharacterDefinition<
   TAttributeDefinitions extends ReadonlyArray<TUnknownAttributeDefinition>
@@ -43,14 +46,6 @@ export class CharacterRules<
 type TUnknownCharacterDefinition = CharacterDefinition<
   ReadonlyArray<TUnknownAttributeDefinition>
 >
-
-type TAttributeState<
-  TAttributeDefinitions extends ReadonlyArray<TUnknownAttributeDefinition>
-> = {
-  [Definition in TAttributeDefinitions[number] as Definition['id']]: Definition['type'] extends 'number'
-    ? number
-    : string
-}
 
 export class Character<
   TCharacterDefinition extends TUnknownCharacterDefinition,

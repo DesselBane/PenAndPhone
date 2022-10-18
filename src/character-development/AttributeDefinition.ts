@@ -8,21 +8,26 @@ export interface ITextAttributeDefinition {
   type: 'text'
 }
 
-export interface IValueOption {
-  id: string
-  value: string
-}
-
 export interface ISingleSelectAttributeDefinition {
   id: string
   type: 'single-select'
-  options: ReadonlyArray<IValueOption>
+  options: ReadonlyArray<string>
 }
 
 export type TUnknownAttributeDefinition =
   | INumberAttributeDefinition
   | ITextAttributeDefinition
   | ISingleSelectAttributeDefinition
+
+export type TAttributeState<
+  TAttributeDefinitions extends ReadonlyArray<TUnknownAttributeDefinition>
+> = {
+  [Definition in TAttributeDefinitions[number] as Definition['id']]: Definition extends ISingleSelectAttributeDefinition
+    ? Definition['options'][number]
+    : Definition extends INumberAttributeDefinition
+    ? number
+    : string
+}
 
 export const attributes: ReadonlyArray<TUnknownAttributeDefinition> = [
   { id: 'name', type: 'text' },
@@ -31,9 +36,6 @@ export const attributes: ReadonlyArray<TUnknownAttributeDefinition> = [
   {
     id: 'race',
     type: 'single-select',
-    options: [
-      { id: 'human', value: 'Human' },
-      { id: 'warg', value: 'Warg' },
-    ],
+    options: ['human', 'warg'],
   },
 ] as const
