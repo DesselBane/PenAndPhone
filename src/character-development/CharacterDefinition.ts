@@ -9,13 +9,13 @@ export interface ICharacterDefinition<
   attributeDefinitions: TAttributeDefinitions
 }
 
-export function createCharacterDefinition<
+export const createCharacterDefinition = <
   TCharacterDefinition extends ICharacterDefinition<
     ReadonlyArray<TUnknownAttributeDefinition>
   >
->(definition: TCharacterDefinition): TCharacterDefinition {
-  return definition
-}
+>(
+  definition: TCharacterDefinition
+): TCharacterDefinition => definition
 
 export interface ICharacterRules<
   TCharacterDefinition extends TUnknownCharacterDefinition
