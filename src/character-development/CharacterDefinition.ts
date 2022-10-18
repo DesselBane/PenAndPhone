@@ -3,59 +3,47 @@ import {
   TUnknownAttributeDefinition,
 } from './AttributeDefinition'
 
-export class CharacterDefinition<
+export interface ICharacterDefinition<
   TAttributeDefinitions extends ReadonlyArray<TUnknownAttributeDefinition>
 > {
   attributeDefinitions: TAttributeDefinitions
-
-  constructor({
-    attributeDefinitions,
-  }: {
-    attributeDefinitions: TAttributeDefinitions
-  }) {
-    this.attributeDefinitions = attributeDefinitions
-  }
 }
 
-export class CharacterRules<
-  TCharacterDefinition extends TUnknownCharacterDefinition,
-  TCharacterEvents extends ReadonlyArray<
-    ICharacterEvent<Record<string, any>, TCharacterDefinition>
+export function createCharacterDefinition<
+  TCharacterDefinition extends ICharacterDefinition<
+    ReadonlyArray<TUnknownAttributeDefinition>
   >
+>(definition: TCharacterDefinition): TCharacterDefinition {
+  return definition
+}
+
+export interface ICharacterRules<
+  TCharacterDefinition extends TUnknownCharacterDefinition
 > {
   characterDefinition: TCharacterDefinition
   attributeCalculations?: ReadonlyArray<
     IAttributeCalculation<TCharacterDefinition>
   >
-  events: TCharacterEvents
-
-  constructor({
-    characterDefinition,
-    attributeCalculations,
-    events,
-  }: {
-    characterDefinition: TCharacterDefinition
-    attributeCalculations?: ReadonlyArray<
-      IAttributeCalculation<TCharacterDefinition>
-    >
-    events: TCharacterEvents
-  }) {
-    this.characterDefinition = characterDefinition
-    this.attributeCalculations = attributeCalculations
-    this.events = events
-  }
+  events: ReadonlyArray<
+    ICharacterEvent<Record<string, any>, TCharacterDefinition>
+  >
 }
 
-type TUnknownCharacterDefinition = CharacterDefinition<
+export function createCharacterRules<
+  TCharacterDefinition extends TUnknownCharacterDefinition
+>(
+  rules: ICharacterRules<TCharacterDefinition>
+): ICharacterRules<TCharacterDefinition> {
+  return rules
+}
+
+type TUnknownCharacterDefinition = ICharacterDefinition<
   ReadonlyArray<TUnknownAttributeDefinition>
 >
 
 export class Character<
   TCharacterDefinition extends TUnknownCharacterDefinition,
-  TCharacterRules extends CharacterRules<
-    TCharacterDefinition,
-    ReadonlyArray<ICharacterEvent<Record<string, any>, TCharacterDefinition>>
-  >
+  TCharacterRules extends ICharacterRules<TCharacterDefinition>
 > {
   private currentState: TAttributeState<
     TCharacterDefinition['attributeDefinitions']
@@ -104,12 +92,7 @@ export interface IAttributeCalculation<
   calculation: (
     currentState: Character<
       TCharacterDefinition,
-      CharacterRules<
-        TCharacterDefinition,
-        ReadonlyArray<
-          ICharacterEvent<Record<string, any>, TCharacterDefinition>
-        >
-      >
+      ICharacterRules<TCharacterDefinition>
     >['currentState']
   ) => number
 }
@@ -123,12 +106,7 @@ export interface ICharacterEvent<
     payload: TPayload,
     state: Character<
       TCharacterDefinition,
-      CharacterRules<
-        TCharacterDefinition,
-        ReadonlyArray<
-          ICharacterEvent<Record<string, any>, TCharacterDefinition>
-        >
-      >
+      ICharacterRules<TCharacterDefinition>
     >['currentState']
   ) => void
 }
