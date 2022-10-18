@@ -20,7 +20,6 @@ export function createCharacterDefinition<
 export interface ICharacterRules<
   TCharacterDefinition extends TUnknownCharacterDefinition
 > {
-  characterDefinition: TCharacterDefinition
   attributeCalculations?: ReadonlyArray<
     IAttributeCalculation<TCharacterDefinition>
   >
@@ -29,13 +28,12 @@ export interface ICharacterRules<
   >
 }
 
-export function createCharacterRules<
-  TCharacterDefinition extends TUnknownCharacterDefinition
->(
-  rules: ICharacterRules<TCharacterDefinition>
-): ICharacterRules<TCharacterDefinition> {
-  return rules
-}
+export const createCharacterRules =
+  <TCharacterDefinition extends TUnknownCharacterDefinition>() =>
+  <TCharacterRules extends ICharacterRules<TCharacterDefinition>>(
+    rules: TCharacterRules
+  ) =>
+    rules
 
 type TUnknownCharacterDefinition = ICharacterDefinition<
   ReadonlyArray<TUnknownAttributeDefinition>
