@@ -21,8 +21,7 @@ const characterDefinition = createCharacterDefinition({
   ],
 } as const)
 
-const charRules = createCharacterRules<typeof characterDefinition>({
-  characterDefinition,
+const charRules = createCharacterRules<typeof characterDefinition>()({
   attributeCalculations: [
     {
       attributeId: 'climbing',
@@ -57,6 +56,9 @@ const charRules = createCharacterRules<typeof characterDefinition>({
     },
   ],
 } as const)
+if (charRules.events[0].id === 'add-xp') {
+  console.log('hey')
+}
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {
@@ -78,7 +80,7 @@ describe('CharacterDefinition', () => {
 
   it('can purchase attribute', () => {
     const char = new Character(characterDefinition, charRules)
-    char.execute('', {
+    char.execute('purchase-attribute', {
       attributeId: 'stamina',
     })
     expect(char.state.stamina).toBe(0)
