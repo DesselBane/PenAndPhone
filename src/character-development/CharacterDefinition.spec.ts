@@ -56,9 +56,6 @@ const charRules = createCharacterRules<typeof characterDefinition>()({
     },
   ],
 } as const)
-if (charRules.events[0].id === 'add-xp') {
-  console.log('hey')
-}
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {
