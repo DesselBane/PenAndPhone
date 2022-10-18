@@ -16,10 +16,7 @@ const characterDefinition = new CharacterDefinition({
     {
       id: 'race',
       type: 'single-select',
-      options: [
-        { id: 'human', value: 'Human' },
-        { id: 'warg', value: 'Warg' },
-      ],
+      options: ['human', 'warg'],
     },
   ],
 } as const)
@@ -43,7 +40,7 @@ const charRules = new CharacterRules({
 })
 
 describe('CharacterDefinition', () => {
-  it('works', () => {
+  it('can calculate attributes', () => {
     const char = new Character(characterDefinition, charRules)
     char.state.intelligence = 10
     char.state.stamina = 5
