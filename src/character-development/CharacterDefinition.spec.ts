@@ -37,6 +37,25 @@ const charRules = new CharacterRules({
       },
     },
   ],
+  events: [
+    {
+      id: 'add-xp',
+      resolve(payload, state) {
+        state.xp += payload.amount
+      },
+    },
+    {
+      id: 'purchase-attribute',
+      resolve(payload, state) {
+        if (state.xp < 5) {
+          return
+        }
+        state[
+          payload.attributeId as typeof characterDefinition.attributeDefinitions[number]['id']
+        ]++
+      },
+    },
+  ],
 })
 
 describe('CharacterDefinition', () => {
@@ -55,5 +74,20 @@ describe('CharacterDefinition', () => {
     expect(char.state.size).toBe(5)
     char.state.race = 'human'
     expect(char.state.size).toBe(4)
+  })
+
+  it('can purchase attribute', () => {
+    const char = new Character(characterDefinition, charRules)
+    char.execute('purchase-attribute', {
+      attributeId: 'stamina',
+    })
+    expect(char.state.stamina).toBe(0)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    char.execute('purchase-attribute', {
+      attributeId: 'stamina',
+    })
+    expect(char.state.stamina).toBe(1)
   })
 })

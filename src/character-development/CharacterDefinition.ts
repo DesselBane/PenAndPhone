@@ -18,13 +18,16 @@ export class CharacterDefinition<
 }
 
 export class CharacterRules<
-  TCharacterDefinition extends TUnknownCharacterDefinition
+  TCharacterDefinition extends TUnknownCharacterDefinition,
+  TCharacterEvents extends ReadonlyArray<
+    ICharacterEvent<Record<string, any>, TCharacterDefinition>
+  >
 > {
   characterDefinition: TCharacterDefinition
   attributeCalculations?: ReadonlyArray<
     IAttributeCalculation<TCharacterDefinition>
   >
-  events?: ReadonlyArray<ICharacterEvent<TCharacterDefinition>>
+  events: TCharacterEvents
 
   constructor({
     characterDefinition,
@@ -35,7 +38,7 @@ export class CharacterRules<
     attributeCalculations?: ReadonlyArray<
       IAttributeCalculation<TCharacterDefinition>
     >
-    events?: ReadonlyArray<ICharacterEvent<TCharacterDefinition>>
+    events: TCharacterEvents
   }) {
     this.characterDefinition = characterDefinition
     this.attributeCalculations = attributeCalculations
@@ -49,12 +52,16 @@ type TUnknownCharacterDefinition = CharacterDefinition<
 
 export class Character<
   TCharacterDefinition extends TUnknownCharacterDefinition,
-  TCharacterRules extends CharacterRules<TCharacterDefinition>
+  TCharacterRules extends CharacterRules<
+    TCharacterDefinition,
+    ReadonlyArray<ICharacterEvent<Record<string, any>, TCharacterDefinition>>
+  >
 > {
   private currentState: TAttributeState<
     TCharacterDefinition['attributeDefinitions']
   >
   state: TAttributeState<TCharacterDefinition['attributeDefinitions']>
+  rules: TCharacterRules
 
   constructor(definition: TCharacterDefinition, rules: TCharacterRules) {
     this.currentState = Object.fromEntries(
@@ -75,6 +82,18 @@ export class Character<
         return calculation.calculation(state)
       },
     })
+    this.rules = rules
+  }
+
+  execute(
+    id: TCharacterRules['events'][number]['id'],
+    payload: Record<string, any>
+  ) {
+    const realEvent = this.rules.events.find((a) => a.id === id)
+    if (realEvent == null) {
+      return
+    }
+    realEvent.resolve(payload, this.state)
   }
 }
 
@@ -85,20 +104,31 @@ export interface IAttributeCalculation<
   calculation: (
     currentState: Character<
       TCharacterDefinition,
-      CharacterRules<TCharacterDefinition>
+      CharacterRules<
+        TCharacterDefinition,
+        ReadonlyArray<
+          ICharacterEvent<Record<string, any>, TCharacterDefinition>
+        >
+      >
     >['currentState']
   ) => number
 }
 
 export interface ICharacterEvent<
+  TPayload extends Record<string, any>,
   TCharacterDefinition extends TUnknownCharacterDefinition
 > {
   id: string
-  resolve: <TPayload extends Record<string, any>>(
+  resolve: (
     payload: TPayload,
-    character: Character<
+    state: Character<
       TCharacterDefinition,
-      CharacterRules<TCharacterDefinition>
-    >
+      CharacterRules<
+        TCharacterDefinition,
+        ReadonlyArray<
+          ICharacterEvent<Record<string, any>, TCharacterDefinition>
+        >
+      >
+    >['currentState']
   ) => void
 }
