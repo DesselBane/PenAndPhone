@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-  Character,
-  createCharacterDefinition,
-  createCharacterRules,
-} from './CharacterDefinition'
+import { Character, createCharacterDefinition } from './CharacterDefinition'
 
 const characterDefinition = createCharacterDefinition({
   attributeDefinitions: [
@@ -18,10 +14,7 @@ const characterDefinition = createCharacterDefinition({
       type: 'single-select',
       options: ['human', 'warg'],
     },
-  ],
-} as const)
-
-const charRules = createCharacterRules<typeof characterDefinition>()({
+  ] as const,
   attributeCalculations: [
     {
       attributeId: 'climbing',
@@ -55,11 +48,11 @@ const charRules = createCharacterRules<typeof characterDefinition>()({
       },
     },
   ],
-} as const)
+})
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {
-    const char = new Character(characterDefinition, charRules)
+    const char = new Character(characterDefinition)
     char.state.intelligence = 10
     char.state.stamina = 5
     expect(char.state.climbing).toBe(15)
@@ -68,7 +61,7 @@ describe('CharacterDefinition', () => {
   })
 
   it('respects race', () => {
-    const char = new Character(characterDefinition, charRules)
+    const char = new Character(characterDefinition)
     char.state.race = 'warg'
     expect(char.state.size).toBe(5)
     char.state.race = 'human'
@@ -76,7 +69,7 @@ describe('CharacterDefinition', () => {
   })
 
   it('can purchase attribute', () => {
-    const char = new Character(characterDefinition, charRules)
+    const char = new Character(characterDefinition)
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
     })
