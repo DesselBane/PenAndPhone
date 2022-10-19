@@ -24,17 +24,17 @@ export interface ICharacterEvent<
 }
 
 export const createCharacterDefinition = <
-  TAttributeDefinitions extends TUnknownAttributeDefinitions,
+  TAttributes extends TUnknownAttributeDefinitions,
   TAttributeCalculations extends ReadonlyArray<
-    IAttributeCalculation<TAttributeDefinitions>
+    IAttributeCalculation<TAttributes>
   >,
-  TCharacterEvents extends ReadonlyArray<
-    ICharacterEvent<Record<string, any>, TAttributeDefinitions>
+  TEvents extends ReadonlyArray<
+    ICharacterEvent<Record<string, any>, TAttributes>
   >
 >(definition: {
-  attributeDefinitions: TAttributeDefinitions
+  attributes: TAttributes
   attributeCalculations: TAttributeCalculations
-  events: TCharacterEvents
+  events: TEvents
 }) => definition
 
 export class Character<
@@ -42,19 +42,17 @@ export class Character<
 > {
   definition: TCharacterDefinition
 
-  private currentState: TAttributeState<
-    TCharacterDefinition['attributeDefinitions']
-  >
-  state: TAttributeState<TCharacterDefinition['attributeDefinitions']>
+  private currentState: TAttributeState<TCharacterDefinition['attributes']>
+  state: TAttributeState<TCharacterDefinition['attributes']>
 
   constructor(definition: TCharacterDefinition) {
     this.definition = definition
     this.currentState = Object.fromEntries(
-      definition.attributeDefinitions.map((definition) => [
+      definition.attributes.map((definition) => [
         definition.id,
         definition.type === 'number' ? 0 : '',
       ])
-    ) as TAttributeState<TCharacterDefinition['attributeDefinitions']>
+    ) as TAttributeState<TCharacterDefinition['attributes']>
     this.state = new Proxy(this.currentState, {
       get(state, attributeId, receiver) {
         const calculation = definition.attributeCalculations?.find(

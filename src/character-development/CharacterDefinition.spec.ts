@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { Character, createCharacterDefinition } from './CharacterDefinition'
 
 const characterDefinition = createCharacterDefinition({
-  attributeDefinitions: [
+  attributes: [
     { id: 'xp', type: 'number' },
     { id: 'name', type: 'text' },
     { id: 'intelligence', type: 'number' },
@@ -43,7 +43,7 @@ const characterDefinition = createCharacterDefinition({
           return
         }
         state[
-          payload.attributeId as typeof characterDefinition.attributeDefinitions[number]['id']
+          payload.attributeId as typeof characterDefinition.attributes[number]['id']
         ]++
       },
     },
