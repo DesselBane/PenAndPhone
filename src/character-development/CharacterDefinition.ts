@@ -74,10 +74,10 @@ export class Character<
     })
   }
 
-  execute(
-    id: TCharacterDefinition['events'][number]['id'],
-    payload: Record<string, any>
-  ) {
+  execute<
+    TEvent extends TCharacterDefinition['events'][number],
+    TEventId extends TEvent['id']
+  >(id: TEventId, payload: Parameters<TEvent['resolve']>[0]) {
     const realEvent = this.definition.events.find((a) => a.id === id)
     if (realEvent == null) {
       return

@@ -33,7 +33,7 @@ const characterDefinition = createCharacterDefinition({
   events: [
     {
       id: 'add-xp',
-      resolve(payload: Readonly<{ amount?: number }>, state) {
+      resolve(payload: { amount?: number }, state) {
         if (payload.amount == null) {
           return
         }
@@ -42,13 +42,19 @@ const characterDefinition = createCharacterDefinition({
     },
     {
       id: 'purchase-attribute',
-      resolve(payload, state) {
+      resolve(
+        payload: {
+          attributeId?: typeof characterDefinition.attributes[number]['id']
+        },
+        state
+      ) {
+        if (payload.attributeId == null) {
+          return
+        }
         if (state.xp < 5) {
           return
         }
-        state[
-          payload.attributeId as typeof characterDefinition.attributes[number]['id']
-        ]++
+        state[payload.attributeId]++
       },
     },
   ],
@@ -79,7 +85,7 @@ describe('CharacterDefinition', () => {
     })
     expect(char.state.stamina).toBe(0)
     char.execute('add-xp', {
-      amount: 20,
+      amount: 0,
     })
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
