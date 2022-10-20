@@ -2,7 +2,8 @@
 
 ## TODO
 
-- [ ] Make payload typesafe
+- [x] Make payload typesafe
+  - [ ] Make payload REAL safe
 - [ ] Add attribute groups
 - [ ] Let attributeCalculation respect attributeCalculations of required attributes
   - [ ] Handle infinite loops (two calculations depending on eachother)

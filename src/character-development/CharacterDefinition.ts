@@ -1,9 +1,7 @@
 import {
   TAttributeState,
-  TUnknownAttributeDefinition,
+  TUnknownAttributeDefinitions,
 } from './AttributeDefinition'
-
-type TUnknownAttributeDefinitions = ReadonlyArray<TUnknownAttributeDefinition>
 
 export interface IAttributeCalculation<
   TAttributeDefinitions extends TUnknownAttributeDefinitions

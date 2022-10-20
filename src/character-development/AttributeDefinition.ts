@@ -19,8 +19,11 @@ export type TUnknownAttributeDefinition =
   | ITextAttributeDefinition
   | ISingleSelectAttributeDefinition
 
+export type TUnknownAttributeDefinitions =
+  ReadonlyArray<TUnknownAttributeDefinition>
+
 export type TAttributeState<
-  TAttributeDefinitions extends ReadonlyArray<TUnknownAttributeDefinition>
+  TAttributeDefinitions extends TUnknownAttributeDefinitions
 > = {
   [Definition in TAttributeDefinitions[number] as Definition['id']]: Definition extends ISingleSelectAttributeDefinition
     ? Definition['options'][number]
