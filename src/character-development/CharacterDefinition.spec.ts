@@ -14,7 +14,8 @@ const characterDefinition = createCharacterDefinition({
       type: 'single-select',
       options: ['human', 'warg'],
     },
-  ] as const,
+  ],
+} as const)({
   attributeCalculations: [
     {
       attributeId: 'climbing',
@@ -32,7 +33,10 @@ const characterDefinition = createCharacterDefinition({
   events: [
     {
       id: 'add-xp',
-      resolve(payload, state) {
+      resolve(payload: Readonly<{ amount?: number }>, state) {
+        if (payload.amount == null) {
+          return
+        }
         state.xp += payload.amount
       },
     },
@@ -48,7 +52,7 @@ const characterDefinition = createCharacterDefinition({
       },
     },
   ],
-})
+} as const)
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {

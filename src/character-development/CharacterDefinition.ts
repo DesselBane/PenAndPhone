@@ -23,22 +23,29 @@ export interface ICharacterEvent<
   ) => void
 }
 
-export const createCharacterDefinition = <
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeCalculations extends ReadonlyArray<
-    IAttributeCalculation<TAttributes>
-  >,
-  TEvents extends ReadonlyArray<
-    ICharacterEvent<Record<string, any>, TAttributes>
-  >
->(definition: {
-  attributes: TAttributes
-  attributeCalculations: TAttributeCalculations
-  events: TEvents
-}) => definition
+export const createCharacterDefinition =
+  <TAttributes extends TUnknownAttributeDefinitions>(staticDefinition: {
+    attributes: TAttributes
+  }) =>
+  <
+    TAttributeCalculations extends ReadonlyArray<
+      IAttributeCalculation<TAttributes>
+    >,
+    TEvents extends ReadonlyArray<
+      ICharacterEvent<Record<string, any>, TAttributes>
+    >
+  >(definition: {
+    attributeCalculations: TAttributeCalculations
+    events: TEvents
+  }) => ({
+    ...staticDefinition,
+    ...definition,
+  })
 
 export class Character<
-  TCharacterDefinition extends ReturnType<typeof createCharacterDefinition>
+  TCharacterDefinition extends ReturnType<
+    ReturnType<typeof createCharacterDefinition>
+  >
 > {
   definition: TCharacterDefinition
 
