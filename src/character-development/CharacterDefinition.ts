@@ -42,18 +42,18 @@ export class Character<
 > {
   definition: TCharacterDefinition
 
-  private currentState: TAttributeState<TCharacterDefinition['attributes']>
+  private _state: TAttributeState<TCharacterDefinition['attributes']>
   state: TAttributeState<TCharacterDefinition['attributes']>
 
   constructor(definition: TCharacterDefinition) {
     this.definition = definition
-    this.currentState = Object.fromEntries(
+    this._state = Object.fromEntries(
       definition.attributes.map((definition) => [
         definition.id,
         definition.type === 'number' ? 0 : '',
       ])
     ) as TAttributeState<TCharacterDefinition['attributes']>
-    this.state = new Proxy(this.currentState, {
+    this.state = new Proxy(this._state, {
       get(state, attributeId, receiver) {
         const calculation = definition.attributeCalculations?.find(
           (calculation) => calculation.attributeId === attributeId
