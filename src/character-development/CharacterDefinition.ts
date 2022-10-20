@@ -13,11 +13,10 @@ export interface IAttributeCalculation<
 }
 
 export interface ICharacterEvent<
-  TPayload extends Record<string, any>,
   TAttributeDefinitions extends TUnknownAttributeDefinitions
 > {
   id: string
-  resolve: (
+  resolve: <TPayload extends Readonly<Record<string, any>>>(
     payload: TPayload,
     state: TAttributeState<TAttributeDefinitions>
   ) => void
@@ -31,9 +30,7 @@ export const createCharacterDefinition =
     TAttributeCalculations extends ReadonlyArray<
       IAttributeCalculation<TAttributes>
     >,
-    TEvents extends ReadonlyArray<
-      ICharacterEvent<Record<string, any>, TAttributes>
-    >
+    TEvents extends ReadonlyArray<ICharacterEvent<TAttributes>>
   >(definition: {
     attributeCalculations: TAttributeCalculations
     events: TEvents
