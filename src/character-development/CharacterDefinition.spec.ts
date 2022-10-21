@@ -9,6 +9,7 @@ const characterDefinition = createCharacterDefinition({
     { id: 'stamina', type: 'number' },
     { id: 'climbing', type: 'number' },
     { id: 'size', type: 'number' },
+    { id: 'speed', type: 'number' },
     {
       id: 'race',
       type: 'single-select',
@@ -29,6 +30,12 @@ const characterDefinition = createCharacterDefinition({
       attributeId: 'size',
       calculation({ attributes }) {
         return attributes.race === 'warg' ? 5 : 4
+      },
+    },
+    {
+      attributeId: 'speed',
+      calculation({ attributes, rawAttributes }) {
+        return attributes.size + rawAttributes.speed
       },
     },
   ],
@@ -70,6 +77,16 @@ describe('CharacterDefinition', () => {
     expect(char.attributes.climbing).toBe(15)
     char.rawAttributes.climbing = 5
     expect(char.attributes.climbing).toBe(20)
+  })
+
+  it('can calculate attributes', () => {
+    const char = new Character(characterDefinition)
+    char.rawAttributes.race = 'warg'
+    expect(char.attributes.speed).toBe(5)
+    char.rawAttributes.race = 'human'
+    expect(char.attributes.speed).toBe(4)
+    char.rawAttributes.speed = 5
+    expect(char.attributes.speed).toBe(9)
   })
 
   it('respects race', () => {
