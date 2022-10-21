@@ -31,7 +31,15 @@ const wait = (millis: number = 1000) => {
   })
 }
 
-const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG)
+const firebaseConfig = {
+  apiKey: 'AIzaSyApIDtWXZ_J8uHjwDaNWULCvxfK1eAvfEE',
+  authDomain: 'penandphone-364415.firebaseapp.com',
+  projectId: 'penandphone-364415',
+  storageBucket: 'penandphone-364415.appspot.com',
+  messagingSenderId: '853355927149',
+  appId: '1:853355927149:web:c2caae1ec6ee8ffe50d164',
+  measurementId: 'G-DMT7KBPHQ5',
+}
 
 const app = initializeApp(firebaseConfig)
 
