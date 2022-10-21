@@ -19,14 +19,16 @@ const characterDefinition = createCharacterDefinition({
   attributeCalculations: [
     {
       attributeId: 'climbing',
-      calculation(state) {
-        return state.intelligence + state.stamina + state.climbing
+      calculation({ rawAttributes, attributes }) {
+        return (
+          attributes.intelligence + attributes.stamina + rawAttributes.climbing
+        )
       },
     },
     {
       attributeId: 'size',
-      calculation(state) {
-        return state.race === 'warg' ? 5 : 4
+      calculation({ attributes }) {
+        return attributes.race === 'warg' ? 5 : 4
       },
     },
   ],
@@ -37,7 +39,7 @@ const characterDefinition = createCharacterDefinition({
         if (payload.amount == null) {
           return
         }
-        state.xp += payload.amount
+        state.rawAttributes.xp += payload.amount
       },
     },
     {
@@ -51,10 +53,10 @@ const characterDefinition = createCharacterDefinition({
         if (payload.attributeId == null) {
           return
         }
-        if (state.xp < 5) {
+        if (state.attributes.xp < 5) {
           return
         }
-        state[payload.attributeId]++
+        state.rawAttributes[payload.attributeId]++
       },
     },
   ],
@@ -63,19 +65,19 @@ const characterDefinition = createCharacterDefinition({
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {
     const char = new Character(characterDefinition)
-    char.state.intelligence = 10
-    char.state.stamina = 5
-    expect(char.state.climbing).toBe(15)
-    char.state.climbing = 5
-    expect(char.state.climbing).toBe(20)
+    char.rawAttributes.intelligence = 10
+    char.rawAttributes.stamina = 5
+    expect(char.attributes.climbing).toBe(15)
+    char.rawAttributes.climbing = 5
+    expect(char.attributes.climbing).toBe(20)
   })
 
   it('respects race', () => {
     const char = new Character(characterDefinition)
-    char.state.race = 'warg'
-    expect(char.state.size).toBe(5)
-    char.state.race = 'human'
-    expect(char.state.size).toBe(4)
+    char.rawAttributes.race = 'warg'
+    expect(char.attributes.size).toBe(5)
+    char.rawAttributes.race = 'human'
+    expect(char.attributes.size).toBe(4)
   })
 
   it('can purchase attribute', () => {
@@ -83,13 +85,13 @@ describe('CharacterDefinition', () => {
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
     })
-    expect(char.state.stamina).toBe(0)
+    expect(char.attributes.stamina).toBe(0)
     char.execute('add-xp', {
-      amount: 0,
+      amount: 20,
     })
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
     })
-    expect(char.state.stamina).toBe(1)
+    expect(char.attributes.stamina).toBe(1)
   })
 })

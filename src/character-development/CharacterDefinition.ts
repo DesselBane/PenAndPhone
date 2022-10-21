@@ -3,11 +3,20 @@ import {
   TUnknownAttributeDefinitions,
 } from './AttributeDefinition'
 
+export interface ICharacterState<
+  TAttributeDefinitions extends TUnknownAttributeDefinitions
+> {
+  rawAttributes: TAttributeState<TAttributeDefinitions>
+  attributes: Readonly<TAttributeState<TAttributeDefinitions>>
+}
+
 export interface IAttributeCalculation<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
 > {
   attributeId: TAttributeDefinitions[number]['id']
-  calculation: (currentState: TAttributeState<TAttributeDefinitions>) => number
+  calculation: (
+    currentState: Readonly<ICharacterState<TAttributeDefinitions>>
+  ) => number
 }
 
 export interface ICharacterEvent<
@@ -16,7 +25,7 @@ export interface ICharacterEvent<
   id: string
   resolve: <TPayload extends Readonly<Record<string, any>>>(
     payload: TPayload,
-    state: TAttributeState<TAttributeDefinitions>
+    state: ICharacterState<TAttributeDefinitions>
   ) => void
 }
 
@@ -44,29 +53,40 @@ export class Character<
 > {
   definition: TCharacterDefinition
 
-  private _state: TAttributeState<TCharacterDefinition['attributes']>
-  state: TAttributeState<TCharacterDefinition['attributes']>
+  rawAttributes: TAttributeState<TCharacterDefinition['attributes']>
+  attributes: TAttributeState<TCharacterDefinition['attributes']>
 
   constructor(definition: TCharacterDefinition) {
     this.definition = definition
-    this._state = Object.fromEntries(
+    const rawAttributes = Object.fromEntries(
       definition.attributes.map((definition) => [
         definition.id,
         definition.type === 'number' ? 0 : '',
       ])
     ) as TAttributeState<TCharacterDefinition['attributes']>
-    this.state = new Proxy(this._state, {
-      get(state, attributeId, receiver) {
-        const calculation = definition.attributeCalculations?.find(
-          (calculation) => calculation.attributeId === attributeId
-        )
-        const currentValue = Reflect.get(state, attributeId, receiver)
-        if (calculation == null) {
-          return currentValue
-        }
-        return calculation.calculation(state)
-      },
-    })
+    this.rawAttributes = rawAttributes
+    const attributes = Object.defineProperties(
+      {},
+      Object.fromEntries(
+        definition.attributes.map<[string, PropertyDescriptor]>((attribute) => [
+          attribute.id,
+          {
+            get() {
+              const calculator = definition.attributeCalculations?.find(
+                (calculation) => calculation.attributeId === attribute.id
+              )
+              if (calculator == null) {
+                return rawAttributes[
+                  attribute.id as TCharacterDefinition['attributes'][number]['id']
+                ]
+              }
+              return calculator.calculation({ rawAttributes, attributes })
+            },
+          },
+        ])
+      )
+    ) as TAttributeState<TCharacterDefinition['attributes']>
+    this.attributes = attributes
   }
 
   execute<
@@ -77,6 +97,9 @@ export class Character<
     if (realEvent == null) {
       return
     }
-    realEvent.resolve(payload, this.state)
+    realEvent.resolve(payload, {
+      rawAttributes: this.rawAttributes,
+      attributes: this.attributes,
+    })
   }
 }
