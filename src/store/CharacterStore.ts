@@ -9,8 +9,6 @@ import {
   where,
   collection,
   getFirestore,
-  DocumentData,
-  QueryDocumentSnapshot,
 } from 'firebase/firestore'
 
 export interface CharBackendData {
@@ -39,27 +37,11 @@ export const useCharacterStore = defineStore('character-data', () => {
     const myCharsQuery = query(chars, where('ownerId', '==', user.uid))
     const charSnapshots = await getDocs(myCharsQuery)
 
-    const snaps: QueryDocumentSnapshot<DocumentData>[] = []
+    const results: unknown[] = []
 
     charSnapshots.forEach((x) => {
-      snaps.push(x)
+      results.push(x.data())
     })
-
-    const results: unknown[] = []
-    for (const snapshot of snaps) {
-      const data = snapshot.data()
-      const events: unknown[] = []
-
-      const eventSnapshots = await getDocs(collection(snapshot.ref, 'events'))
-
-      eventSnapshots.forEach((x) => {
-        events.push(x.data())
-      })
-
-      data.events = events
-
-      results.push(data)
-    }
 
     return results
   }
