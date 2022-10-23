@@ -64,7 +64,7 @@ export type ICharacterDefinition<
   events: TEvents
 }
 
-export const createCharacterDefinitionBase = <
+export const defineCharacterAttributes = <
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
 >(
@@ -75,7 +75,7 @@ export const createCharacterDefinitionBase = <
   groups,
 })
 
-export const createCharacterDefinition = <
+export const defineCharacter = <
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
@@ -98,7 +98,7 @@ export const createCharacterDefinition = <
 })
 
 export class Character<
-  TCharacterDefinition extends ReturnType<typeof createCharacterDefinition>,
+  TCharacterDefinition extends ReturnType<typeof defineCharacter>,
   TAttributes extends TCharacterDefinition['attributes'],
   TEvents extends TCharacterDefinition['events']
 > {

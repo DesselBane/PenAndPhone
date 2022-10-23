@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
   Character,
-  createCharacterDefinition,
-  createCharacterDefinitionBase,
+  defineCharacter,
+  defineCharacterAttributes,
 } from './CharacterDefinition'
 
-const characterDefinitionBase = createCharacterDefinitionBase(
+const attributesDefinition = defineCharacterAttributes(
   [
     { id: 'xp', type: 'number' },
     { id: 'name', type: 'text' },
@@ -27,9 +27,9 @@ const characterDefinitionBase = createCharacterDefinitionBase(
     abilities: ['climbing'],
   } as const
 )
-const characterDefinition = createCharacterDefinition(
-  characterDefinitionBase.attributes,
-  characterDefinitionBase.groups,
+const characterDefinition = defineCharacter(
+  attributesDefinition.attributes,
+  attributesDefinition.groups,
   [
     {
       attributeId: 'climbing',
@@ -66,7 +66,7 @@ const characterDefinition = createCharacterDefinition(
       id: 'purchase-attribute',
       resolve(
         payload: {
-          attributeId?: typeof characterDefinitionBase.groups['attribute'][number]
+          attributeId?: typeof attributesDefinition.groups['attribute'][number]
         },
         state
       ) {
