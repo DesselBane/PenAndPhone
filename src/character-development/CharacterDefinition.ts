@@ -35,15 +35,12 @@ type IAttributeCalculations<
 >
 
 export type ICharacterEvent<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions,
-  TAttributeGroupDefinitions extends IAttributeGroupDefinitions<TAttributeDefinitions>
+  TAttributeDefinitions extends TUnknownAttributeDefinitions
 > = DeepReadonly<{
   id: string
   resolve: <TPayload extends Readonly<Record<string, any>>>(
     payload: TPayload,
-    state: ICharacterState<TAttributeDefinitions>,
-    attributeDefinitions: TAttributeDefinitions,
-    attributeGroupDefinitions: TAttributeGroupDefinitions
+    state: ICharacterState<TAttributeDefinitions>
   ) => void
 }>
 
@@ -59,7 +56,7 @@ export type ICharacterDefinition<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends DeepReadonly<ICharacterEvent<TAttributes, TAttributeGroups>[]>
+  TEvents extends DeepReadonly<ICharacterEvent<TAttributes>[]>
 > = {
   attributes: TAttributes
   groups: TAttributeGroups
@@ -82,7 +79,7 @@ export const createCharacterDefinition = <
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends DeepReadonly<ICharacterEvent<TAttributes, TAttributeGroups>[]>
+  TEvents extends DeepReadonly<ICharacterEvent<TAttributes>[]>
 >(
   attributes: TAttributes,
   groups: TAttributeGroups,
@@ -149,14 +146,9 @@ export class Character<
     if (realEvent == null) {
       return
     }
-    realEvent.resolve(
-      payload,
-      {
-        rawAttributes: this.rawAttributes,
-        attributes: this.attributes,
-      },
-      this.definition.attributes,
-      this.definition.groups
-    )
+    realEvent.resolve(payload, {
+      rawAttributes: this.rawAttributes,
+      attributes: this.attributes,
+    })
   }
 }
