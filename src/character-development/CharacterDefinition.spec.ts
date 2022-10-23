@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { Character, createCharacterDefinition } from './CharacterDefinition'
 
-const characterDefinition = createCharacterDefinition({
-  attributes: [
+const characterDefinition = createCharacterDefinition(
+  [
     { id: 'xp', type: 'number' },
     { id: 'name', type: 'text' },
     { id: 'intelligence', type: 'number' },
@@ -15,9 +15,14 @@ const characterDefinition = createCharacterDefinition({
       type: 'single-select',
       options: ['human', 'warg'],
     },
-  ],
-} as const)({
-  attributeCalculations: [
+  ] as const,
+  {
+    basic: ['xp', 'name', 'race'],
+    attribute: ['intelligence', 'stamina'],
+    derived: ['speed'],
+    abilities: ['climbing'],
+  } as const,
+  [
     {
       attributeId: 'climbing',
       calculation({ rawAttributes, attributes }) {
@@ -38,8 +43,8 @@ const characterDefinition = createCharacterDefinition({
         return attributes.size + rawAttributes.speed
       },
     },
-  ],
-  events: [
+  ] as const,
+  [
     {
       id: 'add-xp',
       resolve(payload: { amount?: number }, state) {
@@ -53,9 +58,11 @@ const characterDefinition = createCharacterDefinition({
       id: 'purchase-attribute',
       resolve(
         payload: {
-          attributeId?: typeof characterDefinition.attributes[number]['id']
+          attributeId?: typeof attributeGroupDefinitions['attribute'][number]
         },
-        state
+        state,
+        attributeDefintitions,
+        attributeGroupDefinitions
       ) {
         if (payload.attributeId == null) {
           return
@@ -66,8 +73,8 @@ const characterDefinition = createCharacterDefinition({
         state.rawAttributes[payload.attributeId]++
       },
     },
-  ],
-} as const)
+  ] as const
+)
 
 describe('CharacterDefinition', () => {
   it('can calculate attributes', () => {

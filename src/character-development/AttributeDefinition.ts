@@ -1,26 +1,29 @@
-export interface INumberAttributeDefinition {
+import { DeepReadonly } from '../util/UtilityTypes'
+
+export type INumberAttributeDefinition = DeepReadonly<{
   id: string
   type: 'number'
-}
+}>
 
-export interface ITextAttributeDefinition {
+export type ITextAttributeDefinition = DeepReadonly<{
   id: string
   type: 'text'
-}
+}>
 
-export interface ISingleSelectAttributeDefinition {
+export type ISingleSelectAttributeDefinition = DeepReadonly<{
   id: string
   type: 'single-select'
-  options: ReadonlyArray<string>
-}
+  options: DeepReadonly<string[]>
+}>
 
 export type TUnknownAttributeDefinition =
   | INumberAttributeDefinition
   | ITextAttributeDefinition
   | ISingleSelectAttributeDefinition
 
-export type TUnknownAttributeDefinitions =
-  ReadonlyArray<TUnknownAttributeDefinition>
+export type TUnknownAttributeDefinitions = DeepReadonly<
+  TUnknownAttributeDefinition[]
+>
 
 export type TAttributeState<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
@@ -32,7 +35,11 @@ export type TAttributeState<
     : string
 }
 
-export const attributes: ReadonlyArray<TUnknownAttributeDefinition> = [
+export type IAttributeGroupDefinitions<
+  TAttributeDefinitions extends TUnknownAttributeDefinitions
+> = DeepReadonly<Record<string, TAttributeDefinitions[number]['id'][]>>
+
+export const attributes: TUnknownAttributeDefinitions = [
   { id: 'name', type: 'text' },
   { id: 'intelligence', type: 'number' },
   { id: 'stamina', type: 'number' },
