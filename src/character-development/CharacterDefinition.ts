@@ -66,15 +66,9 @@ export const createCharacterDefinition = <
   TEvents extends DeepReadonly<ICharacterEvent<TAttributes, TAttributeGroups>[]>
 >(
   attributes: TAttributes,
-  {
-    groups,
-    calculations,
-    events,
-  }: {
-    groups: TAttributeGroups
-    calculations: TAttributeCalculations
-    events: TEvents
-  }
+  groups: TAttributeGroups,
+  calculations: TAttributeCalculations,
+  events: TEvents
 ): ICharacterDefinition<
   TAttributes,
   TAttributeGroups,
