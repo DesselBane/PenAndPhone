@@ -47,6 +47,14 @@ export type ICharacterEvent<
   ) => void
 }>
 
+export type ICharacterDefinitionBase<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
+> = {
+  attributes: TAttributes
+  groups: TAttributeGroups
+}
+
 export type ICharacterDefinition<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
@@ -58,6 +66,17 @@ export type ICharacterDefinition<
   calculations: TAttributeCalculations
   events: TEvents
 }
+
+export const createCharacterDefinitionBase = <
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
+>(
+  attributes: TAttributes,
+  groups: TAttributeGroups
+): ICharacterDefinitionBase<TAttributes, TAttributeGroups> => ({
+  attributes,
+  groups,
+})
 
 export const createCharacterDefinition = <
   TAttributes extends TUnknownAttributeDefinitions,
@@ -82,18 +101,9 @@ export const createCharacterDefinition = <
 })
 
 export class Character<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends DeepReadonly<
-    ICharacterEvent<TAttributes, TAttributeGroups>[]
-  >,
-  TCharacterDefinition extends ICharacterDefinition<
-    TAttributes,
-    TAttributeGroups,
-    TAttributeCalculations,
-    TEvents
-  >
+  TCharacterDefinition extends ReturnType<typeof createCharacterDefinition>,
+  TAttributes extends TCharacterDefinition['attributes'],
+  TEvents extends TCharacterDefinition['events']
 > {
   definition: TCharacterDefinition
 
@@ -120,9 +130,7 @@ export class Character<
                 (calculation) => calculation.attributeId === attribute.id
               )
               if (calculator == null) {
-                return rawAttributes[
-                  attribute.id as TCharacterDefinition['attributes'][number]['id']
-                ]
+                return rawAttributes[attribute.id as TAttributes[number]['id']]
               }
               return calculator.calculation({ rawAttributes, attributes })
             },

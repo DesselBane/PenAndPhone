@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { Character, createCharacterDefinition } from './CharacterDefinition'
+import {
+  Character,
+  createCharacterDefinition,
+  createCharacterDefinitionBase,
+} from './CharacterDefinition'
 
-const characterDefinition = createCharacterDefinition(
+const characterDefinitionBase = createCharacterDefinitionBase(
   [
     { id: 'xp', type: 'number' },
     { id: 'name', type: 'text' },
@@ -21,7 +25,11 @@ const characterDefinition = createCharacterDefinition(
     attribute: ['intelligence', 'stamina'],
     derived: ['speed'],
     abilities: ['climbing'],
-  } as const,
+  } as const
+)
+const characterDefinition = createCharacterDefinition(
+  characterDefinitionBase.attributes,
+  characterDefinitionBase.groups,
   [
     {
       attributeId: 'climbing',
@@ -58,11 +66,9 @@ const characterDefinition = createCharacterDefinition(
       id: 'purchase-attribute',
       resolve(
         payload: {
-          attributeId?: typeof attributeGroupDefinitions['attribute'][number]
+          attributeId?: typeof characterDefinitionBase.groups['attribute'][number]
         },
-        state,
-        attributeDefinitions,
-        attributeGroupDefinitions
+        state
       ) {
         if (payload.attributeId == null) {
           return
