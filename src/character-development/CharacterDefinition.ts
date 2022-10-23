@@ -3,6 +3,7 @@ import {
   IAttributeGroupDefinitions,
   TAttributeState,
   TUnknownAttributeDefinitions,
+  TAttributeValue,
 } from './AttributeDefinition'
 
 export interface ICharacterState<
@@ -13,13 +14,25 @@ export interface ICharacterState<
 }
 
 export type IAttributeCalculation<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions
+  TAttributeDefinitions extends TUnknownAttributeDefinitions,
+  TAttribute extends TAttributeDefinitions[number],
+  TAttributeId extends TAttribute['id']
 > = DeepReadonly<{
-  attributeId: TAttributeDefinitions[number]['id']
+  attributeId: TAttributeId
   calculation: (
     currentState: Readonly<ICharacterState<TAttributeDefinitions>>
-  ) => number
+  ) => TAttributeValue<TAttribute>
 }>
+
+type IAttributeCalculations<
+  TAttributeDefinitions extends TUnknownAttributeDefinitions
+> = DeepReadonly<
+  IAttributeCalculation<
+    TAttributeDefinitions,
+    TAttributeDefinitions[number],
+    TAttributeDefinitions[number]['id']
+  >[]
+>
 
 export type ICharacterEvent<
   TAttributeDefinitions extends TUnknownAttributeDefinitions,
@@ -37,9 +50,7 @@ export type ICharacterEvent<
 export type ICharacterDefinition<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends DeepReadonly<
-    IAttributeCalculation<TAttributes>[]
-  >,
+  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
   TEvents extends DeepReadonly<ICharacterEvent<TAttributes, TAttributeGroups>[]>
 > = {
   attributes: TAttributes
@@ -51,15 +62,19 @@ export type ICharacterDefinition<
 export const createCharacterDefinition = <
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends DeepReadonly<
-    IAttributeCalculation<TAttributes>[]
-  >,
+  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
   TEvents extends DeepReadonly<ICharacterEvent<TAttributes, TAttributeGroups>[]>
 >(
   attributes: TAttributes,
-  groups: TAttributeGroups,
-  calculations: TAttributeCalculations,
-  events: TEvents
+  {
+    groups,
+    calculations,
+    events,
+  }: {
+    groups: TAttributeGroups
+    calculations: TAttributeCalculations
+    events: TEvents
+  }
 ): ICharacterDefinition<
   TAttributes,
   TAttributeGroups,
@@ -75,9 +90,7 @@ export const createCharacterDefinition = <
 export class Character<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends DeepReadonly<
-    IAttributeCalculation<TAttributes>[]
-  >,
+  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
   TEvents extends DeepReadonly<
     ICharacterEvent<TAttributes, TAttributeGroups>[]
   >,

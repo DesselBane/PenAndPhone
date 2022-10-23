@@ -17,63 +17,67 @@ const characterDefinition = createCharacterDefinition(
     },
   ] as const,
   {
-    basic: ['xp', 'name', 'race'],
-    attribute: ['intelligence', 'stamina'],
-    derived: ['speed'],
-    abilities: ['climbing'],
-  } as const,
-  [
-    {
-      attributeId: 'climbing',
-      calculation({ rawAttributes, attributes }) {
-        return (
-          attributes.intelligence + attributes.stamina + rawAttributes.climbing
-        )
-      },
-    },
-    {
-      attributeId: 'size',
-      calculation({ attributes }) {
-        return attributes.race === 'warg' ? 5 : 4
-      },
-    },
-    {
-      attributeId: 'speed',
-      calculation({ attributes, rawAttributes }) {
-        return attributes.size + rawAttributes.speed
-      },
-    },
-  ] as const,
-  [
-    {
-      id: 'add-xp',
-      resolve(payload: { amount?: number }, state) {
-        if (payload.amount == null) {
-          return
-        }
-        state.rawAttributes.xp += payload.amount
-      },
-    },
-    {
-      id: 'purchase-attribute',
-      resolve(
-        payload: {
-          attributeId?: typeof attributeGroupDefinitions['attribute'][number]
+    groups: {
+      basic: ['xp', 'name', 'race'],
+      attribute: ['intelligence', 'stamina'],
+      derived: ['speed'],
+      abilities: ['climbing'],
+    } as const,
+    calculations: [
+      {
+        attributeId: 'climbing',
+        calculation({ rawAttributes, attributes }) {
+          return (
+            attributes.intelligence +
+            attributes.stamina +
+            rawAttributes.climbing
+          )
         },
-        state,
-        attributeDefintitions,
-        attributeGroupDefinitions
-      ) {
-        if (payload.attributeId == null) {
-          return
-        }
-        if (state.attributes.xp < 5) {
-          return
-        }
-        state.rawAttributes[payload.attributeId]++
       },
-    },
-  ] as const
+      {
+        attributeId: 'size',
+        calculation({ attributes }) {
+          return attributes.race === 'warg' ? 5 : 4
+        },
+      },
+      {
+        attributeId: 'speed',
+        calculation({ attributes, rawAttributes }) {
+          return attributes.size + rawAttributes.speed
+        },
+      },
+    ] as const,
+    events: [
+      {
+        id: 'add-xp',
+        resolve(payload: { amount?: number }, state) {
+          if (payload.amount == null) {
+            return
+          }
+          state.rawAttributes.xp += payload.amount
+        },
+      },
+      {
+        id: 'purchase-attribute',
+        resolve(
+          payload: {
+            attributeId?: typeof attributeGroupDefinitions['attribute'][number]
+          },
+          state,
+          attributeDefinitions,
+          attributeGroupDefinitions
+        ) {
+          if (payload.attributeId == null) {
+            return
+          }
+          if (state.attributes.xp < 5) {
+            return
+          }
+          state.rawAttributes[payload.attributeId]++
+        },
+      },
+    ] as const,
+  }
 )
 
 describe('CharacterDefinition', () => {

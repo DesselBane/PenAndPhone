@@ -25,14 +25,17 @@ export type TUnknownAttributeDefinitions = DeepReadonly<
   TUnknownAttributeDefinition[]
 >
 
+export type TAttributeValue<TAttribute extends TUnknownAttributeDefinition> =
+  TAttribute extends ISingleSelectAttributeDefinition
+    ? TAttribute['options'][number]
+    : TAttribute extends INumberAttributeDefinition
+    ? number
+    : string
+
 export type TAttributeState<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
 > = {
-  [Definition in TAttributeDefinitions[number] as Definition['id']]: Definition extends ISingleSelectAttributeDefinition
-    ? Definition['options'][number]
-    : Definition extends INumberAttributeDefinition
-    ? number
-    : string
+  [Definition in TAttributeDefinitions[number] as Definition['id']]: TAttributeValue<Definition>
 }
 
 export type IAttributeGroupDefinitions<
