@@ -6,60 +6,60 @@ import {
 } from './CharacterDefinition'
 
 const attributesDefinition = defineCharacterAttributes(
-  [
-    { id: 'xp', type: 'number' },
-    { id: 'name', type: 'text' },
-    { id: 'intelligence', type: 'number' },
-    { id: 'stamina', type: 'number' },
-    { id: 'climbing', type: 'number' },
-    { id: 'size', type: 'number' },
-    { id: 'speed', type: 'number' },
-    {
-      id: 'race',
+  {
+    xp: { type: 'number' },
+    name: { type: 'text' },
+    intelligence: { type: 'number' },
+    stamina: { type: 'number' },
+    climbing: { type: 'number' },
+    size: { type: 'number' },
+    speed: { type: 'number' },
+    race: {
       type: 'single-select',
-      options: ['human', 'warg'],
+      options: ['human', 'warg'] as const,
     },
-  ] as const,
+  },
   {
     basic: ['xp', 'name', 'race'],
     attribute: ['intelligence', 'stamina'],
     derived: ['speed'],
     abilities: ['climbing'],
-  } as const
+  }
 )
 const characterDefinition = defineCharacter(
   attributesDefinition.attributes,
   attributesDefinition.groups,
-  [
-    {
-      attributeId: 'climbing',
-      calculation({ rawAttributes, attributes }) {
-        return (
-          attributes.intelligence + attributes.stamina + rawAttributes.climbing
-        )
-      },
+  {
+    climbing: (currentState) => {
+      const { rawAttributes, attributes } = currentState
+      return (
+        attributes.intelligence + attributes.stamina + rawAttributes.climbing
+      )
     },
-    {
-      attributeId: 'size',
-      calculation({ attributes }) {
-        return attributes.race === 'warg' ? 5 : 4
-      },
+    size: ({ attributes }) => {
+      return attributes.race === 'warg' ? 5 : 4
     },
-    {
-      attributeId: 'speed',
-      calculation({ attributes, rawAttributes }) {
-        return attributes.size + rawAttributes.speed
-      },
+    speed: ({ attributes, rawAttributes }) => {
+      return attributes.size + rawAttributes.speed
     },
-  ] as const,
-  [
+  },
+  {
+    'add-xp': {
+      amount: 'number',
+    },
+  },
+  {
+    'add-xp': ({ amount }, state) => {
+      // TODO add error handling
+      state.rawAttributes.xp += amount
+    },
+  }
+
+  /*  [
     {
       id: 'add-xp',
-      resolve(payload: { amount?: number }, state) {
-        if (payload.amount == null) {
-          return
-        }
-        state.rawAttributes.xp += payload.amount
+      payload: {
+        amount: 'number',
       },
     },
     {
@@ -79,7 +79,7 @@ const characterDefinition = defineCharacter(
         state.rawAttributes[payload.attributeId]++
       },
     },
-  ] as const
+  ] as const,*/
 )
 
 describe('CharacterDefinition', () => {
@@ -110,7 +110,20 @@ describe('CharacterDefinition', () => {
     expect(char.attributes.size).toBe(4)
   })
 
-  it('can purchase attribute', () => {
+  it('add xp', () => {
+    const char = new Character(characterDefinition)
+
+    char.rawAttributes.xp = 0
+    expect(char.attributes.xp).toBe(0)
+
+    char.execute('add-xp', {
+      amount: 10,
+    })
+
+    expect(char.attributes.xp).toBe(10)
+  })
+
+  /*  it('can purchase attribute', () => {
     const char = new Character(characterDefinition)
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
@@ -123,5 +136,5 @@ describe('CharacterDefinition', () => {
       attributeId: 'stamina',
     })
     expect(char.attributes.stamina).toBe(1)
-  })
+  })*/
 })

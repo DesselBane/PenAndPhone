@@ -1,28 +1,24 @@
-import { DeepReadonly } from '../util/UtilityTypes'
-
-export type INumberAttributeDefinition = DeepReadonly<{
-  id: string
+export type INumberAttributeDefinition = {
   type: 'number'
-}>
+}
 
-export type ITextAttributeDefinition = DeepReadonly<{
-  id: string
+export type ITextAttributeDefinition = {
   type: 'text'
-}>
+}
 
-export type ISingleSelectAttributeDefinition = DeepReadonly<{
-  id: string
+export type ISingleSelectAttributeDefinition = {
   type: 'single-select'
-  options: DeepReadonly<string[]>
-}>
+  options: ReadonlyArray<string>
+}
 
 export type TUnknownAttributeDefinition =
   | INumberAttributeDefinition
   | ITextAttributeDefinition
   | ISingleSelectAttributeDefinition
 
-export type TUnknownAttributeDefinitions = DeepReadonly<
-  TUnknownAttributeDefinition[]
+export type TUnknownAttributeDefinitions = Record<
+  string,
+  TUnknownAttributeDefinition
 >
 
 export type TAttributeValue<TAttribute extends TUnknownAttributeDefinition> =
@@ -35,20 +31,11 @@ export type TAttributeValue<TAttribute extends TUnknownAttributeDefinition> =
 export type TAttributeState<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
 > = {
-  [Definition in TAttributeDefinitions[number] as Definition['id']]: TAttributeValue<Definition>
+  [Key in keyof TAttributeDefinitions]: TAttributeValue<
+    TAttributeDefinitions[Key]
+  >
 }
 
 export type IAttributeGroupDefinitions<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
-> = DeepReadonly<Record<string, TAttributeDefinitions[number]['id'][]>>
-
-export const attributes: TUnknownAttributeDefinitions = [
-  { id: 'name', type: 'text' },
-  { id: 'intelligence', type: 'number' },
-  { id: 'stamina', type: 'number' },
-  {
-    id: 'race',
-    type: 'single-select',
-    options: ['human', 'warg'],
-  },
-] as const
+> = Record<string, (keyof TAttributeDefinitions)[]>
