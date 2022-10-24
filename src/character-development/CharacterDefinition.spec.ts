@@ -1,11 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import {
-  Character,
-  defineCharacter,
-  defineCharacterAttributes,
-} from './CharacterDefinition'
+import { Character, defineCharacter } from './CharacterDefinition'
 
-const attributesDefinition = defineCharacterAttributes(
+const characterDefinition = defineCharacter(
   {
     xp: { type: 'number' },
     name: { type: 'text' },
@@ -24,11 +20,7 @@ const attributesDefinition = defineCharacterAttributes(
     attribute: ['intelligence', 'stamina'],
     derived: ['speed'],
     abilities: ['climbing'],
-  }
-)
-const characterDefinition = defineCharacter(
-  attributesDefinition.attributes,
-  attributesDefinition.groups,
+  },
   {
     climbing: (currentState) => {
       const { rawAttributes, attributes } = currentState
@@ -47,39 +39,23 @@ const characterDefinition = defineCharacter(
     'add-xp': {
       amount: 'number',
     },
+    'purchase-attribute': {
+      attributeId: 'group.attribute',
+    },
   },
   {
     'add-xp': ({ amount }, state) => {
       // TODO add error handling
       state.rawAttributes.xp += amount
     },
-  }
+    'purchase-attribute': ({ attributeId }, state) => {
+      if (state.attributes.xp < 5) {
+        return
+      }
 
-  /*  [
-    {
-      id: 'add-xp',
-      payload: {
-        amount: 'number',
-      },
+      state.rawAttributes[attributeId] += 1
     },
-    {
-      id: 'purchase-attribute',
-      resolve(
-        payload: {
-          attributeId?: typeof attributesDefinition.groups['attribute'][number]
-        },
-        state
-      ) {
-        if (payload.attributeId == null) {
-          return
-        }
-        if (state.attributes.xp < 5) {
-          return
-        }
-        state.rawAttributes[payload.attributeId]++
-      },
-    },
-  ] as const,*/
+  }
 )
 
 describe('CharacterDefinition', () => {
@@ -123,7 +99,7 @@ describe('CharacterDefinition', () => {
     expect(char.attributes.xp).toBe(10)
   })
 
-  /*  it('can purchase attribute', () => {
+  it('can purchase attribute', () => {
     const char = new Character(characterDefinition)
     char.execute('purchase-attribute', {
       attributeId: 'stamina',
@@ -136,5 +112,5 @@ describe('CharacterDefinition', () => {
       attributeId: 'stamina',
     })
     expect(char.attributes.stamina).toBe(1)
-  })*/
+  })
 })

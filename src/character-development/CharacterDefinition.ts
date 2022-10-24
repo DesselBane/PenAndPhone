@@ -21,47 +21,62 @@ export type IAttributeCalculations<
   ) => TAttributeValue<TAttributeDefinitions[Key]>
 }
 
-export type IAllowedPayloadTyp = 'number'
-
-export type IAllowedPayloadTypeMap = {
-  number: number
-}
-
-export type IResolvedPayload<
-  TPayloadDefinition extends Record<string, IAllowedPayloadTyp>
-> = {
-  [Key in keyof TPayloadDefinition]: IAllowedPayloadTypeMap[TPayloadDefinition[Key]]
-}
-
-export type IEventDefinitions = Record<
-  string,
-  Record<string, IAllowedPayloadTyp>
->
-
-export type IEventImpls<
-  TEventDefinitions extends IEventDefinitions,
-  TAttributes extends TUnknownAttributeDefinitions
-> = {
-  [Key in keyof TEventDefinitions]: (
-    payload: IResolvedPayload<TEventDefinitions[Key]>,
-    state: ICharacterState<TAttributes>
-  ) => void
-}
-
-export type ICharacterDefinitionBase<
+export type IAllowedPayloadTypeMap<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
 > = {
-  attributes: TAttributes
-  groups: TAttributeGroups
+  number: number
+  string: string
+  boolean: boolean
+  attributeId: keyof TAttributes
+} & {
+  [Key in keyof TAttributeGroups as `group.${Key &
+    string}`]: TAttributeGroups[Key][number]
+}
+
+export type IResolvedPayload<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
+  TPayloadDefinition extends Record<
+    string,
+    keyof IAllowedPayloadTypeMap<TAttributes, TAttributeGroups>
+  >
+> = {
+  [Key in keyof TPayloadDefinition]: IAllowedPayloadTypeMap<
+    TAttributes,
+    TAttributeGroups
+  >[TPayloadDefinition[Key]]
+}
+
+export type IEventDefinitions<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
+> = Record<
+  string,
+  Record<string, keyof IAllowedPayloadTypeMap<TAttributes, TAttributeGroups>>
+>
+
+export type IEventImpls<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
+  TEventDefinitions extends IEventDefinitions<TAttributes, TAttributeGroups>
+> = {
+  [Key in keyof TEventDefinitions]: (
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEventDefinitions[Key]
+    >,
+    state: ICharacterState<TAttributes>
+  ) => void
 }
 
 export type ICharacterDefinition<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions,
-  TEventImpls extends IEventImpls<TEvents, TAttributes>
+  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
 > = {
   attributes: TAttributes
   groups: TAttributeGroups
@@ -70,23 +85,12 @@ export type ICharacterDefinition<
   eventImplementations: TEventImpls
 }
 
-export const defineCharacterAttributes = <
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
->(
-  attributes: TAttributes,
-  groups: TAttributeGroups
-): ICharacterDefinitionBase<TAttributes, TAttributeGroups> => ({
-  attributes,
-  groups,
-})
-
 export const defineCharacter = <
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions,
-  TEventImpls extends IEventImpls<TEvents, TAttributes>
+  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
 >(
   attributes: TAttributes,
   groups: TAttributeGroups,
@@ -111,8 +115,8 @@ export class Character<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions,
-  TEventImpls extends IEventImpls<TEvents, TAttributes>
+  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
 > {
   definition: ICharacterDefinition<
     TAttributes,
@@ -179,7 +183,7 @@ export class Character<
 
   execute<TEventId extends keyof TEvents & string>(
     id: TEventId,
-    payload: IResolvedPayload<TEvents[TEventId]>
+    payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
   ) {
     const realEvent = this.definition.eventImplementations[id]
 
