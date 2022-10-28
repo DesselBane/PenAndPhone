@@ -8,7 +8,7 @@ export type ITextAttributeDefinition = {
 
 export type ISingleSelectAttributeDefinition = {
   type: 'single-select'
-  options: ReadonlyArray<string>
+  options: ReadonlyArray<string | number>
 }
 
 export type TUnknownAttributeDefinition =

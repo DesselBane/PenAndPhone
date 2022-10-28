@@ -32,6 +32,10 @@ export type IAllowedPayloadTypeMap<
 } & {
   [Key in keyof TAttributeGroups as `group.${Key &
     string}`]: TAttributeGroups[Key][number]
+} & {
+  [Key in keyof TAttributes as `${Key & string}.value`]: TAttributeValue<
+    TAttributes[Key]
+  >
 }
 
 export type IResolvedPayload<
