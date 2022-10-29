@@ -7,6 +7,7 @@ export const characterDefinition = defineCharacter(
       type: 'single-select',
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const,
     },
+    erschaffungsFertigkeitsPunkte: { type: 'number' },
     //erschaffungsPunkte: { type: 'number' },
 
     // Basis
@@ -534,6 +535,13 @@ export const characterDefinition = defineCharacter(
     rasseSetzen: {
       rasse: 'rasse.value',
     },
+    fertigkeitSteigernMitPunkt: {
+      // TODO: ability to add more groups, or define combined group in group def
+      fertigkeit: 'group.fertigkeiten',
+    },
+    fertigkeitSenkenMitPunkt: {
+      fertigkeit: 'group.fertigkeiten',
+    },
     erschaffungWeiter: {},
     // TODO add event history into state and then add race attribute point selection
     // +1 for alb, zwerg, varg, gnom
@@ -552,9 +560,30 @@ export const characterDefinition = defineCharacter(
       if (rawAttributes.erschaffungsZustand < 11) {
         rawAttributes.erschaffungsZustand += 1
       }
+      // TODO: better solution for this? separate event?
+      if (rawAttributes.erschaffungsZustand === 3) {
+        rawAttributes.erschaffungsFertigkeitsPunkte += 15
+      }
     },
     rasseSetzen: ({ rasse }, { rawAttributes }) => {
       rawAttributes.rasse = rasse
+    },
+    fertigkeitSteigernMitPunkt: ({ fertigkeit }, { rawAttributes }) => {
+      if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
+        throw 'Keine Fertigkeitspunkte mehr übrig'
+      }
+      if (rawAttributes[fertigkeit] >= 2) {
+        throw 'Maximal 2 Punkte pro Fertigkeit'
+      }
+      rawAttributes.erschaffungsFertigkeitsPunkte -= 1
+      rawAttributes[fertigkeit] += 1
+    },
+    fertigkeitSenkenMitPunkt: ({ fertigkeit }, { rawAttributes }) => {
+      if (rawAttributes[fertigkeit] < 1) {
+        throw 'Kann nicht weiter gesenkt werden'
+      }
+      rawAttributes.erschaffungsFertigkeitsPunkte += 1
+      rawAttributes[fertigkeit] -= 1
     },
   }
 )

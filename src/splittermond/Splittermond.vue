@@ -28,7 +28,7 @@ function handleStep2() {
         v-if="character.getAttribute('erschaffungsZustand').value === 1"
         @submit.prevent="handleStep1"
       >
-        <h1>1 Idee</h1>
+        <h2>1 Idee</h2>
         <label>
           Name:
           <input v-model="name" />
@@ -39,7 +39,7 @@ function handleStep2() {
         v-else-if="character.getAttribute('erschaffungsZustand').value === 2"
         @submit.prevent="handleStep2"
       >
-        <h1>2 Rasse</h1>
+        <h2>2 Rasse</h2>
         <label>
           Rasse:
           <select v-model="rasse">
@@ -58,8 +58,53 @@ function handleStep2() {
         v-else-if="character.getAttribute('erschaffungsZustand').value === 3"
         @submit.prevent=""
       >
-        <h1>3 Kultur</h1>
-        <button>Speichern & Weiter</button>
+        <h2>3 Kultur</h2>
+        <div>
+          <p>
+            Punkte zu verteilen:
+            {{ character.getAttribute('erschaffungsFertigkeitsPunkte').value }}
+          </p>
+          <dl class="columns-2">
+            <template
+              v-for="key in characterDefinition.groups.fertigkeiten"
+              :key="key"
+            >
+              <dt>{{ key }}</dt>
+              <dd>
+                {{ character.getAttribute(key).value }} ({{
+                  character.getAttribute(key).rawValue
+                }})
+                <button
+                  :disabled="character.getAttribute(key).rawValue > 1"
+                  @click="
+                    character.execute('fertigkeitSteigernMitPunkt', {
+                      fertigkeit: key,
+                    })
+                  "
+                >
+                  +
+                </button>
+                <button
+                  :disabled="character.getAttribute(key).rawValue < 1"
+                  @click="
+                    character.execute('fertigkeitSenkenMitPunkt', {
+                      fertigkeit: key,
+                    })
+                  "
+                >
+                  -
+                </button>
+              </dd>
+            </template>
+          </dl>
+        </div>
+        <button
+          :disabled="
+            character.getAttribute('erschaffungsFertigkeitsPunkte').value > 0
+          "
+        >
+          Speichern & Weiter
+        </button>
       </form>
     </div>
     <div class="state">
@@ -68,13 +113,15 @@ function handleStep2() {
         :key="groupKey"
       >
         <h2>{{ groupKey }}</h2>
-        <dl v-for="key in attributeKeys" :key="key">
-          <dt>{{ key }}</dt>
-          <dd>
-            {{ character.getAttribute(key).value }} ({{
-              character.getAttribute(key).rawValue
-            }})
-          </dd>
+        <dl>
+          <template v-for="key in attributeKeys" :key="key">
+            <dt>{{ key }}</dt>
+            <dd>
+              {{ character.getAttribute(key).value }} ({{
+                character.getAttribute(key).rawValue
+              }})
+            </dd>
+          </template>
         </dl>
       </div>
     </div>
@@ -102,6 +149,10 @@ form {
 dl {
   display: grid;
   grid-template-columns: 1fr auto;
+}
+
+dl.columns-2 {
+  grid-template-columns: 1fr auto 1fr auto;
 }
 
 dt,
