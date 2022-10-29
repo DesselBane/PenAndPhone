@@ -38,4 +38,22 @@ export type TAttributeState<
 
 export type IAttributeGroupDefinitions<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
-> = Record<string, (keyof TAttributeDefinitions)[]>
+> = Record<
+  string,
+  | (keyof TAttributeDefinitions)[]
+  | Record<string, (keyof TAttributeDefinitions)[]>
+>
+
+export type TFlatAttributeGroupDefinitions<
+  TAttributeDefinitions extends TUnknownAttributeDefinitions,
+  TAttributeGroupDefinitions extends IAttributeGroupDefinitions<TAttributeDefinitions>
+> = {
+  [TKey in keyof TAttributeGroupDefinitions]: TAttributeGroupDefinitions[TKey] extends (keyof TAttributeDefinitions)[]
+    ? TAttributeGroupDefinitions[TKey]
+    : TAttributeGroupDefinitions[TKey] extends Record<
+        string,
+        infer TAttributeKeys extends (keyof TAttributeDefinitions)[]
+      >
+    ? TAttributeKeys
+    : never
+}

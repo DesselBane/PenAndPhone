@@ -4,6 +4,7 @@ import {
   TAttributeState,
   TUnknownAttributeDefinitions,
   TAttributeValue,
+  TFlatAttributeGroupDefinitions,
 } from './AttributeDefinition'
 
 export interface ICharacterState<
@@ -31,7 +32,10 @@ export type IAllowedPayloadTypeMap<
   attributeId: keyof TAttributes
 } & {
   [Key in keyof TAttributeGroups as `group.${Key &
-    string}`]: TAttributeGroups[Key][number]
+    string}`]: TFlatAttributeGroupDefinitions<
+    TAttributes,
+    TAttributeGroups
+  >[Key][number]
 } & {
   [Key in keyof TAttributes as `${Key & string}.value`]: TAttributeValue<
     TAttributes[Key]

@@ -64,39 +64,47 @@ function handleStep2() {
             Punkte zu verteilen:
             {{ character.getAttribute('erschaffungsFertigkeitsPunkte').value }}
           </p>
-          <dl class="columns-2">
-            <template
-              v-for="key in characterDefinition.groups.fertigkeiten"
-              :key="key"
-            >
-              <dt>{{ key }}</dt>
-              <dd>
-                {{ character.getAttribute(key).value }} ({{
-                  character.getAttribute(key).rawValue
-                }})
-                <button
-                  :disabled="character.getAttribute(key).rawValue > 1"
-                  @click="
-                    character.execute('fertigkeitSteigernMitPunkt', {
-                      fertigkeit: key,
-                    })
-                  "
-                >
-                  +
-                </button>
-                <button
-                  :disabled="character.getAttribute(key).rawValue < 1"
-                  @click="
-                    character.execute('fertigkeitSenkenMitPunkt', {
-                      fertigkeit: key,
-                    })
-                  "
-                >
-                  -
-                </button>
-              </dd>
-            </template>
-          </dl>
+          <div
+            v-for="(attributeKeys, groupKey) in characterDefinition.groups
+              .fertigkeiten"
+            :key="groupKey"
+          >
+            <h2>{{ groupKey }}</h2>
+            <dl class="columns-2">
+              <template v-for="key in attributeKeys" :key="key">
+                <dt>{{ key }}</dt>
+                <dd>
+                  {{ character.getAttribute(key).value }} ({{
+                    character.getAttribute(key).rawValue
+                  }})
+                  <button
+                    :disabled="character.getAttribute(key).rawValue < 1"
+                    @click="
+                      character.execute('fertigkeitSenkenMitPunkt', {
+                        fertigkeit: key,
+                      })
+                    "
+                  >
+                    -
+                  </button>
+                  <button
+                    :disabled="
+                      character.getAttribute(key).rawValue > 1 ||
+                      character.getAttribute('erschaffungsFertigkeitsPunkte')
+                        .value < 1
+                    "
+                    @click="
+                      character.execute('fertigkeitSteigernMitPunkt', {
+                        fertigkeit: key,
+                      })
+                    "
+                  >
+                    +
+                  </button>
+                </dd>
+              </template>
+            </dl>
+          </div>
         </div>
         <button
           :disabled="
@@ -109,20 +117,40 @@ function handleStep2() {
     </div>
     <div class="state">
       <div
-        v-for="(attributeKeys, groupKey) in characterDefinition.groups"
+        v-for="(groupValues, groupKey) in characterDefinition.groups"
         :key="groupKey"
       >
-        <h2>{{ groupKey }}</h2>
-        <dl>
-          <template v-for="key in attributeKeys" :key="key">
-            <dt>{{ key }}</dt>
-            <dd>
-              {{ character.getAttribute(key).value }} ({{
-                character.getAttribute(key).rawValue
-              }})
-            </dd>
+        <template v-if="Array.isArray(groupValues)">
+          <h2>{{ groupKey }}</h2>
+          <dl>
+            <template v-for="key in groupValues" :key="key">
+              <dt>{{ key }}</dt>
+              <dd>
+                {{ character.getAttribute(key).value }} ({{
+                  character.getAttribute(key).rawValue
+                }})
+              </dd>
+            </template>
+          </dl>
+        </template>
+        <template v-else>
+          <template
+            v-for="(attributeKeys, subGroupKey) in groupValues"
+            :key="subGroupKey"
+          >
+            <h2>{{ subGroupKey }}</h2>
+            <dl>
+              <template v-for="key in attributeKeys" :key="key">
+                <dt>{{ key }}</dt>
+                <dd>
+                  {{ character.getAttribute(key).value }} ({{
+                    character.getAttribute(key).rawValue
+                  }})
+                </dd>
+              </template>
+            </dl>
           </template>
-        </dl>
+        </template>
       </div>
     </div>
   </main>
