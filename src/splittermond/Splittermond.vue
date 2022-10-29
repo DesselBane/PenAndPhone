@@ -12,10 +12,12 @@ function handleStep1() {
   character.value.execute('erschaffungWeiter', 2)
 }
 // Step 2
-const rasse = ref('')
-function handleStep2() {}
-
-// TODO: attributes not yet reactive (rawAttributes are)
+const rasseOptionen = characterDefinition.attributes.rasse.options
+const rasse = ref<typeof rasseOptionen[number]>(rasseOptionen[0])
+function handleStep2() {
+  character.value.execute('rasseSetzen', { rasse: rasse.value })
+  character.value.execute('erschaffungWeiter', 3)
+}
 </script>
 
 <template>
@@ -23,10 +25,10 @@ function handleStep2() {}
   <main>
     <div class="steps">
       <form
-        v-if="character.rawAttributes.erschaffungsZustand === 1"
+        v-if="character.getAttribute('erschaffungsZustand').value === 1"
         @submit.prevent="handleStep1"
       >
-        <h1>Idee</h1>
+        <h1>1 Idee</h1>
         <label>
           Name:
           <input v-model="name" />
@@ -34,26 +36,45 @@ function handleStep2() {}
         <button>Speichern & Weiter</button>
       </form>
       <form
-        v-else-if="character.rawAttributes.erschaffungsZustand === 2"
+        v-else-if="character.getAttribute('erschaffungsZustand').value === 2"
         @submit.prevent="handleStep2"
       >
-        <h1>Rasse</h1>
+        <h1>2 Rasse</h1>
         <label>
           Rasse:
-          <input v-model="rasse" />
+          <select v-model="rasse">
+            <option
+              v-for="option in rasseOptionen"
+              :value="option"
+              :key="option"
+            >
+              {{ option }}
+            </option>
+          </select>
         </label>
+        <button>Speichern & Weiter</button>
+      </form>
+      <form
+        v-else-if="character.getAttribute('erschaffungsZustand').value === 3"
+        @submit.prevent=""
+      >
+        <h1>3 Kultur</h1>
         <button>Speichern & Weiter</button>
       </form>
     </div>
     <div class="state">
       <div
-        v-for="(attributeKeys, groupKey) in character.definition.groups"
+        v-for="(attributeKeys, groupKey) in characterDefinition.groups"
         :key="groupKey"
       >
         <h2>{{ groupKey }}</h2>
         <dl v-for="key in attributeKeys" :key="key">
           <dt>{{ key }}</dt>
-          <dd>{{ character.rawAttributes[key] }}</dd>
+          <dd>
+            {{ character.getAttribute(key).value }} ({{
+              character.getAttribute(key).rawValue
+            }})
+          </dd>
         </dl>
       </div>
     </div>

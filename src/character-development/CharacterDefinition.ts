@@ -196,4 +196,11 @@ export class Character<
       attributes: this.attributes,
     })
   }
+
+  getAttribute(key: keyof TAttributes) {
+    return {
+      value: this.attributes[key],
+      rawValue: this.rawAttributes[key],
+    }
+  }
 }
