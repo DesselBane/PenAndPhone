@@ -1,7 +1,6 @@
 import { defineCharacter } from '../character-development/CharacterDefinition'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const characterDefinition = defineCharacter(
+export const characterDefinition = defineCharacter(
   {
     // System
     erschaffungsZustand: {
