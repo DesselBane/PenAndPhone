@@ -76,7 +76,10 @@ export type IEventImpls<
         TAttributeGroups,
         TEventDefinitions[Key]
       >,
-      state: ICharacterState<TAttributes>
+      state: ICharacterState<TAttributes>,
+      definition: {
+        groups: TAttributeGroups
+      }
     ) => string | true
     apply: (
       payload: IResolvedPayload<
@@ -214,7 +217,7 @@ export class Character<
     if (!validate) {
       return true
     }
-    return validate(payload, this.state)
+    return validate(payload, this.state, this.definition)
   }
 
   execute<TEventId extends keyof TEvents & string>(
@@ -224,7 +227,7 @@ export class Character<
     const { validate, apply } = this.definition.eventImplementations[id]
 
     if (validate) {
-      const validationResult = validate(payload, this.state)
+      const validationResult = validate(payload, this.state, this.definition)
       if (validationResult !== true) {
         throw validationResult
       }

@@ -576,13 +576,30 @@ export const characterDefinition = defineCharacter(
       },
     },
     fertigkeitSteigernMitPunkt: {
-      validate({ fertigkeit }, { rawAttributes }) {
+      validate({ fertigkeit }, { rawAttributes }, { groups }) {
         if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
-          return 'Keine Fertigkeitspunkte mehr übrig'
+          return 'Alle Fertigkeitspunkte sind aufgebraucht'
         }
         if (rawAttributes[fertigkeit] >= 2) {
-          return 'Maximal 2 Punkte pro Fertigkeit'
+          return 'Maximal zwei Punkte pro Fertigkeit'
         }
+
+        const istMagieSchule = groups.fertigkeiten.magieSchulen.find(
+          (schule) => schule === fertigkeit
+        )
+        if (istMagieSchule) {
+          if (rawAttributes[fertigkeit] >= 1) {
+            return 'Maximal ein Punkte pro Magieschule'
+          }
+          const magieschuleMitPunkt = groups.fertigkeiten.magieSchulen.find(
+            (schule) => rawAttributes[schule] >= 1
+          )
+          // TODO: validate result with key + context
+          if (magieschuleMitPunkt) {
+            return `Maximal ein Punkt in alle Magieschulen. Der Punkt wurde bereits in der Schule "${magieschuleMitPunkt}" eingesetzt.`
+          }
+        }
+
         return true
       },
       apply({ fertigkeit }, { rawAttributes }) {
