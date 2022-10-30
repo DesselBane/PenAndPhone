@@ -2,8 +2,10 @@
 import { characterDefinition } from './splittermond.rules'
 import { Character } from '../character-development/CharacterDefinition'
 import { ref } from 'vue'
+import { useEventButtons } from '../character-development/useEventButton'
 
 const character = ref(new Character(characterDefinition))
+const getButtonBindings = useEventButtons(character).getBindings
 
 // Step 1
 const name = ref('')
@@ -78,18 +80,8 @@ function handleStep2() {
                     character.getAttribute(key).rawValue
                   }})
                   <button
-                    :disabled="
-                      character.validate('fertigkeitSenkenMitPunkt', {
-                        fertigkeit: key,
-                      }) !== true
-                    "
-                    :title="character.validate('fertigkeitSenkenMitPunkt', {
-                      fertigkeit: key,
-                    }) !== true ? character.validate('fertigkeitSenkenMitPunkt', {
-                      fertigkeit: key,
-                    }) as string : undefined"
-                    @click="
-                      character.execute('fertigkeitSenkenMitPunkt', {
+                    v-bind="
+                      getButtonBindings('fertigkeitSenkenMitPunkt', {
                         fertigkeit: key,
                       })
                     "
@@ -97,18 +89,8 @@ function handleStep2() {
                     -
                   </button>
                   <button
-                    :disabled="
-                      character.validate('fertigkeitSteigernMitPunkt', {
-                        fertigkeit: key,
-                      }) !== true
-                    "
-                    :title="character.validate('fertigkeitSteigernMitPunkt', {
-                      fertigkeit: key,
-                    }) !== true ? character.validate('fertigkeitSteigernMitPunkt', {
-                      fertigkeit: key,
-                    }) as string : undefined"
-                    @click="
-                      character.execute('fertigkeitSteigernMitPunkt', {
+                    v-bind="
+                      getButtonBindings('fertigkeitSteigernMitPunkt', {
                         fertigkeit: key,
                       })
                     "

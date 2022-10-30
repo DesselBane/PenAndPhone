@@ -199,7 +199,7 @@ export class Character<
     this.attributes = attributes
   }
 
-  private get state() {
+  get state() {
     return {
       rawAttributes: this.rawAttributes,
       attributes: this.attributes,
