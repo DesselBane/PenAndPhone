@@ -44,16 +44,20 @@ const characterDefinition = defineCharacter(
     },
   },
   {
-    'add-xp': ({ amount }, state) => {
-      // TODO add error handling
-      state.rawAttributes.xp += amount
+    'add-xp': {
+      apply({ amount }, state) {
+        // TODO add error handling
+        state.rawAttributes.xp += amount
+      },
     },
-    'purchase-attribute': ({ attributeId }, state) => {
-      if (state.attributes.xp < 5) {
-        return
-      }
+    'purchase-attribute': {
+      apply({ attributeId }, state) {
+        if (state.attributes.xp < 5) {
+          return
+        }
 
-      state.rawAttributes[attributeId] += 1
+        state.rawAttributes[attributeId] += 1
+      },
     },
   }
 )

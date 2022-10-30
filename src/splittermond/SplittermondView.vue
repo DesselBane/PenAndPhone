@@ -78,7 +78,16 @@ function handleStep2() {
                     character.getAttribute(key).rawValue
                   }})
                   <button
-                    :disabled="character.getAttribute(key).rawValue < 1"
+                    :disabled="
+                      character.validate('fertigkeitSenkenMitPunkt', {
+                        fertigkeit: key,
+                      }) !== true
+                    "
+                    :title="character.validate('fertigkeitSenkenMitPunkt', {
+                      fertigkeit: key,
+                    }) !== true ? character.validate('fertigkeitSenkenMitPunkt', {
+                      fertigkeit: key,
+                    }) as string : undefined"
                     @click="
                       character.execute('fertigkeitSenkenMitPunkt', {
                         fertigkeit: key,
@@ -89,10 +98,15 @@ function handleStep2() {
                   </button>
                   <button
                     :disabled="
-                      character.getAttribute(key).rawValue > 1 ||
-                      character.getAttribute('erschaffungsFertigkeitsPunkte')
-                        .value < 1
+                      character.validate('fertigkeitSteigernMitPunkt', {
+                        fertigkeit: key,
+                      }) !== true
                     "
+                    :title="character.validate('fertigkeitSteigernMitPunkt', {
+                      fertigkeit: key,
+                    }) !== true ? character.validate('fertigkeitSteigernMitPunkt', {
+                      fertigkeit: key,
+                    }) as string : undefined"
                     @click="
                       character.execute('fertigkeitSteigernMitPunkt', {
                         fertigkeit: key,
@@ -116,11 +130,11 @@ function handleStep2() {
       </form>
     </div>
     <div class="state">
-      <div
+      <template
         v-for="(groupValues, groupKey) in characterDefinition.groups"
         :key="groupKey"
       >
-        <template v-if="Array.isArray(groupValues)">
+        <div v-if="Array.isArray(groupValues)">
           <h2>{{ groupKey }}</h2>
           <dl>
             <template v-for="key in groupValues" :key="key">
@@ -132,9 +146,9 @@ function handleStep2() {
               </dd>
             </template>
           </dl>
-        </template>
+        </div>
         <template v-else>
-          <template
+          <div
             v-for="(attributeKeys, subGroupKey) in groupValues"
             :key="subGroupKey"
           >
@@ -149,9 +163,9 @@ function handleStep2() {
                 </dd>
               </template>
             </dl>
-          </template>
+          </div>
         </template>
-      </div>
+      </template>
     </div>
   </main>
 </template>
@@ -171,7 +185,6 @@ form {
 
 .state {
   display: grid;
-  gap: 3rem;
 }
 
 dl {

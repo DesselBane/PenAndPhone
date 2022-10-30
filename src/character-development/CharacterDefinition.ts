@@ -69,14 +69,24 @@ export type IEventImpls<
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TEventDefinitions extends IEventDefinitions<TAttributes, TAttributeGroups>
 > = {
-  [Key in keyof TEventDefinitions]: (
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEventDefinitions[Key]
-    >,
-    state: ICharacterState<TAttributes>
-  ) => void
+  [Key in keyof TEventDefinitions]: {
+    validate?: (
+      payload: IResolvedPayload<
+        TAttributes,
+        TAttributeGroups,
+        TEventDefinitions[Key]
+      >,
+      state: ICharacterState<TAttributes>
+    ) => string | true
+    apply: (
+      payload: IResolvedPayload<
+        TAttributes,
+        TAttributeGroups,
+        TEventDefinitions[Key]
+      >,
+      state: ICharacterState<TAttributes>
+    ) => void
+  }
 }
 
 export type ICharacterDefinition<
@@ -189,16 +199,38 @@ export class Character<
     this.attributes = attributes
   }
 
+  private get state() {
+    return {
+      rawAttributes: this.rawAttributes,
+      attributes: this.attributes,
+    }
+  }
+
+  validate<TEventId extends keyof TEvents & string>(
+    id: TEventId,
+    payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
+  ) {
+    const { validate } = this.definition.eventImplementations[id]
+    if (!validate) {
+      return true
+    }
+    return validate(payload, this.state)
+  }
+
   execute<TEventId extends keyof TEvents & string>(
     id: TEventId,
     payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
   ) {
-    const realEvent = this.definition.eventImplementations[id]
+    const { validate, apply } = this.definition.eventImplementations[id]
 
-    realEvent(payload, {
-      rawAttributes: this.rawAttributes,
-      attributes: this.attributes,
-    })
+    if (validate) {
+      const validationResult = validate(payload, this.state)
+      if (validationResult !== true) {
+        throw validationResult
+      }
+    }
+
+    apply(payload, this.state)
   }
 
   getAttribute(key: keyof TAttributes) {

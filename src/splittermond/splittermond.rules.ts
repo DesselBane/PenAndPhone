@@ -130,7 +130,6 @@ export const characterDefinition = defineCharacter(
       'initiative',
       'lebenspunkte',
       'fokus',
-      // Widerstandswerte TBD
       'verteidigung',
       'geistigerWiderstand',
       'koerperlicherWiderstand',
@@ -203,6 +202,26 @@ export const characterDefinition = defineCharacter(
     },
   },
   {
+    // Basis
+    heldengrad: ({ attributes }) => {
+      if (attributes.erfahrungspunkteEingesetzt < 100) {
+        return 1
+      }
+
+      if (attributes.erfahrungspunkteEingesetzt < 300) {
+        return 2
+      }
+
+      if (attributes.erfahrungspunkteEingesetzt < 600) {
+        return 3
+      }
+
+      return 4
+    },
+    splitterpunkte: ({ attributes }) => {
+      return 2 + attributes.heldengrad
+    },
+
     // Attribute
     ausstrahlung: ({ attributes, rawAttributes }) => {
       const mod = attributes.rasse === 'alb' ? 1 : 0
@@ -235,25 +254,6 @@ export const characterDefinition = defineCharacter(
       let mod = attributes.rasse === 'zwerg' ? 1 : 0
       mod += attributes.rasse === 'varg' ? -1 : 0
       return rawAttributes.ausstrahlung + mod
-    },
-
-    heldengrad: ({ attributes }) => {
-      if (attributes.erfahrungspunkteEingesetzt < 100) {
-        return 1
-      }
-
-      if (attributes.erfahrungspunkteEingesetzt < 300) {
-        return 2
-      }
-
-      if (attributes.erfahrungspunkteEingesetzt < 600) {
-        return 3
-      }
-
-      return 4
-    },
-    splitterpunkte: ({ attributes }) => {
-      return 2 + attributes.heldengrad
     },
 
     // Abgeleitete Werte
@@ -549,40 +549,58 @@ export const characterDefinition = defineCharacter(
     // TODO refactor naming
   },
   {
-    erfahrungspunkteHinzufuegen: ({ menge }, { rawAttributes }) => {
-      rawAttributes.erfahrungspunkte += menge
+    erfahrungspunkteHinzufuegen: {
+      apply({ menge }, { rawAttributes }) {
+        rawAttributes.erfahrungspunkte += menge
+      },
     },
-    nameSetzen: ({ name }, { rawAttributes }) => {
-      rawAttributes.name = name
+    nameSetzen: {
+      apply({ name }, { rawAttributes }) {
+        rawAttributes.name = name
+      },
     },
-    erschaffungWeiter: (_, { rawAttributes }) => {
-      if (rawAttributes.erschaffungsZustand < 11) {
-        rawAttributes.erschaffungsZustand += 1
-      }
-      // TODO: better solution for this? separate event?
-      if (rawAttributes.erschaffungsZustand === 3) {
-        rawAttributes.erschaffungsFertigkeitsPunkte += 15
-      }
+    erschaffungWeiter: {
+      apply(_, { rawAttributes }) {
+        if (rawAttributes.erschaffungsZustand < 11) {
+          rawAttributes.erschaffungsZustand += 1
+        }
+        // TODO: better solution for this? separate event?
+        if (rawAttributes.erschaffungsZustand === 3) {
+          rawAttributes.erschaffungsFertigkeitsPunkte += 15
+        }
+      },
     },
-    rasseSetzen: ({ rasse }, { rawAttributes }) => {
-      rawAttributes.rasse = rasse
+    rasseSetzen: {
+      apply({ rasse }, { rawAttributes }) {
+        rawAttributes.rasse = rasse
+      },
     },
-    fertigkeitSteigernMitPunkt: ({ fertigkeit }, { rawAttributes }) => {
-      if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
-        throw 'Keine Fertigkeitspunkte mehr übrig'
-      }
-      if (rawAttributes[fertigkeit] >= 2) {
-        throw 'Maximal 2 Punkte pro Fertigkeit'
-      }
-      rawAttributes.erschaffungsFertigkeitsPunkte -= 1
-      rawAttributes[fertigkeit] += 1
+    fertigkeitSteigernMitPunkt: {
+      validate({ fertigkeit }, { rawAttributes }) {
+        if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
+          return 'Keine Fertigkeitspunkte mehr übrig'
+        }
+        if (rawAttributes[fertigkeit] >= 2) {
+          return 'Maximal 2 Punkte pro Fertigkeit'
+        }
+        return true
+      },
+      apply({ fertigkeit }, { rawAttributes }) {
+        rawAttributes.erschaffungsFertigkeitsPunkte -= 1
+        rawAttributes[fertigkeit] += 1
+      },
     },
-    fertigkeitSenkenMitPunkt: ({ fertigkeit }, { rawAttributes }) => {
-      if (rawAttributes[fertigkeit] < 1) {
-        throw 'Kann nicht weiter gesenkt werden'
-      }
-      rawAttributes.erschaffungsFertigkeitsPunkte += 1
-      rawAttributes[fertigkeit] -= 1
+    fertigkeitSenkenMitPunkt: {
+      validate({ fertigkeit }, { rawAttributes }) {
+        if (rawAttributes[fertigkeit] < 1) {
+          return 'Kann nicht weiter gesenkt werden'
+        }
+        return true
+      },
+      apply({ fertigkeit }, { rawAttributes }) {
+        rawAttributes.erschaffungsFertigkeitsPunkte += 1
+        rawAttributes[fertigkeit] -= 1
+      },
     },
   }
 )

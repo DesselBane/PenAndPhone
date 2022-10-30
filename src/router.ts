@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from './Home.vue'
-import Splittermond from './splittermond/Splittermond.vue'
+import HomeView from './HomeView.vue'
+import SplittermondView from './splittermond/SplittermondView.vue'
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/splittermond', component: Splittermond },
+  { path: '/', component: HomeView },
+  { path: '/splittermond', component: SplittermondView },
 ]
 
 export const router = createRouter({
