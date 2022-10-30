@@ -7,6 +7,11 @@ import { useEventButtons } from '../character-development/useEventButton'
 const character = ref(new Character(characterDefinition))
 const getButtonBindings = useEventButtons(character).getBindings
 
+const valueOf = (id: keyof typeof characterDefinition['attributes']) =>
+  character.value.getAttribute(id).value
+const rawValueOf = (id: keyof typeof characterDefinition['attributes']) =>
+  character.value.getAttribute(id).rawValue
+
 // Step 1
 const name = ref('')
 function handleStep1() {
@@ -27,7 +32,7 @@ function handleStep2() {
   <main>
     <div class="steps">
       <form
-        v-if="character.getAttribute('erschaffungsZustand').value === 1"
+        v-if="valueOf('erschaffungsZustand') === 1"
         @submit.prevent="handleStep1"
       >
         <h2>1 Idee</h2>
@@ -38,7 +43,7 @@ function handleStep2() {
         <button>Speichern & Weiter</button>
       </form>
       <form
-        v-else-if="character.getAttribute('erschaffungsZustand').value === 2"
+        v-else-if="valueOf('erschaffungsZustand') === 2"
         @submit.prevent="handleStep2"
       >
         <h2>2 Rasse</h2>
@@ -56,15 +61,12 @@ function handleStep2() {
         </label>
         <button>Speichern & Weiter</button>
       </form>
-      <form
-        v-else-if="character.getAttribute('erschaffungsZustand').value === 3"
-        @submit.prevent=""
-      >
+      <form v-else-if="valueOf('erschaffungsZustand') === 3" @submit.prevent="">
         <h2>3 Kultur</h2>
         <div>
           <p>
             Punkte zu verteilen:
-            {{ character.getAttribute('erschaffungsFertigkeitsPunkte').value }}
+            {{ valueOf('erschaffungsFertigkeitsPunkte') }}
           </p>
           <div
             v-for="(attributeKeys, groupKey) in characterDefinition.groups
@@ -76,9 +78,7 @@ function handleStep2() {
               <template v-for="key in attributeKeys" :key="key">
                 <dt>{{ key }}</dt>
                 <dd>
-                  {{ character.getAttribute(key).value }} ({{
-                    character.getAttribute(key).rawValue
-                  }})
+                  {{ valueOf(key) }} ({{ rawValueOf(key) }})
                   <button
                     v-bind="
                       getButtonBindings('fertigkeitSenkenMitPunkt', {
@@ -102,11 +102,7 @@ function handleStep2() {
             </dl>
           </div>
         </div>
-        <button
-          :disabled="
-            character.getAttribute('erschaffungsFertigkeitsPunkte').value > 0
-          "
-        >
+        <button :disabled="valueOf('erschaffungsFertigkeitsPunkte') > 0">
           Speichern & Weiter
         </button>
       </form>
@@ -121,11 +117,7 @@ function handleStep2() {
           <dl>
             <template v-for="key in groupValues" :key="key">
               <dt>{{ key }}</dt>
-              <dd>
-                {{ character.getAttribute(key).value }} ({{
-                  character.getAttribute(key).rawValue
-                }})
-              </dd>
+              <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
             </template>
           </dl>
         </div>
@@ -138,11 +130,7 @@ function handleStep2() {
             <dl>
               <template v-for="key in attributeKeys" :key="key">
                 <dt>{{ key }}</dt>
-                <dd>
-                  {{ character.getAttribute(key).value }} ({{
-                    character.getAttribute(key).rawValue
-                  }})
-                </dd>
+                <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
               </template>
             </dl>
           </div>
