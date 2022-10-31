@@ -63,41 +63,44 @@ function handleStep2() {
       </form>
       <form v-else-if="valueOf('erschaffungsZustand') === 3" @submit.prevent="">
         <h2>3 Feinschliff</h2>
-        <p>
-          Attributpunkte zu verteilen:
-          {{ valueOf('attributPunkte') }}
-        </p>
-        <h2>Attribute</h2>
-        <dl>
-          <template
-            v-for="key in characterDefinition.groups.attribute"
-            :key="key"
-          >
-            <dt>{{ key }}</dt>
-            <dd>
-              {{ valueOf(key) }} ({{ rawValueOf(key) }})
-              <button
-                v-bind="
-                  getButtonBindings('attributSenkenMitPunkt', {
-                    attribut: key,
-                  })
-                "
-              >
-                -
-              </button>
-              <button
-                v-bind="
-                  getButtonBindings('attributSteigernMitPunkt', {
-                    attribut: key,
-                  })
-                "
-              >
-                +
-              </button>
-            </dd>
-          </template>
-        </dl>
         <div>
+          <h2>Attribute</h2>
+          <p>
+            Attributpunkte zu verteilen:
+            {{ valueOf('attributPunkte') }}
+          </p>
+          <dl>
+            <template
+              v-for="key in characterDefinition.groups.attribute"
+              :key="key"
+            >
+              <dt>{{ key }}</dt>
+              <dd>
+                {{ valueOf(key) }} ({{ rawValueOf(key) }})
+                <button
+                  v-bind="
+                    getButtonBindings('attributSenkenMitPunkt', {
+                      attribut: key,
+                    })
+                  "
+                >
+                  -
+                </button>
+                <button
+                  v-bind="
+                    getButtonBindings('attributSteigernMitPunkt', {
+                      attribut: key,
+                    })
+                  "
+                >
+                  +
+                </button>
+              </dd>
+            </template>
+          </dl>
+        </div>
+        <div>
+          <h2>Fertigkeiten</h2>
           <p>
             Fertigkeitspunkte zu verteilen:
             {{ valueOf('erschaffungsFertigkeitsPunkte') }}
@@ -107,7 +110,7 @@ function handleStep2() {
               .fertigkeiten"
             :key="groupKey"
           >
-            <h2>{{ groupKey }}</h2>
+            <h3>{{ groupKey }}</h3>
             <dl class="columns-2">
               <template v-for="key in attributeKeys" :key="key">
                 <dt>{{ key }}</dt>
