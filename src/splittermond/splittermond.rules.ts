@@ -564,9 +564,8 @@ export const characterDefinition = defineCharacter(
         if (rawAttributes.erschaffungsZustand < 11) {
           rawAttributes.erschaffungsZustand += 1
         }
-        // TODO: better solution for this? separate event?
         if (rawAttributes.erschaffungsZustand === 3) {
-          rawAttributes.erschaffungsFertigkeitsPunkte += 15
+          rawAttributes.erschaffungsFertigkeitsPunkte += 55
         }
       },
     },
@@ -576,30 +575,13 @@ export const characterDefinition = defineCharacter(
       },
     },
     fertigkeitSteigernMitPunkt: {
-      validate({ fertigkeit }, { rawAttributes }, { groups }) {
+      validate({ fertigkeit }, { rawAttributes }) {
         if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
           return 'Alle Fertigkeitspunkte sind aufgebraucht'
         }
-        if (rawAttributes[fertigkeit] >= 2) {
-          return 'Maximal zwei Punkte pro Fertigkeit'
+        if (rawAttributes[fertigkeit] >= 6) {
+          return 'Maximal 6 Punkte pro Fertigkeit'
         }
-
-        const istMagieSchule = groups.fertigkeiten.magieSchulen.find(
-          (schule) => schule === fertigkeit
-        )
-        if (istMagieSchule) {
-          if (rawAttributes[fertigkeit] >= 1) {
-            return 'Maximal ein Punkte pro Magieschule'
-          }
-          const magieschuleMitPunkt = groups.fertigkeiten.magieSchulen.find(
-            (schule) => rawAttributes[schule] >= 1
-          )
-          // TODO: validate result with key + context
-          if (magieschuleMitPunkt) {
-            return `Maximal ein Punkt in alle Magieschulen. Der Punkt wurde bereits in der Schule "${magieschuleMitPunkt}" eingesetzt.`
-          }
-        }
-
         return true
       },
       apply({ fertigkeit }, { rawAttributes }) {

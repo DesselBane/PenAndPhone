@@ -16,14 +16,14 @@ const rawValueOf = (id: keyof typeof characterDefinition['attributes']) =>
 const name = ref('')
 function handleStep1() {
   character.value.execute('nameSetzen', { name: name.value })
-  character.value.execute('erschaffungWeiter', 2)
+  character.value.execute('erschaffungWeiter', {})
 }
 // Step 2
 const rasseOptionen = characterDefinition.attributes.rasse.options
 const rasse = ref<typeof rasseOptionen[number]>(rasseOptionen[0])
 function handleStep2() {
   character.value.execute('rasseSetzen', { rasse: rasse.value })
-  character.value.execute('erschaffungWeiter', 3)
+  character.value.execute('erschaffungWeiter', {})
 }
 </script>
 
