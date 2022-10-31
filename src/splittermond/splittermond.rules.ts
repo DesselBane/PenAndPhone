@@ -5,10 +5,10 @@ export const characterDefinition = defineCharacter(
     // System
     erschaffungsZustand: {
       type: 'single-select',
-      options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const,
+      options: [1, 2, 3, 4] as const,
     },
+    attributPunkte: { type: 'number' },
     erschaffungsFertigkeitsPunkte: { type: 'number' },
-    //erschaffungsPunkte: { type: 'number' },
 
     // Basis
     name: { type: 'text' },
@@ -230,30 +230,30 @@ export const characterDefinition = defineCharacter(
     beweglichkeit: ({ attributes, rawAttributes }) => {
       let mod = attributes.rasse === 'alb' ? 1 : 0
       mod += attributes.rasse === 'zwerg' ? -1 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.beweglichkeit + mod
     },
     konstitution: ({ attributes, rawAttributes }) => {
       let mod = attributes.rasse === 'alb' ? -1 : 0
       mod += attributes.rasse === 'zwerg' ? 1 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.konstitution + mod
     },
     mystik: ({ attributes, rawAttributes }) => {
       const mod = attributes.rasse === 'gnom' ? 1 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.mystik + mod
     },
     staerke: ({ attributes, rawAttributes }) => {
       let mod = attributes.rasse === 'gnom' ? -1 : 0
       mod += attributes.rasse === 'varg' ? 2 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.staerke + mod
     },
     verstand: ({ attributes, rawAttributes }) => {
       const mod = attributes.rasse === 'gnom' ? 1 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.verstand + mod
     },
     willenskraft: ({ attributes, rawAttributes }) => {
       let mod = attributes.rasse === 'zwerg' ? 1 : 0
       mod += attributes.rasse === 'varg' ? -1 : 0
-      return rawAttributes.ausstrahlung + mod
+      return rawAttributes.willenskraft + mod
     },
 
     // Abgeleitete Werte
@@ -535,6 +535,12 @@ export const characterDefinition = defineCharacter(
     rasseSetzen: {
       rasse: 'rasse.value',
     },
+    attributSteigernMitPunkt: {
+      attribut: 'group.attribute',
+    },
+    attributSenkenMitPunkt: {
+      attribut: 'group.attribute',
+    },
     fertigkeitSteigernMitPunkt: {
       fertigkeit: 'group.fertigkeiten',
     },
@@ -560,11 +566,16 @@ export const characterDefinition = defineCharacter(
       },
     },
     erschaffungWeiter: {
-      apply(_, { rawAttributes }) {
-        if (rawAttributes.erschaffungsZustand < 11) {
+      apply(_, { rawAttributes }, { groups }) {
+        if (rawAttributes.erschaffungsZustand < 4) {
           rawAttributes.erschaffungsZustand += 1
         }
         if (rawAttributes.erschaffungsZustand === 3) {
+          // 18 Attributpunkte, wobei jedes mindestens einen haben muss
+          groups.attribute.forEach((attributKey) => {
+            rawAttributes[attributKey] += 1
+          })
+          rawAttributes.attributPunkte += 10
           rawAttributes.erschaffungsFertigkeitsPunkte += 55
         }
       },
@@ -572,6 +583,33 @@ export const characterDefinition = defineCharacter(
     rasseSetzen: {
       apply({ rasse }, { rawAttributes }) {
         rawAttributes.rasse = rasse
+      },
+    },
+    attributSteigernMitPunkt: {
+      validate({ attribut }, { rawAttributes }) {
+        if (rawAttributes.attributPunkte < 1) {
+          return 'Alle Punkte sind aufgebraucht'
+        }
+        if (rawAttributes[attribut] >= 3) {
+          return 'Maximal 3 Punkte pro Attribut'
+        }
+        return true
+      },
+      apply({ attribut }, { rawAttributes }) {
+        rawAttributes.attributPunkte -= 1
+        rawAttributes[attribut] += 1
+      },
+    },
+    attributSenkenMitPunkt: {
+      validate({ attribut }, { rawAttributes }) {
+        if (rawAttributes[attribut] < 2) {
+          return 'Attribut muss einen Mindestwert von 1 haben'
+        }
+        return true
+      },
+      apply({ attribut }, { rawAttributes }) {
+        rawAttributes.attributPunkte += 1
+        rawAttributes[attribut] -= 1
       },
     },
     fertigkeitSteigernMitPunkt: {

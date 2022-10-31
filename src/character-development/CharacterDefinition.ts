@@ -87,7 +87,10 @@ export type IEventImpls<
         TAttributeGroups,
         TEventDefinitions[Key]
       >,
-      state: ICharacterState<TAttributes>
+      state: ICharacterState<TAttributes>,
+      definition: {
+        groups: TAttributeGroups
+      }
     ) => void
   }
 }
@@ -233,7 +236,7 @@ export class Character<
       }
     }
 
-    apply(payload, this.state)
+    apply(payload, this.state, this.definition)
   }
 
   getAttribute(key: keyof TAttributes) {

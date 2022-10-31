@@ -62,10 +62,44 @@ function handleStep2() {
         <button>Speichern & Weiter</button>
       </form>
       <form v-else-if="valueOf('erschaffungsZustand') === 3" @submit.prevent="">
-        <h2>3 Kultur</h2>
+        <h2>3 Feinschliff</h2>
+        <p>
+          Attributpunkte zu verteilen:
+          {{ valueOf('attributPunkte') }}
+        </p>
+        <h2>Attribute</h2>
+        <dl>
+          <template
+            v-for="key in characterDefinition.groups.attribute"
+            :key="key"
+          >
+            <dt>{{ key }}</dt>
+            <dd>
+              {{ valueOf(key) }} ({{ rawValueOf(key) }})
+              <button
+                v-bind="
+                  getButtonBindings('attributSenkenMitPunkt', {
+                    attribut: key,
+                  })
+                "
+              >
+                -
+              </button>
+              <button
+                v-bind="
+                  getButtonBindings('attributSteigernMitPunkt', {
+                    attribut: key,
+                  })
+                "
+              >
+                +
+              </button>
+            </dd>
+          </template>
+        </dl>
         <div>
           <p>
-            Punkte zu verteilen:
+            Fertigkeitspunkte zu verteilen:
             {{ valueOf('erschaffungsFertigkeitsPunkte') }}
           </p>
           <div
@@ -102,7 +136,12 @@ function handleStep2() {
             </dl>
           </div>
         </div>
-        <button :disabled="valueOf('erschaffungsFertigkeitsPunkte') > 0">
+        <button
+          :disabled="
+            valueOf('attributPunkte') > 0 ||
+            valueOf('erschaffungsFertigkeitsPunkte') > 0
+          "
+        >
           Speichern & Weiter
         </button>
       </form>
