@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { DeepReadonly } from '../util/UtilityTypes'
 import {
   IAttributeGroupDefinitions,
@@ -6,6 +7,7 @@ import {
   TAttributeValue,
   TFlatAttributeGroupDefinitions,
 } from './AttributeDefinition'
+import { NotFoundError, RevertError, ValidationError } from './Errors'
 
 export interface ICharacterState<
   TAttributeDefinitions extends TUnknownAttributeDefinitions
@@ -135,6 +137,28 @@ export const defineCharacter = <
   eventImplementations,
 })
 
+export type UniqueId = string
+export type EventId = UniqueId
+export type Timestamp = string
+
+export interface EventInstance<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
+  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
+  TKey extends keyof TEvents & string = keyof TEvents & string
+> {
+  id: EventId
+  type: TKey
+  timestamp: Timestamp
+  payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
+}
+
+export type EventHistory<
+  TAttributes extends TUnknownAttributeDefinitions,
+  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
+  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>
+> = EventInstance<TAttributes, TAttributeGroups, TEvents>[]
+
 export class Character<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
@@ -150,8 +174,9 @@ export class Character<
     TEventImpls
   >
 
-  rawAttributes: TAttributeState<TAttributes>
-  attributes: DeepReadonly<TAttributeState<TAttributes>>
+  history: EventHistory<TAttributes, TAttributeGroups, TEvents> = []
+  rawAttributes!: TAttributeState<TAttributes>
+  attributes!: DeepReadonly<TAttributeState<TAttributes>>
 
   constructor(
     definition: ICharacterDefinition<
@@ -163,6 +188,108 @@ export class Character<
     >
   ) {
     this.definition = definition
+    this.resetState()
+  }
+
+  get state() {
+    return {
+      rawAttributes: this.rawAttributes,
+      attributes: this.attributes,
+    }
+  }
+
+  validate<TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >
+  ) {
+    const { validate } = this.definition.eventImplementations[type]
+    if (!validate) {
+      return true
+    }
+    return validate(payload, this.state, this.definition)
+  }
+
+  execute<TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >
+  ) {
+    const event: EventInstance<TAttributes, TAttributeGroups, TEvents> = {
+      id: nanoid(),
+      type,
+      timestamp: '',
+      payload,
+    }
+
+    const applyResult = this.apply(event)
+
+    if (applyResult instanceof ValidationError) {
+      return applyResult
+    }
+
+    this.history.push(event)
+  }
+
+  apply(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
+    const eventImpl = this.definition.eventImplementations[event.type]
+
+    if (eventImpl.validate) {
+      const validationResult = eventImpl.validate(
+        event.payload,
+        this.state,
+        this.definition
+      )
+      if (validationResult !== true) {
+        return new ValidationError(validationResult)
+      }
+    }
+
+    eventImpl.apply(event.payload, this.state, this.definition)
+  }
+
+  revert(id: EventId) {
+    const index = this.history.findIndex((event) => event.id === id)
+
+    if (index < 0) {
+      return new NotFoundError(`Event with id '${id}' not found.`)
+    }
+
+    const oldHistory = [...this.history]
+
+    this.resetState()
+    this.history.splice(index, 1)
+
+    const revertError = new RevertError<
+      TAttributes,
+      TAttributeGroups,
+      TEvents
+    >()
+
+    this.history.forEach((event) => {
+      const applyResult = this.apply(event)
+      if (applyResult instanceof ValidationError) {
+        revertError.add(event, applyResult)
+      }
+    })
+
+    if (revertError.errors.length > 0) {
+      this.resetState()
+      this.history = oldHistory
+      this.history.forEach((event) => this.apply(event))
+      return revertError
+    }
+  }
+
+  // TODO: make private (check SplittermondView.vue and useEventButton for Error)
+  resetState() {
+    const definition = this.definition
     const rawAttributes = Object.entries(definition.attributes).reduce(
       (previousValue, [key, value]) => {
         switch (value.type) {
@@ -203,40 +330,6 @@ export class Character<
       )
     ) as DeepReadonly<TAttributeState<TAttributes>>
     this.attributes = attributes
-  }
-
-  get state() {
-    return {
-      rawAttributes: this.rawAttributes,
-      attributes: this.attributes,
-    }
-  }
-
-  validate<TEventId extends keyof TEvents & string>(
-    id: TEventId,
-    payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
-  ) {
-    const { validate } = this.definition.eventImplementations[id]
-    if (!validate) {
-      return true
-    }
-    return validate(payload, this.state, this.definition)
-  }
-
-  execute<TEventId extends keyof TEvents & string>(
-    id: TEventId,
-    payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
-  ) {
-    const { validate, apply } = this.definition.eventImplementations[id]
-
-    if (validate) {
-      const validationResult = validate(payload, this.state, this.definition)
-      if (validationResult !== true) {
-        throw validationResult
-      }
-    }
-
-    apply(payload, this.state, this.definition)
   }
 
   getAttribute(key: keyof TAttributes) {

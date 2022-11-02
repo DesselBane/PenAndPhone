@@ -602,7 +602,7 @@ export const characterDefinition = defineCharacter(
     },
     attributSenkenMitPunkt: {
       validate({ attribut }, { rawAttributes }) {
-        if (rawAttributes[attribut] < 2) {
+        if (rawAttributes[attribut] <= 1) {
           return 'Attribut muss einen Mindestwert von 1 haben'
         }
         return true

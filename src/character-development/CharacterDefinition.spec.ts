@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { Character, defineCharacter } from './CharacterDefinition'
+import { RevertError } from './Errors'
 
 const characterDefinition = defineCharacter(
   {
@@ -51,11 +52,14 @@ const characterDefinition = defineCharacter(
       },
     },
     'purchase-attribute': {
-      apply({ attributeId }, state) {
+      validate(_, state) {
         if (state.attributes.xp < 5) {
-          return
+          return 'No no, not xp enough'
         }
-
+        return true
+      },
+      apply({ attributeId }, state) {
+        state.rawAttributes.xp -= 5
         state.rawAttributes[attributeId] += 1
       },
     },
@@ -116,5 +120,109 @@ describe('CharacterDefinition', () => {
       attributeId: 'stamina',
     })
     expect(char.attributes.stamina).toBe(1)
+  })
+
+  it('persists events', () => {
+    const char = new Character(characterDefinition)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    expect(char.history[0]).toEqual({
+      id: expect.anything(),
+      type: 'add-xp',
+      timestamp: expect.anything(),
+      payload: {
+        amount: 20,
+      },
+    })
+  })
+
+  it('can remove event', () => {
+    const char = new Character(characterDefinition)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    const event = char.history[0]
+    expect(event).toEqual({
+      id: expect.anything(),
+      type: 'add-xp',
+      timestamp: expect.anything(),
+      payload: {
+        amount: 20,
+      },
+    })
+    char.revert(event.id)
+    expect(char.history).toHaveLength(0)
+    expect(char.attributes.xp).toBe(0)
+  })
+
+  it('revert keeps other events', () => {
+    const char = new Character(characterDefinition)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    char.execute('add-xp', {
+      amount: 30,
+    })
+    const event = char.history[0]
+    char.revert(event.id)
+    expect(char.history[0]).toEqual({
+      id: expect.anything(),
+      type: 'add-xp',
+      timestamp: expect.anything(),
+      payload: {
+        amount: 30,
+      },
+    })
+    expect(char.attributes.xp).toBe(30)
+  })
+
+  it('cannot revert if history becomes invalid', () => {
+    const char = new Character(characterDefinition)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    char.execute('purchase-attribute', {
+      attributeId: 'stamina',
+    })
+    const event = char.history[0]
+    char.revert(event.id)
+    expect(char.history[0]).toEqual({
+      id: expect.anything(),
+      type: 'add-xp',
+      timestamp: expect.anything(),
+      payload: {
+        amount: 20,
+      },
+    })
+    expect(char.history[1]).toEqual({
+      id: expect.anything(),
+      type: 'purchase-attribute',
+      timestamp: expect.anything(),
+      payload: {
+        attributeId: 'stamina',
+      },
+    })
+    expect(char.attributes.xp).toBe(15)
+    expect(char.attributes.stamina).toBe(1)
+  })
+
+  it('revert yells about validation errors', () => {
+    const char = new Character(characterDefinition)
+    char.execute('add-xp', {
+      amount: 20,
+    })
+    char.execute('purchase-attribute', {
+      attributeId: 'stamina',
+    })
+    const event = char.history[0]
+    const result = char.revert(event.id)
+    expect(result).toBeInstanceOf(RevertError)
+    if (!(result instanceof RevertError)) {
+      return
+    }
+    const error = result.errors[0]
+    expect(error[0]).toBe(char.history[1].id)
+    expect(error[1].message).toBe('No no, not xp enough')
   })
 })
