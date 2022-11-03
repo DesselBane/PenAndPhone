@@ -250,7 +250,7 @@ describe('CharacterDefinition', () => {
       expect(char.attributes.stamina).toBe(2)
     })
 
-    it('can validate revert', () => {
+    it.only('can validate revert', () => {
       const char = new Character(characterDefinition)
       char.execute('add-xp', {
         amount: 5,
@@ -258,15 +258,15 @@ describe('CharacterDefinition', () => {
       char.execute('purchase-attribute', {
         attributeId: 'stamina',
       })
-      const result = char.validateRevert('purchase-attribute', {
-        attributeId: 'intelligence',
+      const result = char.validateRevert('add-xp', {
+        amount: 5,
       })
       expect(result).not.toBe(true)
       char.execute('add-xp', {
         amount: 5,
       })
-      const result2 = char.validateRevert('purchase-attribute', {
-        attributeId: 'intelligence',
+      const result2 = char.validateRevert('add-xp', {
+        amount: 5,
       })
       expect(result2).toBe(true)
     })

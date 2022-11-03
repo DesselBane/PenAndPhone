@@ -345,15 +345,15 @@ export class Character<
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
-    const history = [...this.history]
-    const testChar = new Character(this.definition)
-    history.splice(index, 1)
-
     const revertError = new RevertError<
       TAttributes,
       TAttributeGroups,
       TEvents
     >()
+
+    const history = [...this.history]
+    const testChar = new Character(this.definition)
+    history.splice(index, 1)
 
     history.forEach((event) => {
       const applyResult = testChar.apply(event)
