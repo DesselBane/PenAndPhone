@@ -160,22 +160,34 @@ function handleStep2() {
     </div>
     <aside>
       <div class="aside-buttons">
-        <button @click="showHistory = true">History</button>
-        <button @click="showHistory = false">State</button>
+        <button
+          @click="showHistory = true"
+          :class="[showHistory === true && 'active']"
+        >
+          History
+        </button>
+        <button
+          @click="showHistory = false"
+          :class="[showHistory === false && 'active']"
+        >
+          State
+        </button>
       </div>
 
       <div v-if="showHistory" class="history">
-        <div
-          v-for="event in [...character.history].reverse()"
-          :key="event.id"
-          class="event"
-        >
-          <h4>{{ event.type }}</h4>
-          <small>ID: {{ event.id }}</small>
-          <code>
-            <pre>{{ event.payload }}</pre>
-          </code>
-        </div>
+        <TransitionGroup name="event">
+          <div
+            v-for="event in [...character.history].reverse()"
+            :key="event.id"
+            class="event"
+          >
+            <h4>{{ event.type }}</h4>
+            <small>ID: {{ event.id }}</small>
+            <code>
+              <pre>{{ event.payload }}</pre>
+            </code>
+          </div>
+        </TransitionGroup>
       </div>
       <div v-else>
         <template
@@ -236,15 +248,16 @@ aside {
 }
 
 .history {
-  display: grid;
-  gap: 0.2rem;
   padding-block-start: 1rem;
+  position: relative;
 }
 
 .event {
   background: rgb(237, 235, 254);
   padding: 0.4rem;
   border-radius: 0.2rem;
+  margin-bottom: 0.2rem;
+  width: 100%;
 }
 
 .event h4 {
@@ -280,5 +293,21 @@ dd {
 dd {
   padding-inline-start: 2rem;
   font-weight: bold;
+}
+
+.event-move,
+.event-enter-active,
+.event-leave-active {
+  transition: all 0.5s ease;
+}
+
+.event-enter-from,
+.event-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.event-leave-active {
+  position: absolute;
 }
 </style>
