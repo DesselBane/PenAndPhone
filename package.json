@@ -15,6 +15,7 @@
     "@vueuse/core": "9.3.1",
     "@vueuse/firebase": "9.3.1",
     "firebase": "9.12.1",
+    "lodash-es": "4.17.21",
     "nanoid": "4.0.0",
     "pinia": "2.0.23",
     "vue": "3.2.41",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "1.2.0",
     "@types/gapi": "0.0.42",
+    "@types/lodash-es": "4.17.6",
     "@vitejs/plugin-vue": "3.1.2",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",

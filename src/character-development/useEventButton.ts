@@ -28,17 +28,31 @@ export const useEventButtons = <
     >
   >
 ) => ({
-  getBindings: <TEventId extends keyof TEvents & string>(
-    id: TEventId,
-    payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventId]>
+  getBindings: <TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >,
+    revert: boolean = false
   ) => {
     const realCharacter = unref(character)
-    const validation = realCharacter.validate(id, unref(payload))
+    const validation = revert
+      ? realCharacter.validateRevert(type, unref(payload))
+      : realCharacter.validate(type, unref(payload))
     const disabled = validation !== true
-    const title = validation !== true ? validation : undefined
+    let title = undefined
+    if (validation !== true) {
+      title = validation instanceof Error ? validation.message : validation
+    }
 
     function onClick() {
-      realCharacter.execute(id, unref(payload))
+      if (revert) {
+        realCharacter.revert(type, unref(payload))
+        return
+      }
+      realCharacter.execute(type, unref(payload))
     }
 
     return {

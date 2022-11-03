@@ -4,6 +4,7 @@ import { Character } from '../character-development/CharacterDefinition'
 import { ref } from 'vue'
 import { useEventButtons } from '../character-development/useEventButton'
 
+const showHistory = ref(true)
 const character = ref(new Character(characterDefinition))
 const getButtonBindings = useEventButtons(character).getBindings
 
@@ -79,9 +80,13 @@ function handleStep2() {
                 {{ valueOf(key) }} ({{ rawValueOf(key) }})
                 <button
                   v-bind="
-                    getButtonBindings('attributSenkenMitPunkt', {
-                      attribut: key,
-                    })
+                    getButtonBindings(
+                      'attributSteigernMitPunkt',
+                      {
+                        attribut: key,
+                      },
+                      true
+                    )
                   "
                 >
                   -
@@ -118,9 +123,13 @@ function handleStep2() {
                   {{ valueOf(key) }} ({{ rawValueOf(key) }})
                   <button
                     v-bind="
-                      getButtonBindings('fertigkeitSenkenMitPunkt', {
-                        fertigkeit: key,
-                      })
+                      getButtonBindings(
+                        'fertigkeitSteigernMitPunkt',
+                        {
+                          fertigkeit: key,
+                        },
+                        true
+                      )
                     "
                   >
                     -
@@ -149,36 +158,56 @@ function handleStep2() {
         </button>
       </form>
     </div>
-    <div class="state">
-      <template
-        v-for="(groupValues, groupKey) in characterDefinition.groups"
-        :key="groupKey"
-      >
-        <div v-if="Array.isArray(groupValues)">
-          <h2>{{ groupKey }}</h2>
-          <dl>
-            <template v-for="key in groupValues" :key="key">
-              <dt>{{ key }}</dt>
-              <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
-            </template>
-          </dl>
+    <aside>
+      <div class="aside-buttons">
+        <button @click="showHistory = true">History</button>
+        <button @click="showHistory = false">State</button>
+      </div>
+
+      <div v-if="showHistory" class="history">
+        <div
+          v-for="event in [...character.history].reverse()"
+          :key="event.id"
+          class="event"
+        >
+          <h4>{{ event.type }}</h4>
+          <small>ID: {{ event.id }}</small>
+          <code>
+            <pre>{{ event.payload }}</pre>
+          </code>
         </div>
-        <template v-else>
-          <div
-            v-for="(attributeKeys, subGroupKey) in groupValues"
-            :key="subGroupKey"
-          >
-            <h2>{{ subGroupKey }}</h2>
+      </div>
+      <div v-else>
+        <template
+          v-for="(groupValues, groupKey) in characterDefinition.groups"
+          :key="groupKey"
+        >
+          <div v-if="Array.isArray(groupValues)">
+            <h2>{{ groupKey }}</h2>
             <dl>
-              <template v-for="key in attributeKeys" :key="key">
+              <template v-for="key in groupValues" :key="key">
                 <dt>{{ key }}</dt>
                 <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
               </template>
             </dl>
           </div>
+          <template v-else>
+            <div
+              v-for="(attributeKeys, subGroupKey) in groupValues"
+              :key="subGroupKey"
+            >
+              <h2>{{ subGroupKey }}</h2>
+              <dl>
+                <template v-for="key in attributeKeys" :key="key">
+                  <dt>{{ key }}</dt>
+                  <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
+                </template>
+              </dl>
+            </div>
+          </template>
         </template>
-      </template>
-    </div>
+      </div>
+    </aside>
   </main>
 </template>
 
@@ -195,8 +224,41 @@ form {
   gap: 2rem;
 }
 
-.state {
+aside {
+  width: 20rem;
+}
+
+.aside-buttons {
   display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  height: 3rem;
+}
+
+.history {
+  display: grid;
+  gap: 0.2rem;
+  padding-block-start: 1rem;
+}
+
+.event {
+  background: rgb(237, 235, 254);
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+}
+
+.event h4 {
+  margin: 0.1rem;
+}
+
+.event p {
+  margin: 0.1rem;
+  color: lightslategray;
+}
+
+.event pre {
+  color: rgb(166, 76, 76);
+  margin: 0.1rem;
 }
 
 dl {

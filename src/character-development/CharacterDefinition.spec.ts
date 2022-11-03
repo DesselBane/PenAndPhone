@@ -137,92 +137,138 @@ describe('CharacterDefinition', () => {
     })
   })
 
-  it('can remove event', () => {
-    const char = new Character(characterDefinition)
-    char.execute('add-xp', {
-      amount: 20,
-    })
-    const event = char.history[0]
-    expect(event).toEqual({
-      id: expect.anything(),
-      type: 'add-xp',
-      timestamp: expect.anything(),
-      payload: {
+  describe('revertById', () => {
+    it('can remove event', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
         amount: 20,
-      },
+      })
+      const event = char.history[0]
+      expect(event).toEqual({
+        id: expect.anything(),
+        type: 'add-xp',
+        timestamp: expect.anything(),
+        payload: {
+          amount: 20,
+        },
+      })
+      char.revertById(event.id)
+      expect(char.history).toHaveLength(0)
+      expect(char.attributes.xp).toBe(0)
     })
-    char.revert(event.id)
-    expect(char.history).toHaveLength(0)
-    expect(char.attributes.xp).toBe(0)
-  })
 
-  it('revert keeps other events', () => {
-    const char = new Character(characterDefinition)
-    char.execute('add-xp', {
-      amount: 20,
-    })
-    char.execute('add-xp', {
-      amount: 30,
-    })
-    const event = char.history[0]
-    char.revert(event.id)
-    expect(char.history[0]).toEqual({
-      id: expect.anything(),
-      type: 'add-xp',
-      timestamp: expect.anything(),
-      payload: {
+    it('keeps other events', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
+        amount: 20,
+      })
+      char.execute('add-xp', {
         amount: 30,
-      },
+      })
+      const event = char.history[0]
+      char.revertById(event.id)
+      expect(char.history[0]).toEqual({
+        id: expect.anything(),
+        type: 'add-xp',
+        timestamp: expect.anything(),
+        payload: {
+          amount: 30,
+        },
+      })
+      expect(char.attributes.xp).toBe(30)
     })
-    expect(char.attributes.xp).toBe(30)
-  })
 
-  it('cannot revert if history becomes invalid', () => {
-    const char = new Character(characterDefinition)
-    char.execute('add-xp', {
-      amount: 20,
-    })
-    char.execute('purchase-attribute', {
-      attributeId: 'stamina',
-    })
-    const event = char.history[0]
-    char.revert(event.id)
-    expect(char.history[0]).toEqual({
-      id: expect.anything(),
-      type: 'add-xp',
-      timestamp: expect.anything(),
-      payload: {
+    it('does not revert if history becomes invalid', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
         amount: 20,
-      },
-    })
-    expect(char.history[1]).toEqual({
-      id: expect.anything(),
-      type: 'purchase-attribute',
-      timestamp: expect.anything(),
-      payload: {
+      })
+      char.execute('purchase-attribute', {
         attributeId: 'stamina',
-      },
+      })
+      const event = char.history[0]
+      char.revertById(event.id)
+      expect(char.history[0]).toEqual({
+        id: expect.anything(),
+        type: 'add-xp',
+        timestamp: expect.anything(),
+        payload: {
+          amount: 20,
+        },
+      })
+      expect(char.history[1]).toEqual({
+        id: expect.anything(),
+        type: 'purchase-attribute',
+        timestamp: expect.anything(),
+        payload: {
+          attributeId: 'stamina',
+        },
+      })
+      expect(char.attributes.xp).toBe(15)
+      expect(char.attributes.stamina).toBe(1)
     })
-    expect(char.attributes.xp).toBe(15)
-    expect(char.attributes.stamina).toBe(1)
+
+    it('returns validation errors', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
+        amount: 20,
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      const event = char.history[0]
+      const result = char.revertById(event.id)
+      expect(result).toBeInstanceOf(RevertError)
+      if (!(result instanceof RevertError)) {
+        return
+      }
+      const error = result.errors[0]
+      expect(error[0]).toBe(char.history[1].id)
+      expect(error[1].message).toBe('No no, not xp enough')
+    })
   })
 
-  it('revert yells about validation errors', () => {
-    const char = new Character(characterDefinition)
-    char.execute('add-xp', {
-      amount: 20,
+  describe('revert', () => {
+    it('can revert event by type and payload', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
+        amount: 20,
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'intelligence',
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      char.revert('purchase-attribute', {
+        attributeId: 'intelligence',
+      })
+      expect(char.attributes.intelligence).toBe(0)
+      expect(char.attributes.stamina).toBe(2)
     })
-    char.execute('purchase-attribute', {
-      attributeId: 'stamina',
+
+    it('can validate revert', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
+        amount: 5,
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      const result = char.validateRevert('purchase-attribute', {
+        attributeId: 'intelligence',
+      })
+      expect(result).not.toBe(true)
+      char.execute('add-xp', {
+        amount: 5,
+      })
+      const result2 = char.validateRevert('purchase-attribute', {
+        attributeId: 'intelligence',
+      })
+      expect(result2).toBe(true)
     })
-    const event = char.history[0]
-    const result = char.revert(event.id)
-    expect(result).toBeInstanceOf(RevertError)
-    if (!(result instanceof RevertError)) {
-      return
-    }
-    const error = result.errors[0]
-    expect(error[0]).toBe(char.history[1].id)
-    expect(error[1].message).toBe('No no, not xp enough')
   })
 })

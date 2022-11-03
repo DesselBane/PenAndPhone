@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash-es'
 import { nanoid } from 'nanoid'
 import { DeepReadonly } from '../util/UtilityTypes'
 import {
@@ -198,6 +199,51 @@ export class Character<
     }
   }
 
+  // TODO: make private (check SplittermondView.vue and useEventButton for Error)
+  resetState() {
+    const definition = this.definition
+    const rawAttributes = Object.entries(definition.attributes).reduce(
+      (previousValue, [key, value]) => {
+        switch (value.type) {
+          case 'number':
+            previousValue[key] = 0
+            break
+          case 'text':
+            previousValue[key] = ''
+            break
+          case 'single-select':
+            previousValue[key] = value.options[0]
+        }
+
+        return previousValue
+      },
+      {} as Record<string, unknown>
+    ) as TAttributeState<TAttributes>
+    this.rawAttributes = rawAttributes
+
+    const attributes = Object.defineProperties(
+      {},
+      Object.fromEntries(
+        Object.keys(definition.attributes).map<[string, PropertyDescriptor]>(
+          (id) => [
+            id,
+            {
+              get() {
+                const method = definition.calculations[id]
+
+                if (method == null) {
+                  return rawAttributes[id]
+                }
+                return method({ rawAttributes, attributes })
+              },
+            },
+          ]
+        )
+      )
+    ) as DeepReadonly<TAttributeState<TAttributes>>
+    this.attributes = attributes
+  }
+
   validate<TEventType extends keyof TEvents & string>(
     type: TEventType,
     payload: IResolvedPayload<
@@ -254,7 +300,76 @@ export class Character<
     eventImpl.apply(event.payload, this.state, this.definition)
   }
 
-  revert(id: EventId) {
+  validateRevert<TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >
+  ) {
+    const event = [...this.history].reverse().find((entry) => {
+      return type === entry.type && isEqual(payload, entry.payload)
+    })
+
+    if (!event) {
+      return new NotFoundError(`Event with type '${type}' not found.`)
+    }
+
+    return this.validateRevertById(event.id)
+  }
+
+  revert<TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >
+  ) {
+    const event = [...this.history].reverse().find((entry) => {
+      return type === entry.type && isEqual(payload, entry.payload)
+    })
+
+    if (!event) {
+      return new NotFoundError(`Event with type '${type}' not found.`)
+    }
+
+    return this.revertById(event.id)
+  }
+
+  validateRevertById(id: EventId) {
+    const index = this.history.findIndex((event) => event.id === id)
+
+    if (index < 0) {
+      return new NotFoundError(`Event with id '${id}' not found.`)
+    }
+
+    const history = [...this.history]
+    const testChar = new Character(this.definition)
+    history.splice(index, 1)
+
+    const revertError = new RevertError<
+      TAttributes,
+      TAttributeGroups,
+      TEvents
+    >()
+
+    history.forEach((event) => {
+      const applyResult = testChar.apply(event)
+      if (applyResult instanceof ValidationError) {
+        revertError.add(event, applyResult)
+      }
+    })
+
+    if (revertError.errors.length > 0) {
+      return revertError
+    }
+
+    return true
+  }
+
+  revertById(id: EventId) {
     const index = this.history.findIndex((event) => event.id === id)
 
     if (index < 0) {
@@ -285,51 +400,6 @@ export class Character<
       this.history.forEach((event) => this.apply(event))
       return revertError
     }
-  }
-
-  // TODO: make private (check SplittermondView.vue and useEventButton for Error)
-  resetState() {
-    const definition = this.definition
-    const rawAttributes = Object.entries(definition.attributes).reduce(
-      (previousValue, [key, value]) => {
-        switch (value.type) {
-          case 'number':
-            previousValue[key] = 0
-            break
-          case 'text':
-            previousValue[key] = ''
-            break
-          case 'single-select':
-            previousValue[key] = value.options[0]
-        }
-
-        return previousValue
-      },
-      {} as Record<string, unknown>
-    ) as TAttributeState<TAttributes>
-    this.rawAttributes = rawAttributes
-
-    const attributes = Object.defineProperties(
-      {},
-      Object.fromEntries(
-        Object.keys(definition.attributes).map<[string, PropertyDescriptor]>(
-          (id) => [
-            id,
-            {
-              get() {
-                const method = definition.calculations[id]
-
-                if (method == null) {
-                  return rawAttributes[id]
-                }
-                return method({ rawAttributes, attributes })
-              },
-            },
-          ]
-        )
-      )
-    ) as DeepReadonly<TAttributeState<TAttributes>>
-    this.attributes = attributes
   }
 
   getAttribute(key: keyof TAttributes) {
