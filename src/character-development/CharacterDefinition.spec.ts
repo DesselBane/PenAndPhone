@@ -250,7 +250,7 @@ describe('CharacterDefinition', () => {
       expect(char.attributes.stamina).toBe(2)
     })
 
-    it.only('can validate revert', () => {
+    it('can validate revert', () => {
       const char = new Character(characterDefinition)
       char.execute('add-xp', {
         amount: 5,
