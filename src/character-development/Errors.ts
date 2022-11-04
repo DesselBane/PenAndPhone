@@ -2,11 +2,7 @@ import {
   TUnknownAttributeDefinitions,
   IAttributeGroupDefinitions,
 } from './AttributeDefinition'
-import {
-  EventId,
-  EventInstance,
-  IEventDefinitions,
-} from './CharacterDefinition'
+import { EventId, EventInstance, IEventDefinitions } from './Events'
 export class NotFoundError extends Error {}
 export class ValidationError extends Error {}
 

@@ -2,14 +2,9 @@ import {
   TUnknownAttributeDefinitions,
   IAttributeGroupDefinitions,
 } from './AttributeDefinition'
-import {
-  IAttributeCalculations,
-  IEventDefinitions,
-  IEventImpls,
-  Character,
-  IResolvedPayload,
-} from './CharacterDefinition'
+import { IAttributeCalculations, Character } from './CharacterDefinition'
 import { Ref, unref } from 'vue'
+import { IEventDefinitions, IEventImpls, IResolvedPayload } from './Events'
 
 export const useEventButtons = <
   TAttributes extends TUnknownAttributeDefinitions,
