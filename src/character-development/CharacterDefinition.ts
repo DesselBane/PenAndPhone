@@ -188,6 +188,15 @@ export class EventHistory<
     return this.events.get(id)
   }
 
+  has(id: EventId) {
+    return this.events.has(id)
+  }
+
+  // TODO: Refactor to `.at` when vitest assertions guard against undefined
+  at(index: number) {
+    return this.toArray()[index]
+  }
+
   findLast<TEventType extends keyof TEvents & string>(
     type: TEventType,
     payload: IResolvedPayload<
@@ -388,9 +397,7 @@ export class Character<
   }
 
   validateRevertById(id: EventId) {
-    const event = this.history.get(id)
-
-    if (!event) {
+    if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
@@ -418,9 +425,7 @@ export class Character<
   }
 
   revertById(id: EventId) {
-    const event = this.history.get(id)
-
-    if (!event) {
+    if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
