@@ -127,7 +127,7 @@ describe('CharacterDefinition', () => {
     char.execute('add-xp', {
       amount: 20,
     })
-    expect(char.history[0]).toEqual({
+    expect(char.history.toArray()[0]).toEqual({
       id: expect.anything(),
       type: 'add-xp',
       timestamp: expect.anything(),
@@ -143,7 +143,7 @@ describe('CharacterDefinition', () => {
       char.execute('add-xp', {
         amount: 20,
       })
-      const event = char.history[0]
+      const event = char.history.toArray()[0]
       expect(event).toEqual({
         id: expect.anything(),
         type: 'add-xp',
@@ -153,7 +153,7 @@ describe('CharacterDefinition', () => {
         },
       })
       char.revertById(event.id)
-      expect(char.history).toHaveLength(0)
+      expect(char.history.toArray()).toHaveLength(0)
       expect(char.attributes.xp).toBe(0)
     })
 
@@ -165,9 +165,9 @@ describe('CharacterDefinition', () => {
       char.execute('add-xp', {
         amount: 30,
       })
-      const event = char.history[0]
+      const event = char.history.toArray()[0]
       char.revertById(event.id)
-      expect(char.history[0]).toEqual({
+      expect(char.history.toArray()[0]).toEqual({
         id: expect.anything(),
         type: 'add-xp',
         timestamp: expect.anything(),
@@ -186,9 +186,9 @@ describe('CharacterDefinition', () => {
       char.execute('purchase-attribute', {
         attributeId: 'stamina',
       })
-      const event = char.history[0]
+      const event = char.history.toArray()[0]
       char.revertById(event.id)
-      expect(char.history[0]).toEqual({
+      expect(char.history.toArray()[0]).toEqual({
         id: expect.anything(),
         type: 'add-xp',
         timestamp: expect.anything(),
@@ -196,7 +196,7 @@ describe('CharacterDefinition', () => {
           amount: 20,
         },
       })
-      expect(char.history[1]).toEqual({
+      expect(char.history.toArray()[1]).toEqual({
         id: expect.anything(),
         type: 'purchase-attribute',
         timestamp: expect.anything(),
@@ -216,14 +216,14 @@ describe('CharacterDefinition', () => {
       char.execute('purchase-attribute', {
         attributeId: 'stamina',
       })
-      const event = char.history[0]
+      const event = char.history.toArray()[0]
       const result = char.revertById(event.id)
       expect(result).toBeInstanceOf(RevertError)
       if (!(result instanceof RevertError)) {
         return
       }
       const error = result.errors[0]
-      expect(error[0]).toBe(char.history[1].id)
+      expect(error[0]).toBe(char.history.toArray()[1].id)
       expect(error[1].message).toBe('No no, not xp enough')
     })
   })

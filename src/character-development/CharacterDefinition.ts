@@ -154,11 +154,64 @@ export interface EventInstance<
   payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
 }
 
-export type EventHistory<
+export class EventHistory<
   TAttributes extends TUnknownAttributeDefinitions,
   TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
   TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>
-> = EventInstance<TAttributes, TAttributeGroups, TEvents>[]
+> {
+  events: Map<EventId, EventInstance<TAttributes, TAttributeGroups, TEvents>> =
+    new Map()
+
+  constructor(
+    events: EventInstance<TAttributes, TAttributeGroups, TEvents>[] = []
+  ) {
+    this.events = new Map(events.map((event) => [event.id, event]))
+  }
+
+  toArray() {
+    return [...this.events.values()]
+  }
+
+  copy() {
+    return new EventHistory(this.toArray())
+  }
+
+  add(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
+    this.events.set(event.id, event)
+  }
+
+  remove(id: EventId) {
+    this.events.delete(id)
+  }
+
+  get(id: EventId) {
+    return this.events.get(id)
+  }
+
+  findLast<TEventType extends keyof TEvents & string>(
+    type: TEventType,
+    payload: IResolvedPayload<
+      TAttributes,
+      TAttributeGroups,
+      TEvents[TEventType]
+    >
+  ) {
+    const event = this.toArray()
+      .reverse()
+      .find((entry) => {
+        return type === entry.type && isEqual(payload, entry.payload)
+      })
+    return event
+  }
+
+  forEach(
+    callback: (
+      event: EventInstance<TAttributes, TAttributeGroups, TEvents>
+    ) => void
+  ) {
+    this.events.forEach((event) => callback(event))
+  }
+}
 
 export class Character<
   TAttributes extends TUnknownAttributeDefinitions,
@@ -175,7 +228,7 @@ export class Character<
     TEventImpls
   >
 
-  history: EventHistory<TAttributes, TAttributeGroups, TEvents> = []
+  history = new EventHistory<TAttributes, TAttributeGroups, TEvents>()
   rawAttributes!: TAttributeState<TAttributes>
   attributes!: DeepReadonly<TAttributeState<TAttributes>>
 
@@ -280,7 +333,7 @@ export class Character<
       return applyResult
     }
 
-    this.history.push(event)
+    this.history.add(event)
   }
 
   apply(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
@@ -308,9 +361,7 @@ export class Character<
       TEvents[TEventType]
     >
   ) {
-    const event = [...this.history].reverse().find((entry) => {
-      return type === entry.type && isEqual(payload, entry.payload)
-    })
+    const event = this.history.findLast(type, payload)
 
     if (!event) {
       return new NotFoundError(`Event with type '${type}' not found.`)
@@ -327,9 +378,7 @@ export class Character<
       TEvents[TEventType]
     >
   ) {
-    const event = [...this.history].reverse().find((entry) => {
-      return type === entry.type && isEqual(payload, entry.payload)
-    })
+    const event = this.history.findLast(type, payload)
 
     if (!event) {
       return new NotFoundError(`Event with type '${type}' not found.`)
@@ -339,9 +388,9 @@ export class Character<
   }
 
   validateRevertById(id: EventId) {
-    const index = this.history.findIndex((event) => event.id === id)
+    const event = this.history.get(id)
 
-    if (index < 0) {
+    if (!event) {
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
@@ -351,10 +400,9 @@ export class Character<
       TEvents
     >()
 
-    const history = [...this.history]
     const testChar = new Character(this.definition)
-    history.splice(index, 1)
-
+    const history = this.history.copy()
+    history.remove(id)
     history.forEach((event) => {
       const applyResult = testChar.apply(event)
       if (applyResult instanceof ValidationError) {
@@ -370,16 +418,16 @@ export class Character<
   }
 
   revertById(id: EventId) {
-    const index = this.history.findIndex((event) => event.id === id)
+    const event = this.history.get(id)
 
-    if (index < 0) {
+    if (!event) {
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
-    const oldHistory = [...this.history]
+    const oldHistory = this.history.copy()
 
     this.resetState()
-    this.history.splice(index, 1)
+    this.history.remove(id)
 
     const revertError = new RevertError<
       TAttributes,
