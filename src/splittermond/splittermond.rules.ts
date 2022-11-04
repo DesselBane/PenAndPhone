@@ -538,13 +538,7 @@ export const characterDefinition = defineCharacter(
     attributSteigernMitPunkt: {
       attribut: 'group.attribute',
     },
-    attributSenkenMitPunkt: {
-      attribut: 'group.attribute',
-    },
     fertigkeitSteigernMitPunkt: {
-      fertigkeit: 'group.fertigkeiten',
-    },
-    fertigkeitSenkenMitPunkt: {
       fertigkeit: 'group.fertigkeiten',
     },
     erschaffungWeiter: {},
@@ -600,18 +594,6 @@ export const characterDefinition = defineCharacter(
         rawAttributes[attribut] += 1
       },
     },
-    attributSenkenMitPunkt: {
-      validate({ attribut }, { rawAttributes }) {
-        if (rawAttributes[attribut] <= 1) {
-          return 'Attribut muss einen Mindestwert von 1 haben'
-        }
-        return true
-      },
-      apply({ attribut }, { rawAttributes }) {
-        rawAttributes.attributPunkte += 1
-        rawAttributes[attribut] -= 1
-      },
-    },
     fertigkeitSteigernMitPunkt: {
       validate({ fertigkeit }, { rawAttributes }) {
         if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
@@ -625,18 +607,6 @@ export const characterDefinition = defineCharacter(
       apply({ fertigkeit }, { rawAttributes }) {
         rawAttributes.erschaffungsFertigkeitsPunkte -= 1
         rawAttributes[fertigkeit] += 1
-      },
-    },
-    fertigkeitSenkenMitPunkt: {
-      validate({ fertigkeit }, { rawAttributes }) {
-        if (rawAttributes[fertigkeit] < 1) {
-          return 'Kann nicht weiter gesenkt werden'
-        }
-        return true
-      },
-      apply({ fertigkeit }, { rawAttributes }) {
-        rawAttributes.erschaffungsFertigkeitsPunkte += 1
-        rawAttributes[fertigkeit] -= 1
       },
     },
   }
