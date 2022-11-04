@@ -1,52 +1,52 @@
-export type INumberAttributeDefinition = {
+export type NumberAttributeDefinition = {
   type: 'number'
 }
 
-export type ITextAttributeDefinition = {
+export type TextAttributeDefinition = {
   type: 'text'
 }
 
-export type ISingleSelectAttributeDefinition = {
+export type SingleSelectAttributeDefinition = {
   type: 'single-select'
   options: ReadonlyArray<string | number>
 }
 
-export type TUnknownAttributeDefinition =
-  | INumberAttributeDefinition
-  | ITextAttributeDefinition
-  | ISingleSelectAttributeDefinition
+export type UnknownAttributeDefinition =
+  | NumberAttributeDefinition
+  | TextAttributeDefinition
+  | SingleSelectAttributeDefinition
 
-export type TUnknownAttributeDefinitions = Record<
+export type UnknownAttributeDefinitions = Record<
   string,
-  TUnknownAttributeDefinition
+  UnknownAttributeDefinition
 >
 
-export type TAttributeValue<TAttribute extends TUnknownAttributeDefinition> =
-  TAttribute extends ISingleSelectAttributeDefinition
+export type AttributeValue<TAttribute extends UnknownAttributeDefinition> =
+  TAttribute extends SingleSelectAttributeDefinition
     ? TAttribute['options'][number]
-    : TAttribute extends INumberAttributeDefinition
+    : TAttribute extends NumberAttributeDefinition
     ? number
     : string
 
-export type TAttributeState<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions
+export type AttributeState<
+  TAttributeDefinitions extends UnknownAttributeDefinitions
 > = {
-  [Key in keyof TAttributeDefinitions]: TAttributeValue<
+  [Key in keyof TAttributeDefinitions]: AttributeValue<
     TAttributeDefinitions[Key]
   >
 }
 
-export type IAttributeGroupDefinitions<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions
+export type AttributeGroupDefinitions<
+  TAttributeDefinitions extends UnknownAttributeDefinitions
 > = Record<
   string,
   | (keyof TAttributeDefinitions)[]
   | Record<string, (keyof TAttributeDefinitions)[]>
 >
 
-export type TFlatAttributeGroupDefinitions<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions,
-  TAttributeGroupDefinitions extends IAttributeGroupDefinitions<TAttributeDefinitions>
+export type FlatAttributeGroupDefinitions<
+  TAttributeDefinitions extends UnknownAttributeDefinitions,
+  TAttributeGroupDefinitions extends AttributeGroupDefinitions<TAttributeDefinitions>
 > = {
   [TKey in keyof TAttributeGroupDefinitions]: TAttributeGroupDefinitions[TKey] extends (keyof TAttributeDefinitions)[]
     ? TAttributeGroupDefinitions[TKey]

@@ -1,42 +1,42 @@
 import { nanoid } from 'nanoid'
 import { DeepReadonly } from '../util/UtilityTypes'
 import {
-  IAttributeGroupDefinitions,
-  TAttributeState,
-  TUnknownAttributeDefinitions,
-  TAttributeValue,
+  AttributeGroupDefinitions,
+  AttributeState,
+  UnknownAttributeDefinitions,
+  AttributeValue,
 } from './AttributeDefinition'
 import { NotFoundError, RevertError, ValidationError } from './Errors'
 import {
-  IEventDefinitions,
-  IEventImpls,
+  EventDefinitions,
+  EventImpls,
   EventHistory,
-  IResolvedPayload,
+  ResolvedPayload,
   EventInstance,
   EventId,
 } from './Events'
 
-export interface ICharacterState<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions
+export interface CharacterState<
+  TAttributeDefinitions extends UnknownAttributeDefinitions
 > {
-  rawAttributes: TAttributeState<TAttributeDefinitions>
-  attributes: DeepReadonly<TAttributeState<TAttributeDefinitions>>
+  rawAttributes: AttributeState<TAttributeDefinitions>
+  attributes: DeepReadonly<AttributeState<TAttributeDefinitions>>
 }
 
-export type IAttributeCalculations<
-  TAttributeDefinitions extends TUnknownAttributeDefinitions
+export type AttributeCalculations<
+  TAttributeDefinitions extends UnknownAttributeDefinitions
 > = {
   [Key in keyof TAttributeDefinitions]?: (
-    currentState: Readonly<ICharacterState<TAttributeDefinitions>>
-  ) => TAttributeValue<TAttributeDefinitions[Key]>
+    currentState: Readonly<CharacterState<TAttributeDefinitions>>
+  ) => AttributeValue<TAttributeDefinitions[Key]>
 }
 
-export type ICharacterDefinition<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
-  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
+export type CharacterDefinition<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TAttributeCalculations extends AttributeCalculations<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends EventImpls<TAttributes, TAttributeGroups, TEvents>
 > = {
   attributes: TAttributes
   groups: TAttributeGroups
@@ -46,18 +46,18 @@ export type ICharacterDefinition<
 }
 
 export const defineCharacter = <
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
-  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TAttributeCalculations extends AttributeCalculations<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends EventImpls<TAttributes, TAttributeGroups, TEvents>
 >(
   attributes: TAttributes,
   groups: TAttributeGroups,
   calculations: TAttributeCalculations,
   events: TEvents,
   eventImplementations: TEventImpls
-): ICharacterDefinition<
+): CharacterDefinition<
   TAttributes,
   TAttributeGroups,
   TAttributeCalculations,
@@ -72,13 +72,13 @@ export const defineCharacter = <
 })
 
 export class Character<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
-  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TAttributeCalculations extends AttributeCalculations<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends EventImpls<TAttributes, TAttributeGroups, TEvents>
 > {
-  definition: ICharacterDefinition<
+  definition: CharacterDefinition<
     TAttributes,
     TAttributeGroups,
     TAttributeCalculations,
@@ -87,11 +87,11 @@ export class Character<
   >
 
   history = new EventHistory<TAttributes, TAttributeGroups, TEvents>()
-  rawAttributes!: TAttributeState<TAttributes>
-  attributes!: DeepReadonly<TAttributeState<TAttributes>>
+  rawAttributes!: AttributeState<TAttributes>
+  attributes!: DeepReadonly<AttributeState<TAttributes>>
 
   constructor(
-    definition: ICharacterDefinition<
+    definition: CharacterDefinition<
       TAttributes,
       TAttributeGroups,
       TAttributeCalculations,
@@ -129,7 +129,7 @@ export class Character<
         return previousValue
       },
       {} as Record<string, unknown>
-    ) as TAttributeState<TAttributes>
+    ) as AttributeState<TAttributes>
     this.rawAttributes = rawAttributes
 
     const attributes = Object.defineProperties(
@@ -151,17 +151,13 @@ export class Character<
           ]
         )
       )
-    ) as DeepReadonly<TAttributeState<TAttributes>>
+    ) as DeepReadonly<AttributeState<TAttributes>>
     this.attributes = attributes
   }
 
   validate<TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEvents[TEventType]
-    >
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
     const { validate } = this.definition.eventImplementations[type]
     if (!validate) {
@@ -172,11 +168,7 @@ export class Character<
 
   execute<TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEvents[TEventType]
-    >
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
     const event: EventInstance<TAttributes, TAttributeGroups, TEvents> = {
       id: nanoid(),
@@ -213,11 +205,7 @@ export class Character<
 
   validateRevert<TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEvents[TEventType]
-    >
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
     const event = this.history.findLast(type, payload)
 
@@ -230,11 +218,7 @@ export class Character<
 
   revert<TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEvents[TEventType]
-    >
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
     const event = this.history.findLast(type, payload)
 

@@ -1,15 +1,15 @@
 import {
-  TUnknownAttributeDefinitions,
-  IAttributeGroupDefinitions,
+  UnknownAttributeDefinitions,
+  AttributeGroupDefinitions,
 } from './AttributeDefinition'
-import { EventId, EventInstance, IEventDefinitions } from './Events'
+import { EventId, EventInstance, EventDefinitions } from './Events'
 export class NotFoundError extends Error {}
 export class ValidationError extends Error {}
 
 export class RevertError<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>
 > extends Error {
   errors: [EventId, ValidationError][] = []
   context: Record<

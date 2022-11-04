@@ -1,15 +1,15 @@
 import { isEqual } from 'lodash-es'
 import {
-  TUnknownAttributeDefinitions,
-  IAttributeGroupDefinitions,
-  TFlatAttributeGroupDefinitions,
-  TAttributeValue,
+  UnknownAttributeDefinitions,
+  AttributeGroupDefinitions,
+  FlatAttributeGroupDefinitions,
+  AttributeValue,
 } from './AttributeDefinition'
-import { ICharacterState } from './CharacterDefinition'
+import { CharacterState } from './CharacterDefinition'
 
-export type IAllowedPayloadTypeMap<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
+export type AllowedPayloadTypeMap<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
 > = {
   number: number
   string: string
@@ -17,62 +17,62 @@ export type IAllowedPayloadTypeMap<
   attributeId: keyof TAttributes
 } & {
   [Key in keyof TAttributeGroups as `group.${Key &
-    string}`]: TFlatAttributeGroupDefinitions<
+    string}`]: FlatAttributeGroupDefinitions<
     TAttributes,
     TAttributeGroups
   >[Key][number]
 } & {
-  [Key in keyof TAttributes as `${Key & string}.value`]: TAttributeValue<
+  [Key in keyof TAttributes as `${Key & string}.value`]: AttributeValue<
     TAttributes[Key]
   >
 }
 
-export type IResolvedPayload<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
+export type ResolvedPayload<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
   TPayloadDefinition extends Record<
     string,
-    keyof IAllowedPayloadTypeMap<TAttributes, TAttributeGroups>
+    keyof AllowedPayloadTypeMap<TAttributes, TAttributeGroups>
   >
 > = {
-  [Key in keyof TPayloadDefinition]: IAllowedPayloadTypeMap<
+  [Key in keyof TPayloadDefinition]: AllowedPayloadTypeMap<
     TAttributes,
     TAttributeGroups
   >[TPayloadDefinition[Key]]
 }
 
-export type IEventDefinitions<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>
+export type EventDefinitions<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
 > = Record<
   string,
-  Record<string, keyof IAllowedPayloadTypeMap<TAttributes, TAttributeGroups>>
+  Record<string, keyof AllowedPayloadTypeMap<TAttributes, TAttributeGroups>>
 >
 
-export type IEventImpls<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TEventDefinitions extends IEventDefinitions<TAttributes, TAttributeGroups>
+export type EventImpls<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TEventDefinitions extends EventDefinitions<TAttributes, TAttributeGroups>
 > = {
   [Key in keyof TEventDefinitions]: {
     validate?: (
-      payload: IResolvedPayload<
+      payload: ResolvedPayload<
         TAttributes,
         TAttributeGroups,
         TEventDefinitions[Key]
       >,
-      state: ICharacterState<TAttributes>,
+      state: CharacterState<TAttributes>,
       definition: {
         groups: TAttributeGroups
       }
     ) => string | true
     apply: (
-      payload: IResolvedPayload<
+      payload: ResolvedPayload<
         TAttributes,
         TAttributeGroups,
         TEventDefinitions[Key]
       >,
-      state: ICharacterState<TAttributes>,
+      state: CharacterState<TAttributes>,
       definition: {
         groups: TAttributeGroups
       }
@@ -85,21 +85,21 @@ export type EventId = UniqueId
 export type Timestamp = string
 
 export interface EventInstance<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
   TKey extends keyof TEvents & string = keyof TEvents & string
 > {
   id: EventId
   type: TKey
   timestamp: Timestamp
-  payload: IResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
+  payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
 }
 
 export class EventHistory<
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>
 > {
   events: Map<EventId, EventInstance<TAttributes, TAttributeGroups, TEvents>> =
     new Map()
@@ -141,11 +141,7 @@ export class EventHistory<
 
   findLast<TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
-      TAttributes,
-      TAttributeGroups,
-      TEvents[TEventType]
-    >
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
     const event = this.toArray()
       .reverse()

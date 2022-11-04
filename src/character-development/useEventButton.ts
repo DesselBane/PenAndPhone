@@ -1,17 +1,17 @@
 import {
-  TUnknownAttributeDefinitions,
-  IAttributeGroupDefinitions,
+  UnknownAttributeDefinitions,
+  AttributeGroupDefinitions,
 } from './AttributeDefinition'
-import { IAttributeCalculations, Character } from './CharacterDefinition'
+import { AttributeCalculations, Character } from './CharacterDefinition'
 import { Ref, unref } from 'vue'
-import { IEventDefinitions, IEventImpls, IResolvedPayload } from './Events'
+import { EventDefinitions, EventImpls, ResolvedPayload } from './Events'
 
 export const useEventButtons = <
-  TAttributes extends TUnknownAttributeDefinitions,
-  TAttributeGroups extends IAttributeGroupDefinitions<TAttributes>,
-  TAttributeCalculations extends IAttributeCalculations<TAttributes>,
-  TEvents extends IEventDefinitions<TAttributes, TAttributeGroups>,
-  TEventImpls extends IEventImpls<TAttributes, TAttributeGroups, TEvents>
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TAttributeCalculations extends AttributeCalculations<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+  TEventImpls extends EventImpls<TAttributes, TAttributeGroups, TEvents>
 >(
   character: Ref<
     Character<
@@ -25,7 +25,7 @@ export const useEventButtons = <
 ) => ({
   getBindings: <TEventType extends keyof TEvents & string>(
     type: TEventType,
-    payload: IResolvedPayload<
+    payload: ResolvedPayload<
       TAttributes,
       TAttributeGroups,
       TEvents[TEventType]
