@@ -177,7 +177,7 @@ function handleStep2() {
       <div v-if="showHistory" class="history">
         <TransitionGroup name="event">
           <div
-            v-for="event in [...character.history].reverse()"
+            v-for="event in character.history.toArray().reverse()"
             :key="event.id"
             class="event"
           >
