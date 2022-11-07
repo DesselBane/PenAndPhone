@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { Character, defineCharacter } from './CharacterDefinition'
+import { Character, defineCharacter } from './Character'
 import { RevertError } from './Errors'
 
 const characterDefinition = defineCharacter(

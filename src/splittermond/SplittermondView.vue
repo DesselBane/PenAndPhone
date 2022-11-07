@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { characterDefinition } from './splittermond.rules'
-import { Character } from '../character-development/CharacterDefinition'
+import { Character } from '../character-development/Character'
 import { ref } from 'vue'
 import { useEventButtons } from '../character-development/useEventButton'
 

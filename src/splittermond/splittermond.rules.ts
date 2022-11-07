@@ -1,4 +1,4 @@
-import { defineCharacter } from '../character-development/CharacterDefinition'
+import { defineCharacter } from '../character-development/Character'
 
 export const characterDefinition = defineCharacter(
   {

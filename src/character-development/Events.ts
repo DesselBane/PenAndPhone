@@ -5,7 +5,7 @@ import {
   FlatAttributeGroupDefinitions,
   AttributeValue,
 } from './AttributeDefinition'
-import { CharacterState } from './CharacterDefinition'
+import { CharacterState } from './Character'
 
 export type AllowedPayloadTypeMap<
   TAttributes extends UnknownAttributeDefinitions,
