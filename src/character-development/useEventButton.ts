@@ -30,10 +30,10 @@ export const useEventButtons = <
       TAttributeGroups,
       TEvents[TEventType]
     >,
-    revert: boolean = false
+    revert: Ref<boolean> | boolean = false
   ) => {
     const realCharacter = unref(character)
-    const validation = revert
+    const validation = unref(revert)
       ? realCharacter.validateRevert(type, unref(payload))
       : realCharacter.validate(type, unref(payload))
     const disabled = validation !== true
@@ -43,7 +43,7 @@ export const useEventButtons = <
     }
 
     function onClick() {
-      if (revert) {
+      if (unref(revert)) {
         realCharacter.revert(type, unref(payload))
         return
       }

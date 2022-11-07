@@ -1,11 +1,19 @@
 import { isEqual } from 'lodash-es'
 import {
+  UnknownAttributeDefinition,
   UnknownAttributeDefinitions,
   AttributeGroupDefinitions,
   FlatAttributeGroupDefinitions,
   AttributeValue,
+  MultiSelectAttributeDefinition,
 } from './AttributeDefinition'
 import { CharacterState } from './Character'
+
+export type PayloadAttributeValue<
+  TAttribute extends UnknownAttributeDefinition
+> = TAttribute extends MultiSelectAttributeDefinition
+  ? TAttribute['options'][number]
+  : AttributeValue<TAttribute>
 
 export type AllowedPayloadTypeMap<
   TAttributes extends UnknownAttributeDefinitions,
@@ -22,7 +30,7 @@ export type AllowedPayloadTypeMap<
     TAttributeGroups
   >[Key][number]
 } & {
-  [Key in keyof TAttributes as `${Key & string}.value`]: AttributeValue<
+  [Key in keyof TAttributes as `${Key & string}.value`]: PayloadAttributeValue<
     TAttributes[Key]
   >
 }

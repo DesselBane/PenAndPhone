@@ -1,6 +1,55 @@
+import {
+  defineAttributes,
+  FlatAttributeGroupDefinitions,
+} from '../character-development/AttributeDefinition'
 import { defineCharacter } from '../character-development/Character'
 
-export const characterDefinition = defineCharacter(
+type Attributes = typeof attributeDefinitions['attributes']
+type AttributesGroups = typeof attributeDefinitions['groups']
+
+type MeisterschaftName = Attributes['meisterschaften']['options'][number]
+
+type FertigkeitName = FlatAttributeGroupDefinitions<
+  Attributes,
+  AttributesGroups
+>['fertigkeiten'][number]
+
+type MeisterschaftDefinitions = Record<
+  MeisterschaftName,
+  {
+    level: number
+    beschreibung: string
+    fertigkeit: FertigkeitName
+    voraussetzung?: MeisterschaftName[]
+  }
+>
+
+export const meisterschaften: MeisterschaftDefinitions = {
+  blitzreflexe1: {
+    level: 1,
+    beschreibung:
+      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 3 Punkte erhöht.',
+    fertigkeit: 'akrobatik',
+  },
+  blitzreflexe2: {
+    level: 1,
+    beschreibung:
+      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 6 Punkte erhöht.',
+    fertigkeit: 'akrobatik',
+    voraussetzung: ['blitzreflexe1'],
+  },
+}
+
+export function meisterschaftenInFertigkeit(fertigkeit: string) {
+  return Object.entries(meisterschaften)
+    .filter(([, meisterschaft]) => meisterschaft.fertigkeit === fertigkeit)
+    .map(([name, meisterschaft]) => ({
+      ...meisterschaft,
+      name: name as MeisterschaftName,
+    }))
+}
+
+export const attributeDefinitions = defineAttributes(
   {
     // System
     erschaffungsZustand: {
@@ -20,6 +69,12 @@ export const characterDefinition = defineCharacter(
     erfahrungspunkteEingesetzt: { type: 'number' },
     heldengrad: { type: 'single-select', options: [1, 2, 3, 4] as const },
     splitterpunkte: { type: 'number' },
+
+    // Meisterschaften
+    meisterschaften: {
+      type: 'multi-select',
+      options: ['blitzreflexe1', 'blitzreflexe2'] as const,
+    },
 
     // Attribute
     ausstrahlung: { type: 'number' },
@@ -113,6 +168,7 @@ export const characterDefinition = defineCharacter(
       'erfahrungspunkteEingesetzt',
       'heldengrad',
       'splitterpunkte',
+      'meisterschaften',
     ],
     attribute: [
       'ausstrahlung',
@@ -200,7 +256,12 @@ export const characterDefinition = defineCharacter(
         'wurfwaffen',
       ],
     },
-  },
+  }
+)
+
+export const characterDefinition = defineCharacter(
+  attributeDefinitions.attributes,
+  attributeDefinitions.groups,
   {
     // Basis
     heldengrad: ({ attributes }) => {
@@ -542,6 +603,9 @@ export const characterDefinition = defineCharacter(
       fertigkeit: 'group.fertigkeiten',
     },
     erschaffungWeiter: {},
+    meisterschaftKostenlosLernen: {
+      name: 'meisterschaften.value',
+    },
     // TODO add event history into state and then add race attribute point selection
     // +1 for alb, zwerg, varg, gnom
     // +2 for Mensch (must not be the same attribute)
@@ -607,6 +671,31 @@ export const characterDefinition = defineCharacter(
       apply({ fertigkeit }, { rawAttributes }) {
         rawAttributes.erschaffungsFertigkeitsPunkte -= 1
         rawAttributes[fertigkeit] += 1
+      },
+    },
+    meisterschaftKostenlosLernen: {
+      // TODO: Sicherstellen, dass pro Fertigkeitsstufe nur eine kostenlos gelernt werden kann (benötigt EventHistory)
+      validate({ name }, { rawAttributes }) {
+        const meisterschaft = meisterschaften[name]
+        if (rawAttributes.meisterschaften.includes(name)) {
+          return 'Meisterschaft wurde bereits gelernt'
+        }
+        const voraussetzungen = meisterschaft.voraussetzung ?? []
+        if (
+          !voraussetzungen.every((name) =>
+            rawAttributes.meisterschaften.includes(name)
+          )
+        ) {
+          return 'Nicht alle Voraussetzungen erfüllt'
+        }
+        const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
+        if (fertigkeitPunkte < 6) {
+          return 'Eine kostenlose Meisterschaft benötigt mindestens 6 Punkte in der Fertigkeit'
+        }
+        return true
+      },
+      apply({ name }, { rawAttributes }) {
+        rawAttributes.meisterschaften.push(name)
       },
     },
   }

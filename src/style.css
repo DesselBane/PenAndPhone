@@ -59,6 +59,10 @@ button.active {
   color: white;
 }
 
+button.active:disabled {
+  opacity: 0.6;
+}
+
 .card {
   padding: 2em;
 }

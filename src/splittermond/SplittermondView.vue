@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { characterDefinition } from './splittermond.rules'
+import {
+  characterDefinition,
+  meisterschaften,
+  meisterschaftenInFertigkeit,
+} from './splittermond.rules'
 import { Character } from '../character-development/Character'
 import { ref } from 'vue'
 import { useEventButtons } from '../character-development/useEventButton'
@@ -116,36 +120,62 @@ function handleStep2() {
             :key="groupKey"
           >
             <h3>{{ groupKey }}</h3>
-            <dl class="columns-2">
-              <template v-for="key in attributeKeys" :key="key">
-                <dt>{{ key }}</dt>
-                <dd>
-                  {{ valueOf(key) }} ({{ rawValueOf(key) }})
+            <div class="columns-2">
+              <div v-for="key in attributeKeys" :key="key">
+                <dl>
+                  <dt>{{ key }}</dt>
+                  <dd>
+                    {{ valueOf(key) }} ({{ rawValueOf(key) }})
+                    <button
+                      v-bind="
+                        getButtonBindings(
+                          'fertigkeitSteigernMitPunkt',
+                          {
+                            fertigkeit: key,
+                          },
+                          true
+                        )
+                      "
+                    >
+                      -
+                    </button>
+                    <button
+                      v-bind="
+                        getButtonBindings('fertigkeitSteigernMitPunkt', {
+                          fertigkeit: key,
+                        })
+                      "
+                    >
+                      +
+                    </button>
+                  </dd>
+                </dl>
+                <div>
                   <button
+                    v-for="meisterschaft in meisterschaftenInFertigkeit(key)"
+                    :class="[
+                      character.rawAttributes.meisterschaften.includes(
+                        meisterschaft.name
+                      ) && 'active',
+                    ]"
+                    :key="meisterschaft.name"
                     v-bind="
                       getButtonBindings(
-                        'fertigkeitSteigernMitPunkt',
+                        'meisterschaftKostenlosLernen',
                         {
-                          fertigkeit: key,
+                          name: meisterschaft.name,
                         },
-                        true
+                        character.rawAttributes.meisterschaften.includes(
+                          meisterschaft.name
+                        )
                       )
                     "
                   >
-                    -
+                    {{ meisterschaft.name }}
                   </button>
-                  <button
-                    v-bind="
-                      getButtonBindings('fertigkeitSteigernMitPunkt', {
-                        fertigkeit: key,
-                      })
-                    "
-                  >
-                    +
-                  </button>
-                </dd>
-              </template>
-            </dl>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <button
@@ -274,13 +304,16 @@ aside {
   margin: 0.1rem;
 }
 
+.columns-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
 dl {
   display: grid;
   grid-template-columns: 1fr auto;
-}
-
-dl.columns-2 {
-  grid-template-columns: 1fr auto 1fr auto;
+  margin: 0;
 }
 
 dt,

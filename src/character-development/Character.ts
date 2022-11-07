@@ -124,6 +124,9 @@ export class Character<
             break
           case 'single-select':
             previousValue[key] = value.options[0]
+            break
+          case 'multi-select':
+            previousValue[key] = []
         }
 
         return previousValue

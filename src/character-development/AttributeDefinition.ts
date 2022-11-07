@@ -11,10 +11,16 @@ export type SingleSelectAttributeDefinition = {
   options: ReadonlyArray<string | number>
 }
 
+export type MultiSelectAttributeDefinition = {
+  type: 'multi-select'
+  options: ReadonlyArray<string | number>
+}
+
 export type UnknownAttributeDefinition =
   | NumberAttributeDefinition
   | TextAttributeDefinition
   | SingleSelectAttributeDefinition
+  | MultiSelectAttributeDefinition
 
 export type UnknownAttributeDefinitions = Record<
   string,
@@ -24,6 +30,8 @@ export type UnknownAttributeDefinitions = Record<
 export type AttributeValue<TAttribute extends UnknownAttributeDefinition> =
   TAttribute extends SingleSelectAttributeDefinition
     ? TAttribute['options'][number]
+    : TAttribute extends MultiSelectAttributeDefinition
+    ? TAttribute['options'][number][]
     : TAttribute extends NumberAttributeDefinition
     ? number
     : string
@@ -57,3 +65,22 @@ export type FlatAttributeGroupDefinitions<
     ? TAttributeKeys
     : never
 }
+
+export type AttributeDefinitions<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
+> = {
+  attributes: TAttributes
+  groups: TAttributeGroups
+}
+
+export const defineAttributes = <
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
+>(
+  attributes: TAttributes,
+  groups: TAttributeGroups
+): AttributeDefinitions<TAttributes, TAttributeGroups> => ({
+  attributes,
+  groups,
+})
