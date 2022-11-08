@@ -66,7 +66,64 @@ const characterDefinition = defineCharacter(
   }
 )
 
-describe('CharacterDefinition', () => {
+describe('defineCharacter', () => {
+  it('can be enhanced', () => {
+    const newDefinition = characterDefinition.enhance(
+      {
+        foo: {
+          type: 'number',
+        },
+      },
+      {
+        fooGroup: ['foo', 'climbing'],
+      },
+      {},
+      {},
+      {}
+    )
+    expect(newDefinition.attributes).toEqual({
+      ...characterDefinition.attributes,
+      foo: {
+        type: 'number',
+      },
+    })
+    expect(newDefinition.groups).toEqual({
+      ...characterDefinition.groups,
+      fooGroup: ['foo', 'climbing'],
+    })
+  })
+
+  it('can add events', () => {
+    const newDefinition = characterDefinition.addEvents(
+      {
+        'change-climbing': {
+          value: 'climbing.value',
+        },
+      },
+      {
+        'change-climbing': {
+          apply({ value }, state) {
+            state.rawAttributes.climbing = value
+          },
+        },
+      }
+    )
+    expect(newDefinition.events).toEqual({
+      ...characterDefinition.events,
+      'change-climbing': {
+        value: 'climbing.value',
+      },
+    })
+    expect(newDefinition.eventImplementations).toEqual({
+      ...characterDefinition.eventImplementations,
+      'change-climbing': {
+        apply: expect.any(Function),
+      },
+    })
+  })
+})
+
+describe('Character', () => {
   it('can calculate attributes', () => {
     const char = new Character(characterDefinition)
     char.rawAttributes.intelligence = 10
