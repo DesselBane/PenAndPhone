@@ -1,55 +1,7 @@
-import {
-  defineAttributes,
-  FlatAttributeGroupDefinitions,
-} from '../character-development/AttributeDefinition'
+import { FlatAttributeGroupDefinitions } from '../character-development/AttributeDefinition'
 import { defineCharacter } from '../character-development/Character'
 
-type Attributes = typeof attributeDefinitions['attributes']
-type AttributesGroups = typeof attributeDefinitions['groups']
-
-type MeisterschaftName = Attributes['meisterschaften']['options'][number]
-
-type FertigkeitName = FlatAttributeGroupDefinitions<
-  Attributes,
-  AttributesGroups
->['fertigkeiten'][number]
-
-type MeisterschaftDefinitions = Record<
-  MeisterschaftName,
-  {
-    level: number
-    beschreibung: string
-    fertigkeit: FertigkeitName
-    voraussetzung?: MeisterschaftName[]
-  }
->
-
-export const meisterschaften: MeisterschaftDefinitions = {
-  blitzreflexe1: {
-    level: 1,
-    beschreibung:
-      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 3 Punkte erhöht.',
-    fertigkeit: 'akrobatik',
-  },
-  blitzreflexe2: {
-    level: 1,
-    beschreibung:
-      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 6 Punkte erhöht.',
-    fertigkeit: 'akrobatik',
-    voraussetzung: ['blitzreflexe1'],
-  },
-}
-
-export function meisterschaftenInFertigkeit(fertigkeit: string) {
-  return Object.entries(meisterschaften)
-    .filter(([, meisterschaft]) => meisterschaft.fertigkeit === fertigkeit)
-    .map(([name, meisterschaft]) => ({
-      ...meisterschaft,
-      name: name as MeisterschaftName,
-    }))
-}
-
-export const attributeDefinitions = defineAttributes(
+const baseDefinition = defineCharacter(
   {
     // System
     erschaffungsZustand: {
@@ -256,12 +208,7 @@ export const attributeDefinitions = defineAttributes(
         'wurfwaffen',
       ],
     },
-  }
-)
-
-export const characterDefinition = defineCharacter(
-  attributeDefinitions.attributes,
-  attributeDefinitions.groups,
+  },
   {
     // Basis
     heldengrad: ({ attributes }) => {
@@ -603,9 +550,6 @@ export const characterDefinition = defineCharacter(
       fertigkeit: 'group.fertigkeiten',
     },
     erschaffungWeiter: {},
-    meisterschaftKostenlosLernen: {
-      name: 'meisterschaften.value',
-    },
     // TODO add event history into state and then add race attribute point selection
     // +1 for alb, zwerg, varg, gnom
     // +2 for Mensch (must not be the same attribute)
@@ -673,6 +617,61 @@ export const characterDefinition = defineCharacter(
         rawAttributes[fertigkeit] += 1
       },
     },
+  }
+)
+
+type Attributes = typeof baseDefinition['attributes']
+type AttributesGroups = typeof baseDefinition['groups']
+
+type MeisterschaftName = Attributes['meisterschaften']['options'][number]
+
+type FertigkeitName = FlatAttributeGroupDefinitions<
+  Attributes,
+  AttributesGroups
+>['fertigkeiten'][number]
+
+type MeisterschaftDefinitions = Record<
+  MeisterschaftName,
+  {
+    level: number
+    beschreibung: string
+    fertigkeit: FertigkeitName
+    voraussetzung?: MeisterschaftName[]
+  }
+>
+
+export const meisterschaften: MeisterschaftDefinitions = {
+  blitzreflexe1: {
+    level: 1,
+    beschreibung:
+      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 3 Punkte erhöht.',
+    fertigkeit: 'akrobatik',
+  },
+  blitzreflexe2: {
+    level: 1,
+    beschreibung:
+      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 6 Punkte erhöht.',
+    fertigkeit: 'akrobatik',
+    voraussetzung: ['blitzreflexe1'],
+  },
+}
+
+export function meisterschaftenInFertigkeit(fertigkeit: string) {
+  return Object.entries(meisterschaften)
+    .filter(([, meisterschaft]) => meisterschaft.fertigkeit === fertigkeit)
+    .map(([name, meisterschaft]) => ({
+      ...meisterschaft,
+      name: name as MeisterschaftName,
+    }))
+}
+
+export const characterDefinition = baseDefinition.addEvents(
+  {
+    meisterschaftKostenlosLernen: {
+      name: 'meisterschaften.value',
+    },
+  },
+  {
     meisterschaftKostenlosLernen: {
       // TODO: Sicherstellen, dass pro Fertigkeitsstufe nur eine kostenlos gelernt werden kann (benötigt EventHistory)
       validate({ name }, { rawAttributes }) {

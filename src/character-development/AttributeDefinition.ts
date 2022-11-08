@@ -65,22 +65,3 @@ export type FlatAttributeGroupDefinitions<
     ? TAttributeKeys
     : never
 }
-
-export type AttributeDefinitions<
-  TAttributes extends UnknownAttributeDefinitions,
-  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
-> = {
-  attributes: TAttributes
-  groups: TAttributeGroups
-}
-
-export const defineAttributes = <
-  TAttributes extends UnknownAttributeDefinitions,
-  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>
->(
-  attributes: TAttributes,
-  groups: TAttributeGroups
-): AttributeDefinitions<TAttributes, TAttributeGroups> => ({
-  attributes,
-  groups,
-})

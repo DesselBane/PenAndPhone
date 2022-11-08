@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   characterDefinition,
-  meisterschaften,
   meisterschaftenInFertigkeit,
 } from './splittermond.rules'
 import { Character } from '../character-development/Character'

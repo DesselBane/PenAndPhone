@@ -57,18 +57,77 @@ export const defineCharacter = <
   calculations: TAttributeCalculations,
   events: TEvents,
   eventImplementations: TEventImpls
-): CharacterDefinition<
-  TAttributes,
-  TAttributeGroups,
-  TAttributeCalculations,
-  TEvents,
-  TEventImpls
-> => ({
+) => ({
   attributes,
   groups,
   calculations,
   events,
   eventImplementations,
+  addEvents: <
+    TNewEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+    TNewEventImpls extends EventImpls<TAttributes, TAttributeGroups, TNewEvents>
+  >(
+    newEvents: TNewEvents,
+    newEventImplementations: TNewEventImpls
+  ) =>
+    defineCharacter(
+      attributes,
+      groups,
+      calculations,
+      { ...events, ...newEvents },
+      { ...eventImplementations, ...newEventImplementations } as EventImpls<
+        TAttributes,
+        TAttributeGroups,
+        TEvents & TNewEvents
+      >
+    ),
+  enhance: <
+    TNewAttributes extends UnknownAttributeDefinitions,
+    TNewAttributeGroups extends AttributeGroupDefinitions<
+      TAttributes & TNewAttributes
+    >,
+    TNewAttributeCalculations extends AttributeCalculations<
+      TAttributes & TNewAttributes
+    >,
+    TNewEvents extends EventDefinitions<
+      TAttributes & TNewAttributes,
+      TAttributeGroups & TNewAttributeGroups
+    >,
+    TNewEventImpls extends EventImpls<
+      TAttributes & TNewAttributes,
+      TAttributeGroups & TNewAttributeGroups,
+      TNewEvents
+    >
+  >(
+    newAttributes: TNewAttributes,
+    newGroups: TNewAttributeGroups,
+    newCalculations: TNewAttributeCalculations,
+    newEvents: TNewEvents,
+    newEventImplementations: TNewEventImpls
+  ) =>
+    defineCharacter(
+      {
+        ...attributes,
+        ...newAttributes,
+      },
+      {
+        ...groups,
+        ...newGroups,
+      },
+      {
+        ...calculations,
+        ...newCalculations,
+      },
+      {
+        ...events,
+        ...newEvents,
+      },
+      { ...eventImplementations, ...newEventImplementations } as EventImpls<
+        TAttributes & TNewAttributes,
+        TAttributeGroups & TNewAttributeGroups,
+        TEvents & TNewEvents
+      >
+    ),
 })
 
 export class Character<
