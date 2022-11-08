@@ -634,7 +634,6 @@ type MeisterschaftDefinitions = Record<
   MeisterschaftName,
   {
     level: number
-    beschreibung: string
     fertigkeit: FertigkeitName
     voraussetzung?: MeisterschaftName[]
   }
@@ -643,14 +642,10 @@ type MeisterschaftDefinitions = Record<
 export const meisterschaften: MeisterschaftDefinitions = {
   blitzreflexe1: {
     level: 1,
-    beschreibung:
-      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 3 Punkte erhöht.',
     fertigkeit: 'akrobatik',
   },
   blitzreflexe2: {
     level: 1,
-    beschreibung:
-      'Für die Bestimmung der Initiative gilt die Intuition des Abenteurers um 6 Punkte erhöht.',
     fertigkeit: 'akrobatik',
     voraussetzung: ['blitzreflexe1'],
   },
