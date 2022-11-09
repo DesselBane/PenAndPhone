@@ -6,7 +6,8 @@ import {
   FlatAttributeGroupDefinitions,
   AttributeValue,
   MultiSelectAttributeDefinition,
-} from './AttributeDefinition'
+  AttributeMutations,
+} from './Attributes'
 import { CharacterState } from './Character'
 
 export type PayloadAttributeValue<
@@ -30,7 +31,7 @@ export type AllowedPayloadTypeMap<
     TAttributeGroups
   >[Key][number]
 } & {
-  [Key in keyof TAttributes as `${Key & string}.value`]: PayloadAttributeValue<
+  [Key in keyof TAttributes as `${Key}.value`]: PayloadAttributeValue<
     TAttributes[Key]
   >
 }
@@ -57,34 +58,36 @@ export type EventDefinitions<
   Record<string, keyof AllowedPayloadTypeMap<TAttributes, TAttributeGroups>>
 >
 
+export type EventApplyError = string
+
+export type ApplyResult<TAttributes extends UnknownAttributeDefinitions> =
+  | {
+      type: 'success'
+      mutations: AttributeMutations<TAttributes>
+    }
+  | {
+      type: 'error'
+      description: string
+    }
+
 export type EventImpls<
   TAttributes extends UnknownAttributeDefinitions,
   TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
   TEventDefinitions extends EventDefinitions<TAttributes, TAttributeGroups>
 > = {
   [Key in keyof TEventDefinitions]: {
-    validate?: (
-      payload: ResolvedPayload<
-        TAttributes,
-        TAttributeGroups,
-        TEventDefinitions[Key]
-      >,
-      state: CharacterState<TAttributes>,
-      definition: {
-        groups: TAttributeGroups
-      }
-    ) => string | true
     apply: (
       payload: ResolvedPayload<
         TAttributes,
         TAttributeGroups,
         TEventDefinitions[Key]
       >,
+      // TODO make this readonly
       state: CharacterState<TAttributes>,
       definition: {
         groups: TAttributeGroups
       }
-    ) => void
+    ) => ApplyResult<TAttributes>
   }
 }
 
@@ -96,7 +99,7 @@ export interface EventInstance<
   TAttributes extends UnknownAttributeDefinitions,
   TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
   TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
-  TKey extends keyof TEvents & string = keyof TEvents & string
+  TKey extends keyof TEvents = keyof TEvents
 > {
   id: EventId
   type: TKey
@@ -147,7 +150,7 @@ export class EventHistory<
     return this.toArray()[index]
   }
 
-  findLast<TEventType extends keyof TEvents & string>(
+  findLast<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {

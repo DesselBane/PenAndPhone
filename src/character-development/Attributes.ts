@@ -2,8 +2,17 @@ export type NumberAttributeDefinition = {
   type: 'number'
 }
 
+export type NumberAttributeMutation = {
+  type: 'add' | 'subtract'
+  amount: number
+}
+
 export type TextAttributeDefinition = {
   type: 'text'
+}
+
+export type TextAttributeMutation = {
+  value: string
 }
 
 export type SingleSelectAttributeDefinition = {
@@ -11,9 +20,22 @@ export type SingleSelectAttributeDefinition = {
   options: ReadonlyArray<string | number>
 }
 
+export type SingleSelectAttributeMutation<
+  TAttributeDefinition extends SingleSelectAttributeDefinition
+> = {
+  option: TAttributeDefinition['options'][number]
+}
+
 export type MultiSelectAttributeDefinition = {
   type: 'multi-select'
   options: ReadonlyArray<string | number>
+}
+
+export type MultiSelectAttributeMutation<
+  TAttributeDefinition extends MultiSelectAttributeDefinition
+> = {
+  type: 'add' | 'remove'
+  option: TAttributeDefinition['options'][number]
 }
 
 export type UnknownAttributeDefinition =
@@ -21,6 +43,24 @@ export type UnknownAttributeDefinition =
   | TextAttributeDefinition
   | SingleSelectAttributeDefinition
   | MultiSelectAttributeDefinition
+
+export type AttributeMutation<
+  TAttributeDefinition extends UnknownAttributeDefinition
+> = TAttributeDefinition extends TextAttributeDefinition
+  ? TextAttributeMutation
+  : TAttributeDefinition extends NumberAttributeDefinition
+  ? NumberAttributeMutation
+  : TAttributeDefinition extends SingleSelectAttributeDefinition
+  ? SingleSelectAttributeMutation<TAttributeDefinition>
+  : TAttributeDefinition extends MultiSelectAttributeDefinition
+  ? MultiSelectAttributeMutation<TAttributeDefinition>
+  : never
+
+export type AttributeMutations<
+  TAttributes extends UnknownAttributeDefinitions
+> = {
+  [Key in keyof TAttributes]?: AttributeMutation<TAttributes[Key]>
+}
 
 export type UnknownAttributeDefinitions = Record<
   string,
@@ -34,7 +74,9 @@ export type AttributeValue<TAttribute extends UnknownAttributeDefinition> =
     ? TAttribute['options'][number][]
     : TAttribute extends NumberAttributeDefinition
     ? number
-    : string
+    : TAttribute extends TextAttributeDefinition
+    ? string
+    : never
 
 export type AttributeState<
   TAttributeDefinitions extends UnknownAttributeDefinitions
@@ -48,7 +90,7 @@ export type AttributeGroupDefinitions<
   TAttributeDefinitions extends UnknownAttributeDefinitions
 > = Record<
   string,
-  | (keyof TAttributeDefinitions)[]
+  | Array<keyof TAttributeDefinitions>
   | Record<string, (keyof TAttributeDefinitions)[]>
 >
 

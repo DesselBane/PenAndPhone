@@ -5,7 +5,7 @@ import {
   AttributeState,
   UnknownAttributeDefinitions,
   AttributeValue,
-} from './AttributeDefinition'
+} from './Attributes'
 import { NotFoundError, RevertError, ValidationError } from './Errors'
 import {
   EventDefinitions,
@@ -217,7 +217,7 @@ export class Character<
     this.attributes = attributes
   }
 
-  validate<TEventType extends keyof TEvents & string>(
+  validate<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
@@ -228,7 +228,7 @@ export class Character<
     return validate(payload, this.state, this.definition)
   }
 
-  execute<TEventType extends keyof TEvents & string>(
+  execute<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
@@ -265,7 +265,7 @@ export class Character<
     eventImpl.apply(event.payload, this.state, this.definition)
   }
 
-  validateRevert<TEventType extends keyof TEvents & string>(
+  validateRevert<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
@@ -278,7 +278,7 @@ export class Character<
     return this.validateRevertById(event.id)
   }
 
-  revert<TEventType extends keyof TEvents & string>(
+  revert<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {

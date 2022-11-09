@@ -23,7 +23,7 @@ export const useEventButtons = <
     >
   >
 ) => ({
-  getBindings: <TEventType extends keyof TEvents & string>(
+  getBindings: <TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<
       TAttributes,

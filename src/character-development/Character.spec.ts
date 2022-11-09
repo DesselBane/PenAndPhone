@@ -46,12 +46,64 @@ const characterDefinition = defineCharacter(
   },
   {
     'add-xp': {
-      apply({ amount }, state) {
-        // TODO add error handling
-        state.rawAttributes.xp += amount
+      apply: ({ amount }) => {
+        return {
+          type: 'success',
+          mutations: {
+            xp: {
+              type: 'add',
+              amount,
+            },
+          },
+        }
       },
     },
     'purchase-attribute': {
+      apply: ({ attributeId }, state) => {
+        if (state.attributes.xp < 5) {
+          return {
+            type: 'error',
+            description: 'No no, not xp enough',
+          }
+        }
+
+        if (attributeId !== 'intelligence' && attributeId !== 'stamina') {
+          return {
+            type: 'error',
+            description: 'bad input',
+          }
+        }
+
+        return {
+          type: 'success',
+          mutations: {
+            xp: {
+              type: 'subtract',
+              amount: 5,
+            },
+            [attributeId]: {
+              type: 'add',
+            },
+          },
+        }
+      },
+    },
+  }
+)
+
+/*
+'add-xp': {
+      apply({ amount }, state) {
+        // TODO add error handling
+        //state.rawAttributes.xp += amount
+
+        return {
+          xp: {},
+        }
+      },
+    },
+
+* 'purchase-attribute': {
       validate(_, state) {
         if (state.attributes.xp < 5) {
           return 'No no, not xp enough'
@@ -63,8 +115,7 @@ const characterDefinition = defineCharacter(
         state.rawAttributes[attributeId] += 1
       },
     },
-  }
-)
+* */
 
 describe('defineCharacter', () => {
   it('can be enhanced', () => {
