@@ -108,8 +108,11 @@ describe('defineCharacter', () => {
       },
       {
         'change-climbing': {
-          apply({ value }, state) {
-            state.rawAttributes.climbing = value
+          apply({ mutate }, { value }) {
+            mutate('climbing', {
+              type: 'add',
+              amount: value,
+            })
           },
         },
       }
