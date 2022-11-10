@@ -46,76 +46,31 @@ const characterDefinition = defineCharacter(
   },
   {
     'add-xp': {
-      apply: ({ amount }) => {
-        return {
-          type: 'success',
-          mutations: {
-            xp: {
-              type: 'add',
-              amount,
-            },
-          },
-        }
+      apply: ({ mutate }, { amount }) => {
+        mutate('xp', {
+          type: 'add',
+          amount,
+        })
       },
     },
     'purchase-attribute': {
-      apply: ({ attributeId }, state) => {
+      apply: ({ reject, mutate }, { attributeId }, state) => {
         if (state.attributes.xp < 5) {
-          return {
-            type: 'error',
-            description: 'No no, not xp enough',
-          }
+          reject('No no, not xp enough')
         }
 
-        if (attributeId !== 'intelligence' && attributeId !== 'stamina') {
-          return {
-            type: 'error',
-            description: 'bad input',
-          }
-        }
-
-        return {
-          type: 'success',
-          mutations: {
-            xp: {
-              type: 'subtract',
-              amount: 5,
-            },
-            [attributeId]: {
-              type: 'add',
-            },
-          },
-        }
+        mutate('xp', {
+          type: 'subtract',
+          amount: 5,
+        })
+        mutate(attributeId, {
+          type: 'add',
+          amount: 1,
+        })
       },
     },
   }
 )
-
-/*
-'add-xp': {
-      apply({ amount }, state) {
-        // TODO add error handling
-        //state.rawAttributes.xp += amount
-
-        return {
-          xp: {},
-        }
-      },
-    },
-
-* 'purchase-attribute': {
-      validate(_, state) {
-        if (state.attributes.xp < 5) {
-          return 'No no, not xp enough'
-        }
-        return true
-      },
-      apply({ attributeId }, state) {
-        state.rawAttributes.xp -= 5
-        state.rawAttributes[attributeId] += 1
-      },
-    },
-* */
 
 describe('defineCharacter', () => {
   it('can be enhanced', () => {

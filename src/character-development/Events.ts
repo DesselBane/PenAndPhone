@@ -6,7 +6,7 @@ import {
   FlatAttributeGroupDefinitions,
   AttributeValue,
   MultiSelectAttributeDefinition,
-  AttributeMutations,
+  AttributeMutation,
 } from './Attributes'
 import { CharacterState } from './Character'
 
@@ -59,16 +59,6 @@ export type EventDefinitions<
 
 export type EventApplyError = string
 
-export type ApplyResult<TAttributes extends UnknownAttributeDefinitions> =
-  | {
-      type: 'success'
-      mutations: AttributeMutations<TAttributes>
-    }
-  | {
-      type: 'error'
-      description: string
-    }
-
 export type EventImpls<
   TAttributes extends UnknownAttributeDefinitions,
   TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
@@ -76,6 +66,16 @@ export type EventImpls<
 > = {
   [Key in keyof TEventDefinitions]: {
     apply: (
+      {
+        reject,
+        mutate,
+      }: {
+        reject: (reason: EventApplyError) => void
+        mutate: <TKey extends keyof TAttributes>(
+          attributeKey: TKey,
+          mutation: AttributeMutation<TAttributes[TKey]>
+        ) => void
+      },
       payload: ResolvedPayload<
         TAttributes,
         TAttributeGroups,
@@ -86,7 +86,7 @@ export type EventImpls<
       definition: {
         groups: TAttributeGroups
       }
-    ) => ApplyResult<TAttributes>
+    ) => void
   }
 }
 

@@ -1,3 +1,9 @@
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
+  k: infer I
+) => void
+  ? I
+  : never
+
 export type NumberAttributeDefinition = {
   type: 'number'
 }
@@ -46,15 +52,17 @@ export type UnknownAttributeDefinition =
 
 export type AttributeMutation<
   TAttributeDefinition extends UnknownAttributeDefinition
-> = TAttributeDefinition extends TextAttributeDefinition
-  ? TextAttributeMutation
-  : TAttributeDefinition extends NumberAttributeDefinition
-  ? NumberAttributeMutation
-  : TAttributeDefinition extends SingleSelectAttributeDefinition
-  ? SingleSelectAttributeMutation<TAttributeDefinition>
-  : TAttributeDefinition extends MultiSelectAttributeDefinition
-  ? MultiSelectAttributeMutation<TAttributeDefinition>
-  : never
+> = UnionToIntersection<
+  TAttributeDefinition extends TextAttributeDefinition
+    ? TextAttributeMutation
+    : TAttributeDefinition extends NumberAttributeDefinition
+    ? NumberAttributeMutation
+    : TAttributeDefinition extends SingleSelectAttributeDefinition
+    ? SingleSelectAttributeMutation<TAttributeDefinition>
+    : TAttributeDefinition extends MultiSelectAttributeDefinition
+    ? MultiSelectAttributeMutation<TAttributeDefinition>
+    : never
+>
 
 export type AttributeMutations<
   TAttributes extends UnknownAttributeDefinitions
