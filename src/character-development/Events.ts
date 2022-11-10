@@ -25,8 +25,7 @@ export type AllowedPayloadTypeMap<
   boolean: boolean
   attributeId: keyof TAttributes
 } & {
-  [Key in keyof TAttributeGroups as `group.${Key &
-    string}`]: FlatAttributeGroupDefinitions<
+  [Key in keyof TAttributeGroups as `group.${Key}`]: FlatAttributeGroupDefinitions<
     TAttributes,
     TAttributeGroups
   >[Key][number]
