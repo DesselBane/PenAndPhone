@@ -1,4 +1,4 @@
-import { FlatAttributeGroupDefinitions } from '../character-development/AttributeDefinition'
+import { FlatAttributeGroupDefinitions } from '../character-development/Attributes'
 import { defineCharacter } from '../character-development/Character'
 
 const baseDefinition = defineCharacter(
@@ -558,63 +558,90 @@ const baseDefinition = defineCharacter(
   },
   {
     erfahrungspunkteHinzufuegen: {
-      apply({ menge }, { rawAttributes }) {
-        rawAttributes.erfahrungspunkte += menge
+      apply({ mutate }, { menge }) {
+        mutate('erfahrungspunkte', {
+          type: 'add',
+          amount: menge,
+        })
       },
     },
     nameSetzen: {
-      apply({ name }, { rawAttributes }) {
-        rawAttributes.name = name
+      apply({ mutate }, { name }) {
+        mutate('name', { value: name })
       },
     },
     erschaffungWeiter: {
-      apply(_, { rawAttributes }, { groups }) {
-        if (rawAttributes.erschaffungsZustand < 4) {
-          rawAttributes.erschaffungsZustand += 1
+      apply({ mutate, reject }, _, { rawAttributes }, { groups }) {
+        const naechsterZustand = rawAttributes.erschaffungsZustand + 1
+        if (naechsterZustand > 4) {
+          reject('Letzte Erschaffungsstufe erreicht.')
+          return
         }
-        if (rawAttributes.erschaffungsZustand === 3) {
+
+        if (naechsterZustand === 3) {
           // 18 Attributpunkte, wobei jedes mindestens einen haben muss
           groups.attribute.forEach((attributKey) => {
-            rawAttributes[attributKey] += 1
+            mutate(attributKey, {
+              type: 'add',
+              amount: 1,
+            })
           })
-          rawAttributes.attributPunkte += 10
-          rawAttributes.erschaffungsFertigkeitsPunkte += 55
+          mutate('attributPunkte', {
+            type: 'add',
+            amount: 10,
+          })
+          mutate('erschaffungsFertigkeitsPunkte', {
+            type: 'add',
+            amount: 55,
+          })
         }
+
+        mutate('erschaffungsZustand', {
+          option: naechsterZustand as any,
+        })
       },
     },
     rasseSetzen: {
-      apply({ rasse }, { rawAttributes }) {
-        rawAttributes.rasse = rasse
+      apply({ mutate }, { rasse }) {
+        mutate('rasse', {
+          option: rasse,
+        })
       },
     },
     attributSteigernMitPunkt: {
-      validate({ attribut }, { rawAttributes }) {
+      apply({ mutate, reject }, { attribut }, { rawAttributes }) {
         if (rawAttributes.attributPunkte < 1) {
-          return 'Alle Punkte sind aufgebraucht'
+          reject('Alle Punkte sind aufgebraucht')
         }
         if (rawAttributes[attribut] >= 3) {
-          return 'Maximal 3 Punkte pro Attribut'
+          reject('Maximal 3 Punkte pro Attribut')
         }
-        return true
-      },
-      apply({ attribut }, { rawAttributes }) {
-        rawAttributes.attributPunkte -= 1
-        rawAttributes[attribut] += 1
+        mutate('attributPunkte', {
+          type: 'subtract',
+          amount: 1,
+        })
+        mutate(attribut, {
+          type: 'add',
+          amount: 1,
+        })
       },
     },
     fertigkeitSteigernMitPunkt: {
-      validate({ fertigkeit }, { rawAttributes }) {
+      apply({ mutate, reject }, { fertigkeit }, { rawAttributes }) {
         if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
-          return 'Alle Fertigkeitspunkte sind aufgebraucht'
+          reject('Alle Fertigkeitspunkte sind aufgebraucht')
         }
         if (rawAttributes[fertigkeit] >= 6) {
-          return 'Maximal 6 Punkte pro Fertigkeit'
+          reject('Maximal 6 Punkte pro Fertigkeit')
         }
-        return true
-      },
-      apply({ fertigkeit }, { rawAttributes }) {
-        rawAttributes.erschaffungsFertigkeitsPunkte -= 1
-        rawAttributes[fertigkeit] += 1
+        mutate('erschaffungsFertigkeitsPunkte', {
+          type: 'subtract',
+          amount: 1,
+        })
+        mutate(fertigkeit, {
+          type: 'add',
+          amount: 1,
+        })
       },
     },
   }
@@ -669,10 +696,10 @@ export const characterDefinition = baseDefinition.addEvents(
   {
     meisterschaftKostenlosLernen: {
       // TODO: Sicherstellen, dass pro Fertigkeitsstufe nur eine kostenlos gelernt werden kann (benötigt EventHistory)
-      validate({ name }, { rawAttributes }) {
+      apply({ mutate, reject }, { name }, { rawAttributes }) {
         const meisterschaft = meisterschaften[name]
         if (rawAttributes.meisterschaften.includes(name)) {
-          return 'Meisterschaft wurde bereits gelernt'
+          reject('Meisterschaft wurde bereits gelernt')
         }
         const voraussetzungen = meisterschaft.voraussetzung ?? []
         if (
@@ -680,16 +707,19 @@ export const characterDefinition = baseDefinition.addEvents(
             rawAttributes.meisterschaften.includes(name)
           )
         ) {
-          return 'Nicht alle Voraussetzungen erfüllt'
+          reject('Nicht alle Voraussetzungen erfüllt')
         }
         const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
         if (fertigkeitPunkte < 6) {
-          return 'Eine kostenlose Meisterschaft benötigt mindestens 6 Punkte in der Fertigkeit'
+          reject(
+            'Eine kostenlose Meisterschaft benötigt mindestens 6 Punkte in der Fertigkeit'
+          )
         }
-        return true
-      },
-      apply({ name }, { rawAttributes }) {
-        rawAttributes.meisterschaften.push(name)
+
+        mutate('meisterschaften', {
+          type: 'add',
+          option: name,
+        })
       },
     },
   }
