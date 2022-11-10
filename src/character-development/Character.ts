@@ -308,15 +308,16 @@ export class Character<
   ) {
     const { type } = this.definition.attributes[key]
 
+    // TODO: this is horrible :D
     if (type === 'text') {
-      ;(this.rawAttributes[key] as any) = (
+      ;(this.rawAttributes[key] as string) = (
         mutation as TextAttributeMutation
       ).value
       return
     }
 
     if (type === 'single-select') {
-      ;(this.rawAttributes[key] as any) = (
+      ;(this.rawAttributes[key] as string | number) = (
         mutation as SingleSelectAttributeMutation<SingleSelectAttributeDefinition>
       ).option
       return
@@ -325,9 +326,9 @@ export class Character<
     if (type === 'number') {
       const { type: mType, amount } = mutation as NumberAttributeMutation
       if (mType === 'add') {
-        ;(this.rawAttributes[key] as any) += amount
+        ;(this.rawAttributes[key] as number) += amount
       } else {
-        ;(this.rawAttributes[key] as any) -= amount
+        ;(this.rawAttributes[key] as number) -= amount
       }
       return
     }
@@ -336,13 +337,13 @@ export class Character<
       const { type: mType, option } =
         mutation as MultiSelectAttributeMutation<MultiSelectAttributeDefinition>
       if (mType === 'add') {
-        ;(this.rawAttributes[key] as any).push(option)
+        ;(this.rawAttributes[key] as any[]).push(option)
       } else {
-        const index = (this.rawAttributes[key] as any).findIndex(
+        const index = (this.rawAttributes[key] as any[]).findIndex(
           (a: any) => a === option
         )
         if (index > -1) {
-          ;(this.rawAttributes[key] as any).splice(index, 1)
+          ;(this.rawAttributes[key] as any[]).splice(index, 1)
         }
       }
       return
