@@ -1,7 +1,7 @@
 import {
   UnknownAttributeDefinitions,
   AttributeGroupDefinitions,
-} from './AttributeDefinition'
+} from './Attributes'
 import { AttributeCalculations, Character } from './Character'
 import { Ref, unref } from 'vue'
 import { EventDefinitions, EventImpls, ResolvedPayload } from './Events'
