@@ -64,6 +64,14 @@ export type AttributeMutation<
     : never
 >
 
+export type KeyedAttributeMutation<
+  TAttributes extends UnknownAttributeDefinitions,
+  TKey extends keyof TAttributes = keyof TAttributes
+> = {
+  key: TKey
+  mutation: AttributeMutation<TAttributes[TKey]>
+}
+
 export type AttributeMutations<
   TAttributes extends UnknownAttributeDefinitions
 > = {

@@ -3,5 +3,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "files.autoSave": "off"
+  "files.autoSave": "off",
+  "vitest.commandLine": "pnpm test --"
 }

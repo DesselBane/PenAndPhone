@@ -57,7 +57,7 @@ export type EventDefinitions<
   Record<string, keyof AllowedPayloadTypeMap<TAttributes, TAttributeGroups>>
 >
 
-export type EventApplyError = string
+export type EventRejection = string
 
 export type EventImpls<
   TAttributes extends UnknownAttributeDefinitions,
@@ -70,7 +70,7 @@ export type EventImpls<
         reject,
         mutate,
       }: {
-        reject: (reason: EventApplyError) => void
+        reject: (reason: EventRejection) => void
         mutate: <TKey extends keyof TAttributes>(
           attributeKey: TKey,
           mutation: AttributeMutation<TAttributes[TKey]>

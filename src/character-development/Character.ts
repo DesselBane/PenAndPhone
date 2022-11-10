@@ -5,6 +5,14 @@ import {
   AttributeState,
   UnknownAttributeDefinitions,
   AttributeValue,
+  AttributeMutation,
+  KeyedAttributeMutation,
+  TextAttributeMutation,
+  NumberAttributeMutation,
+  SingleSelectAttributeMutation,
+  SingleSelectAttributeDefinition,
+  MultiSelectAttributeMutation,
+  MultiSelectAttributeDefinition,
 } from './Attributes'
 import { NotFoundError, RevertError, ValidationError } from './Errors'
 import {
@@ -14,6 +22,7 @@ import {
   ResolvedPayload,
   EventInstance,
   EventId,
+  EventRejection,
 } from './Events'
 
 export interface CharacterState<
@@ -217,15 +226,47 @@ export class Character<
     this.attributes = attributes
   }
 
+  getEventResults<TEventType extends keyof TEvents>(
+    type: TEventType,
+    payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
+  ) {
+    const eventImpl = this.definition.eventImplementations[type]
+
+    const rejections: EventRejection[] = []
+    const reject = (string: EventRejection) => {
+      rejections.push(string)
+    }
+
+    const mutations: KeyedAttributeMutation<TAttributes>[] = []
+    const mutate = <TKey extends keyof TAttributes>(
+      key: TKey,
+      mutation: AttributeMutation<TAttributes[TKey]>
+    ) => {
+      mutations.push({
+        key,
+        mutation,
+      })
+    }
+
+    eventImpl.apply({ reject, mutate }, payload, this.state, this.definition)
+
+    return {
+      rejections,
+      mutations,
+    }
+  }
+
   validate<TEventType extends keyof TEvents>(
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
-    const { validate } = this.definition.eventImplementations[type]
-    if (!validate) {
-      return true
+    const { rejections } = this.getEventResults(type, payload)
+
+    // TODO: refine results
+    if (rejections.length > 0) {
+      return rejections[0]
     }
-    return validate(payload, this.state, this.definition)
+    return true
   }
 
   execute<TEventType extends keyof TEvents>(
@@ -249,20 +290,63 @@ export class Character<
   }
 
   apply(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
-    const eventImpl = this.definition.eventImplementations[event.type]
+    const { rejections, mutations } = this.getEventResults(
+      event.type,
+      event.payload
+    )
 
-    if (eventImpl.validate) {
-      const validationResult = eventImpl.validate(
-        event.payload,
-        this.state,
-        this.definition
-      )
-      if (validationResult !== true) {
-        return new ValidationError(validationResult)
-      }
+    if (rejections.length > 0) {
+      return new ValidationError(rejections[0])
     }
 
-    eventImpl.apply(event.payload, this.state, this.definition)
+    mutations.forEach(({ key, mutation }) => this.mutate(key, mutation))
+  }
+
+  mutate<TKey extends keyof TAttributes>(
+    key: TKey,
+    mutation: AttributeMutation<TAttributes[TKey]>
+  ) {
+    const { type } = this.definition.attributes[key]
+
+    if (type === 'text') {
+      ;(this.rawAttributes[key] as any) = (
+        mutation as TextAttributeMutation
+      ).value
+      return
+    }
+
+    if (type === 'single-select') {
+      ;(this.rawAttributes[key] as any) = (
+        mutation as SingleSelectAttributeMutation<SingleSelectAttributeDefinition>
+      ).option
+      return
+    }
+
+    if (type === 'number') {
+      const { type: mType, amount } = mutation as NumberAttributeMutation
+      if (mType === 'add') {
+        ;(this.rawAttributes[key] as any) += amount
+      } else {
+        ;(this.rawAttributes[key] as any) -= amount
+      }
+      return
+    }
+
+    if (type === 'multi-select') {
+      const { type: mType, option } =
+        mutation as MultiSelectAttributeMutation<MultiSelectAttributeDefinition>
+      if (mType === 'add') {
+        ;(this.rawAttributes[key] as any).push(option)
+      } else {
+        const index = (this.rawAttributes[key] as any).findIndex(
+          (a: any) => a === option
+        )
+        if (index > -1) {
+          ;(this.rawAttributes[key] as any).splice(index, 1)
+        }
+      }
+      return
+    }
   }
 
   validateRevert<TEventType extends keyof TEvents>(
