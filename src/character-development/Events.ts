@@ -85,7 +85,8 @@ export type EventImpls<
       state: CharacterState<TAttributes>,
       definition: {
         groups: TAttributeGroups
-      }
+      },
+      history: EventHistory<TAttributes, TAttributeGroups, TEventDefinitions>
     ) => void
   }
 }
@@ -159,6 +160,22 @@ export class EventHistory<
         return type === entry.type && isEqual(payload, entry.payload)
       })
     return event
+  }
+
+  filter(
+    predicate: (
+      event: EventInstance<TAttributes, TAttributeGroups, TEvents>
+    ) => boolean
+  ) {
+    return this.toArray().filter(predicate)
+  }
+
+  some(
+    predicate: (
+      event: EventInstance<TAttributes, TAttributeGroups, TEvents>
+    ) => boolean
+  ) {
+    return this.toArray().some(predicate)
   }
 
   forEach(

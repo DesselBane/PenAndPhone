@@ -695,12 +695,12 @@ export const characterDefinition = baseDefinition.addEvents(
   },
   {
     meisterschaftKostenlosLernen: {
-      // TODO: Sicherstellen, dass pro Fertigkeitsstufe nur eine kostenlos gelernt werden kann (benötigt EventHistory)
-      apply({ mutate, reject }, { name }, { rawAttributes }) {
+      apply({ mutate, reject }, { name }, { rawAttributes }, _, history) {
         const meisterschaft = meisterschaften[name]
         if (rawAttributes.meisterschaften.includes(name)) {
           reject('Meisterschaft wurde bereits gelernt')
         }
+
         const voraussetzungen = meisterschaft.voraussetzung ?? []
         if (
           !voraussetzungen.every((name) =>
@@ -714,6 +714,20 @@ export const characterDefinition = baseDefinition.addEvents(
           reject(
             'Eine kostenlose Meisterschaft benötigt mindestens 6 Punkte in der Fertigkeit'
           )
+        }
+
+        const bereitsKostenlosErworben = history.some((event) => {
+          if (event.type !== 'meisterschaftKostenlosLernen') {
+            return false
+          }
+          const erworbeneMeisterschaft = meisterschaften[event.payload.name]
+          if (erworbeneMeisterschaft.fertigkeit !== meisterschaft.fertigkeit) {
+            return false
+          }
+          return true
+        })
+        if (bereitsKostenlosErworben) {
+          reject('Nur eine kostenlose Meisterschaft pro Fertigkeitsstufe')
         }
 
         mutate('meisterschaften', {

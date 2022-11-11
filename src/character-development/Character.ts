@@ -248,7 +248,13 @@ export class Character<
       })
     }
 
-    eventImpl.apply({ reject, mutate }, payload, this.state, this.definition)
+    eventImpl.apply(
+      { reject, mutate },
+      payload,
+      this.state,
+      this.definition,
+      this.history
+    )
 
     return {
       rejections,
