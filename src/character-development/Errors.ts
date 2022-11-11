@@ -5,13 +5,14 @@ import {
 import { EventId, EventInstance, EventDefinitions } from './Events'
 export class NotFoundError extends Error {}
 export class ValidationError extends Error {}
+export class HistoryMutationError extends Error {}
 
 export class RevertError<
   TAttributes extends UnknownAttributeDefinitions,
   TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
   TEvents extends EventDefinitions<TAttributes, TAttributeGroups>
 > extends Error {
-  errors: [EventId, ValidationError][] = []
+  errors: [EventId, ValidationError | HistoryMutationError][] = []
   context: Record<
     EventId,
     EventInstance<TAttributes, TAttributeGroups, TEvents>
@@ -23,7 +24,7 @@ export class RevertError<
 
   add(
     event: EventInstance<TAttributes, TAttributeGroups, TEvents>,
-    error: ValidationError
+    error: ValidationError | HistoryMutationError
   ) {
     this.errors.push([event.id, error])
     this.context[event.id] = event
@@ -40,5 +41,19 @@ export class RevertError<
         }`
       })
       .join(' | ')
+  }
+
+  hasErrors() {
+    return this.errors.length > 0
+  }
+
+  isNotIgnorable() {
+    return this.hasErrors() && !this.isIgnorable()
+  }
+
+  isIgnorable() {
+    return this.errors.every(
+      ([_, error]) => error instanceof HistoryMutationError
+    )
   }
 }

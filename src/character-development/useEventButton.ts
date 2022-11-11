@@ -5,6 +5,7 @@ import {
 import { AttributeCalculations, Character } from './Character'
 import { Ref, unref } from 'vue'
 import { EventDefinitions, EventImpls, ResolvedPayload } from './Events'
+import { RevertError } from './Errors'
 
 export const useEventButtons = <
   TAttributes extends UnknownAttributeDefinitions,
@@ -36,7 +37,15 @@ export const useEventButtons = <
     const validation = unref(revert)
       ? realCharacter.validateRevert(type, unref(payload))
       : realCharacter.validate(type, unref(payload))
-    const disabled = validation !== true
+    const disabled =
+      validation instanceof RevertError
+        ? validation.isNotIgnorable()
+        : validation !== true
+    const warning =
+      validation instanceof RevertError &&
+      validation.hasErrors() &&
+      validation.isIgnorable()
+
     let title = undefined
     if (validation !== true) {
       title = validation instanceof Error ? validation.message : validation
@@ -54,6 +63,7 @@ export const useEventButtons = <
       disabled,
       title,
       onClick,
+      class: [warning && 'warning'],
     }
   },
 })

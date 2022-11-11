@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash-es'
+import { isEqual, cloneDeep } from 'lodash-es'
 import {
   UnknownAttributeDefinition,
   UnknownAttributeDefinitions,
@@ -134,7 +134,7 @@ export class EventHistory<
   }
 
   toArray() {
-    return [...this.events.values()]
+    return cloneDeep([...this.events.values()])
   }
 
   copy() {

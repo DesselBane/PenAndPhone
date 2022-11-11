@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash-es'
 import { nanoid } from 'nanoid'
 import { DeepReadonly } from '../util/UtilityTypes'
 import {
@@ -14,7 +15,12 @@ import {
   MultiSelectAttributeDefinition,
   KeyedAttributeMutations,
 } from './Attributes'
-import { NotFoundError, RevertError, ValidationError } from './Errors'
+import {
+  HistoryMutationError,
+  NotFoundError,
+  RevertError,
+  ValidationError,
+} from './Errors'
 import {
   EventDefinitions,
   EventImpls,
@@ -408,17 +414,24 @@ export class Character<
       const applyResult = testChar.apply(event)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
+        return
+      }
+      if (!isEqual(event.mutations, applyResult)) {
+        revertError.add(
+          event,
+          new HistoryMutationError('Would change mutation')
+        )
+        event.mutations = applyResult
       }
     })
 
-    if (revertError.errors.length > 0) {
+    if (revertError.hasErrors()) {
       return revertError
     }
 
     return true
   }
 
-  // TODO: Revert changes mutations without updating event instances
   revertById(id: EventId) {
     if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
@@ -439,10 +452,13 @@ export class Character<
       const applyResult = this.apply(event)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
+        return
       }
+      // TODO: should be applied by history?
+      event.mutations = applyResult
     })
 
-    if (revertError.errors.length > 0) {
+    if (revertError.isNotIgnorable()) {
       this.resetState()
       this.history = oldHistory
       this.history.forEach((event) => this.apply(event))

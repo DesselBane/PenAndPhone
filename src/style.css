@@ -59,6 +59,10 @@ button.active {
   color: white;
 }
 
+button.warning {
+  background: lightsalmon;
+}
+
 button.active:disabled {
   opacity: 0.6;
 }
