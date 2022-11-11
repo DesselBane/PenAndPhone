@@ -717,26 +717,15 @@ export const characterDefinition = baseDefinition.addEvents(
         }
 
         const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
-        const benoetigteFertigkeitsPunkte = 3 + meisterschaft.level * 3
+        const benoetigteFertigkeitsPunkte = meisterschaft.level - 1 * 3
         if (fertigkeitPunkte < benoetigteFertigkeitsPunkte) {
-          const freieErfahrungspunkte =
-            rawAttributes.erfahrungspunkte -
-            rawAttributes.erfahrungspunkteEingesetzt
-          if (freieErfahrungspunkte < 15) {
-            reject('Zu wenig Erfahrungspunkte')
-            return
-          }
-          // Zu wenig fertigkeitsPunkte, aber genug freie Erfahrungspunkte
-          mutate('meisterschaften', {
-            type: 'add',
-            option: name,
-          })
-          mutate('erfahrungspunkteEingesetzt', {
-            type: 'add',
-            amount: 15,
-          })
+          reject('Zu niedriges Fertigkeitslevel')
           return
         }
+
+        const punkteFuerKostenlosenErwerb = meisterschaft.level * 3
+        const genugFertigkeitFuerKostenlosenErwerb =
+          fertigkeitPunkte >= punkteFuerKostenlosenErwerb
 
         const bereitsKostenlosErworben = history.some((event) => {
           if (event.type !== 'meisterschaftLernen') {
@@ -756,13 +745,30 @@ export const characterDefinition = baseDefinition.addEvents(
           return true
         })
 
-        if (bereitsKostenlosErworben) {
-          reject('Nur eine kostenlose Meisterschaft pro Fertigkeitsstufe')
+        if (!bereitsKostenlosErworben && genugFertigkeitFuerKostenlosenErwerb) {
+          mutate('meisterschaften', {
+            type: 'add',
+            option: name,
+          })
+          return
+        }
+
+        const freieErfahrungspunkte =
+          rawAttributes.erfahrungspunkte -
+          rawAttributes.erfahrungspunkteEingesetzt
+
+        if (freieErfahrungspunkte < 15) {
+          reject('Zu wenig Erfahrungspunkte')
+          return
         }
 
         mutate('meisterschaften', {
           type: 'add',
           option: name,
+        })
+        mutate('erfahrungspunkteEingesetzt', {
+          type: 'add',
+          amount: 15,
         })
       },
     },
