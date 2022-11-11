@@ -723,11 +723,8 @@ export const characterDefinition = baseDefinition.addEvents(
           return
         }
 
-        const punkteFuerKostenlosenErwerb = meisterschaft.level * 3
-        const genugFertigkeitFuerKostenlosenErwerb =
-          fertigkeitPunkte >= punkteFuerKostenlosenErwerb
-
-        const bereitsKostenlosErworben = history.some((event) => {
+        const potentielleKostenloseErwerbe = Math.floor(fertigkeitPunkte / 3)
+        const kostenloseErwerbe = history.filter((event) => {
           if (event.type !== 'meisterschaftLernen') {
             return false
           }
@@ -743,9 +740,9 @@ export const characterDefinition = baseDefinition.addEvents(
             return false
           }
           return true
-        })
+        }).length
 
-        if (!bereitsKostenlosErworben && genugFertigkeitFuerKostenlosenErwerb) {
+        if (kostenloseErwerbe < potentielleKostenloseErwerbe) {
           mutate('meisterschaften', {
             type: 'add',
             option: name,

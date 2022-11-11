@@ -411,6 +411,7 @@ export class Character<
     const history = this.history.copy()
     history.remove(id)
     history.forEach((event) => {
+      // TODO: Keep initial mutation if possible
       const applyResult = testChar.apply(event)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
@@ -421,7 +422,7 @@ export class Character<
           event,
           new HistoryMutationError('Would change mutation')
         )
-        event.mutations = applyResult
+        history.mutate(event.id, applyResult)
       }
     })
 
@@ -449,13 +450,13 @@ export class Character<
     >()
 
     this.history.forEach((event) => {
+      // TODO: Keep initial mutation if possible
       const applyResult = this.apply(event)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
         return
       }
-      // TODO: should be applied by history?
-      event.mutations = applyResult
+      this.history.mutate(event.id, applyResult)
     })
 
     if (revertError.isNotIgnorable()) {

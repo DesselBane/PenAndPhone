@@ -157,6 +157,15 @@ export class EventHistory<
     return this.events.has(id)
   }
 
+  mutate(id: EventId, mutations: KeyedAttributeMutations<TAttributes>) {
+    const event = cloneDeep(this.get(id))
+    if (!event) {
+      return
+    }
+    event.mutations = mutations
+    this.add(event)
+  }
+
   // TODO: Refactor to `.at` when vitest assertions guard against undefined
   at(index: number) {
     return this.toArray()[index]
