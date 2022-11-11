@@ -6,13 +6,13 @@ import {
   UnknownAttributeDefinitions,
   AttributeValue,
   AttributeMutation,
-  KeyedAttributeMutation,
   TextAttributeMutation,
   NumberAttributeMutation,
   SingleSelectAttributeMutation,
   SingleSelectAttributeDefinition,
   MultiSelectAttributeMutation,
   MultiSelectAttributeDefinition,
+  KeyedAttributeMutations,
 } from './Attributes'
 import { NotFoundError, RevertError, ValidationError } from './Errors'
 import {
@@ -23,6 +23,7 @@ import {
   EventInstance,
   EventId,
   EventRejection,
+  EventRequest,
 } from './Events'
 
 export interface CharacterState<
@@ -237,7 +238,7 @@ export class Character<
       rejections.push(string)
     }
 
-    const mutations: KeyedAttributeMutation<TAttributes>[] = []
+    const mutations: KeyedAttributeMutations<TAttributes> = []
     const mutate = <TKey extends keyof TAttributes>(
       key: TKey,
       mutation: AttributeMutation<TAttributes[TKey]>
@@ -279,23 +280,28 @@ export class Character<
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
-    const event: EventInstance<TAttributes, TAttributeGroups, TEvents> = {
-      id: nanoid(),
+    const eventRequest: EventRequest<TAttributes, TAttributeGroups, TEvents> = {
       type,
-      timestamp: '',
       payload,
     }
 
-    const applyResult = this.apply(event)
+    const applyResult = this.apply(eventRequest)
 
     if (applyResult instanceof ValidationError) {
       return applyResult
     }
 
+    const event: EventInstance<TAttributes, TAttributeGroups, TEvents> = {
+      ...eventRequest,
+      id: nanoid(),
+      timestamp: '',
+      mutations: applyResult,
+    }
+
     this.history.add(event)
   }
 
-  apply(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
+  apply(event: EventRequest<TAttributes, TAttributeGroups, TEvents>) {
     const { rejections, mutations } = this.getEventResults(
       event.type,
       event.payload
@@ -306,6 +312,7 @@ export class Character<
     }
 
     mutations.forEach(({ key, mutation }) => this.mutate(key, mutation))
+    return mutations
   }
 
   mutate<TKey extends keyof TAttributes>(
@@ -382,6 +389,7 @@ export class Character<
     return this.revertById(event.id)
   }
 
+  // TODO: Only succeed if no mutations would be altered
   validateRevertById(id: EventId) {
     if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
@@ -410,6 +418,7 @@ export class Character<
     return true
   }
 
+  // TODO: Revert changes mutations without updating event instances
   revertById(id: EventId) {
     if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)

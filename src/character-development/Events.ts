@@ -7,6 +7,7 @@ import {
   AttributeValue,
   MultiSelectAttributeDefinition,
   AttributeMutation,
+  KeyedAttributeMutations,
 } from './Attributes'
 import { CharacterState } from './Character'
 
@@ -95,6 +96,16 @@ export type UniqueId = string
 export type EventId = UniqueId
 export type Timestamp = string
 
+export interface EventRequest<
+  TAttributes extends UnknownAttributeDefinitions,
+  TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
+  TEvents extends EventDefinitions<TAttributes, TAttributeGroups>,
+  TKey extends keyof TEvents = keyof TEvents
+> {
+  type: TKey
+  payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
+}
+
 export interface EventInstance<
   TAttributes extends UnknownAttributeDefinitions,
   TAttributeGroups extends AttributeGroupDefinitions<TAttributes>,
@@ -105,6 +116,7 @@ export interface EventInstance<
   type: TKey
   timestamp: Timestamp
   payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TKey]>
+  mutations: KeyedAttributeMutations<TAttributes>
 }
 
 export class EventHistory<

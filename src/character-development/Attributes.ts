@@ -72,11 +72,9 @@ export type KeyedAttributeMutation<
   mutation: AttributeMutation<TAttributes[TKey]>
 }
 
-export type AttributeMutations<
+export type KeyedAttributeMutations<
   TAttributes extends UnknownAttributeDefinitions
-> = {
-  [Key in keyof TAttributes]?: AttributeMutation<TAttributes[Key]>
-}
+> = KeyedAttributeMutation<TAttributes>[]
 
 export type UnknownAttributeDefinitions = Record<
   string,

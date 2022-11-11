@@ -73,6 +73,13 @@ function handleStep2() {
             Attributpunkte zu verteilen:
             {{ valueOf('attributPunkte') }}
           </p>
+          <p>
+            Erfahrungspunkte zu verteilen:
+            {{
+              valueOf('erfahrungspunkte') -
+              valueOf('erfahrungspunkteEingesetzt')
+            }}
+          </p>
           <dl>
             <template
               v-for="key in characterDefinition.groups.attribute"
@@ -160,7 +167,7 @@ function handleStep2() {
                     :key="meisterschaft.name"
                     v-bind="
                       getButtonBindings(
-                        'meisterschaftKostenlosLernen',
+                        'meisterschaftLernen',
                         {
                           name: meisterschaft.name,
                         },
@@ -214,6 +221,7 @@ function handleStep2() {
             <small>ID: {{ event.id }}</small>
             <code>
               <pre>{{ event.payload }}</pre>
+              <pre>{{ event.mutations }}</pre>
             </code>
           </div>
         </TransitionGroup>

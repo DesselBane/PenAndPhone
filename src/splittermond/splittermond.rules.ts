@@ -594,6 +594,10 @@ const baseDefinition = defineCharacter(
             type: 'add',
             amount: 55,
           })
+          mutate('erfahrungspunkte', {
+            type: 'add',
+            amount: 15,
+          })
         }
 
         mutate('erschaffungsZustand', {
@@ -689,16 +693,17 @@ export function meisterschaftenInFertigkeit(fertigkeit: string) {
 
 export const characterDefinition = baseDefinition.addEvents(
   {
-    meisterschaftKostenlosLernen: {
+    meisterschaftLernen: {
       name: 'meisterschaften.value',
     },
   },
   {
-    meisterschaftKostenlosLernen: {
+    meisterschaftLernen: {
       apply({ mutate, reject }, { name }, { rawAttributes }, _, history) {
         const meisterschaft = meisterschaften[name]
         if (rawAttributes.meisterschaften.includes(name)) {
           reject('Meisterschaft wurde bereits gelernt')
+          return
         }
 
         const voraussetzungen = meisterschaft.voraussetzung ?? []
@@ -708,24 +713,49 @@ export const characterDefinition = baseDefinition.addEvents(
           )
         ) {
           reject('Nicht alle Voraussetzungen erfüllt')
+          return
         }
+
         const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
-        if (fertigkeitPunkte < 6) {
-          reject(
-            'Eine kostenlose Meisterschaft benötigt mindestens 6 Punkte in der Fertigkeit'
-          )
+        const benoetigteFertigkeitsPunkte = 3 + meisterschaft.level * 3
+        if (fertigkeitPunkte < benoetigteFertigkeitsPunkte) {
+          const freieErfahrungspunkte =
+            rawAttributes.erfahrungspunkte -
+            rawAttributes.erfahrungspunkteEingesetzt
+          if (freieErfahrungspunkte < 15) {
+            reject('Zu wenig Erfahrungspunkte')
+            return
+          }
+          // Zu wenig fertigkeitsPunkte, aber genug freie Erfahrungspunkte
+          mutate('meisterschaften', {
+            type: 'add',
+            option: name,
+          })
+          mutate('erfahrungspunkteEingesetzt', {
+            type: 'add',
+            amount: 15,
+          })
+          return
         }
 
         const bereitsKostenlosErworben = history.some((event) => {
-          if (event.type !== 'meisterschaftKostenlosLernen') {
+          if (event.type !== 'meisterschaftLernen') {
             return false
           }
           const erworbeneMeisterschaft = meisterschaften[event.payload.name]
           if (erworbeneMeisterschaft.fertigkeit !== meisterschaft.fertigkeit) {
             return false
           }
+          if (
+            event.mutations.some(
+              (mutation) => mutation.key === 'erfahrungspunkteEingesetzt'
+            )
+          ) {
+            return false
+          }
           return true
         })
+
         if (bereitsKostenlosErworben) {
           reject('Nur eine kostenlose Meisterschaft pro Fertigkeitsstufe')
         }
