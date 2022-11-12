@@ -384,6 +384,41 @@ describe('Character', () => {
       expect(char.attributes.intelligence).toBe(0)
       expect(char.attributes.stamina).toBe(2)
     })
+
+    it('handles mutation that depends on history', () => {
+      const char = new Character(characterDefinition)
+      function addStamina() {
+        char.execute('purchase-attribute', {
+          attributeId: 'stamina',
+        })
+      }
+      char.execute('add-xp', {
+        amount: 20,
+      })
+      addStamina()
+      addStamina()
+      char.execute('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      char.execute('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      const event = char.history.findLast('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      expect(event?.mutations.some((a) => a.key === 'xp')).toBe(false)
+
+      char.revert('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      expect(char.rawAttributes.stamina).toBe(1)
+      expect(char.rawAttributes.climbing).toBe(2)
+      expect(char.rawAttributes.xp).toBe(10)
+      const eventNew = char.history.findLast('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      expect(eventNew?.mutations.some((a) => a.key === 'xp')).toBe(true)
+    })
   })
 
   describe('validateRevert', () => {
@@ -442,8 +477,6 @@ describe('Character', () => {
       expect(result2).toBe(true)
     })
 
-    // TODO: test this case for revert as well
-    // See if the mutations in history have been altered
     it('validates mutation that depends on history', () => {
       const char = new Character(characterDefinition)
       function addStamina() {
