@@ -305,6 +305,7 @@ export class Character<
     }
 
     this.history.add(event)
+    return applyResult
   }
 
   apply(event: EventRequest<TAttributes, TAttributeGroups, TEvents>) {
@@ -395,7 +396,6 @@ export class Character<
     return this.revertById(event.id)
   }
 
-  // TODO: Only succeed if no mutations would be altered
   validateRevertById(id: EventId) {
     if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
@@ -411,8 +411,7 @@ export class Character<
     const history = this.history.copy()
     history.remove(id)
     history.forEach((event) => {
-      // TODO: Keep initial mutation if possible
-      const applyResult = testChar.apply(event)
+      const applyResult = testChar.execute(event.type, event.payload)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
         return
@@ -438,33 +437,37 @@ export class Character<
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
 
-    const oldHistory = this.history.copy()
-
-    this.resetState()
-    this.history.remove(id)
-
     const revertError = new RevertError<
       TAttributes,
       TAttributeGroups,
       TEvents
     >()
 
-    this.history.forEach((event) => {
-      // TODO: Keep initial mutation if possible
-      const applyResult = this.apply(event)
+    const testChar = new Character(this.definition)
+    const history = this.history.copy()
+    history.remove(id)
+    history.forEach((event) => {
+      const applyResult = testChar.execute(event.type, event.payload)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
         return
       }
-      this.history.mutate(event.id, applyResult)
+      if (!isEqual(event.mutations, applyResult)) {
+        revertError.add(
+          event,
+          new HistoryMutationError('Would change mutation')
+        )
+        history.mutate(event.id, applyResult)
+      }
     })
 
     if (revertError.isNotIgnorable()) {
-      this.resetState()
-      this.history = oldHistory
-      this.history.forEach((event) => this.apply(event))
       return revertError
     }
+
+    this.resetState()
+    this.history.reset()
+    history.forEach((event) => this.execute(event.type, event.payload))
   }
 
   getAttribute(key: keyof TAttributes) {

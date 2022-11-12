@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { Character, defineCharacter } from './Character'
-import { RevertError } from './Errors'
+import { HistoryMutationError, NotFoundError, RevertError } from './Errors'
 
 const characterDefinition = defineCharacter(
   {
@@ -43,6 +43,12 @@ const characterDefinition = defineCharacter(
     'purchase-attribute': {
       attributeId: 'group.attribute',
     },
+    'purchase-ability': {
+      abilityId: 'group.abilities',
+    },
+    'purchase-ability-complex': {
+      abilityId: 'group.abilities',
+    },
   },
   {
     'add-xp': {
@@ -64,6 +70,58 @@ const characterDefinition = defineCharacter(
           amount: 5,
         })
         mutate(attributeId, {
+          type: 'add',
+          amount: 1,
+        })
+      },
+    },
+    'purchase-ability': {
+      apply: ({ reject, mutate }, { abilityId }, state) => {
+        const canPurchaseForFree = state.rawAttributes.stamina >= 3
+        const canPurchaseWithXp = state.rawAttributes.xp >= 5
+
+        if (!canPurchaseForFree && !canPurchaseWithXp) {
+          reject('Not enough xp and attribute points')
+        }
+
+        if (!canPurchaseForFree) {
+          mutate('xp', {
+            type: 'subtract',
+            amount: 5,
+          })
+        }
+
+        mutate(abilityId, {
+          type: 'add',
+          amount: 1,
+        })
+      },
+    },
+    'purchase-ability-complex': {
+      apply: ({ reject, mutate }, { abilityId }, state, _, history) => {
+        const possibleFreePurchases = state.rawAttributes.stamina
+        const freePurchases = history.filter((event) => {
+          if (event.type !== 'purchase-ability-complex') {
+            return false
+          }
+          return !event.mutations.some((mutation) => mutation.key === 'xp')
+        }).length
+
+        const canPurchaseForFree = possibleFreePurchases > freePurchases
+        const canPurchaseWithXp = state.rawAttributes.xp >= 5
+
+        if (!canPurchaseForFree && !canPurchaseWithXp) {
+          reject('Not enough xp and attribute points')
+        }
+
+        if (!canPurchaseForFree) {
+          mutate('xp', {
+            type: 'subtract',
+            amount: 5,
+          })
+        }
+
+        mutate(abilityId, {
           type: 'add',
           amount: 1,
         })
@@ -193,14 +251,16 @@ describe('Character', () => {
     char.execute('add-xp', {
       amount: 20,
     })
-    expect(char.history.toArray()[0]).toEqual({
-      id: expect.anything(),
-      type: 'add-xp',
-      timestamp: expect.anything(),
-      payload: {
-        amount: 20,
-      },
-    })
+    expect(char.history.toArray()[0]).toEqual(
+      expect.objectContaining({
+        id: expect.anything(),
+        type: 'add-xp',
+        timestamp: expect.anything(),
+        payload: {
+          amount: 20,
+        },
+      })
+    )
   })
 
   describe('revertById', () => {
@@ -210,14 +270,16 @@ describe('Character', () => {
         amount: 20,
       })
       const event = char.history.at(0)
-      expect(event).toEqual({
-        id: expect.anything(),
-        type: 'add-xp',
-        timestamp: expect.anything(),
-        payload: {
-          amount: 20,
-        },
-      })
+      expect(event).toEqual(
+        expect.objectContaining({
+          id: expect.anything(),
+          type: 'add-xp',
+          timestamp: expect.anything(),
+          payload: {
+            amount: 20,
+          },
+        })
+      )
 
       char.revertById(event.id)
       expect(char.history.at(0)).toBeUndefined()
@@ -234,14 +296,16 @@ describe('Character', () => {
       })
       const event = char.history.at(0)
       char.revertById(event.id)
-      expect(char.history.at(0)).toEqual({
-        id: expect.anything(),
-        type: 'add-xp',
-        timestamp: expect.anything(),
-        payload: {
-          amount: 30,
-        },
-      })
+      expect(char.history.at(0)).toEqual(
+        expect.objectContaining({
+          id: expect.anything(),
+          type: 'add-xp',
+          timestamp: expect.anything(),
+          payload: {
+            amount: 30,
+          },
+        })
+      )
       expect(char.attributes.xp).toBe(30)
     })
 
@@ -255,22 +319,26 @@ describe('Character', () => {
       })
       const event = char.history.at(0)
       char.revertById(event.id)
-      expect(char.history.at(0)).toEqual({
-        id: expect.anything(),
-        type: 'add-xp',
-        timestamp: expect.anything(),
-        payload: {
-          amount: 20,
-        },
-      })
-      expect(char.history.at(1)).toEqual({
-        id: expect.anything(),
-        type: 'purchase-attribute',
-        timestamp: expect.anything(),
-        payload: {
-          attributeId: 'stamina',
-        },
-      })
+      expect(char.history.at(0)).toEqual(
+        expect.objectContaining({
+          id: expect.anything(),
+          type: 'add-xp',
+          timestamp: expect.anything(),
+          payload: {
+            amount: 20,
+          },
+        })
+      )
+      expect(char.history.at(1)).toEqual(
+        expect.objectContaining({
+          id: expect.anything(),
+          type: 'purchase-attribute',
+          timestamp: expect.anything(),
+          payload: {
+            attributeId: 'stamina',
+          },
+        })
+      )
       expect(char.attributes.xp).toBe(15)
       expect(char.attributes.stamina).toBe(1)
     })
@@ -316,7 +384,9 @@ describe('Character', () => {
       expect(char.attributes.intelligence).toBe(0)
       expect(char.attributes.stamina).toBe(2)
     })
+  })
 
+  describe('validateRevert', () => {
     it('can validate revert', () => {
       const char = new Character(characterDefinition)
       char.execute('add-xp', {
@@ -334,6 +404,75 @@ describe('Character', () => {
       })
       const result2 = char.validateRevert('add-xp', {
         amount: 5,
+      })
+      expect(result2).toBe(true)
+    })
+
+    it('returns mutation errors', () => {
+      const char = new Character(characterDefinition)
+      char.execute('add-xp', {
+        amount: 20,
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      char.execute('purchase-ability', {
+        abilityId: 'climbing',
+      })
+      const result = char.validateRevert('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      expect(result).not.toBe(true)
+      if (result === true || result instanceof NotFoundError) {
+        return
+      }
+      expect(result.errors[0][1]).toBeInstanceOf(HistoryMutationError)
+      char.execute('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      const result2 = char.validateRevert('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      expect(result2).toBe(true)
+    })
+
+    // TODO: test this case for revert as well
+    // See if the mutations in history have been altered
+    it('validates mutation that depends on history', () => {
+      const char = new Character(characterDefinition)
+      function addStamina() {
+        char.execute('purchase-attribute', {
+          attributeId: 'stamina',
+        })
+      }
+      char.execute('add-xp', {
+        amount: 30,
+      })
+      addStamina()
+      addStamina()
+      char.execute('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      char.execute('purchase-ability-complex', {
+        abilityId: 'climbing',
+      })
+      const result = char.validateRevert('purchase-attribute', {
+        attributeId: 'stamina',
+      })
+      expect(result).not.toBe(true)
+      if (result === true || result instanceof NotFoundError) {
+        return
+      }
+      expect(result.errors[0][1]).toBeInstanceOf(HistoryMutationError)
+      addStamina()
+      const result2 = char.validateRevert('purchase-attribute', {
+        attributeId: 'stamina',
       })
       expect(result2).toBe(true)
     })

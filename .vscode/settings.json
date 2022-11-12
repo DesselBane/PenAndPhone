@@ -4,5 +4,5 @@
     "source.fixAll": true
   },
   "files.autoSave": "off",
-  "vitest.commandLine": "pnpm test --"
+  "vitest.commandLine": "pnpm test"
 }

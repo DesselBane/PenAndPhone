@@ -133,6 +133,10 @@ export class EventHistory<
     this.events = new Map(events.map((event) => [event.id, event]))
   }
 
+  reset() {
+    this.events = new Map()
+  }
+
   toArray() {
     return cloneDeep([...this.events.values()])
   }
