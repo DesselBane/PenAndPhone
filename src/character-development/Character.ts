@@ -466,6 +466,7 @@ export class Character<
     }
 
     this.resetState()
+    // TODO: Keep original event ids in history
     this.history.reset()
     history.forEach((event) => this.execute(event.type, event.payload))
   }

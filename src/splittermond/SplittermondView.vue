@@ -219,9 +219,13 @@ function handleStep2() {
           >
             <h4>{{ event.type }}</h4>
             <small>ID: {{ event.id }}</small>
+            <h5>Payload</h5>
             <code>
               <pre>{{ event.payload }}</pre>
-              <pre>{{ event.mutations }}</pre>
+            </code>
+            <h5>Mutations</h5>
+            <code v-for="(mutation, index) in event.mutations" :key="index">
+              <pre>{{ mutation }}</pre>
             </code>
           </div>
         </TransitionGroup>
@@ -297,7 +301,8 @@ aside {
   width: 100%;
 }
 
-.event h4 {
+.event h4,
+.event h5 {
   margin: 0.1rem;
 }
 
@@ -307,8 +312,13 @@ aside {
 }
 
 .event pre {
-  color: rgb(166, 76, 76);
+  background: rgb(217, 210, 241);
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  color: rgb(170, 15, 64);
   margin: 0.1rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
 
 .columns-2 {
