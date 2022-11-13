@@ -4,7 +4,7 @@ import {
   meisterschaftenInFertigkeit,
 } from './splittermond.rules'
 import { Character } from '../character-development/Character'
-import { ref } from 'vue'
+import { ref, unref } from 'vue'
 import { useEventButtons } from '../character-development/useEventButton'
 import CoreButton from '../core/components/CoreButton.vue'
 
@@ -29,6 +29,13 @@ const rasse = ref<typeof rasseOptionen[number]>(rasseOptionen[0])
 function handleStep2() {
   character.value.execute('rasseSetzen', { rasse: rasse.value })
   character.value.execute('erschaffungWeiter', {})
+}
+
+const erfahrungspunkte = ref(10)
+function erfahrungspunkteHinzufuegen() {
+  character.value.execute('erfahrungspunkteHinzufuegen', {
+    menge: unref(erfahrungspunkte),
+  })
 }
 </script>
 
@@ -112,14 +119,22 @@ function handleStep2() {
           <h2>Fertigkeiten</h2>
           <p>
             Fertigkeitspunkte zu verteilen:
-            {{ valueOf('erschaffungsFertigkeitsPunkte') }}
+            {{ valueOf('freieFertigkeitsPunkte') }}
+          </p>
+          <p>
+            Heldengrad
+            {{ valueOf('heldengrad') }}
           </p>
           <p>
             Erfahrungspunkte zu verteilen:
-            {{
-              valueOf('erfahrungspunkte') -
-              valueOf('erfahrungspunkteEingesetzt')
-            }}
+            {{ valueOf('erfahrungspunkte') }} (eingesetzt:
+            {{ valueOf('erfahrungspunkteEingesetzt') }})
+          </p>
+          <p>
+            <input v-model="erfahrungspunkte" type="number" />
+            <button @click="erfahrungspunkteHinzufuegen" type="button">
+              Erfahrungspunkte hinzufügen
+            </button>
           </p>
           <p>
             Meisterschaftspunkte zu verteilen:
@@ -140,7 +155,7 @@ function handleStep2() {
                     <CoreButton
                       v-bind="
                         getButtonBindings(
-                          'fertigkeitSteigernMitPunkt',
+                          'fertigkeitSteigern',
                           {
                             fertigkeit: key,
                           },
@@ -152,7 +167,7 @@ function handleStep2() {
                     </CoreButton>
                     <CoreButton
                       v-bind="
-                        getButtonBindings('fertigkeitSteigernMitPunkt', {
+                        getButtonBindings('fertigkeitSteigern', {
                           fertigkeit: key,
                         })
                       "
@@ -192,7 +207,7 @@ function handleStep2() {
         <button
           :disabled="
             valueOf('attributPunkte') > 0 ||
-            valueOf('erschaffungsFertigkeitsPunkte') > 0
+            valueOf('freieFertigkeitsPunkte') > 0
           "
         >
           Speichern & Weiter

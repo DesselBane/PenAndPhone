@@ -9,7 +9,7 @@ const baseDefinition = defineCharacter(
       options: [1, 2, 3, 4] as const,
     },
     attributPunkte: { type: 'number' },
-    erschaffungsFertigkeitsPunkte: { type: 'number' },
+    freieFertigkeitsPunkte: { type: 'number' },
     meisterschaftsPunkte: { type: 'number' },
 
     // Basis
@@ -547,7 +547,7 @@ const baseDefinition = defineCharacter(
     attributSteigernMitPunkt: {
       attribut: 'group.attribute',
     },
-    fertigkeitSteigernMitPunkt: {
+    fertigkeitSteigern: {
       fertigkeit: 'group.fertigkeiten',
     },
     erschaffungWeiter: {},
@@ -589,7 +589,7 @@ const baseDefinition = defineCharacter(
             type: 'add',
             amount: attributPunkte,
           })
-          mutate('erschaffungsFertigkeitsPunkte', {
+          mutate('freieFertigkeitsPunkte', {
             type: 'add',
             amount: 55,
           })
@@ -646,17 +646,37 @@ const baseDefinition = defineCharacter(
         })
       },
     },
-    fertigkeitSteigernMitPunkt: {
-      apply({ mutate, reject }, { fertigkeit }, { rawAttributes }) {
-        if (rawAttributes.erschaffungsFertigkeitsPunkte < 1) {
-          reject('Alle Fertigkeitspunkte sind aufgebraucht')
+    fertigkeitSteigern: {
+      apply({ mutate, reject }, { fertigkeit }, { rawAttributes, attributes }) {
+        const maximalWert = 6 + 3 * (attributes.heldengrad - 1)
+        if (rawAttributes[fertigkeit] >= maximalWert) {
+          reject(`Maximal ${maximalWert} Punkte pro Fertigkeit`)
         }
-        if (rawAttributes[fertigkeit] >= 6) {
-          reject('Maximal 6 Punkte pro Fertigkeit')
+
+        // Steigern mit Punkt
+        if (rawAttributes.freieFertigkeitsPunkte >= 1) {
+          mutate('freieFertigkeitsPunkte', {
+            type: 'subtract',
+            amount: 1,
+          })
+          mutate(fertigkeit, {
+            type: 'add',
+            amount: 1,
+          })
+          return
         }
-        mutate('erschaffungsFertigkeitsPunkte', {
-          type: 'subtract',
-          amount: 1,
+
+        // Steigern mit Erfahrungspunkten
+        const erfahrungspunktKosten =
+          3 + 2 * Math.max(0, Math.floor((rawAttributes[fertigkeit] - 6) / 3))
+        const freieErfahrungspunkte =
+          attributes.erfahrungspunkte - attributes.erfahrungspunkteEingesetzt
+        if (freieErfahrungspunkte < erfahrungspunktKosten) {
+          reject('Nicht genug Erfahrungspunkte')
+        }
+        mutate('erfahrungspunkteEingesetzt', {
+          type: 'add',
+          amount: erfahrungspunktKosten,
         })
         mutate(fertigkeit, {
           type: 'add',
