@@ -74,13 +74,6 @@ function handleStep2() {
             Attributpunkte zu verteilen:
             {{ valueOf('attributPunkte') }}
           </p>
-          <p>
-            Erfahrungspunkte zu verteilen:
-            {{
-              valueOf('erfahrungspunkte') -
-              valueOf('erfahrungspunkteEingesetzt')
-            }}
-          </p>
           <dl>
             <template
               v-for="key in characterDefinition.groups.attribute"
@@ -120,6 +113,17 @@ function handleStep2() {
           <p>
             Fertigkeitspunkte zu verteilen:
             {{ valueOf('erschaffungsFertigkeitsPunkte') }}
+          </p>
+          <p>
+            Erfahrungspunkte zu verteilen:
+            {{
+              valueOf('erfahrungspunkte') -
+              valueOf('erfahrungspunkteEingesetzt')
+            }}
+          </p>
+          <p>
+            Meisterschaftspunkte zu verteilen:
+            {{ valueOf('meisterschaftsPunkte') }}
           </p>
           <div
             v-for="(attributeKeys, groupKey) in characterDefinition.groups

@@ -10,6 +10,7 @@ const baseDefinition = defineCharacter(
     },
     attributPunkte: { type: 'number' },
     erschaffungsFertigkeitsPunkte: { type: 'number' },
+    meisterschaftsPunkte: { type: 'number' },
 
     // Basis
     name: { type: 'text' },
@@ -25,7 +26,7 @@ const baseDefinition = defineCharacter(
     // Meisterschaften
     meisterschaften: {
       type: 'multi-select',
-      options: ['blitzreflexe1', 'blitzreflexe2'] as const,
+      options: ['blitzreflexe1', 'blitzreflexe2', 'blitzreflexe3'] as const,
     },
 
     // Attribute
@@ -596,6 +597,10 @@ const baseDefinition = defineCharacter(
             type: 'add',
             amount: 15,
           })
+          mutate('meisterschaftsPunkte', {
+            type: 'add',
+            amount: 3,
+          })
         }
 
         mutate('erschaffungsZustand', {
@@ -691,6 +696,11 @@ export const meisterschaften: MeisterschaftDefinitions = {
     fertigkeit: 'akrobatik',
     voraussetzung: ['blitzreflexe1'],
   },
+  blitzreflexe3: {
+    level: 2,
+    fertigkeit: 'akrobatik',
+    voraussetzung: ['blitzreflexe2'],
+  },
 }
 
 export function meisterschaftenInFertigkeit(fertigkeit: string) {
@@ -727,14 +737,29 @@ export const characterDefinition = baseDefinition.addEvents(
           return
         }
 
-        const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
-        const benoetigteFertigkeitsPunkte = meisterschaft.level - 1 * 3
-        if (fertigkeitPunkte < benoetigteFertigkeitsPunkte) {
-          reject('Zu niedriges Fertigkeitslevel')
+        // Für Meisterschaftspunkte kaufen
+        if (
+          rawAttributes.meisterschaftsPunkte > 0 &&
+          meisterschaft.level === 1
+        ) {
+          mutate('meisterschaftsPunkte', {
+            type: 'subtract',
+            amount: 1,
+          })
+          mutate('meisterschaften', {
+            type: 'add',
+            option: name,
+          })
           return
         }
 
-        const potentielleKostenloseErwerbe = Math.floor(fertigkeitPunkte / 3)
+        const fertigkeitPunkte = rawAttributes[meisterschaft.fertigkeit]
+        const meisterschaftsSchwelle = Math.floor((fertigkeitPunkte - 3) / 3)
+        if (meisterschaftsSchwelle < meisterschaft.level) {
+          reject('Zu niedrige Meisterschaftsschwelle')
+          return
+        }
+
         const kostenloseErwerbe = history.filter((event) => {
           if (event.type !== 'meisterschaftLernen') {
             return false
@@ -745,15 +770,18 @@ export const characterDefinition = baseDefinition.addEvents(
           }
           if (
             event.mutations.some(
-              (mutation) => mutation.key === 'erfahrungspunkteEingesetzt'
+              (mutation) =>
+                mutation.key === 'erfahrungspunkteEingesetzt' ||
+                mutation.key === 'meisterschaftsPunkte'
             )
           ) {
             return false
           }
           return true
-        }).length
+        })
 
-        if (kostenloseErwerbe < potentielleKostenloseErwerbe) {
+        // TODO: maximal eine auf level3, zwei auf level2, drei auf level1
+        if (kostenloseErwerbe.length < meisterschaftsSchwelle) {
           mutate('meisterschaften', {
             type: 'add',
             option: name,
