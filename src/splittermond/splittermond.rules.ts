@@ -550,11 +550,6 @@ const baseDefinition = defineCharacter(
       fertigkeit: 'group.fertigkeiten',
     },
     erschaffungWeiter: {},
-    // TODO add event history into state and then add race attribute point selection
-    // +1 for alb, zwerg, varg, gnom
-    // +2 for Mensch (must not be the same attribute)
-    // TODO validation rules for events bekommt Partial<Payload> + state
-    // TODO refactor naming
   },
   {
     erfahrungspunkteHinzufuegen: {
@@ -586,9 +581,12 @@ const baseDefinition = defineCharacter(
               amount: 1,
             })
           })
+          // Alle Rassen bekommen einen zusätzlichen Attributpunkt
+          // Menschen bekommen zwei zusätzliche Attributpunkte
+          const attributPunkte = rawAttributes.rasse === 'mensch' ? 12 : 11
           mutate('attributPunkte', {
             type: 'add',
-            amount: 10,
+            amount: attributPunkte,
           })
           mutate('erschaffungsFertigkeitsPunkte', {
             type: 'add',
@@ -613,12 +611,25 @@ const baseDefinition = defineCharacter(
       },
     },
     attributSteigernMitPunkt: {
-      apply({ mutate, reject }, { attribut }, { rawAttributes }) {
+      apply({ mutate, reject }, { attribut }, { rawAttributes }, { groups }) {
         if (rawAttributes.attributPunkte < 1) {
           reject('Alle Punkte sind aufgebraucht')
         }
-        if (rawAttributes[attribut] >= 3) {
-          reject('Maximal 3 Punkte pro Attribut')
+
+        // Menschen dürfen 2 Attribute auf 4 setzen
+        const attributeMitWert4 = groups.attribute.filter(
+          (key) => rawAttributes[key] >= 4
+        ).length
+        const erlaubtMitWert4 = rawAttributes.rasse === 'mensch' ? 2 : 1
+        let maxWert = attributeMitWert4 < erlaubtMitWert4 ? 4 : 3
+
+        // Varge dürfen Stärke nicht auf 4 setzen (haben bereits +2 auf Stärke)
+        if (attribut === 'staerke' && rawAttributes.rasse === 'varg') {
+          maxWert = 3
+        }
+
+        if (rawAttributes[attribut] >= maxWert) {
+          reject('Maximalpunkte erreicht')
         }
         mutate('attributPunkte', {
           type: 'subtract',
