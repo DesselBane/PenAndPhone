@@ -6,6 +6,7 @@ import {
 import { Character } from '../character-development/Character'
 import { ref } from 'vue'
 import { useEventButtons } from '../character-development/useEventButton'
+import CoreButton from '../core/components/CoreButton.vue'
 
 const showHistory = ref(true)
 const character = ref(new Character(characterDefinition))
@@ -88,7 +89,7 @@ function handleStep2() {
               <dt>{{ key }}</dt>
               <dd>
                 {{ valueOf(key) }} ({{ rawValueOf(key) }})
-                <button
+                <CoreButton
                   v-bind="
                     getButtonBindings(
                       'attributSteigernMitPunkt',
@@ -100,8 +101,8 @@ function handleStep2() {
                   "
                 >
                   -
-                </button>
-                <button
+                </CoreButton>
+                <CoreButton
                   v-bind="
                     getButtonBindings('attributSteigernMitPunkt', {
                       attribut: key,
@@ -109,7 +110,7 @@ function handleStep2() {
                   "
                 >
                   +
-                </button>
+                </CoreButton>
               </dd>
             </template>
           </dl>
@@ -132,7 +133,7 @@ function handleStep2() {
                   <dt>{{ key }}</dt>
                   <dd>
                     {{ valueOf(key) }} ({{ rawValueOf(key) }})
-                    <button
+                    <CoreButton
                       v-bind="
                         getButtonBindings(
                           'fertigkeitSteigernMitPunkt',
@@ -144,8 +145,8 @@ function handleStep2() {
                       "
                     >
                       -
-                    </button>
-                    <button
+                    </CoreButton>
+                    <CoreButton
                       v-bind="
                         getButtonBindings('fertigkeitSteigernMitPunkt', {
                           fertigkeit: key,
@@ -153,11 +154,11 @@ function handleStep2() {
                       "
                     >
                       +
-                    </button>
+                    </CoreButton>
                   </dd>
                 </dl>
                 <div>
-                  <button
+                  <CoreButton
                     v-for="meisterschaft in meisterschaftenInFertigkeit(key)"
                     :class="[
                       character.rawAttributes.meisterschaften.includes(
@@ -178,7 +179,7 @@ function handleStep2() {
                     "
                   >
                     {{ meisterschaft.name }}
-                  </button>
+                  </CoreButton>
                 </div>
               </div>
             </div>

@@ -46,7 +46,7 @@ export const useEventButtons = <
       validation.hasErrors() &&
       validation.isIgnorable()
 
-    let title = undefined
+    let title = null
     if (validation !== true) {
       title = validation instanceof Error ? validation.message : validation
     }

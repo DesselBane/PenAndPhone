@@ -9,6 +9,8 @@ specifiers:
   '@vue/eslint-config-typescript': 11.0.2
   '@vueuse/core': 9.3.1
   '@vueuse/firebase': 9.3.1
+  '@zag-js/tooltip': 0.2.1
+  '@zag-js/vue': 0.2.1
   eslint: 8.26.0
   eslint-plugin-vue: 9.6.0
   firebase: 9.12.1
@@ -26,6 +28,8 @@ specifiers:
 dependencies:
   '@vueuse/core': 9.3.1_vue@3.2.41
   '@vueuse/firebase': 9.3.1_firebase@9.12.1+vue@3.2.41
+  '@zag-js/tooltip': 0.2.1
+  '@zag-js/vue': 0.2.1_vue@3.2.41
   firebase: 9.12.1
   lodash-es: 4.17.21
   nanoid: 4.0.0
@@ -575,6 +579,16 @@ packages:
     resolution: {integrity: sha512-Q8erQds5LuAUgNuFOt/tu/abffYUHYxN+Ogp2V5EOssfFG7Ja4ce324Sqyq41u/vB5CSr+tfYS3JzTDrDxCvdw==}
     dev: false
 
+  /@floating-ui/core/1.0.1:
+    resolution: {integrity: sha512-bO37brCPfteXQfFY0DyNDGB3+IMe4j150KFQcgJ5aBP295p9nBGeHEs/p0czrRbtlHq4Px/yoPXO/+dOCcF4uA==}
+    dev: false
+
+  /@floating-ui/dom/1.0.2:
+    resolution: {integrity: sha512-5X9WSvZ8/fjy3gDu8yx9HAA4KG1lazUN2P4/VnaXLxTO9Dz53HI1oYoh1OlhqFNlHgGDiwFX5WhFCc2ljbW3yA==}
+    dependencies:
+      '@floating-ui/core': 1.0.1
+    dev: false
+
   /@grpc/grpc-js/1.7.3:
     resolution: {integrity: sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==}
     engines: {node: ^8.13.0 || >=10.10.0}
@@ -1059,6 +1073,50 @@ packages:
       - vue
     dev: false
 
+  /@zag-js/core/0.2.1:
+    resolution: {integrity: sha512-MJOtJ+8BVe0hSrFJ9NJRkJP95icjs06B+QRaP4n0SeT5u/u20NLr1/qnbOEvZPSwpI994U2snmyRvpXDn4SD0g==}
+    dependencies:
+      '@zag-js/store': 0.2.0
+      klona: 2.0.5
+    dev: false
+
+  /@zag-js/popper/0.2.0:
+    resolution: {integrity: sha512-heKg/L10KQ8XYX7rcL4/44b1mAbc3YjneQtPxEvgYJ3cazpcHUBg5Ge3yzQQbGBOkeE9sBfCroGkoJ+lsqkvig==}
+    dependencies:
+      '@floating-ui/dom': 1.0.2
+    dev: false
+
+  /@zag-js/store/0.2.0:
+    resolution: {integrity: sha512-B9PxSMTYu9KXEMFoyB2El+mey41eqVMVKU6cqE8GlbzNu71rdlSz2mPzvK3qQVXA0rXBhB4xapj3ScosSMyhTg==}
+    dependencies:
+      proxy-compare: 2.3.0
+    dev: false
+
+  /@zag-js/tooltip/0.2.1:
+    resolution: {integrity: sha512-0iUoWPUSUgUOJDgRdf0QaM5GgzAsqQPnm7vXLLI1XXdLRdy8kMpY5tAuZcoNQssLckuo20dosD08qFB+jlaoNw==}
+    dependencies:
+      '@zag-js/core': 0.2.1
+      '@zag-js/popper': 0.2.0
+      '@zag-js/types': 0.3.0
+    dev: false
+
+  /@zag-js/types/0.3.0:
+    resolution: {integrity: sha512-/gImdl/D/EHMuhDW7kN0C5GagF9qUxztA/C2W7N/uPHGK2QzdnRLfe8xpwWSTHydRmf5eI56OSA08axrMIImmQ==}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
+  /@zag-js/vue/0.2.1_vue@3.2.41:
+    resolution: {integrity: sha512-alCD8inmF9GLKJkYkLfILv4F33zpIi5Mhl4Di7etJVptWsOcfDn2jVVcNjVk8eItNmN1e+CK1qrxH2lMjXpXNg==}
+    peerDependencies:
+      vue: '>=3.0.0'
+    dependencies:
+      '@zag-js/core': 0.2.1
+      '@zag-js/store': 0.2.0
+      '@zag-js/types': 0.3.0
+      vue: 3.2.41
+    dev: false
+
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1202,6 +1260,10 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+    dev: false
 
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -1942,6 +2004,11 @@ packages:
       setimmediate: 1.0.5
     dev: false
 
+  /klona/2.0.5:
+    resolution: {integrity: sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==}
+    engines: {node: '>= 8'}
+    dev: false
+
   /levn/0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -2246,6 +2313,10 @@ packages:
       '@protobufjs/utf8': 1.1.0
       '@types/node': 18.11.3
       long: 5.2.0
+    dev: false
+
+  /proxy-compare/2.3.0:
+    resolution: {integrity: sha512-c3L2CcAi7f7pvlD0D7xsF+2CQIW8C3HaYx2Pfgq8eA4HAl3GAH6/dVYsyBbYF/0XJs2ziGLrzmz5fmzPm6A0pQ==}
     dev: false
 
   /punycode/2.1.1:

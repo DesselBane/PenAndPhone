@@ -67,6 +67,15 @@ button.active:disabled {
   opacity: 0.6;
 }
 
+[data-part="content"] {
+  max-width: 20rem;
+  background: #363972;
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+
 .card {
   padding: 2em;
 }
