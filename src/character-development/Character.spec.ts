@@ -369,6 +369,16 @@ describe('Character', () => {
       expect(char.attributes.stamina).toBe(1)
     })
 
+    it('keeps event ids', () => {
+      const { char, addXp } = setupTest()
+      addXp(20)
+      addXp(30)
+      const firstEvent = char.history.at(0)
+      const event = char.history.at(1)
+      char.revertById(event.id)
+      expect(char.history.at(0).id).toBe(firstEvent.id)
+    })
+
     it('returns validation errors', () => {
       const { char, addXp, purchaseStamina } = setupTest()
       addXp(20)

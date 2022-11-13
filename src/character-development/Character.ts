@@ -286,9 +286,19 @@ export class Character<
     type: TEventType,
     payload: ResolvedPayload<TAttributes, TAttributeGroups, TEvents[TEventType]>
   ) {
-    const eventRequest: EventRequest<TAttributes, TAttributeGroups, TEvents> = {
+    return this.applyAndAdd({
+      id: nanoid(),
+      timestamp: '',
       type,
       payload,
+      mutations: [],
+    })
+  }
+
+  applyAndAdd(event: EventInstance<TAttributes, TAttributeGroups, TEvents>) {
+    const eventRequest: EventRequest<TAttributes, TAttributeGroups, TEvents> = {
+      type: event.type,
+      payload: event.payload,
     }
 
     const applyResult = this.apply(eventRequest)
@@ -297,14 +307,13 @@ export class Character<
       return applyResult
     }
 
-    const event: EventInstance<TAttributes, TAttributeGroups, TEvents> = {
-      ...eventRequest,
-      id: nanoid(),
-      timestamp: '',
-      mutations: applyResult,
-    }
+    const mutatedEvent: EventInstance<TAttributes, TAttributeGroups, TEvents> =
+      {
+        ...event,
+        mutations: applyResult,
+      }
 
-    this.history.add(event)
+    this.history.add(mutatedEvent)
     return applyResult
   }
 
@@ -396,7 +405,7 @@ export class Character<
     return this.revertById(event.id)
   }
 
-  validateRevertById(id: EventId) {
+  getRevertResult(id: EventId) {
     if (!this.history.has(id)) {
       return new NotFoundError(`Event with id '${id}' not found.`)
     }
@@ -411,7 +420,7 @@ export class Character<
     const history = this.history.copy()
     history.remove(id)
     history.forEach((event) => {
-      const applyResult = testChar.execute(event.type, event.payload)
+      const applyResult = testChar.applyAndAdd(event)
       if (applyResult instanceof ValidationError) {
         revertError.add(event, applyResult)
         return
@@ -425,50 +434,40 @@ export class Character<
       }
     })
 
-    if (revertError.hasErrors()) {
-      return revertError
+    return {
+      revertError,
+      history,
+    }
+  }
+
+  validateRevertById(id: EventId) {
+    const revertResult = this.getRevertResult(id)
+
+    if (revertResult instanceof NotFoundError) {
+      return revertResult
     }
 
-    return true
+    const { revertError } = revertResult
+
+    return revertError.hasErrors() ? revertError : true
   }
 
   revertById(id: EventId) {
-    if (!this.history.has(id)) {
-      return new NotFoundError(`Event with id '${id}' not found.`)
+    const revertResult = this.getRevertResult(id)
+
+    if (revertResult instanceof NotFoundError) {
+      return revertResult
     }
 
-    const revertError = new RevertError<
-      TAttributes,
-      TAttributeGroups,
-      TEvents
-    >()
-
-    const testChar = new Character(this.definition)
-    const history = this.history.copy()
-    history.remove(id)
-    history.forEach((event) => {
-      const applyResult = testChar.execute(event.type, event.payload)
-      if (applyResult instanceof ValidationError) {
-        revertError.add(event, applyResult)
-        return
-      }
-      if (!isEqual(event.mutations, applyResult)) {
-        revertError.add(
-          event,
-          new HistoryMutationError('Would change mutation')
-        )
-        history.mutate(event.id, applyResult)
-      }
-    })
+    const { revertError, history } = revertResult
 
     if (revertError.isNotIgnorable()) {
       return revertError
     }
 
     this.resetState()
-    // TODO: Keep original event ids in history
     this.history.reset()
-    history.forEach((event) => this.execute(event.type, event.payload))
+    history.forEach((event) => this.applyAndAdd(event))
   }
 
   getAttribute(key: keyof TAttributes) {
