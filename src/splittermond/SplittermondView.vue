@@ -122,11 +122,11 @@ function erfahrungspunkteHinzufuegen() {
             {{ valueOf('freieFertigkeitsPunkte') }}
           </p>
           <p>
-            Heldengrad
+            Heldengrad:
             {{ valueOf('heldengrad') }}
           </p>
           <p>
-            Erfahrungspunkte zu verteilen:
+            Erfahrungspunkte:
             {{ valueOf('erfahrungspunkte') }} (eingesetzt:
             {{ valueOf('erfahrungspunkteEingesetzt') }})
           </p>
