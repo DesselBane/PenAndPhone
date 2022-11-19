@@ -46,15 +46,10 @@ export function meisterschaftenInFertigkeit(fertigkeit: string) {
     }))
 }
 
-export const meisterschaftenDefinition = fertigkeitenSteigernDefinition.enhance(
-  {
+export const meisterschaftenDefinition =
+  fertigkeitenSteigernDefinition.addAttributes({
     meisterschaften: {
       type: 'multi-select',
       options: meisterschaftenNamen,
     },
-  },
-  {},
-  {},
-  {},
-  {}
-)
+  })

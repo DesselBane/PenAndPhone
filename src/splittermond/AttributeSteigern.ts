@@ -1,15 +1,9 @@
 import { attributeDefinition } from './Attribute'
 
 export const attributeSteigernDefinition = attributeDefinition
-  .enhance(
-    {
-      attributPunkte: { type: 'number' },
-    },
-    {},
-    {},
-    {},
-    {}
-  )
+  .addAttributes({
+    attributPunkte: { type: 'number' },
+  })
   .addEvents(
     {
       attributSteigernMitPunkt: {

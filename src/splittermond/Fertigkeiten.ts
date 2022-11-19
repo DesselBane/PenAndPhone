@@ -77,20 +77,16 @@ export const fertigkeitenGruppen = {
   kampfFertigkeiten,
 }
 
-const fertigkeitenDefinitionBasis = abgeleiteteWerteDefinition.enhance(
-  {
+const fertigkeitenDefinitionBasis = abgeleiteteWerteDefinition
+  .addAttributes({
     ...mapToAttributeDefinitions(fertigkeiten, { type: 'number' }),
-  },
-  {
+  })
+  .addAttributeGroups({
     fertigkeiten,
     allgemeineFertigkeiten,
     magieSchulen,
     kampfFertigkeiten,
-  },
-  {},
-  {},
-  {}
-)
+  })
 
 export const fertigkeitenAttribute: Record<
   typeof allgemeineFertigkeiten[number] | typeof magieSchulen[number],
@@ -151,23 +147,17 @@ export let fertigkeitenDefinition = fertigkeitenDefinitionBasis
 
 allgemeineFertigkeiten.forEach((fertigkeit) => {
   const [attribut1, attribut2] = fertigkeitenAttribute[fertigkeit]
-  fertigkeitenDefinition = fertigkeitenDefinition.enhance(
-    {},
-    {},
-    {
-      // TODO: why do we need to define characterstate when using a dynamic prop key?
-      [fertigkeit]: ({
-        attributes,
-        rawAttributes,
-      }: CharacterState<typeof fertigkeitenDefinitionBasis['attributes']>) => {
-        return (
-          rawAttributes[fertigkeit] +
-          attributes[attribut1] +
-          attributes[attribut2]
-        )
-      },
+  fertigkeitenDefinition = fertigkeitenDefinition.addAttributeCalculations({
+    // TODO: why do we need to define characterstate when using a dynamic prop key?
+    [fertigkeit]: ({
+      attributes,
+      rawAttributes,
+    }: CharacterState<typeof fertigkeitenDefinitionBasis['attributes']>) => {
+      return (
+        rawAttributes[fertigkeit] +
+        attributes[attribut1] +
+        attributes[attribut2]
+      )
     },
-    {},
-    {}
-  )
+  })
 })

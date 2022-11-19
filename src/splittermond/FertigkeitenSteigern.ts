@@ -1,15 +1,9 @@
 import { fertigkeitenDefinition } from './Fertigkeiten'
 
 export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
-  .enhance(
-    {
-      freieFertigkeitsPunkte: { type: 'number' },
-    },
-    {},
-    {},
-    {},
-    {}
-  )
+  .addAttributes({
+    freieFertigkeitsPunkte: { type: 'number' },
+  })
   .addEvents(
     {
       fertigkeitSteigern: {

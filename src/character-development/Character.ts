@@ -97,6 +97,40 @@ export const defineCharacter = <
         TEvents & TNewEvents
       >
     ),
+  addAttributes: <TNewAttributes extends UnknownAttributeDefinitions>(
+    newAttributes: TNewAttributes
+  ) =>
+    defineCharacter(
+      { ...attributes, ...newAttributes },
+      groups,
+      calculations,
+      events,
+      eventImplementations
+    ),
+  addAttributeGroups: <
+    TNewAttributeGroups extends AttributeGroupDefinitions<TAttributes>
+  >(
+    newAttributesGroups: TNewAttributeGroups
+  ) =>
+    defineCharacter(
+      attributes,
+      { ...groups, ...newAttributesGroups },
+      calculations,
+      events,
+      eventImplementations
+    ),
+  addAttributeCalculations: <
+    TNewAttributeCalculations extends AttributeCalculations<TAttributes>
+  >(
+    newAttributesCalculations: TNewAttributeCalculations
+  ) =>
+    defineCharacter(
+      attributes,
+      groups,
+      { ...calculations, ...newAttributesCalculations },
+      events,
+      eventImplementations
+    ),
   enhance: <
     TNewAttributes extends UnknownAttributeDefinitions,
     TNewAttributeGroups extends AttributeGroupDefinitions<

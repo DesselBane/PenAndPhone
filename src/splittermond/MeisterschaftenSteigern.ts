@@ -1,7 +1,7 @@
 import { meisterschaftenDefinition, meisterschaften } from './Meisterschaften'
 
 export const meisterschaftenSteigernDefinition = meisterschaftenDefinition
-  .enhance({ meisterschaftsPunkte: { type: 'number' } }, {}, {}, {}, {})
+  .addAttributes({ meisterschaftsPunkte: { type: 'number' } })
   .addEvents(
     {
       meisterschaftLernen: {

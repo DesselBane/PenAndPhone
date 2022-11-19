@@ -1,18 +1,12 @@
 import { meisterschaftenSteigernDefinition } from './MeisterschaftenSteigern'
 
 export const erschaffungDefinition = meisterschaftenSteigernDefinition
-  .enhance(
-    {
-      erschaffungsZustand: {
-        type: 'single-select',
-        options: [1, 2, 3, 4] as const,
-      },
+  .addAttributes({
+    erschaffungsZustand: {
+      type: 'single-select',
+      options: [1, 2, 3, 4] as const,
     },
-    {},
-    {},
-    {},
-    {}
-  )
+  })
   .addEvents(
     {
       erschaffungWeiter: {},
