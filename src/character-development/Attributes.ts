@@ -104,7 +104,7 @@ export type AttributeGroupDefinitions<
   TAttributeDefinitions extends UnknownAttributeDefinitions
 > = Record<
   string,
-  | Array<keyof TAttributeDefinitions>
+  | ReadonlyArray<keyof TAttributeDefinitions>
   | Record<string, (keyof TAttributeDefinitions)[]>
 >
 
@@ -120,4 +120,17 @@ export type FlatAttributeGroupDefinitions<
       >
     ? TAttributeKeys
     : never
+}
+
+export function mapToAttributeDefinitions<
+  TKeys extends ReadonlyArray<string>,
+  TAttributeDefinition extends UnknownAttributeDefinition
+>(keys: TKeys, definition: TAttributeDefinition) {
+  return keys.reduce<Record<TKeys[number], TAttributeDefinition>>(
+    (defs, key) => {
+      defs[key as TKeys[number]] = definition
+      return defs
+    },
+    {} as Record<TKeys[number], TAttributeDefinition>
+  )
 }

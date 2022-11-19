@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import {
-  characterDefinition,
-  meisterschaftenInFertigkeit,
-} from './splittermond.rules'
-import { Character } from '../character-development/Character'
 import { ref, unref } from 'vue'
+
+import { Character } from '../character-development/Character'
 import { useEventButtons } from '../character-development/useEventButton'
 import CoreButton from '../core/components/CoreButton.vue'
 
+import { fertigkeitenGruppen } from './Fertigkeiten'
+import { meisterschaftenInFertigkeit } from './Meisterschaften'
+import { erschaffungDefinition as characterDefinition } from './Erschaffung'
+
+// TODO: fix event payloads
+
 const showHistory = ref(true)
 const character = ref(new Character(characterDefinition))
+
 const getButtonBindings = useEventButtons(character).getBindings
 
 const valueOf = (id: keyof typeof characterDefinition['attributes']) =>
@@ -141,8 +145,7 @@ function erfahrungspunkteHinzufuegen() {
             {{ valueOf('meisterschaftsPunkte') }}
           </p>
           <div
-            v-for="(attributeKeys, groupKey) in characterDefinition.groups
-              .fertigkeiten"
+            v-for="(attributeKeys, groupKey) in fertigkeitenGruppen"
             :key="groupKey"
           >
             <h3>{{ groupKey }}</h3>
