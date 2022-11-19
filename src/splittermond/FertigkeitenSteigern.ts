@@ -1,8 +1,20 @@
-import { fertigkeitenDefinition } from './Fertigkeiten'
+import { mapToAttributeDefinitions } from '../character-development/Attributes'
+import { fertigkeitenDefinition, fertigkeiten } from './Fertigkeiten'
+
+const fertigkeitsMeisterschaftsPunkte =
+  fertigkeiten.map<`${typeof fertigkeiten[number]}MeisterschaftsPunkte`>(
+    (fertigkeit) => `${fertigkeit}MeisterschaftsPunkte`
+  )
+
+const meisterschaftsSchwellen = [6, 9, 12] as const
 
 export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
   .addAttributes({
     freieFertigkeitsPunkte: { type: 'number' },
+    ...mapToAttributeDefinitions(fertigkeitsMeisterschaftsPunkte, {
+      type: 'multi-select',
+      options: [1, 2, 3],
+    }),
   })
   .addEvents(
     {
@@ -17,6 +29,11 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
           { fertigkeit },
           { rawAttributes, attributes }
         ) {
+          // Meisterschaftsschwelle erreicht?
+          const meisterschaftsSchwelle = meisterschaftsSchwellen.findIndex(
+            (schwelle) => schwelle === rawAttributes[fertigkeit] + 1
+          )
+
           const maximalWert = 6 + 3 * (attributes.heldengrad - 1)
           if (rawAttributes[fertigkeit] >= maximalWert) {
             reject(`Maximal ${maximalWert} Punkte pro Fertigkeit`)
@@ -32,6 +49,12 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
               type: 'add',
               amount: 1,
             })
+            if (meisterschaftsSchwelle > -1) {
+              mutate(`${fertigkeit}MeisterschaftsPunkte`, {
+                type: 'add',
+                option: meisterschaftsSchwelle + 1,
+              })
+            }
             return
           }
 
@@ -51,6 +74,12 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
             type: 'add',
             amount: 1,
           })
+          if (meisterschaftsSchwelle > -1) {
+            mutate(`${fertigkeit}MeisterschaftsPunkte`, {
+              type: 'add',
+              option: meisterschaftsSchwelle + 1,
+            })
+          }
         },
       },
     }

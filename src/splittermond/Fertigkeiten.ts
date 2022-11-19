@@ -65,7 +65,7 @@ const kampfFertigkeiten = [
   'wurfwaffen',
 ] as const
 
-const fertigkeiten = [
+export const fertigkeiten = [
   ...allgemeineFertigkeiten,
   ...magieSchulen,
   ...kampfFertigkeiten,

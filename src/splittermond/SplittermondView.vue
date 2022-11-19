@@ -143,22 +143,22 @@ function erfahrungspunkteHinzufuegen() {
             {{ valueOf('meisterschaftsPunkte') }}
           </p>
           <div
-            v-for="(attributeKeys, groupKey) in fertigkeitenGruppen"
-            :key="groupKey"
+            v-for="(fertigkeiten, gruppe) in fertigkeitenGruppen"
+            :key="gruppe"
           >
-            <h3>{{ groupKey }}</h3>
+            <h3>{{ gruppe }}</h3>
             <div class="columns-2">
-              <div v-for="key in attributeKeys" :key="key">
+              <div v-for="fertigkeit in fertigkeiten" :key="fertigkeit">
                 <dl>
-                  <dt>{{ key }}</dt>
+                  <dt>{{ fertigkeit }}</dt>
                   <dd>
-                    {{ valueOf(key) }} ({{ rawValueOf(key) }})
+                    {{ valueOf(fertigkeit) }} ({{ rawValueOf(fertigkeit) }})
                     <CoreButton
                       v-bind="
                         getButtonBindings(
                           'fertigkeitSteigern',
                           {
-                            fertigkeit: key,
+                            fertigkeit: fertigkeit,
                           },
                           true
                         )
@@ -169,7 +169,7 @@ function erfahrungspunkteHinzufuegen() {
                     <CoreButton
                       v-bind="
                         getButtonBindings('fertigkeitSteigern', {
-                          fertigkeit: key,
+                          fertigkeit: fertigkeit,
                         })
                       "
                     >
@@ -178,8 +178,14 @@ function erfahrungspunkteHinzufuegen() {
                   </dd>
                 </dl>
                 <div>
+                  <div>
+                    Kostenlose Meisterschaften:
+                    {{ valueOf(`${fertigkeit}MeisterschaftsPunkte`) }}
+                  </div>
                   <CoreButton
-                    v-for="meisterschaft in meisterschaftenInFertigkeit(key)"
+                    v-for="meisterschaft in meisterschaftenInFertigkeit(
+                      fertigkeit
+                    )"
                     :class="[
                       character.rawAttributes.meisterschaften.includes(
                         meisterschaft.name

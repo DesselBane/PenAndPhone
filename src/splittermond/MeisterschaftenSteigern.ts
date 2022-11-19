@@ -10,7 +10,7 @@ export const meisterschaftenSteigernDefinition = meisterschaftenDefinition
     },
     {
       meisterschaftLernen: {
-        apply({ mutate, reject }, { name }, { rawAttributes }, _, history) {
+        apply({ mutate, reject }, { name }, { rawAttributes }) {
           const meisterschaft = meisterschaften[name]
           if (rawAttributes.meisterschaften.includes(name)) {
             reject('Meisterschaft wurde bereits gelernt')
@@ -27,7 +27,27 @@ export const meisterschaftenSteigernDefinition = meisterschaftenDefinition
             return
           }
 
-          // Für Meisterschaftspunkte kaufen
+          // Für Meisterschaftspunkt in Fertigkeit kaufen
+          const meisterschaftsPunkteInFertigkeit =
+            rawAttributes[`${meisterschaft.fertigkeit}MeisterschaftsPunkte`]
+          const passenderMeisterschaftsPunkt =
+            meisterschaftsPunkteInFertigkeit.find(
+              (punkt) => punkt >= meisterschaft.level
+            )
+
+          if (passenderMeisterschaftsPunkt != null) {
+            mutate(`${meisterschaft.fertigkeit}MeisterschaftsPunkte`, {
+              type: 'remove',
+              option: passenderMeisterschaftsPunkt,
+            })
+            mutate('meisterschaften', {
+              type: 'add',
+              option: name,
+            })
+            return
+          }
+
+          // Für allgemeine Meisterschaftspunkte kaufen
           if (
             rawAttributes.meisterschaftsPunkte > 0 &&
             meisterschaft.level === 1
@@ -47,37 +67,6 @@ export const meisterschaftenSteigernDefinition = meisterschaftenDefinition
           const meisterschaftsSchwelle = Math.floor((fertigkeitPunkte - 3) / 3)
           if (meisterschaftsSchwelle < meisterschaft.level) {
             reject('Zu niedrige Meisterschaftsschwelle')
-            return
-          }
-
-          const kostenloseErwerbe = history.filter((event) => {
-            if (event.type !== 'meisterschaftLernen') {
-              return false
-            }
-            const erworbeneMeisterschaft = meisterschaften[event.payload.name]
-            if (
-              erworbeneMeisterschaft.fertigkeit !== meisterschaft.fertigkeit
-            ) {
-              return false
-            }
-            if (
-              event.mutations.some(
-                (mutation) =>
-                  mutation.key === 'erfahrungspunkteEingesetzt' ||
-                  mutation.key === 'meisterschaftsPunkte'
-              )
-            ) {
-              return false
-            }
-            return true
-          })
-
-          // TODO: maximal eine auf level3, zwei auf level2, drei auf level1
-          if (kostenloseErwerbe.length < meisterschaftsSchwelle) {
-            mutate('meisterschaften', {
-              type: 'add',
-              option: name,
-            })
             return
           }
 
