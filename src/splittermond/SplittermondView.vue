@@ -5,7 +5,7 @@ import { Character } from '../character-development/Character'
 import { useEventButtons } from '../character-development/useEventButton'
 import CoreButton from '../core/components/CoreButton.vue'
 
-import { fertigkeitenGruppen } from './Fertigkeiten'
+import { fertigkeitenGruppen, fertigkeitenAttribute } from './Fertigkeiten'
 import { meisterschaftenInFertigkeit } from './Meisterschaften'
 import { erschaffungDefinition as characterDefinition } from './Erschaffung'
 
@@ -175,12 +175,28 @@ function erfahrungspunkteHinzufuegen() {
                     >
                       +
                     </CoreButton>
+                    <div class="labels">
+                      <span
+                        v-for="attribut in fertigkeitenAttribute[fertigkeit]"
+                        :key="attribut"
+                        class="label"
+                      >
+                        {{ attribut.substring(0, 3) }}: {{ valueOf(attribut) }}
+                      </span>
+                    </div>
                   </dd>
                 </dl>
                 <div>
-                  <div>
-                    Kostenlose Meisterschaften:
-                    {{ valueOf(`${fertigkeit}MeisterschaftsPunkte`) }}
+                  <div class="labels">
+                    <span
+                      v-for="level in valueOf(
+                        `${fertigkeit}MeisterschaftsPunkte`
+                      )"
+                      :key="level"
+                      class="label"
+                    >
+                      Level {{ level }} kostenlos
+                    </span>
                   </div>
                   <CoreButton
                     v-for="meisterschaft in meisterschaftenInFertigkeit(
@@ -386,5 +402,19 @@ dd {
 
 .event-leave-active {
   position: absolute;
+}
+
+.labels {
+  display: flex;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  display: inline-block;
+  padding: 0 0.4rem;
+  border-radius: 0.5rem;
+  background: rgb(217, 210, 241);
 }
 </style>
