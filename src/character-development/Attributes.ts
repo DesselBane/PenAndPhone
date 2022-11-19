@@ -102,25 +102,7 @@ export type AttributeState<
 
 export type AttributeGroupDefinitions<
   TAttributeDefinitions extends UnknownAttributeDefinitions
-> = Record<
-  string,
-  | ReadonlyArray<keyof TAttributeDefinitions>
-  | Record<string, (keyof TAttributeDefinitions)[]>
->
-
-export type FlatAttributeGroupDefinitions<
-  TAttributeDefinitions extends UnknownAttributeDefinitions,
-  TAttributeGroupDefinitions extends AttributeGroupDefinitions<TAttributeDefinitions>
-> = {
-  [TKey in keyof TAttributeGroupDefinitions]: TAttributeGroupDefinitions[TKey] extends (keyof TAttributeDefinitions)[]
-    ? TAttributeGroupDefinitions[TKey]
-    : TAttributeGroupDefinitions[TKey] extends Record<
-        string,
-        infer TAttributeKeys extends (keyof TAttributeDefinitions)[]
-      >
-    ? TAttributeKeys
-    : never
-}
+> = Readonly<Record<string, ReadonlyArray<keyof TAttributeDefinitions>>>
 
 export function mapToAttributeDefinitions<
   TKeys extends ReadonlyArray<string>,

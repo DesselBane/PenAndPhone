@@ -3,7 +3,6 @@ import {
   UnknownAttributeDefinition,
   UnknownAttributeDefinitions,
   AttributeGroupDefinitions,
-  FlatAttributeGroupDefinitions,
   AttributeValue,
   MultiSelectAttributeDefinition,
   AttributeMutation,
@@ -26,10 +25,7 @@ export type AllowedPayloadTypeMap<
   boolean: boolean
   attributeId: keyof TAttributes
 } & {
-  [Key in keyof TAttributeGroups as `group.${Key}`]: FlatAttributeGroupDefinitions<
-    TAttributes,
-    TAttributeGroups
-  >[Key][number]
+  [Key in keyof TAttributeGroups as `group.${Key}`]: TAttributeGroups[Key][number]
 } & {
   [Key in keyof TAttributes as `${Key}.value`]: PayloadAttributeValue<
     TAttributes[Key]

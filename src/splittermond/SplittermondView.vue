@@ -9,8 +9,6 @@ import { fertigkeitenGruppen } from './Fertigkeiten'
 import { meisterschaftenInFertigkeit } from './Meisterschaften'
 import { erschaffungDefinition as characterDefinition } from './Erschaffung'
 
-// TODO: fix event payloads
-
 const showHistory = ref(true)
 const character = ref(new Character(characterDefinition))
 
