@@ -11,6 +11,7 @@ type Zauberschule = `${Magieschule} ${typeof zauberGrade[number]}`
 // TODO: Alle typus ergänzen
 const zauberTypus = [
   'aura',
+  'schaden',
   'wahrnehmung',
   'verstaendigung',
   'verhuellung',
@@ -44,6 +45,24 @@ export const zauberliste = zauberlisteBauen([
     kosten: '4V1',
     zauberdauer: 2,
     wirkung: `Der Zauberer wird alarmiert, wenn eines oder mehrere Wesen der Größenklasse 2 oder höher den Wirkungsbereich betritt. Er vermag dabei keinen genauen Ort zu bestimmen, sondern lediglich die pure Anwesenheit festzustellen, ebenso wenig kann er Angaben zur Anzahl machen. Es ist möglich, bis zu zehn bestimmte Wesen seiner Wahl von der Alarmierung auszunehmen.`,
+  },
+  {
+    name: 'felsgeschoss',
+    art: 'spruch',
+    schulen: ['fels 1', 'kampf 1'],
+    typus: ['schaden'],
+    kosten: '3V1',
+    zauberdauer: 4,
+    wirkung: `Der Zauberer schleudert dem Ziel ein Felsgeschoss entgegen, welches 1W10 Punkte Felsschaden verursacht. Zudem bedarf es einer gelungenen Akrobatik- oder Athletik-Probe gegen 15 (erhöht um die Fertigkeitspunkte des Zauberers in der verwendeten Magieschule), um nicht vom Aufprall umgeworfen zu werden und als liegend zu gelten.`,
+  },
+  {
+    name: 'feuerstrahl',
+    art: 'spruch',
+    schulen: ['feuer 1', 'kampf 2'],
+    typus: ['schaden'],
+    kosten: '5V2',
+    zauberdauer: 8,
+    wirkung: `Der Zauberer wirft einen Feuerstrahl auf einen Gegner. Der Getroffene erleidet 2W6+5 Punkte Feuerschaden.`,
   },
 ] as const)
 
