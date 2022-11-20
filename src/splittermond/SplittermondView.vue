@@ -9,6 +9,9 @@ import { fertigkeitenGruppen, fertigkeitenAttribute } from './Fertigkeiten'
 import { meisterschaftenInFertigkeit } from './Meisterschaften'
 import { erschaffungDefinition as characterDefinition } from './Erschaffung'
 
+import { magieSchulen, Magieschule } from './zauberei/Magieschulen'
+import { zauberInSchule } from './zauberei/Zauber'
+
 const showHistory = ref(true)
 const character = ref(new Character(characterDefinition))
 
@@ -207,11 +210,6 @@ function erfahrungspunkteHinzufuegen() {
                     )"
                     :key="meisterschaft.name"
                     v-bind="{
-                      ...(character.rawAttributes.meisterschaften.includes(
-                        meisterschaft.name
-                      )
-                        ? { class: 'active' }
-                        : {}),
                       ...getButtonBindings(
                         'meisterschaftLernen',
                         {
@@ -221,9 +219,39 @@ function erfahrungspunkteHinzufuegen() {
                           meisterschaft.name
                         )
                       ),
+                      ...(character.rawAttributes.meisterschaften.includes(
+                        meisterschaft.name
+                      )
+                        ? { class: 'active' }
+                        : {}),
                     }"
                   >
                     {{ meisterschaft.name }}
+                  </CoreButton>
+                </div>
+                <div v-if="magieSchulen.includes(fertigkeit as Magieschule)">
+                  <CoreButton
+                    v-for="zauber in zauberInSchule(fertigkeit as Magieschule)"
+                    :key="zauber.name"
+                    v-bind="{
+                      ...getButtonBindings(
+                        'zauberLernen',
+                        {
+                          schule: fertigkeit as Magieschule,
+                          name: zauber.name,
+                        },
+                        character.rawAttributes[`${fertigkeit as Magieschule}Zauber`].includes(
+                          zauber.name
+                        )
+                      ),
+                      ...(character.rawAttributes[
+                        `${fertigkeit as Magieschule}Zauber`
+                      ].includes(zauber.name)
+                        ? { class: 'active' }
+                        : {}),
+                    }"
+                  >
+                    {{ zauber.name }}
                   </CoreButton>
                 </div>
               </div>

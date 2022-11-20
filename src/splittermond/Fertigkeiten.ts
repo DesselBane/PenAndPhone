@@ -2,6 +2,7 @@ import { CharacterState } from './../character-development/Character'
 import { abgeleiteteWerteDefinition } from './AbgeleiteteWerte'
 import { mapToAttributeDefinitions } from '../character-development/Attributes'
 import { attribute } from './Attribute'
+import { magieSchulen } from './zauberei/Magieschulen'
 
 const allgemeineFertigkeiten = [
   'akrobatik',
@@ -31,28 +32,6 @@ const allgemeineFertigkeiten = [
   'ueberleben',
   'wahrnehmung',
   'zaehigkeit',
-] as const
-
-const magieSchulen = [
-  'bann',
-  'beherrschung',
-  'bewegung',
-  'erkenntnis',
-  'fels',
-  'feuer',
-  'heilung',
-  'illusion',
-  'kampf',
-  'licht',
-  'natur',
-  'schatten',
-  'schicksal',
-  'schutz',
-  'staerkung',
-  'tod',
-  'verwandlung',
-  'wasser',
-  'wind',
 ] as const
 
 const kampfFertigkeiten = [

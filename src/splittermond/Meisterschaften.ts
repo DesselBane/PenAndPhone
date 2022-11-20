@@ -1,5 +1,5 @@
+import { zauberLernenDefinition } from './zauberei/ZauberLernen'
 import { fertigkeitenDefinition } from './Fertigkeiten'
-import { fertigkeitenSteigernDefinition } from './FertigkeitenSteigern'
 
 export const meisterschaftenNamen = [
   'blitzreflexe1',
@@ -46,10 +46,9 @@ export function meisterschaftenInFertigkeit(fertigkeit: string) {
     }))
 }
 
-export const meisterschaftenDefinition =
-  fertigkeitenSteigernDefinition.addAttributes({
-    meisterschaften: {
-      type: 'multi-select',
-      options: meisterschaftenNamen,
-    },
-  })
+export const meisterschaftenDefinition = zauberLernenDefinition.addAttributes({
+  meisterschaften: {
+    type: 'multi-select',
+    options: meisterschaftenNamen,
+  },
+})
