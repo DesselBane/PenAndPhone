@@ -175,9 +175,12 @@ function erfahrungspunkteHinzufuegen() {
                     >
                       +
                     </CoreButton>
-                    <div class="labels">
+                    <div
+                      class="labels"
+                      v-if="fertigkeit in fertigkeitenAttribute"
+                    >
                       <span
-                        v-for="attribut in fertigkeitenAttribute[fertigkeit]"
+                        v-for="attribut in fertigkeitenAttribute[fertigkeit as keyof typeof fertigkeitenAttribute]"
                         :key="attribut"
                         class="label"
                       >
@@ -202,14 +205,14 @@ function erfahrungspunkteHinzufuegen() {
                     v-for="meisterschaft in meisterschaftenInFertigkeit(
                       fertigkeit
                     )"
-                    :class="[
-                      character.rawAttributes.meisterschaften.includes(
-                        meisterschaft.name
-                      ) && 'active',
-                    ]"
                     :key="meisterschaft.name"
-                    v-bind="
-                      getButtonBindings(
+                    v-bind="{
+                      ...(character.rawAttributes.meisterschaften.includes(
+                        meisterschaft.name
+                      )
+                        ? { class: 'active' }
+                        : {}),
+                      ...getButtonBindings(
                         'meisterschaftLernen',
                         {
                           name: meisterschaft.name,
@@ -217,8 +220,8 @@ function erfahrungspunkteHinzufuegen() {
                         character.rawAttributes.meisterschaften.includes(
                           meisterschaft.name
                         )
-                      )
-                    "
+                      ),
+                    }"
                   >
                     {{ meisterschaft.name }}
                   </CoreButton>
@@ -274,34 +277,18 @@ function erfahrungspunkteHinzufuegen() {
         </TransitionGroup>
       </div>
       <div v-else>
-        <template
+        <div
           v-for="(groupValues, groupKey) in characterDefinition.groups"
           :key="groupKey"
         >
-          <div v-if="Array.isArray(groupValues)">
-            <h2>{{ groupKey }}</h2>
-            <dl>
-              <template v-for="key in groupValues" :key="key">
-                <dt>{{ key }}</dt>
-                <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
-              </template>
-            </dl>
-          </div>
-          <template v-else>
-            <div
-              v-for="(attributeKeys, subGroupKey) in groupValues"
-              :key="subGroupKey"
-            >
-              <h2>{{ subGroupKey }}</h2>
-              <dl>
-                <template v-for="key in attributeKeys" :key="key">
-                  <dt>{{ key }}</dt>
-                  <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
-                </template>
-              </dl>
-            </div>
-          </template>
-        </template>
+          <h2>{{ groupKey }}</h2>
+          <dl>
+            <template v-for="key in groupValues" :key="key">
+              <dt>{{ key }}</dt>
+              <dd>{{ valueOf(key) }} ({{ rawValueOf(key) }})</dd>
+            </template>
+          </dl>
+        </div>
       </div>
     </aside>
   </main>
