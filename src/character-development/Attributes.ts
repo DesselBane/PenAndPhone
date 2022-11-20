@@ -106,19 +106,22 @@ export type AttributeGroupDefinitions<
 
 export function mapToAttributeDefinitions<
   TKeys extends ReadonlyArray<string>,
-  TAttributeDefinition extends UnknownAttributeDefinition
+  TAttributeDefinition extends UnknownAttributeDefinition,
+  TTransformedKey extends string = TKeys[number]
 >(
   keys: TKeys,
   definition:
     | TAttributeDefinition
-    | ((key: TKeys[number]) => TAttributeDefinition)
+    | ((key: TKeys[number]) => TAttributeDefinition),
+  transformKey: (key: TKeys[number]) => TTransformedKey = (key) =>
+    key as TTransformedKey
 ) {
-  return keys.reduce<Record<TKeys[number], TAttributeDefinition>>(
+  return keys.reduce<Record<TTransformedKey, TAttributeDefinition>>(
     (defs, key) => {
-      defs[key as TKeys[number]] =
+      defs[transformKey(key)] =
         typeof definition === 'function' ? definition(key) : definition
       return defs
     },
-    {} as Record<TKeys[number], TAttributeDefinition>
+    {} as Record<TTransformedKey, TAttributeDefinition>
   )
 }

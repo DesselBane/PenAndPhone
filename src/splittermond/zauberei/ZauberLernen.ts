@@ -10,11 +10,14 @@ const magieschulenZauber =
 
 export const zauberLernenDefinition = fertigkeitenSteigernDefinition
   .addAttributes({
-    ...mapToAttributeDefinitions(magieschulenZauber, (schule) => ({
-      type: 'multi-select',
-      // TODO: find better solution
-      options: zauberNamenInSchule(schule.replace('Zauber', '') as any),
-    })),
+    ...mapToAttributeDefinitions(
+      magieSchulen,
+      (schule) => ({
+        type: 'multi-select',
+        options: zauberNamenInSchule(schule),
+      }),
+      (schule) => `${schule}Zauber`
+    ),
   })
   .addAttributeGroups({
     magieschulenZauber: magieschulenZauber,
