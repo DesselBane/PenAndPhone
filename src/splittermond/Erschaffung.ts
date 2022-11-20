@@ -1,4 +1,4 @@
-import { meisterschaftenSteigernDefinition } from './MeisterschaftenSteigern'
+import { meisterschaftenSteigernDefinition } from './MeisterschaftenLernen'
 
 export const erschaffungDefinition = meisterschaftenSteigernDefinition
   .addAttributes({

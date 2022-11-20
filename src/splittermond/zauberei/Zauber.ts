@@ -1,19 +1,21 @@
 import { Magieschule } from './Magieschulen'
 
-const ZAUBERARTEN = ['spruch', 'ritus'] as const
-type Zauberart = typeof ZAUBERARTEN[number]
+const zauberArten = ['spruch', 'ritus'] as const
+type Zauberart = typeof zauberArten[number]
 
-const ZAUBERGRADE = [0, 1, 2, 3, 4, 5] as const
-type Zauberschule = `${Magieschule} ${typeof ZAUBERGRADE[number]}`
+export const zauberGrade = [0, 1, 2, 3, 4, 5] as const
+export type ZauberGrad = typeof zauberGrade[number]
+export const zauberSchwellen = [1, 3, 6, 9, 12, 15] as const
+type Zauberschule = `${Magieschule} ${typeof zauberGrade[number]}`
 
 // TODO: Alle typus ergänzen
-const ZAUBERTYPUS = [
+const zauberTypus = [
   'aura',
   'wahrnehmung',
   'verstaendigung',
   'verhuellung',
 ] as const
-type Zaubertypus = typeof ZAUBERTYPUS[number]
+type Zaubertypus = typeof zauberTypus[number]
 
 type Zauberkosten = `K${number}V${number}` | `${number}V${number}` | `${number}`
 

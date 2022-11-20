@@ -1,4 +1,4 @@
-export const magieSchulen = [
+export const magieschulen = [
   'bann',
   'beherrschung',
   'bewegung',
@@ -19,4 +19,4 @@ export const magieSchulen = [
   'wasser',
   'wind',
 ] as const
-export type Magieschule = typeof magieSchulen[number]
+export type Magieschule = typeof magieschulen[number]

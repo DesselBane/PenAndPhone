@@ -9,7 +9,7 @@ import { fertigkeitenGruppen, fertigkeitenAttribute } from './Fertigkeiten'
 import { meisterschaftenInFertigkeit } from './Meisterschaften'
 import { erschaffungDefinition as characterDefinition } from './Erschaffung'
 
-import { magieSchulen, Magieschule } from './zauberei/Magieschulen'
+import { magieschulen, Magieschule } from './zauberei/Magieschulen'
 import { zauberInSchule } from './zauberei/Zauber'
 
 const showHistory = ref(true)
@@ -195,13 +195,13 @@ function erfahrungspunkteHinzufuegen() {
                 <div>
                   <div class="labels">
                     <span
-                      v-for="level in valueOf(
+                      v-for="grad in valueOf(
                         `${fertigkeit}MeisterschaftsPunkte`
                       )"
-                      :key="level"
+                      :key="grad"
                       class="label"
                     >
-                      Level {{ level }} kostenlos
+                      Grad {{ grad }} kostenlos
                     </span>
                   </div>
                   <CoreButton
@@ -229,7 +229,16 @@ function erfahrungspunkteHinzufuegen() {
                     {{ meisterschaft.name }}
                   </CoreButton>
                 </div>
-                <div v-if="magieSchulen.includes(fertigkeit as Magieschule)">
+                <div v-if="magieschulen.includes(fertigkeit as Magieschule)">
+                  <div class="labels">
+                    <span
+                      v-for="grad in valueOf(`${fertigkeit as Magieschule}ZauberPunkte`)"
+                      :key="grad"
+                      class="label"
+                    >
+                      Zauber {{ grad }} kostenlos
+                    </span>
+                  </div>
                   <CoreButton
                     v-for="zauber in zauberInSchule(fertigkeit as Magieschule)"
                     :key="zauber.name"

@@ -2,7 +2,7 @@ import { CharacterState } from './../character-development/Character'
 import { abgeleiteteWerteDefinition } from './AbgeleiteteWerte'
 import { mapToAttributeDefinitions } from '../character-development/Attributes'
 import { attribute } from './Attribute'
-import { magieSchulen } from './zauberei/Magieschulen'
+import { magieschulen } from './zauberei/Magieschulen'
 
 const allgemeineFertigkeiten = [
   'akrobatik',
@@ -46,13 +46,13 @@ const kampfFertigkeiten = [
 
 export const fertigkeiten = [
   ...allgemeineFertigkeiten,
-  ...magieSchulen,
+  ...magieschulen,
   ...kampfFertigkeiten,
 ] as const
 
 export const fertigkeitenGruppen = {
   allgemeineFertigkeiten,
-  magieSchulen,
+  magieSchulen: magieschulen,
   kampfFertigkeiten,
 }
 
@@ -63,12 +63,12 @@ const fertigkeitenDefinitionBasis = abgeleiteteWerteDefinition
   .addAttributeGroups({
     fertigkeiten,
     allgemeineFertigkeiten,
-    magieSchulen,
+    magieSchulen: magieschulen,
     kampfFertigkeiten,
   })
 
 export const fertigkeitenAttribute: Record<
-  typeof allgemeineFertigkeiten[number] | typeof magieSchulen[number],
+  typeof allgemeineFertigkeiten[number] | typeof magieschulen[number],
   [typeof attribute[number], typeof attribute[number]]
 > = {
   // Allgemeine Fertigkeiten

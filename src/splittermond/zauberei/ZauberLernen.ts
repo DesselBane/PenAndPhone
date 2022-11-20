@@ -1,17 +1,17 @@
 import { mapToAttributeDefinitions } from '../../character-development/Attributes'
 import { fertigkeitenSteigernDefinition } from '../FertigkeitenSteigern'
-import { magieSchulen } from './Magieschulen'
+import { magieschulen } from './Magieschulen'
 import { zauberNachNamen, zauberNamenInSchule } from './Zauber'
 
 const magieschulenZauber =
-  magieSchulen.map<`${typeof magieSchulen[number]}Zauber`>(
+  magieschulen.map<`${typeof magieschulen[number]}Zauber`>(
     (schule) => `${schule}Zauber`
   )
 
 export const zauberLernenDefinition = fertigkeitenSteigernDefinition
   .addAttributes({
     ...mapToAttributeDefinitions(
-      magieSchulen,
+      magieschulen,
       (schule) => ({
         type: 'multi-select',
         options: zauberNamenInSchule(schule),
@@ -61,7 +61,25 @@ export const zauberLernenDefinition = fertigkeitenSteigernDefinition
             return
           }
 
-          // Steigern mit Erfahrungspunkten
+          // Lernen mit Zauberpunkt
+          const zauberPunkteInSchule = rawAttributes[`${schule}ZauberPunkte`]
+          const passenderZauberPunkt = zauberPunkteInSchule.find(
+            (punkt) => punkt >= zauberGrad
+          )
+
+          if (passenderZauberPunkt != null) {
+            mutate(`${schule}ZauberPunkte`, {
+              type: 'remove',
+              option: passenderZauberPunkt,
+            })
+            mutate(`${schule}Zauber`, {
+              type: 'add',
+              option: name,
+            })
+            return
+          }
+
+          // Lernen mit Erfahrungspunkten
           const erfahrungspunktKosten = Math.max(1, zauberGrad * 3)
           const freieErfahrungspunkte =
             attributes.erfahrungspunkte - attributes.erfahrungspunkteEingesetzt

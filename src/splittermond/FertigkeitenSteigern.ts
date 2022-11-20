@@ -1,5 +1,7 @@
 import { mapToAttributeDefinitions } from '../character-development/Attributes'
 import { fertigkeitenDefinition, fertigkeiten } from './Fertigkeiten'
+import { magieschulen, Magieschule } from './zauberei/Magieschulen'
+import { ZauberGrad, zauberGrade, zauberSchwellen } from './zauberei/Zauber'
 
 const fertigkeitsMeisterschaftsPunkte =
   fertigkeiten.map<`${typeof fertigkeiten[number]}MeisterschaftsPunkte`>(
@@ -7,14 +9,23 @@ const fertigkeitsMeisterschaftsPunkte =
   )
 
 const meisterschaftsSchwellen = [6, 9, 12] as const
+const meisterschaftsGrade = [1, 2, 3] as const
 
 export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
   .addAttributes({
     freieFertigkeitsPunkte: { type: 'number' },
     ...mapToAttributeDefinitions(fertigkeitsMeisterschaftsPunkte, {
       type: 'multi-select',
-      options: [1, 2, 3],
+      options: meisterschaftsGrade,
     }),
+    ...mapToAttributeDefinitions(
+      magieschulen,
+      {
+        type: 'multi-select',
+        options: zauberGrade,
+      },
+      (schule) => `${schule}ZauberPunkte`
+    ),
   })
   .addEvents(
     {
@@ -29,10 +40,20 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
           { fertigkeit },
           { rawAttributes, attributes }
         ) {
-          // Meisterschaftsschwelle erreicht?
+          // Meisterschaftgrad erreicht?
           const meisterschaftsSchwelle = meisterschaftsSchwellen.findIndex(
             (schwelle) => schwelle === rawAttributes[fertigkeit] + 1
           )
+          const meisterschaftsGrad = meisterschaftsGrade[meisterschaftsSchwelle]
+
+          // Zaubergrad erreicht?
+          let zauberGrad: ZauberGrad | null = null
+          if (magieschulen.includes(fertigkeit as Magieschule)) {
+            const zauberSchwelle = zauberSchwellen.findIndex(
+              (schwelle) => schwelle === rawAttributes[fertigkeit] + 1
+            )
+            zauberGrad = zauberGrade[zauberSchwelle]
+          }
 
           const maximalWert = 6 + 3 * (attributes.heldengrad - 1)
           if (rawAttributes[fertigkeit] >= maximalWert) {
@@ -49,10 +70,16 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
               type: 'add',
               amount: 1,
             })
-            if (meisterschaftsSchwelle > -1) {
+            if (meisterschaftsGrad != null) {
               mutate(`${fertigkeit}MeisterschaftsPunkte`, {
                 type: 'add',
-                option: meisterschaftsSchwelle + 1,
+                option: meisterschaftsGrad,
+              })
+            }
+            if (zauberGrad != null) {
+              mutate(`${fertigkeit as Magieschule}ZauberPunkte`, {
+                type: 'add',
+                option: zauberGrad,
               })
             }
             return
@@ -74,10 +101,16 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
             type: 'add',
             amount: 1,
           })
-          if (meisterschaftsSchwelle > -1) {
+          if (meisterschaftsGrad != null) {
             mutate(`${fertigkeit}MeisterschaftsPunkte`, {
               type: 'add',
-              option: meisterschaftsSchwelle + 1,
+              option: meisterschaftsGrad,
+            })
+          }
+          if (zauberGrad != null) {
+            mutate(`${fertigkeit as Magieschule}ZauberPunkte`, {
+              type: 'add',
+              option: zauberGrad,
             })
           }
         },
