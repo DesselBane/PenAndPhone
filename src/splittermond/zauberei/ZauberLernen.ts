@@ -16,12 +16,14 @@ export const zauberLernenDefinition = fertigkeitenSteigernDefinition
       options: zauberNamenInSchule(schule.replace('Zauber', '') as any),
     })),
   })
+  .addAttributeGroups({
+    magieschulenZauber: magieschulenZauber,
+  })
   .addEvents(
     {
       zauberLernen: {
         schule: 'group.magieSchulen',
-        // TODO: sollten Werte aller Schulen sein
-        name: 'schutzZauber.value',
+        name: 'group.magieschulenZauber.value',
       },
     },
     {
