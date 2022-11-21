@@ -336,7 +336,7 @@ describe('Character', () => {
           },
         })
       )
-      expect(char.attributes.xp).toBe(20)
+      expect(char.attributes.xp).toBe(30)
     })
 
     it('does not revert if history becomes invalid', () => {
