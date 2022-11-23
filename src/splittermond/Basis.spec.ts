@@ -1,42 +1,38 @@
-import { describe, expect, it } from 'vitest'
-import { Character } from '../character-development/Character'
+import { describe, it } from 'vitest'
+import { createTestSetup } from '../character-development/Testutils'
 import { basisDefinition } from './Basis'
 
 describe('Basis', () => {
-  function setupTest() {
-    const character = new Character(basisDefinition)
-
-    const getValue = (attribute: keyof typeof character.attributes) =>
-      character.getAttribute(attribute).value
-
-    return {
-      character,
-      getValue,
-    }
-  }
+  const { setupTest } = createTestSetup(basisDefinition)
 
   it('can set name', () => {
-    const { getValue, character } = setupTest()
+    const { expectState, character } = setupTest()
     character.execute('nameSetzen', {
       name: 'Barbarus',
     })
-    expect(getValue('name')).toBe('Barbarus')
+    expectState({
+      name: 'Barbarus',
+    })
   })
 
   it('can set race', () => {
-    const { getValue, character } = setupTest()
+    const { expectState, character } = setupTest()
     character.execute('rasseSetzen', {
       rasse: 'varg',
     })
-    expect(getValue('rasse')).toBe('varg')
+    expectState({
+      rasse: 'varg',
+    })
   })
 
   it('can add xp', () => {
-    const { getValue, character } = setupTest()
+    const { expectState, character } = setupTest()
     character.execute('erfahrungspunkteHinzufuegen', {
       menge: 10,
     })
-    expect(getValue('erfahrungspunkte')).toBe(10)
+    expectState({
+      erfahrungspunkte: 10,
+    })
   })
 
   it.each([
@@ -47,10 +43,13 @@ describe('Basis', () => {
     [300, 3],
     [599, 3],
     [600, 4],
-  ])('for %i used xp hero level is %i', (xp, level) => {
-    const { getValue, character } = setupTest()
-    character.rawAttributes.erfahrungspunkteEingesetzt = xp
-    expect(getValue('heldengrad')).toBe(level)
+  ] as const)('for %i used xp hero level is %i', (xp, level) => {
+    const { expectState } = setupTest({
+      erfahrungspunkteEingesetzt: xp,
+    })
+    expectState({
+      heldengrad: level,
+    })
   })
 
   it.each([
@@ -59,8 +58,11 @@ describe('Basis', () => {
     [300, 5],
     [600, 6],
   ])('for %i used xp shard points are %i', (xp, points) => {
-    const { getValue, character } = setupTest()
-    character.rawAttributes.erfahrungspunkteEingesetzt = xp
-    expect(getValue('splitterpunkte')).toBe(points)
+    const { expectState } = setupTest({
+      erfahrungspunkteEingesetzt: xp,
+    })
+    expectState({
+      splitterpunkte: points,
+    })
   })
 })

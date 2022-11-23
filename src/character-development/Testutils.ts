@@ -56,7 +56,7 @@ export function createTestSetup<
       character.getAttribute(attribute).value
 
     const expectState = (state: Partial<AttributeState<TAttributes>>) =>
-      expect(character.attributes).toBe(expect.objectContaining(state))
+      expect(character.attributes).toEqual(expect.objectContaining(state))
 
     return {
       character,

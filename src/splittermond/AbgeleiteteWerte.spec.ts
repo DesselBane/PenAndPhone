@@ -51,7 +51,7 @@ describe('AbgeleiteteWerte', () => {
   it('health is calculated correctly', () => {
     const { expectState } = setupTest({
       konstitution: 4,
-      rasse: 'alb',
+      rasse: 'mensch',
     })
     expectState({
       lebenspunkte: 9,
@@ -70,6 +70,7 @@ describe('AbgeleiteteWerte', () => {
 
   it('defense is calculated correctly', () => {
     const { expectState } = setupTest({
+      rasse: 'mensch',
       beweglichkeit: 1,
       staerke: 2,
     })
@@ -90,6 +91,7 @@ describe('AbgeleiteteWerte', () => {
 
   it('physical resistance is calculated correctly', () => {
     const { expectState } = setupTest({
+      rasse: 'mensch',
       konstitution: 1,
       willenskraft: 2,
     })
