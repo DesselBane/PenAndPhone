@@ -1,26 +1,26 @@
 import { describe, expect, it } from 'vitest'
-import { Character } from '../character-development/Character'
+import { createTestSetup } from '../character-development/Testutils'
 import { attribute } from './Attribute'
 import { attributeSteigernDefinition } from './AttributeSteigern'
 
 describe('AttributeSteigern', () => {
   function setupTest(initialPoints = 10) {
-    const character = new Character(attributeSteigernDefinition)
-    character.rawAttributes.attributPunkte = initialPoints
+    const { setupTest } = createTestSetup(attributeSteigernDefinition)
+    const { character, getRawValue } = setupTest({
+      attributPunkte: initialPoints,
+    })
 
     const execute = (attribut: typeof attribute[number] = 'ausstrahlung') =>
       character.execute('attributSteigernMitPunkt', {
         attribut,
       })
 
-    const getValue = (
-      attribute: keyof typeof character.attributes = 'ausstrahlung'
-    ) => character.getAttribute(attribute).rawValue
-
     return {
       character,
       execute,
-      getValue,
+      getValue: (
+        attribute: keyof typeof character.attributes = 'ausstrahlung'
+      ) => getRawValue(attribute),
     }
   }
 

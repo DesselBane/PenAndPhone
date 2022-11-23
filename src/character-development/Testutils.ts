@@ -52,8 +52,11 @@ export function createTestSetup<
     const character = new Character(definition)
     setState(character, initialState)
 
-    const getValue = (attribute: keyof typeof character.attributes) =>
+    const getValue = (attribute: keyof TAttributes) =>
       character.getAttribute(attribute).value
+
+    const getRawValue = (attribute: keyof TAttributes) =>
+      character.getAttribute(attribute).rawValue
 
     const expectState = (state: Partial<AttributeState<TAttributes>>) =>
       expect(character.attributes).toEqual(expect.objectContaining(state))
@@ -61,6 +64,7 @@ export function createTestSetup<
     return {
       character,
       getValue,
+      getRawValue,
       setState: (state: Partial<AttributeState<TAttributes>>) =>
         setState(character, state),
       expectState,
