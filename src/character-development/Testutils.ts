@@ -58,8 +58,12 @@ export function createTestSetup<
     const getRawValue = (attribute: keyof TAttributes) =>
       character.getAttribute(attribute).rawValue
 
-    const expectState = (state: Partial<AttributeState<TAttributes>>) =>
-      expect(character.attributes).toEqual(expect.objectContaining(state))
+    const expectState = (state: Partial<AttributeState<TAttributes>>) => {
+      Object.entries(state).forEach(([property, expectedValue]) => {
+        const value = character.attributes[property]
+        expect(value, `for property "${property}"`).toBe(expectedValue)
+      })
+    }
 
     return {
       character,
