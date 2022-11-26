@@ -4,7 +4,9 @@ import { mapToAttributeDefinitions } from '../character-development/Attributes'
 import { attribute } from './Attribute'
 import { magieschulen } from './zauberei/Magieschulen'
 
-const allgemeineFertigkeiten = [
+export { magieschulen }
+
+export const allgemeineFertigkeiten = [
   'akrobatik',
   'alchemie',
   'anfuehren',
@@ -34,7 +36,7 @@ const allgemeineFertigkeiten = [
   'zaehigkeit',
 ] as const
 
-const kampfFertigkeiten = [
+export const kampfFertigkeiten = [
   'handgemenge',
   'hiebwaffen',
   'kettenwaffen',
@@ -67,8 +69,12 @@ const fertigkeitenDefinitionBasis = abgeleiteteWerteDefinition
     kampfFertigkeiten,
   })
 
+type AttributeMitFertigkeiten =
+  | typeof allgemeineFertigkeiten[number]
+  | typeof magieschulen[number]
+
 export const fertigkeitenAttribute: Record<
-  typeof allgemeineFertigkeiten[number] | typeof magieschulen[number],
+  AttributeMitFertigkeiten,
   [typeof attribute[number], typeof attribute[number]]
 > = {
   // Allgemeine Fertigkeiten
@@ -124,19 +130,21 @@ export const fertigkeitenAttribute: Record<
 
 export let fertigkeitenDefinition = fertigkeitenDefinitionBasis
 
-allgemeineFertigkeiten.forEach((fertigkeit) => {
-  const [attribut1, attribut2] = fertigkeitenAttribute[fertigkeit]
-  fertigkeitenDefinition = fertigkeitenDefinition.addAttributeCalculations({
-    // TODO: why do we need to define characterstate when using a dynamic prop key?
-    [fertigkeit]: ({
-      attributes,
-      rawAttributes,
-    }: CharacterState<typeof fertigkeitenDefinitionBasis['attributes']>) => {
-      return (
-        rawAttributes[fertigkeit] +
-        attributes[attribut1] +
-        attributes[attribut2]
-      )
-    },
-  })
-})
+Object.entries(fertigkeitenAttribute).forEach(
+  ([fertigkeit, fertigkeitAttribute]) => {
+    const [attribut1, attribut2] = fertigkeitAttribute
+    fertigkeitenDefinition = fertigkeitenDefinition.addAttributeCalculations({
+      // TODO: why do we need to define characterstate when using a dynamic prop key?
+      [fertigkeit]: ({
+        attributes,
+        rawAttributes,
+      }: CharacterState<typeof fertigkeitenDefinitionBasis['attributes']>) => {
+        return (
+          rawAttributes[fertigkeit as AttributeMitFertigkeiten] +
+          attributes[attribut1] +
+          attributes[attribut2]
+        )
+      },
+    })
+  }
+)
