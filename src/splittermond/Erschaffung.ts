@@ -1,6 +1,6 @@
-import { meisterschaftenSteigernDefinition } from './MeisterschaftenLernen'
+import { meisterschaftenLernenDefinition } from './MeisterschaftenLernen'
 
-export const erschaffungDefinition = meisterschaftenSteigernDefinition
+export const erschaffungDefinition = meisterschaftenLernenDefinition
   .addAttributes({
     erschaffungsZustand: {
       type: 'single-select',

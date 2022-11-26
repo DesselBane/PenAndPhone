@@ -1,6 +1,6 @@
 import { meisterschaftenDefinition, meisterschaften } from './Meisterschaften'
 
-export const meisterschaftenSteigernDefinition = meisterschaftenDefinition
+export const meisterschaftenLernenDefinition = meisterschaftenDefinition
   .addAttributes({ meisterschaftsPunkte: { type: 'number' } })
   .addEvents(
     {
