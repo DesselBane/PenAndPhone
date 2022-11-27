@@ -87,7 +87,7 @@ export const fertigkeitenSteigernDefinition = fertigkeitenDefinition
 
           // Steigern mit Erfahrungspunkten
           const erfahrungspunktKosten =
-            3 + 2 * Math.max(0, Math.floor((rawAttributes[fertigkeit] - 6) / 3))
+            3 + 2 * Math.max(0, Math.floor((rawAttributes[fertigkeit] - 3) / 3))
           const freieErfahrungspunkte =
             attributes.erfahrungspunkte - attributes.erfahrungspunkteEingesetzt
           if (freieErfahrungspunkte < erfahrungspunktKosten) {
