@@ -99,7 +99,7 @@ describe('FertigkeitenSteigern', () => {
     [9, [1, 2]],
     [12, [1, 2, 3]],
   ] as const)(
-    'increasing to %i adds mastery points',
+    'increasing to %i adds mastery points %s',
     (points, masteryPoints) => {
       const { expectState, increase } = setupTest({
         erfahrungspunkte: 1000,
@@ -121,16 +121,19 @@ describe('FertigkeitenSteigern', () => {
     [9, [0, 1, 2, 3]],
     [12, [0, 1, 2, 3, 4]],
     [15, [0, 1, 2, 3, 4, 5]],
-  ] as const)('increasing to %i adds spell points', (points, spellPoints) => {
-    const { expectState, increase } = setupTest({
-      erfahrungspunkte: 1000,
-      erfahrungspunkteEingesetzt: 600,
-    })
-    for (let i = 0; i < points; i++) {
-      increase()
+  ] as const)(
+    'increasing to %i adds spell points %s',
+    (points, spellPoints) => {
+      const { expectState, increase } = setupTest({
+        erfahrungspunkte: 1000,
+        erfahrungspunkteEingesetzt: 600,
+      })
+      for (let i = 0; i < points; i++) {
+        increase()
+      }
+      expectState({
+        bannZauberPunkte: spellPoints,
+      })
     }
-    expectState({
-      bannZauberPunkte: spellPoints,
-    })
-  })
+  )
 })
