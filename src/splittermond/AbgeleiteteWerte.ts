@@ -63,13 +63,28 @@ export const abgeleiteteWerteDefinition = attributeSteigernDefinition.enhance(
 
     // Widerstandswerte
     verteidigung: ({ attributes }) => {
-      return 12 + attributes.beweglichkeit + attributes.staerke
+      return (
+        12 +
+        attributes.beweglichkeit +
+        attributes.staerke +
+        (attributes.heldengrad - 1) * 2
+      )
     },
     geistigerWiderstand: ({ attributes }) => {
-      return 12 + attributes.verstand + attributes.willenskraft
+      return (
+        12 +
+        attributes.verstand +
+        attributes.willenskraft +
+        (attributes.heldengrad - 1) * 2
+      )
     },
     koerperlicherWiderstand: ({ attributes }) => {
-      return 12 + attributes.konstitution + attributes.willenskraft
+      return (
+        12 +
+        attributes.konstitution +
+        attributes.willenskraft +
+        (attributes.heldengrad - 1) * 2
+      )
     },
   },
   {},

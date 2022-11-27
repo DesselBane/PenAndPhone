@@ -68,35 +68,42 @@ describe('AbgeleiteteWerte', () => {
     })
   })
 
-  it('defense is calculated correctly', () => {
-    const { expectState } = setupTest({
-      rasse: 'mensch',
-      beweglichkeit: 1,
-      staerke: 2,
-    })
-    expectState({
-      verteidigung: 15,
-    })
-  })
+  it.each([
+    ['verteidigung', 'beweglichkeit', 'staerke'],
+    ['geistigerWiderstand', 'verstand', 'willenskraft'],
+    ['koerperlicherWiderstand', 'konstitution', 'willenskraft'],
+  ] as const)(
+    '"%s" is calculated from "%s" and "%s"',
+    (resistance, attribute1, attribute2) => {
+      const { expectState } = setupTest({
+        rasse: 'mensch',
+        [attribute1]: 1,
+        [attribute2]: 2,
+      })
+      expectState({
+        [resistance]: 15,
+      })
+    }
+  )
 
-  it('mental resistance is calculated correctly', () => {
-    const { expectState } = setupTest({
-      verstand: 1,
-      willenskraft: 2,
-    })
-    expectState({
-      geistigerWiderstand: 15,
-    })
-  })
-
-  it('physical resistance is calculated correctly', () => {
-    const { expectState } = setupTest({
-      rasse: 'mensch',
-      konstitution: 1,
-      willenskraft: 2,
-    })
-    expectState({
-      koerperlicherWiderstand: 15,
+  describe.each([
+    'verteidigung',
+    'geistigerWiderstand',
+    'koerperlicherWiderstand',
+  ] as const)('for "%s"', (resistance) => {
+    it.each([
+      [0, 0],
+      [100, 2],
+      [300, 4],
+      [600, 6],
+    ])('for used xp %i adds %i points', (usedXp, addedPoints) => {
+      const { expectState } = setupTest({
+        rasse: 'mensch',
+        erfahrungspunkteEingesetzt: usedXp,
+      })
+      expectState({
+        [resistance]: 12 + addedPoints,
+      })
     })
   })
 })
