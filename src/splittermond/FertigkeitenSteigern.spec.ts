@@ -52,16 +52,44 @@ describe('FertigkeitenSteigern', () => {
     })
   })
 
-  it('calculates xp cost for skill level', () => {
+  it.each([
+    [99, 6],
+    [100, 9],
+    [299, 9],
+    [300, 12],
+    [599, 12],
+    [600, 15],
+  ])('for used xp of %i max points are %i', (usedXp, points) => {
     const { expectState, increase } = setupTest({
-      erfahrungspunkte: 110,
-      erfahrungspunkteEingesetzt: 100,
-      bann: 6,
+      bann: points,
+      erfahrungspunkte: 1000,
+      erfahrungspunkteEingesetzt: usedXp,
     })
     increase()
     expectState({
-      bann: 7,
-      erfahrungspunkteEingesetzt: 105,
+      bann: points,
+      erfahrungspunkteEingesetzt: usedXp,
+    })
+  })
+
+  it.each([
+    [0, 3],
+    [5, 3],
+    [6, 5],
+    [8, 5],
+    [9, 7],
+    [11, 7],
+    [12, 9],
+  ])('for skill points of %i cost is %i xp', (points, cost) => {
+    const { expectState, increase } = setupTest({
+      bann: points,
+      erfahrungspunkte: 1000,
+      erfahrungspunkteEingesetzt: 600,
+    })
+    increase()
+    expectState({
+      erfahrungspunkteEingesetzt: 600 + cost,
+      bann: points + 1,
     })
   })
 })
