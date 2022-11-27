@@ -91,11 +91,7 @@ export const defineCharacter = <
       groups,
       calculations,
       { ...events, ...newEvents },
-      { ...eventImplementations, ...newEventImplementations } as EventImpls<
-        TAttributes,
-        TAttributeGroups,
-        TEvents & TNewEvents
-      >
+      { ...eventImplementations, ...newEventImplementations }
     ),
   addAttributes: <TNewAttributes extends UnknownAttributeDefinitions>(
     newAttributes: TNewAttributes
@@ -172,11 +168,7 @@ export const defineCharacter = <
         ...events,
         ...newEvents,
       },
-      { ...eventImplementations, ...newEventImplementations } as EventImpls<
-        TAttributes & TNewAttributes,
-        TAttributeGroups & TNewAttributeGroups,
-        TEvents & TNewEvents
-      >
+      { ...eventImplementations, ...newEventImplementations }
     ),
 })
 
