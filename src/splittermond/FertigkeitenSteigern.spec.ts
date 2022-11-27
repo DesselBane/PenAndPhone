@@ -113,4 +113,24 @@ describe('FertigkeitenSteigern', () => {
       })
     }
   )
+
+  it.each([
+    [1, [0]],
+    [3, [0, 1]],
+    [6, [0, 1, 2]],
+    [9, [0, 1, 2, 3]],
+    [12, [0, 1, 2, 3, 4]],
+    [15, [0, 1, 2, 3, 4, 5]],
+  ] as const)('increasing to %i adds spell points', (points, spellPoints) => {
+    const { expectState, increase } = setupTest({
+      erfahrungspunkte: 1000,
+      erfahrungspunkteEingesetzt: 600,
+    })
+    for (let i = 0; i < points; i++) {
+      increase()
+    }
+    expectState({
+      bannZauberPunkte: spellPoints,
+    })
+  })
 })
