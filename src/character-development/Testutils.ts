@@ -1,3 +1,4 @@
+import { DeepReadonly } from './../util/UtilityTypes'
 import { expect } from 'vitest'
 import {
   UnknownAttributeDefinitions,
@@ -58,10 +59,12 @@ export function createTestSetup<
     const getRawValue = (attribute: keyof TAttributes) =>
       character.getAttribute(attribute).rawValue
 
-    const expectState = (state: Partial<AttributeState<TAttributes>>) => {
+    const expectState = (
+      state: DeepReadonly<Partial<AttributeState<TAttributes>>>
+    ) => {
       Object.entries(state).forEach(([property, expectedValue]) => {
         const value = character.attributes[property]
-        expect(value, `for property "${property}"`).toBe(expectedValue)
+        expect(value, `for property "${property}"`).toStrictEqual(expectedValue)
       })
     }
 

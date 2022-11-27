@@ -92,4 +92,25 @@ describe('FertigkeitenSteigern', () => {
       bann: points + 1,
     })
   })
+
+  it.each([
+    [0, []],
+    [6, [1]],
+    [9, [1, 2]],
+    [12, [1, 2, 3]],
+  ] as const)(
+    'increasing to %i adds mastery points',
+    (points, masteryPoints) => {
+      const { expectState, increase } = setupTest({
+        erfahrungspunkte: 1000,
+        erfahrungspunkteEingesetzt: 600,
+      })
+      for (let i = 0; i < points; i++) {
+        increase()
+      }
+      expectState({
+        bannMeisterschaftsPunkte: masteryPoints,
+      })
+    }
+  )
 })
