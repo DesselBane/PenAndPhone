@@ -8,6 +8,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-  }
+  "dependencies": {
+    "@pen-and-phone/core": "workspace:*",
+    "@pen-and-phone/config": "workspace:*"
+  },
+  "devDependencies": {}
 }

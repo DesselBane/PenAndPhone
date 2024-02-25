@@ -1,7 +1,4 @@
 {
-  "include": [
-    "core/src/**/*"
-  ],
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -22,6 +19,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "noErrorTruncation": true
   }
 }
