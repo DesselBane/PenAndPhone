@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
-import { AddExp, Entry, Ledger, NameChange, PurchaseAgility } from './ledger'
+import { AttributeKey } from './Attribute'
+import { AddExp, Entry, Ledger, NameChange, PurchaseAttribute } from './ledger'
 
 const attributeCosts = {
   1: 10,
@@ -24,6 +25,7 @@ export class Character extends Ledger {
 
   // Attributes
   private _agility: number = 0
+  private _constitution: number = 0
 
   get name(): string {
     return this._name
@@ -57,12 +59,16 @@ export class Character extends Ledger {
     return this._agility
   }
 
+  get constitution() {
+    return this._constitution
+  }
+
   addExp(howMuch: number) {
     this.appendEntry(new AddExp(howMuch))
   }
 
-  purchaseAgility() {
-    this.appendEntry(new PurchaseAgility())
+  purchase(attributeKey: AttributeKey) {
+    this.appendEntry(new PurchaseAttribute(attributeKey))
   }
 
   protected appendEntry(entry: Entry): Error | void {
@@ -76,8 +82,8 @@ export class Character extends Ledger {
       case AddExp.KIND:
         this.handleAddExp(entry as AddExp)
         break
-      case PurchaseAgility.KIND:
-        error = this.handlePurchaseAgility()
+      case PurchaseAttribute.KIND:
+        error = this.handlePurchaseAttribute(entry as PurchaseAttribute)
         break
       default:
         console.log('Unknown Event detected')
@@ -96,8 +102,8 @@ export class Character extends Ledger {
     this._totalExp += entry.value
   }
 
-  protected handlePurchaseAgility(): Error | void {
-    const purchasedHowOften = this.entriesByType(PurchaseAgility.KIND).length
+  protected handlePurchaseAttribute(entry: PurchaseAttribute): Error | void {
+    const purchasedHowOften = this[entry.attribute] + 1
     const costs = getAttributeCosts(purchasedHowOften)
 
     if (costs instanceof Error) {
@@ -107,7 +113,7 @@ export class Character extends Ledger {
       return new Error('Not enough exp available, pls stock up on that shit')
     }
 
-    this._agility += 1
+    this[`_${entry.attribute}`] += 1
     this._spentExp += costs
   }
 
@@ -119,6 +125,7 @@ export class Character extends Ledger {
       spentExp: this._spentExp,
       attributes: {
         agility: this._agility,
+        constitution: this._constitution,
       },
     }
   }

@@ -26,8 +26,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -54,6 +52,28 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.active {
+  background: #535bf2;
+  color: white;
+}
+
+button.warning {
+  background: lightsalmon;
+}
+
+button.active:disabled {
+  opacity: 0.6;
+}
+
+[data-part="content"] {
+  max-width: 20rem;
+  background: #363972;
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: bold;
 }
 
 .card {
