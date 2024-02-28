@@ -29,6 +29,11 @@ export type ZauberDefinition<
   erfolgsgrade: readonly ErfolgsgradDefinition[]
 }
 
+export type Effekt<TAttributId extends string> = {
+  targetAttribut: TAttributId
+  operation: 'add' | 'subtract' | 'set'
+}
+
 const foo: ZauberDefinition<'Natur'> = {
   name: 'Tierischer Riesenwuchs',
   schule: [['Natur', 3]],

@@ -1,4 +1,7 @@
 {
   "include": ["src/**/*.ts"],
-  "extends": ["@pen-and-phone/config/tsconfig.json"]
+  "extends": ["@pen-and-phone/config/tsconfig.json"],
+  "compilerOptions": {
+    "noErrorTruncation": true
+  }
 }

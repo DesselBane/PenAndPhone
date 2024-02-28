@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import type { MergeDeep } from 'type-fest'
+import type { MergeDeep, ConditionalKeys } from 'type-fest'
 
 export type TagContainer = {
   tags?: readonly string[]
@@ -66,12 +66,29 @@ export function defineCharacter() {
 }
 
 export class CharacterDefinition<
-  TAttributeDefinition extends AttributeDefinition<never>
+  TAttributeDefinition extends AttributeDefinition<any>
 > {
   attributes: TAttributeDefinition
 
   constructor(attributeDefinition: TAttributeDefinition) {
     this.attributes = attributeDefinition
+  }
+
+  withFilter<
+    const TFilter extends Partial<UnknownAttributeDefinition<any>>,
+    const TNewAttributDefinition extends AttributeDefinition<any>
+  >(
+    _filter: TFilter,
+    callback: (
+      filteredeCharDef: CharacterDefinition<
+        Pick<
+          TAttributeDefinition,
+          ConditionalKeys<TAttributeDefinition, TFilter>
+        >
+      >
+    ) => CharacterDefinition<TNewAttributDefinition>
+  ): CharacterDefinition<TNewAttributDefinition> {
+    return callback(this)
   }
 
   addAttributes<
