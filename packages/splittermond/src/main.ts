@@ -210,7 +210,6 @@ const charDefinition = defineCharacter()
       }
     )
   )
-
   .withFilter({ tags: ['Attribut'] }, (char) =>
     char.addAttributes(
       {
