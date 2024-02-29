@@ -1,3 +1,4 @@
+import { Effekt } from './effekt'
 import { FokusKosten, HeldenGrad, Reichweite, Zeiteinheit } from './units'
 
 export type ErfolgsgradDefinition<TAvailableAttributIds extends string> =
@@ -28,20 +29,6 @@ export type ZauberDefinition<
   wirkdauer: 'Sofort' | 'Kanalisiert' | Zeiteinheit
   readonly wirkung: [string, readonly Effekt<TAvailableAttributIds>[]]
   erfolgsgrade: readonly ErfolgsgradDefinition<TAvailableAttributIds>[]
-}
-
-export type Effekt<TAttributId extends string> =
-  | SimpleEffekt<TAttributId>
-  | ComplexEffekt<TAttributId>
-
-export type SimpleEffekt<TAttributId extends string> = {
-  targetAttribut: TAttributId
-  operation: 'add' | 'subtract' | 'set'
-  value: number
-}
-
-export type ComplexEffekt<TAttributId extends string> = {
-  (charData: Record<TAttributId, number>): readonly SimpleEffekt<TAttributId>[]
 }
 
 const foo: ZauberDefinition<
