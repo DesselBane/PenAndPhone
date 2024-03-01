@@ -1,63 +1,59 @@
-import { Effekt } from './effekt'
+import { Effect, EffectConfig } from './effect'
 
 export type RollCheckDefinition<TAvailableAttributeIds extends string> =
   | TAvailableAttributeIds
   | number
 
-export type AbilityUpgradeDefinition<
-  TEffektContext extends Record<string, unknown>,
+export type UnknownAbillityConfig = AbillityConfig<
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
+>
+export type AbillityConfig<
+  TTimeUnitDefinition,
+  TEffectDuration,
+  TEffectContext extends Record<string, unknown>,
+  TRangeDefinition,
   TAbilityCostDefinition,
-  TAbilityUpgradeType
+  TPreconditionDefinition,
+  TAbilityUpgradeType,
+  TAvailableAttributeIds extends string
 > = {
-  cost: readonly TAbilityCostDefinition[]
-  effekt: readonly Effekt<TEffektContext>[]
-  effektDescription?: string
-  upgradeType: TAbilityUpgradeType
+  timeUnit: TTimeUnitDefinition
+  range: TRangeDefinition
+  abilityCost: TAbilityCostDefinition
+  precondition: TPreconditionDefinition
+  abilityUpgradeTypes: TAbilityUpgradeType
+  availableAttributIds: TAvailableAttributeIds
+} & EffectConfig<TEffectContext, TEffectDuration>
+
+export type AbilityUpgradeDefinition<
+  TAbillityUpgradeConfig extends Pick<
+    UnknownAbillityConfig,
+    'abilityCost' | 'abilityUpgradeTypes' | 'effectDuration' | 'effectContext'
+  >
+> = {
+  cost: readonly TAbillityUpgradeConfig['abilityCost'][]
+  effect: readonly Effect<TAbillityUpgradeConfig>[]
+  effectDescription?: string
+  upgradeType: TAbillityUpgradeConfig['abilityUpgradeTypes']
 }
 
-export type AbilityDfinitions<
-  TEffektContext extends Record<string, unknown>,
-  TTimeUnitDefinition,
-  TRangeDefinition,
-  TAbilityCostDefinition,
-  TPreconditionDefinition,
-  TAbilityUpgradeType,
-  TAvailableAttributeIds extends string,
-  TAbilityUpgradeCostDefinition = TAbilityCostDefinition
-> = Record<
-  string,
-  AbilityDefinition<
-    TEffektContext,
-    TTimeUnitDefinition,
-    TRangeDefinition,
-    TAbilityCostDefinition,
-    TPreconditionDefinition,
-    TAbilityUpgradeType,
-    TAvailableAttributeIds,
-    TAbilityUpgradeCostDefinition
-  >
->
+export type AbilityDfinitions<TAbilityConfig extends UnknownAbillityConfig> =
+  Record<string, AbilityDefinition<TAbilityConfig>>
 
-export type AbilityDefinition<
-  TEffektContext extends Record<string, unknown>,
-  TTimeUnitDefinition,
-  TRangeDefinition,
-  TAbilityCostDefinition,
-  TPreconditionDefinition,
-  TAbilityUpgradeType,
-  TAvailableAttributeIds extends string,
-  TAbilityUpgradeCostDefinition = TAbilityCostDefinition
-> = {
-  preconditions: readonly TPreconditionDefinition[]
-  cost: TAbilityCostDefinition
-  rollDifficulty: RollCheckDefinition<TAvailableAttributeIds>
-  range: TRangeDefinition
-  castDuration: TTimeUnitDefinition
-  effekt: readonly Effekt<TEffektContext>[]
-  effektDescription?: string
-  upgrades?: readonly AbilityUpgradeDefinition<
-    TEffektContext,
-    TAbilityUpgradeCostDefinition,
-    TAbilityUpgradeType
-  >[]
+export type AbilityDefinition<TAbilityConfig extends UnknownAbillityConfig> = {
+  preconditions: readonly TAbilityConfig['precondition'][]
+  cost: TAbilityConfig['abilityCost']
+  rollDifficulty: RollCheckDefinition<TAbilityConfig['availableAttributIds']>
+  range: TAbilityConfig['range']
+  castDuration: TAbilityConfig['timeUnit']
+  effect: readonly Effect<TAbilityConfig>[]
+  effectDescription?: string
+  upgrades?: readonly AbilityUpgradeDefinition<TAbilityConfig>[]
 }

@@ -1,5 +1,6 @@
-import { createGameRuleSet } from '@pen-and-phone/core'
+import { createGameRuleSet, generateEffects } from '@pen-and-phone/core'
 import {
+  EffectDuration,
   FokusKosten,
   Fähigkeitsverstärkungen,
   HeldenGrad,
@@ -7,10 +8,10 @@ import {
   Zeiteinheit,
 } from './units'
 import { ConditionalKeys } from 'type-fest'
-import { generateEffects } from '@pen-and-phone/core/src/effekt'
 
 const charDefinition = createGameRuleSet<
   Zeiteinheit,
+  EffectDuration,
   Reichweite,
   FokusKosten,
   never,
@@ -41,6 +42,20 @@ const charDefinition = createGameRuleSet<
       tags: ['Generelles'],
     }
   )
+  .addAttributes({
+    Schadensreduktion: {
+      type: 'custom',
+      dataType: 'number',
+    },
+    Schaden: {
+      type: 'custom',
+      dataType: 'number',
+    },
+    Waffengeschwindigkeit: {
+      type: 'custom',
+      dataType: 'number',
+    },
+  })
   .addAttributes(
     {
       Größenklasse: {
@@ -77,10 +92,6 @@ const charDefinition = createGameRuleSet<
         type: 'custom',
         dataType: 'number',
         tags: ['Wiederstand'],
-      },
-      Schadensreduktion: {
-        type: 'custom',
-        dataType: 'number',
       },
     },
     { tags: ['Abgeleitete Werte'] }
@@ -361,12 +372,13 @@ const charDefinition = createGameRuleSet<
       rollDifficulty: 21,
       range: 'Behrührung',
       castDuration: [7, 'ticks'],
-      effektDescription:
+      effectDescription:
         'Ein Wesen des Typus Tier wächst zu einer größeren Form seiner selbst an. GK, GSW, LP, KW und SR steigen um 2 Punkte.',
-      effekt: generateEffects(
+      effect: generateEffects(
         {
           operation: 'add',
           value: 2,
+          duration: 'Kanalisiert',
         },
         'Größenklasse',
         'Geschwindigkeit',
@@ -374,25 +386,28 @@ const charDefinition = createGameRuleSet<
         'Körperlicher Wiederstand',
         'Schadensreduktion'
       ),
+      upgrades: [
+        {
+          upgradeType: 'Auslösezeit',
+          cost: [[0, 0, 0]],
+          effectDescription:
+            'Der Schaden des Wesens steigt um 1 Punkt, sofern die WGS bei maximal 9 liegt, oder um 2 Punkte, wenn die WGS größer als 9 ist.',
+          effect: [
+            (ctx) => [
+              {
+                targetAttribut: 'Schaden',
+                operation: 'add',
+                duration: 'Kanalisiert',
+                value: ctx.Waffengeschwindigkeit <= 9 ? 1 : 2,
+              },
+            ],
+          ],
+        },
+      ],
     },
   })
 
 /*
-  schwierigkeit: 21,
-  fokusKosten: [0, 8, 2],
-  zauberDauer: [7, 'ticks'],
-  reichweite: 'Behrührung',
-  wirkdauer: 'Kanalisiert',
-  wirkung: [
-    'Ein Wesen des Typus Tier wächst zu einer größeren Form seiner selbst an. GK, GSW, LP, KW und SR steigen um 2 Punkte.',
-    [
-      {
-        targetAttribut: 'GK',
-        operation: 'add',
-        value: 2,
-      },
-    ],
-  ],
   erfolgsgrade: [
     'Auslösezeit',
     'Kanalisierter Fokus',
@@ -431,7 +446,7 @@ const charDefinition = createGameRuleSet<
  */
 
 /* export type ErfolgsgradDefinition<
-  TEffektContext extends Record<string, unknown>
+  TeffectContext extends Record<string, unknown>
 > =
   | 'Auslösezeit'
   | 'Kanalisierter Fokus'
@@ -441,7 +456,7 @@ const charDefinition = createGameRuleSet<
       typ: 'Verstärken',
       benötigkteErfolgsgrade: number,
       kosten: FokusKosten,
-      effekt: [string, readonly Effekt<TEffektContext>[]]
+      effect: [string, readonly effect<TeffectContext>[]]
     ]
  */
 
@@ -460,7 +475,7 @@ export type ZauberDefinition<
   wirkdauer: 'Sofort' | 'Kanalisiert' | Zeiteinheit
   readonly wirkung: [
     string,
-    readonly Effekt<Record<TAvailableAttributIds, number>>[]
+    readonly effect<Record<TAvailableAttributIds, number>>[]
   ]
   erfolgsgrade: readonly ErfolgsgradDefinition<
     Record<TAvailableAttributIds, number>

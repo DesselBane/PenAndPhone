@@ -1,20 +1,24 @@
 import { merge } from 'lodash-es'
 import {
   AttributeDefinition as AttributeDefinitions,
+  AttributeStateFromDefinitions,
   UnknownAttributeDefinition,
 } from './attributes'
-import type { ConditionalKeys } from 'type-fest'
+import type { ConditionalKeys, Except } from 'type-fest'
 import { MergedWithTags, TagContainer } from './tags'
 import { AbilityDfinitions } from './ability'
 
+export type UnknownGameConfig = GameConfig<any, any, any, any, any, any>
 export type GameConfig<
   TTimeUnitDefinition,
+  TEffectDuration,
   TRangeDefinition,
   TAbilityCostDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType
 > = {
   timeUnit: TTimeUnitDefinition
+  effectDuration: TEffectDuration
   range: TRangeDefinition
   abilityCost: TAbilityCostDefinition
   precondition: TPreconditionDefinition
@@ -23,6 +27,7 @@ export type GameConfig<
 
 export function createGameRuleSet<
   TTimeUnitDefinition,
+  TEffectDuration,
   TRangeDefinition,
   TAbilityCostDefinition,
   TPreconditionDefinition,
@@ -31,6 +36,7 @@ export function createGameRuleSet<
   return new GameRuleSet<
     GameConfig<
       TTimeUnitDefinition,
+      TEffectDuration,
       TRangeDefinition,
       TAbilityCostDefinition,
       TPreconditionDefinition,
@@ -42,17 +48,9 @@ export function createGameRuleSet<
 }
 
 export class GameRuleSet<
-  TGameConfig extends GameConfig<any, any, any, any, any>,
+  TGameConfig extends UnknownGameConfig,
   TAttributeDefinition extends AttributeDefinitions<any>,
-  TAbilityDefinition extends AbilityDfinitions<
-    any,
-    TGameConfig['timeUnit'],
-    TGameConfig['range'],
-    TGameConfig['abilityCost'],
-    TGameConfig['precondition'],
-    TGameConfig['abilityUpgradeTypes'],
-    any
-  >
+  TAbilityDefinition extends AbilityDfinitions<any>
 > {
   gameConfig: TGameConfig | undefined
   attributes: TAttributeDefinition
@@ -132,11 +130,7 @@ export class GameRuleSet<
       >
     ) => TAbilityPreconditions
   ): GameRuleSet<
-    {
-      abilityCost: TGameConfig['abilityCost']
-      range: TGameConfig['range']
-      timeUnit: TGameConfig['timeUnit']
-      abilityUpgradeTypes: TGameConfig['abilityUpgradeTypes']
+    Except<TGameConfig, 'precondition'> & {
       precondition: TAbilityPreconditions
     },
     TAttributeDefinition,
@@ -147,13 +141,10 @@ export class GameRuleSet<
 
   addAbilities<
     const TNewAbilityDefinition extends AbilityDfinitions<
-      TAttributeDefinition,
-      TGameConfig['timeUnit'],
-      TGameConfig['range'],
-      TGameConfig['abilityCost'],
-      TGameConfig['precondition'],
-      TGameConfig['abilityUpgradeTypes'],
-      keyof TAttributeDefinition & string
+      TGameConfig & {
+        availableAttributIds: keyof TAttributeDefinition & string
+        effectContext: AttributeStateFromDefinitions<TAttributeDefinition>
+      }
     >
   >(
     newAbilities: TNewAbilityDefinition

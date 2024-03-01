@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import type { MergeDeep, ConditionalKeys } from 'type-fest'
+import type { ConditionalKeys } from 'type-fest'
 import { MergedWithTags, TagContainer } from './tags'
 
 export type NumberAttributeDefinition<TAvailableAttributeIds extends string> =
@@ -31,6 +31,30 @@ export type CustomAttributeDefinition = TagContainer & {
   type: 'custom'
   readonly id?: string
   dataType: 'number' | 'string'
+}
+
+type SimpleAttributeDataTypeMap = {
+  number: number
+  text: string
+  'single-select': string
+  'multi-select': string[]
+  custom: never
+}
+
+export type AttributeDataTypeFromDefintion<
+  TDefinition extends UnknownAttributeDefinition<any>
+> = TDefinition extends { type: 'custom' }
+  ? TDefinition['dataType'] extends 'number'
+    ? number
+    : string
+  : SimpleAttributeDataTypeMap[TDefinition['type']]
+
+export type AttributeStateFromDefinitions<
+  TAttributeDefinitions extends AttributeDefinition<any>
+> = {
+  [prop in keyof TAttributeDefinitions]: AttributeDataTypeFromDefintion<
+    TAttributeDefinitions[prop]
+  >
 }
 
 export type UnknownAttributeDefinition<TAvailableAttributeIds extends string> =

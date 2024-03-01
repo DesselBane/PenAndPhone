@@ -3,6 +3,8 @@ export type Zeiteinheit = [
   einheit: 'ticks' | 'sekunden' | 'minuten' | 'stunden'
 ]
 
+export type EffectDuration = Zeiteinheit | 'Kanalisiert' | 'Sofort'
+
 export type FokusKosten = [
   erschöpft: number,
   kanalisiert: number,
