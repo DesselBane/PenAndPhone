@@ -1,6 +1,21 @@
-import { defineCharacter } from '@pen-and-phone/core'
+import { createGameRuleSet } from '@pen-and-phone/core'
+import {
+  FokusKosten,
+  Fähigkeitsverstärkungen,
+  HeldenGrad,
+  Reichweite,
+  Zeiteinheit,
+} from './units'
+import { ConditionalKeys } from 'type-fest'
+import { generateEffects } from '@pen-and-phone/core/src/effekt'
 
-const charDefinition = defineCharacter()
+const charDefinition = createGameRuleSet<
+  Zeiteinheit,
+  Reichweite,
+  FokusKosten,
+  never,
+  Fähigkeitsverstärkungen
+>()
   .addAttributes(
     {
       Erfahrung: {
@@ -53,15 +68,19 @@ const charDefinition = defineCharacter()
         dataType: 'number',
         tags: ['Wiederstand'],
       },
-      GeistigerWiederstand: {
+      'Geistiger Wiederstand': {
         type: 'custom',
         dataType: 'number',
         tags: ['Wiederstand'],
       },
-      KörperlicherWiederstand: {
+      'Körperlicher Wiederstand': {
         type: 'custom',
         dataType: 'number',
         tags: ['Wiederstand'],
+      },
+      Schadensreduktion: {
+        type: 'custom',
+        dataType: 'number',
       },
     },
     { tags: ['Abgeleitete Werte'] }
@@ -323,3 +342,185 @@ const charDefinition = defineCharacter()
       tags: ['Kampffertigkeiten'],
     }
   )
+  .defineAbilityPreconditions((config) => {
+    return ['Bann', 0] as readonly [
+      ConditionalKeys<
+        (typeof config)['attributes'],
+        {
+          readonly tags: readonly ['Magieschulen']
+        }
+      > &
+        string,
+      HeldenGrad
+    ]
+  })
+  .addAbilities({
+    'Tierischer Riesenwuchs': {
+      preconditions: [['Natur', 3]],
+      cost: [0, 8, 2],
+      rollDifficulty: 21,
+      range: 'Behrührung',
+      castDuration: [7, 'ticks'],
+      effektDescription:
+        'Ein Wesen des Typus Tier wächst zu einer größeren Form seiner selbst an. GK, GSW, LP, KW und SR steigen um 2 Punkte.',
+      effekt: generateEffects(
+        {
+          operation: 'add',
+          value: 2,
+        },
+        'Größenklasse',
+        'Geschwindigkeit',
+        'Lebenspunkte',
+        'Körperlicher Wiederstand',
+        'Schadensreduktion'
+      ),
+    },
+  })
+
+/*
+  schwierigkeit: 21,
+  fokusKosten: [0, 8, 2],
+  zauberDauer: [7, 'ticks'],
+  reichweite: 'Behrührung',
+  wirkdauer: 'Kanalisiert',
+  wirkung: [
+    'Ein Wesen des Typus Tier wächst zu einer größeren Form seiner selbst an. GK, GSW, LP, KW und SR steigen um 2 Punkte.',
+    [
+      {
+        targetAttribut: 'GK',
+        operation: 'add',
+        value: 2,
+      },
+    ],
+  ],
+  erfolgsgrade: [
+    'Auslösezeit',
+    'Kanalisierter Fokus',
+    'Verzehrter Fokus',
+    [
+      'Verstärken',
+      1,
+      [0, 2, 2],
+      [
+        'Der Schaden des Wesens steigt um 1 Punkt, sofern die WGS bei maximal 9 liegt, oder um 2 Punkte, wenn die WGS größer als 9 ist.',
+        [
+          (charData) => {
+            if (charData['WGS'] <= 9) {
+              return [
+                {
+                  targetAttribut: 'Schaden',
+                  operation: 'add',
+                  value: 1,
+                },
+              ]
+            } else {
+              return [
+                {
+                  targetAttribut: 'Schaden',
+                  operation: 'add',
+                  value: 2,
+                },
+              ]
+            }
+          },
+        ],
+      ],
+    ],
+  ],
+}
+ */
+
+/* export type ErfolgsgradDefinition<
+  TEffektContext extends Record<string, unknown>
+> =
+  | 'Auslösezeit'
+  | 'Kanalisierter Fokus'
+  | 'Verzehrter Fokus'
+  | 'Erschöpfter Fokus'
+  | [
+      typ: 'Verstärken',
+      benötigkteErfolgsgrade: number,
+      kosten: FokusKosten,
+      effekt: [string, readonly Effekt<TEffektContext>[]]
+    ]
+ */
+
+/*
+export type ZauberDefinition<
+> = {
+  readonly name: string
+  schule: readonly [
+    schule: TAvailableMagieschulenDefinitionIds,
+    grad: HeldenGrad
+  ][]
+  schwierigkeit: number
+  fokusKosten: FokusKosten
+  zauberDauer: Zeiteinheit
+  reichweite: Reichweite
+  wirkdauer: 'Sofort' | 'Kanalisiert' | Zeiteinheit
+  readonly wirkung: [
+    string,
+    readonly Effekt<Record<TAvailableAttributIds, number>>[]
+  ]
+  erfolgsgrade: readonly ErfolgsgradDefinition<
+    Record<TAvailableAttributIds, number>
+  >[]
+}
+
+const foo: ZauberDefinition<
+  'GK' | 'GSW' | 'LP' | 'KW' | 'SR' | 'WGS' | 'Schaden',
+  'Natur'
+> = {
+  name: 'Tierischer Riesenwuchs',
+  schule: [['Natur', 3]],
+  schwierigkeit: 21,
+  fokusKosten: [0, 8, 2],
+  zauberDauer: [7, 'ticks'],
+  reichweite: 'Behrührung',
+  wirkdauer: 'Kanalisiert',
+  wirkung: [
+    'Ein Wesen des Typus Tier wächst zu einer größeren Form seiner selbst an. GK, GSW, LP, KW und SR steigen um 2 Punkte.',
+    [
+      {
+        targetAttribut: 'GK',
+        operation: 'add',
+        value: 2,
+      },
+    ],
+  ],
+  erfolgsgrade: [
+    'Auslösezeit',
+    'Kanalisierter Fokus',
+    'Verzehrter Fokus',
+    [
+      'Verstärken',
+      1,
+      [0, 2, 2],
+      [
+        'Der Schaden des Wesens steigt um 1 Punkt, sofern die WGS bei maximal 9 liegt, oder um 2 Punkte, wenn die WGS größer als 9 ist.',
+        [
+          (charData) => {
+            if (charData['WGS'] <= 9) {
+              return [
+                {
+                  targetAttribut: 'Schaden',
+                  operation: 'add',
+                  value: 1,
+                },
+              ]
+            } else {
+              return [
+                {
+                  targetAttribut: 'Schaden',
+                  operation: 'add',
+                  value: 2,
+                },
+              ]
+            }
+          },
+        ],
+      ],
+    ],
+  ],
+}
+ */

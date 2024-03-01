@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../splittermond/src/units.ts"],
   "extends": ["@pen-and-phone/config/tsconfig.json"],
   "compilerOptions": {
     "noErrorTruncation": true

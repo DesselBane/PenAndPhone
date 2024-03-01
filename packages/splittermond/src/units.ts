@@ -15,3 +15,10 @@ export type Reichweite =
   | [menge: number, einheit: 'meter']
 
 export type HeldenGrad = 0 | 1 | 2 | 3 | 4
+
+export type Fähigkeitsverstärkungen =
+  | 'Auslösezeit'
+  | 'Kanalisierter Fokus'
+  | 'Verzehrter Fokus'
+  | 'Erschöpfter Fokus'
+  | 'Verstärken'

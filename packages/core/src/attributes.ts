@@ -1,9 +1,6 @@
 import { merge } from 'lodash-es'
 import type { MergeDeep, ConditionalKeys } from 'type-fest'
-
-export type TagContainer = {
-  tags?: readonly string[]
-}
+import { MergedWithTags, TagContainer } from './tags'
 
 export type NumberAttributeDefinition<TAvailableAttributeIds extends string> =
   TagContainer & {
@@ -47,19 +44,6 @@ export type AttributeDefinition<TAvailableAttributeIds extends string> = Record<
   string,
   UnknownAttributeDefinition<TAvailableAttributeIds>
 >
-
-export type MergedWithTags<
-  TOriginalType extends Record<string, unknown>,
-  TTagsContainer extends TagContainer
-> = {
-  [Prop in keyof TOriginalType]: MergeDeep<
-    TTagsContainer,
-    TOriginalType[Prop],
-    {
-      arrayMergeMode: 'spread'
-    }
-  >
-}
 
 export function defineCharacter() {
   return new CharacterDefinition({})
