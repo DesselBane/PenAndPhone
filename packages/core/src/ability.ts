@@ -38,7 +38,7 @@ export type AbilityUpgradeDefinition<
     'abilityCost' | 'abilityUpgradeTypes' | 'effectDuration' | 'effectContext'
   >
 > = {
-  cost: readonly TAbillityUpgradeConfig['abilityCost'][]
+  cost: TAbillityUpgradeConfig['abilityCost'][]
   effect: readonly Effect<TAbillityUpgradeConfig>[]
   effectDescription?: string
   upgradeType: TAbillityUpgradeConfig['abilityUpgradeTypes']
@@ -49,7 +49,7 @@ export type AbilityDfinitions<TAbilityConfig extends UnknownAbillityConfig> =
 
 export type AbilityDefinition<TAbilityConfig extends UnknownAbillityConfig> = {
   preconditions: readonly TAbilityConfig['precondition'][]
-  cost: TAbilityConfig['abilityCost']
+  cost: TAbilityConfig['abilityCost'][]
   rollDifficulty: RollCheckDefinition<TAbilityConfig['availableAttributIds']>
   range: TAbilityConfig['range']
   castDuration: TAbilityConfig['timeUnit']

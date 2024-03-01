@@ -9,11 +9,10 @@ import {
 } from './units'
 import { ConditionalKeys } from 'type-fest'
 
-const charDefinition = createGameRuleSet<
+createGameRuleSet<
   Zeiteinheit,
   EffectDuration,
   Reichweite,
-  FokusKosten,
   never,
   Fähigkeitsverstärkungen
 >()
@@ -96,6 +95,36 @@ const charDefinition = createGameRuleSet<
     },
     { tags: ['Abgeleitete Werte'] }
   )
+  .addResources({
+    Geld: {
+      attribut: [
+        'Geld',
+        {
+          type: 'custom',
+          dataType: 'number',
+        },
+      ],
+      costType: 0 as number,
+    },
+    Fokus: {
+      attribut: 'Fokus',
+      costType: [0, 0, 0] as FokusKosten,
+    },
+    Leben: {
+      attribut: 'Lebenspunkte',
+      costType: 0 as number,
+    },
+    Erfolgsgrade: {
+      attribut: [
+        'Erfolgsgrade',
+        {
+          type: 'custom',
+          dataType: 'number',
+        },
+      ],
+      costType: 0 as number,
+    },
+  })
   .addAttributes(
     {
       Ausstrahlung: {
@@ -368,7 +397,7 @@ const charDefinition = createGameRuleSet<
   .addAbilities({
     'Tierischer Riesenwuchs': {
       preconditions: [['Natur', 3]],
-      cost: [0, 8, 2],
+      cost: [['Fokus', [0, 8, 2]]],
       rollDifficulty: 21,
       range: 'Behrührung',
       castDuration: [7, 'ticks'],
@@ -389,7 +418,7 @@ const charDefinition = createGameRuleSet<
       upgrades: [
         {
           upgradeType: 'Auslösezeit',
-          cost: [[0, 0, 0]],
+          cost: [['Erfolgsgrade', 1]],
           effectDescription:
             'Der Schaden des Wesens steigt um 1 Punkt, sofern die WGS bei maximal 9 liegt, oder um 2 Punkte, wenn die WGS größer als 9 ist.',
           effect: [

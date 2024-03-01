@@ -4,64 +4,82 @@ import {
   AttributeStateFromDefinitions,
   UnknownAttributeDefinition,
 } from './attributes'
-import type { ConditionalKeys, Except } from 'type-fest'
+import type { ConditionalKeys, SetFieldType } from 'type-fest'
 import { MergedWithTags, TagContainer } from './tags'
 import { AbilityDfinitions } from './ability'
+import {
+  CostDefinition,
+  OnlyAttributDefinitions,
+  ResourceDefinitions,
+  onlyAttributeDefinitions,
+} from './resources'
 
-export type UnknownGameConfig = GameConfig<any, any, any, any, any, any>
+export type UnknownGameConfig = GameConfig<any, any, any, any, any>
 export type GameConfig<
   TTimeUnitDefinition,
   TEffectDuration,
   TRangeDefinition,
-  TAbilityCostDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType
 > = {
   timeUnit: TTimeUnitDefinition
   effectDuration: TEffectDuration
   range: TRangeDefinition
-  abilityCost: TAbilityCostDefinition
   precondition: TPreconditionDefinition
   abilityUpgradeTypes: TAbilityUpgradeType
+}
+
+type UnknwonGame = Game<UnknownGameConfig, any, any, any>
+type Game<
+  TGameConfig extends UnknownGameConfig,
+  TAttributDefinitions extends AttributeDefinitions<any>,
+  TAbilityDefinitions extends AbilityDfinitions<any>,
+  TResourceDefinitions extends ResourceDefinitions<any>
+> = {
+  config: TGameConfig
+  attributes: TAttributDefinitions
+  abilities: TAbilityDefinitions
+  resources: TResourceDefinitions
 }
 
 export function createGameRuleSet<
   TTimeUnitDefinition,
   TEffectDuration,
   TRangeDefinition,
-  TAbilityCostDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType
 >() {
   return new GameRuleSet<
-    GameConfig<
-      TTimeUnitDefinition,
-      TEffectDuration,
-      TRangeDefinition,
-      TAbilityCostDefinition,
-      TPreconditionDefinition,
-      TAbilityUpgradeType
-    >,
-    {},
-    {}
-  >({}, {})
+    Game<
+      GameConfig<
+        TTimeUnitDefinition,
+        TEffectDuration,
+        TRangeDefinition,
+        TPreconditionDefinition,
+        TAbilityUpgradeType
+      >,
+      {},
+      {},
+      {}
+    >
+  >({}, {}, {})
 }
 
-export class GameRuleSet<
-  TGameConfig extends UnknownGameConfig,
-  TAttributeDefinition extends AttributeDefinitions<any>,
-  TAbilityDefinition extends AbilityDfinitions<any>
-> {
-  gameConfig: TGameConfig | undefined
-  attributes: TAttributeDefinition
-  abilities: TAbilityDefinition
+export class GameRuleSet<TGame extends UnknwonGame> {
+  gameConfig?: TGame['config']
+  attributes: TGame['attributes']
+  abilities: TGame['abilities']
+
+  resources: TGame['resources']
 
   constructor(
-    attributeDefinition: TAttributeDefinition,
-    abilityDefinition: TAbilityDefinition
+    attributeDefinition: TGame['attributes'],
+    abilityDefinition: TGame['abilities'],
+    resources: TGame['resources']
   ) {
     this.attributes = attributeDefinition
     this.abilities = abilityDefinition
+    this.resources = resources
   }
 
   withFilter<
@@ -71,18 +89,20 @@ export class GameRuleSet<
     _filter: TFilter,
     callback: (
       filteredeCharDef: GameRuleSet<
-        TGameConfig,
-        Pick<
-          TAttributeDefinition,
-          ConditionalKeys<TAttributeDefinition, TFilter>
-        >,
-        TAbilityDefinition
+        SetFieldType<
+          TGame,
+          'attributes',
+          Pick<
+            TGame['attributes'],
+            ConditionalKeys<TGame['attributes'], TFilter>
+          >
+        >
       >
-    ) => GameRuleSet<TGameConfig, TNewAttributDefinition, TAbilityDefinition>
+    ) => GameRuleSet<SetFieldType<TGame, 'attributes', TNewAttributDefinition>>
   ): GameRuleSet<
-    TGameConfig,
-    TAttributeDefinition & TNewAttributDefinition,
-    TAbilityDefinition
+    TGame & {
+      attributes: TNewAttributDefinition
+    }
   > {
     // Typecasting is ok since the underlying definition can only be added to
     return callback(this) as any
@@ -91,16 +111,15 @@ export class GameRuleSet<
   addAttributes<
     const TTagContainer extends TagContainer,
     const TNewAttributeDefinition extends AttributeDefinitions<
-      keyof TAttributeDefinition & string
+      keyof TGame['attributes'] & string
     >
   >(
     definition: TNewAttributeDefinition,
     addToAll?: TTagContainer
   ): GameRuleSet<
-    TGameConfig,
-    TAttributeDefinition &
-      MergedWithTags<TNewAttributeDefinition, TTagContainer>,
-    TAbilityDefinition
+    TGame & {
+      attributes: MergedWithTags<TNewAttributeDefinition, TTagContainer>
+    }
   > {
     // TODO move this into a function and unit test it
     for (const key in definition) {
@@ -117,45 +136,72 @@ export class GameRuleSet<
         ...this.attributes,
         ...mergedDefinition,
       },
-      this.abilities
+      this.abilities,
+      this.resources
+    )
+  }
+
+  addResources<
+    const TNewResourceDefinition extends ResourceDefinitions<{
+      availableAttributIds: keyof TGame['attributes'] & string
+    }>
+  >(
+    newResources: TNewResourceDefinition
+  ): GameRuleSet<
+    TGame & {
+      attributes: OnlyAttributDefinitions<TNewResourceDefinition>
+      resources: TNewResourceDefinition
+    }
+  > {
+    const newAttributeDefinitions = onlyAttributeDefinitions(newResources)
+
+    return new GameRuleSet(
+      {
+        ...this.attributes,
+        ...newAttributeDefinitions,
+      },
+      this.abilities,
+      {
+        ...this.resources,
+        ...newResources,
+      }
     )
   }
 
   defineAbilityPreconditions<TAbilityPreconditions>(
-    _conditions: (
-      gameRuleSet: GameRuleSet<
-        TGameConfig,
-        TAttributeDefinition,
-        TAbilityDefinition
-      >
-    ) => TAbilityPreconditions
+    _conditions: (gameRuleSet: GameRuleSet<TGame>) => TAbilityPreconditions
   ): GameRuleSet<
-    Except<TGameConfig, 'precondition'> & {
-      precondition: TAbilityPreconditions
-    },
-    TAttributeDefinition,
-    TAbilityDefinition
+    SetFieldType<
+      TGame,
+      'config',
+      SetFieldType<TGame['config'], 'precondition', TAbilityPreconditions>
+    >
   > {
-    return this
+    return this as any
   }
 
   addAbilities<
     const TNewAbilityDefinition extends AbilityDfinitions<
-      TGameConfig & {
-        availableAttributIds: keyof TAttributeDefinition & string
-        effectContext: AttributeStateFromDefinitions<TAttributeDefinition>
+      TGame['config'] & {
+        availableAttributIds: keyof TGame['attributes'] & string
+        effectContext: AttributeStateFromDefinitions<TGame['attributes']>
+        abilityCost: CostDefinition<TGame['resources']>
       }
     >
   >(
     newAbilities: TNewAbilityDefinition
   ): GameRuleSet<
-    TGameConfig,
-    TAttributeDefinition,
-    TAbilityDefinition & TNewAbilityDefinition
+    TGame & {
+      abilities: TNewAbilityDefinition
+    }
   > {
-    return new GameRuleSet(this.attributes, {
-      ...this.abilities,
-      ...newAbilities,
-    })
+    return new GameRuleSet(
+      this.attributes,
+      {
+        ...this.abilities,
+        ...newAbilities,
+      },
+      this.resources
+    )
   }
 }
