@@ -2,7 +2,7 @@ export type UnknownEffectConfig = EffectConfig<any, any>
 
 export type EffectConfig<
   TEffectContext extends Record<string, unknown>,
-  TEffectDuration
+  TEffectDuration,
 > = {
   effectDuration: TEffectDuration
   effectContext: TEffectContext
@@ -37,6 +37,6 @@ export function generateEffects<TEffectConfig extends UnknownEffectConfig>(
       ({
         ...partialEffect,
         targetAttribut,
-      } satisfies SimpleEffect<TEffectConfig>)
+      }) satisfies SimpleEffect<TEffectConfig>
   )
 }

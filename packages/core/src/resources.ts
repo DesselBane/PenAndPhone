@@ -1,4 +1,4 @@
-import { ConditionalKeys, Entries, Simplify } from 'type-fest'
+import { ConditionalKeys } from 'type-fest'
 import { UnknownAttributeDefinition } from './attributes'
 import { ObjectToTuple } from './helper'
 
@@ -21,7 +21,7 @@ type onlyProp<TResurceDefinition extends ResourceDefinitions<any>> =
 
 type onlyAttributeDefinition<
   TResurceDefinition extends ResourceDefinitions<any>,
-  TProp extends string
+  TProp extends string,
 > = TResurceDefinition[ConditionalKeys<
   TResurceDefinition,
   {
@@ -30,7 +30,7 @@ type onlyAttributeDefinition<
 >]['attribut'][1]
 
 export type OnlyAttributDefinitions<
-  TResourceDefinitions extends ResourceDefinitions<any>
+  TResourceDefinitions extends ResourceDefinitions<any>,
 > = {
   [prop in onlyProp<TResourceDefinitions>]: onlyAttributeDefinition<
     TResourceDefinitions,
@@ -39,7 +39,7 @@ export type OnlyAttributDefinitions<
 }
 
 export function onlyAttributeDefinitions<
-  TResourceDefinitions extends ResourceDefinitions<any>
+  TResourceDefinitions extends ResourceDefinitions<any>,
 >(
   resourceDefinitions: TResourceDefinitions
 ): OnlyAttributDefinitions<TResourceDefinitions> {
@@ -57,14 +57,14 @@ export function onlyAttributeDefinitions<
 }
 
 export type CostDefinition<
-  TResourceDefinitions extends ResourceDefinitions<any>
+  TResourceDefinitions extends ResourceDefinitions<any>,
 > = ObjectToTuple<{
   [prop in keyof TResourceDefinitions]: TResourceDefinitions[prop]['costType']
 }>
 
 export type ResourceDefinition<
   TResourceConfig extends UnknownResourceConfig,
-  TResourceCostType
+  TResourceCostType,
 > = {
   attribut:
     | TResourceConfig['availableAttributIds']
@@ -72,7 +72,7 @@ export type ResourceDefinition<
         attributName: string,
         attributeDefinition: UnknownAttributeDefinition<
           TResourceConfig['availableAttributIds']
-        >
+        >,
       ]
   costType: TResourceCostType
 }

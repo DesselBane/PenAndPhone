@@ -22,7 +22,7 @@ export type AbillityConfig<
   TAbilityCostDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType,
-  TAvailableAttributeIds extends string
+  TAvailableAttributeIds extends string,
 > = {
   timeUnit: TTimeUnitDefinition
   range: TRangeDefinition
@@ -36,7 +36,7 @@ export type AbilityUpgradeDefinition<
   TAbillityUpgradeConfig extends Pick<
     UnknownAbillityConfig,
     'abilityCost' | 'abilityUpgradeTypes' | 'effectDuration' | 'effectContext'
-  >
+  >,
 > = {
   cost: TAbillityUpgradeConfig['abilityCost'][]
   effect: readonly Effect<TAbillityUpgradeConfig>[]

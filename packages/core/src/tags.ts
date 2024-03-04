@@ -6,7 +6,7 @@ export type TagContainer = {
 
 export type MergedWithTags<
   TOriginalType extends Record<string, unknown>,
-  TTagsContainer extends TagContainer
+  TTagsContainer extends TagContainer,
 > = {
   [Prop in keyof TOriginalType]: MergeDeep<
     TTagsContainer,

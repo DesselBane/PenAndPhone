@@ -42,7 +42,7 @@ type SimpleAttributeDataTypeMap = {
 }
 
 export type AttributeDataTypeFromDefintion<
-  TDefinition extends UnknownAttributeDefinition<any>
+  TDefinition extends UnknownAttributeDefinition<any>,
 > = TDefinition extends { type: 'custom' }
   ? TDefinition['dataType'] extends 'number'
     ? number
@@ -50,7 +50,7 @@ export type AttributeDataTypeFromDefintion<
   : SimpleAttributeDataTypeMap[TDefinition['type']]
 
 export type AttributeStateFromDefinitions<
-  TAttributeDefinitions extends AttributeDefinition<any>
+  TAttributeDefinitions extends AttributeDefinition<any>,
 > = {
   [prop in keyof TAttributeDefinitions]: AttributeDataTypeFromDefintion<
     TAttributeDefinitions[prop]
@@ -74,7 +74,7 @@ export function defineCharacter() {
 }
 
 export class CharacterDefinition<
-  TAttributeDefinition extends AttributeDefinition<any>
+  TAttributeDefinition extends AttributeDefinition<any>,
 > {
   attributes: TAttributeDefinition
 
@@ -84,7 +84,7 @@ export class CharacterDefinition<
 
   withFilter<
     const TFilter extends Partial<UnknownAttributeDefinition<any>>,
-    const TNewAttributDefinition extends AttributeDefinition<any>
+    const TNewAttributDefinition extends AttributeDefinition<any>,
   >(
     _filter: TFilter,
     callback: (
@@ -103,7 +103,7 @@ export class CharacterDefinition<
     const TTagContainer extends TagContainer,
     const TNewAttributeDefinition extends AttributeDefinition<
       keyof TAttributeDefinition & string
-    >
+    >,
   >(
     definition: TNewAttributeDefinition,
     addToAll?: TTagContainer

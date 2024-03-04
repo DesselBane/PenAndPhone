@@ -1,14 +1,18 @@
 export type Zeiteinheit = [
   menge: number,
-  einheit: 'ticks' | 'sekunden' | 'minuten' | 'stunden'
+  einheit: 'ticks' | 'sekunden' | 'minuten' | 'stunden',
 ]
 
-export type EffectDuration = Zeiteinheit | 'Kanalisiert' | 'Sofort'
+export type EffectDuration =
+  | Zeiteinheit
+  | 'Kanalisiert'
+  | 'Sofort'
+  | 'Permanent'
 
 export type FokusKosten = [
   erschöpft: number,
   kanalisiert: number,
-  verzehrt: number
+  verzehrt: number,
 ]
 
 export type Reichweite =

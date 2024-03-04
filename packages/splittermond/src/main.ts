@@ -1,4 +1,5 @@
 import { createGameRuleSet, generateEffects } from '@pen-and-phone/core'
+import { ConditionalKeys } from 'type-fest'
 import {
   EffectDuration,
   FokusKosten,
@@ -7,7 +8,6 @@ import {
   Reichweite,
   Zeiteinheit,
 } from './units'
-import { ConditionalKeys } from 'type-fest'
 
 createGameRuleSet<
   Zeiteinheit,
@@ -36,6 +36,10 @@ createGameRuleSet<
         type: 'multi-select',
         options: ['Venezial', 'Basargnomisch'],
       },
+      Splitterpunkte: {
+        type: 'custom',
+        dataType: 'number',
+      },
     },
     {
       tags: ['Generelles'],
@@ -51,6 +55,10 @@ createGameRuleSet<
       dataType: 'number',
     },
     Waffengeschwindigkeit: {
+      type: 'custom',
+      dataType: 'number',
+    },
+    Behinderung: {
       type: 'custom',
       dataType: 'number',
     },
@@ -122,6 +130,10 @@ createGameRuleSet<
           dataType: 'number',
         },
       ],
+      costType: 0 as number,
+    },
+    Splitterpunkte: {
+      attribut: 'Splitterpunkte',
       costType: 0 as number,
     },
   })
@@ -391,7 +403,7 @@ createGameRuleSet<
         }
       > &
         string,
-      HeldenGrad
+      HeldenGrad,
     ]
   })
   .addAbilities({
@@ -431,6 +443,31 @@ createGameRuleSet<
               },
             ],
           ],
+        },
+      ],
+    },
+  })
+  .addItems({
+    'Schuppenhemd des Feuerdrachen': {
+      description: '',
+      effects: [
+        {
+          duration: 'Permanent',
+          operation: 'add',
+          targetAttribut: 'Verteidigung',
+          value: 3,
+        },
+        {
+          duration: 'Permanent',
+          operation: 'add',
+          targetAttribut: 'Schadensreduktion',
+          value: 2,
+        },
+        {
+          duration: 'Permanent',
+          operation: 'add',
+          targetAttribut: 'Behinderung',
+          value: 2,
         },
       ],
     },
