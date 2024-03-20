@@ -1,8 +1,6 @@
+import { AvailableAttributConfig } from './attributes.ts'
+import { RollCheckDefinition } from './dice.ts'
 import { Effect, EffectConfig } from './effect'
-
-export type RollCheckDefinition<TAvailableAttributeIds extends string> =
-  | TAvailableAttributeIds
-  | number
 
 export type UnknownAbillityConfig = AbillityConfig<
   any,
@@ -29,8 +27,8 @@ export type AbillityConfig<
   abilityCost: TAbilityCostDefinition
   precondition: TPreconditionDefinition
   abilityUpgradeTypes: TAbilityUpgradeType
-  availableAttributIds: TAvailableAttributeIds
-} & EffectConfig<TEffectContext, TEffectDuration>
+} & EffectConfig<TEffectContext, TEffectDuration> &
+  AvailableAttributConfig<TAvailableAttributeIds>
 
 export type AbilityUpgradeDefinition<
   TAbillityUpgradeConfig extends Pick<
@@ -50,7 +48,7 @@ export type AbilityDfinitions<TAbilityConfig extends UnknownAbillityConfig> =
 export type AbilityDefinition<TAbilityConfig extends UnknownAbillityConfig> = {
   preconditions: readonly TAbilityConfig['precondition'][]
   cost: TAbilityConfig['abilityCost'][]
-  rollDifficulty: RollCheckDefinition<TAbilityConfig['availableAttributIds']>
+  rollDifficulty: RollCheckDefinition<TAbilityConfig['availableAttributeIds']>
   range: TAbilityConfig['range']
   castDuration: TAbilityConfig['timeUnit']
   effect: readonly Effect<TAbilityConfig>[]

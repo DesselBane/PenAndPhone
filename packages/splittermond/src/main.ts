@@ -8,13 +8,16 @@ import {
   Reichweite,
   Zeiteinheit,
 } from './units'
+import { WaffenDefinition } from './waffen'
 
 createGameRuleSet<
   Zeiteinheit,
   EffectDuration,
   Reichweite,
   never,
-  Fähigkeitsverstärkungen
+  Fähigkeitsverstärkungen,
+  6 | 10,
+  never
 >()
   .addAttributes(
     {
@@ -447,6 +450,22 @@ createGameRuleSet<
       ],
     },
   })
+  .defineItemExtensions((game) => {
+    const config = game.config!
+
+    return {} as WaffenDefinition<{
+      waffenFertigkeiten: ConditionalKeys<
+        typeof game.attributes,
+        { tags: readonly ['Kampffertigkeiten'] }
+      >
+      attributeIds: ConditionalKeys<
+        typeof game.attributes,
+        { tags: readonly ['Attribut'] }
+      >
+      timeUnit: typeof config.timeUnit
+      availableDice: typeof config.availableDice
+    }>
+  })
   .addItems({
     'Schuppenhemd des Feuerdrachen': {
       description: '',
@@ -468,6 +487,34 @@ createGameRuleSet<
           operation: 'add',
           targetAttribut: 'Behinderung',
           value: 2,
+        },
+      ],
+    },
+    'Vulkanit Bogen': {
+      description: '',
+      extensions: [
+        {
+          type: 'waffe',
+          sources: ['Schusswaffen', 'Beweglichkeit', 'Intuition'],
+          geschwindigkeit: [8, 'ticks'],
+          damageRoll: {
+            dice: [10],
+            modifier: 8,
+          },
+          merkmale: [
+            {
+              type: 'durchdringung',
+              value: 2,
+            },
+            {
+              type: 'scharf',
+              value: 4,
+            },
+            {
+              type: 'reichweite',
+              value: 40,
+            },
+          ],
         },
       ],
     },

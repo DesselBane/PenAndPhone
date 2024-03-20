@@ -1,15 +1,19 @@
-import { merge } from 'lodash-es'
-import type { ConditionalKeys } from 'type-fest'
-import { MergedWithTags, TagContainer } from './tags'
+import { TagContainer } from './tags'
 
-export type NumberAttributeDefinition<TAvailableAttributeIds extends string> =
-  TagContainer & {
-    type: 'number'
-    sources?: TAvailableAttributeIds[]
-  }
+export type UAvailableAttributeConfig = AvailableAttributConfig<any>
+export type AvailableAttributConfig<TAvailableAttributeIds extends string> = {
+  availableAttributeIds: TAvailableAttributeIds
+}
 
-export type NumberComputedSource<TAvailableAttributeIds extends string> = {
-  id: TAvailableAttributeIds
+export type NumberAttributeDefinition<
+  TConfig extends UAvailableAttributeConfig,
+> = TagContainer & {
+  type: 'number'
+  sources?: TConfig['availableAttributeIds'][]
+}
+
+export type NumberComputedSource<TConfig extends UAvailableAttributeConfig> = {
+  id: TConfig['availableAttributeIds']
   operation: 'add' | 'subtract'
 }
 
@@ -50,80 +54,27 @@ export type AttributeDataTypeFromDefintion<
   : SimpleAttributeDataTypeMap[TDefinition['type']]
 
 export type AttributeStateFromDefinitions<
-  TAttributeDefinitions extends AttributeDefinition<any>,
+  TAttributeDefinitions extends AttributeDefinitions<any>,
 > = {
   [prop in keyof TAttributeDefinitions]: AttributeDataTypeFromDefintion<
     TAttributeDefinitions[prop]
   >
 }
 
-export type UnknownAttributeDefinition<TAvailableAttributeIds extends string> =
+export type UnknownAttributeDefinition<
+  TConfig extends UAvailableAttributeConfig,
+> =
   | TextAttributeDefinition
-  | NumberAttributeDefinition<TAvailableAttributeIds>
+  | NumberAttributeDefinition<TConfig>
   | SingleSelectAttributeDefinition
   | MultiSelectAttributeDefinition
   | CustomAttributeDefinition
 
-export type AttributeDefinition<TAvailableAttributeIds extends string> = Record<
-  string,
-  UnknownAttributeDefinition<TAvailableAttributeIds>
->
+export type AttributeDefinitions<TConfig extends UAvailableAttributeConfig> =
+  Record<string, UnknownAttributeDefinition<TConfig>>
 
-export function defineCharacter() {
-  return new CharacterDefinition({})
-}
-
-export class CharacterDefinition<
-  TAttributeDefinition extends AttributeDefinition<any>,
-> {
-  attributes: TAttributeDefinition
-
-  constructor(attributeDefinition: TAttributeDefinition) {
-    this.attributes = attributeDefinition
-  }
-
-  withFilter<
-    const TFilter extends Partial<UnknownAttributeDefinition<any>>,
-    const TNewAttributDefinition extends AttributeDefinition<any>,
-  >(
-    _filter: TFilter,
-    callback: (
-      filteredeCharDef: CharacterDefinition<
-        Pick<
-          TAttributeDefinition,
-          ConditionalKeys<TAttributeDefinition, TFilter>
-        >
-      >
-    ) => CharacterDefinition<TNewAttributDefinition>
-  ): CharacterDefinition<TNewAttributDefinition> {
-    return callback(this)
-  }
-
-  addAttributes<
-    const TTagContainer extends TagContainer,
-    const TNewAttributeDefinition extends AttributeDefinition<
-      keyof TAttributeDefinition & string
-    >,
-  >(
-    definition: TNewAttributeDefinition,
-    addToAll?: TTagContainer
-  ): CharacterDefinition<
-    TAttributeDefinition &
-      MergedWithTags<TNewAttributeDefinition, TTagContainer>
-  > {
-    // TODO move this into a function and unit test it
-    for (const key in definition) {
-      definition[key] = merge({}, addToAll ?? {}, definition[key])
-    }
-
-    const mergedDefinition: MergedWithTags<
-      TNewAttributeDefinition,
-      TTagContainer
-    > = definition as any
-
-    return new CharacterDefinition({
-      ...this.attributes,
-      ...mergedDefinition,
-    })
-  }
+export type AttributeConfigFromDefinition<
+  TAttrbiteDefinition extends AttributeDefinitions<any>,
+> = {
+  availableAttributeIds: keyof TAttrbiteDefinition & string
 }

@@ -2,11 +2,12 @@ import { merge } from 'lodash-es'
 import type { ConditionalKeys, SetFieldType } from 'type-fest'
 import { AbilityDfinitions } from './ability'
 import {
-  AttributeDefinition as AttributeDefinitions,
+  AttributeConfigFromDefinition,
+  AttributeDefinitions,
   AttributeStateFromDefinitions,
   UnknownAttributeDefinition,
 } from './attributes'
-import { ItemDefinitions } from './item.ts'
+import { ItemConfig, ItemDefinitions } from './item.ts'
 import {
   CostDefinition,
   OnlyAttributDefinitions,
@@ -15,20 +16,23 @@ import {
 } from './resources'
 import { MergedWithTags, TagContainer } from './tags'
 
-export type UnknownGameConfig = GameConfig<any, any, any, any, any>
+export type UnknownGameConfig = GameConfig<any, any, any, any, any, any, any>
 export type GameConfig<
   TTimeUnitDefinition,
   TEffectDuration,
   TRangeDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType,
+  TAvailableDice extends number,
+  TItemDefinitionExtensions,
 > = {
   timeUnit: TTimeUnitDefinition
   effectDuration: TEffectDuration
   range: TRangeDefinition
   precondition: TPreconditionDefinition
   abilityUpgradeTypes: TAbilityUpgradeType
-}
+  availableDice: TAvailableDice
+} & Pick<ItemConfig<never, TItemDefinitionExtensions, never>, 'itemExtensions'>
 
 type UnknwonGame = Game<UnknownGameConfig, any, any, any, any>
 type Game<
@@ -51,6 +55,8 @@ export function createGameRuleSet<
   TRangeDefinition,
   TPreconditionDefinition,
   TAbilityUpgradeType,
+  TAvailableDice extends number,
+  TItemDefinitionExtensions,
 >() {
   return new GameRuleSet<
     Game<
@@ -59,7 +65,9 @@ export function createGameRuleSet<
         TEffectDuration,
         TRangeDefinition,
         TPreconditionDefinition,
-        TAbilityUpgradeType
+        TAbilityUpgradeType,
+        TAvailableDice,
+        TItemDefinitionExtensions
       >,
       {},
       {},
@@ -117,7 +125,7 @@ export class GameRuleSet<TGame extends UnknwonGame> {
   addAttributes<
     const TTagContainer extends TagContainer,
     const TNewAttributeDefinition extends AttributeDefinitions<
-      keyof TGame['attributes'] & string
+      TGame['attributes']
     >,
   >(
     definition: TNewAttributeDefinition,
@@ -174,13 +182,25 @@ export class GameRuleSet<TGame extends UnknwonGame> {
     return this as any
   }
 
+  defineItemExtensions<const TItemExtensions>(
+    _extensions: (gameRuleSet: GameRuleSet<TGame>) => TItemExtensions
+  ): GameRuleSet<
+    SetFieldType<
+      TGame,
+      'config',
+      SetFieldType<TGame['config'], 'itemExtensions', TItemExtensions>
+    >
+  > {
+    return this as any
+  }
+
   addAbilities<
     const TNewAbilityDefinition extends AbilityDfinitions<
-      TGame['config'] & {
-        availableAttributIds: keyof TGame['attributes'] & string
-        effectContext: AttributeStateFromDefinitions<TGame['attributes']>
-        abilityCost: CostDefinition<TGame['resources']>
-      }
+      TGame['config'] &
+        AttributeConfigFromDefinition<TGame['attributes']> & {
+          effectContext: AttributeStateFromDefinitions<TGame['attributes']>
+          abilityCost: CostDefinition<TGame['resources']>
+        }
     >,
   >(
     newAbilities: TNewAbilityDefinition
@@ -198,6 +218,7 @@ export class GameRuleSet<TGame extends UnknwonGame> {
     const TNewItemDefinition extends ItemDefinitions<
       TGame['config'] & {
         effectContext: AttributeStateFromDefinitions<TGame['attributes']>
+        itemExtensions: TGame['config']['itemExtensions']
       }
     >,
   >(newItems: TNewItemDefinition) {
