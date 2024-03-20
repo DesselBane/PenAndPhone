@@ -4,7 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "pnpm -r typecheck"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,6 @@
   },
   "volta": {
     "node": "20.11.1",
-    "pnpm": "8.15.4"
+    "pnpm": "8.15.5"
   }
 }
