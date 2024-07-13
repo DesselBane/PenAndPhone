@@ -1,0 +1,13 @@
+{
+  "include": ["src/**/*"],
+  "extends": ["@pen-and-phone/config/tsconfig.json"],
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "lib": [],
+    "types": ["node"],
+    "noErrorTruncation": true,
+    "noEmit": false
+  }
+}

@@ -1,0 +1,4698 @@
+Alarm (Spruch)
+Schulen: Erkenntnis 1, Schutz 1
+Typus: Wahrnehmung
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 2 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird alarmiert, wenn
+eines oder mehrere Wesen der Größenklasse 2 oder höher den Wirkungsbereich betritt. Er vermag dabei keinen genauen Ort zu
+bestimmen, sondern lediglich die pure Anwesenheit festzustellen, ebenso wenig kann
+er Angaben zur Anzahl machen. Es ist möglich, bis zu zehn bestimmte Wesen seiner
+Wahl von der Alarmierung auszunehmen.
+Wirkungsdauer: 6 Stunden
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich,
+Wirkungsdauer
+• 1 EG (Kosten +1V1): Der Zauberer weiß, in
+welcher Richtung sich die Wesen befinden,
+ohne jedoch die Entfernung zu kennen.
+Allverständnis (Spruch)
+Schulen: Erkenntnis 5
+Typus: Verständigung
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 12 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer vermag das gesprochene Wort jedes Wesens zu verstehen,
+gleich ob es aus dem Diesseits stammt
+oder aus den Anderswelten kommt. Seine eigene Sprache wird hiervon jedoch
+nicht betroffen, andere Wesen können ihn
+nicht auf magische Weise verstehen. Der
+Zauberer erfährt auf magische Weise den
+Sinn des Gesagten, sodass er etwa keine
+Inschriften lesen kann.
+Wirkungsdauer: 2 Stunden
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +5V5): Alle Wesen können außerdem verstehen, was der Zauberer sagt.
+Aura der Entschlossenheit
+(Spruch)
+Schulen: Stärkung 1
+Typus: Aura, Moral
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 7 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte Wesen seiner Wahl erhalten jeweils
+einen Bonus in Höhe von 1 Punkt auf den
+Geistigen Widerstand und von 2 Punkten
+auf die Entschlossenheit. Die Boni gelten
+nur während des Aufenthalts im Wirkungsbereich.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K1V1): Es können bis zu fünf
+Personen bestimmt werden.
+Aura der Kontramagie
+(Spruch)
+Schulen: Bann 4
+Typus: Aura, Konter, Schaden
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Wird im Wirkungsbereich ein Zauber gewirkt, verliert der Zauberer, der ihn
+ausgelöst hat, 8 Lebenspunkte.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K4V4): Der Verlust beträgt
+10 Lebenspunkte.
+Aura der Lebenskraft (Spruch)
+Schulen: Heilung 4, Stärkung 4
+Typus: Aura, Körper stärken, Leben
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 18 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte Wesen seiner Wahl erhalten jeweils 10
+zusätzliche Lebenspunkte, die im Falle erlittener Schadenspunkte zuerst verbraucht
+werden. Es ist möglich, dadurch temporär
+über einen Vorrat an Lebenspunkten zu verfügen, der über das natürliche Maximum hinausgeht (und auch die maximalen Boni auf
+abgeleitete Werte gelten hier nicht). Sollte
+ein Nutznießer bereits verwundet sein, gelten weiter seine aktuellen Wundabzüge.
+Die zusätzlichen Punkte stehen nur während des Aufenthalts im Wirkungsbereich
+zur Verfügung und verfallen bei Verlassen
+desselben. Dieser Zauber ist nicht mit anderen Zaubern kombinierbar, die ebenfalls die
+Typen Körper stärken und Leben besitzen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K4V4): Es können bis zu fünf
+Personen bestimmt werden.
+Aura der Schatten (Spruch)
+Schulen: Schatten 5
+Typus: Aura, Verhüllung
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere bei Auslösung des Zaubers festgelegte
+Wesen seiner Wahl erhalten einen Bonus
+in Höhe von 7 Punkten auf alle Heimlichkeit-Proben, solange sie sich im Wirkungsbereich des Zaubers aufhalten.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K5V5): Es können bis zu fünf
+Wesen festgelegt werden.
+Aura der Schmerzlosigkeit
+(Spruch)
+Schulen: Heilung 5
+Typus: Aura, Körper stärken
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 13 Ticks
+Reichweite: Zauberer
+Wirkung: Die Wundabzüge des Zauberers
+und bis zu drei weiterer beim Auslösen des
+Zaubers festgelegter Wesen seiner Wahl
+werden ignoriert. Dies steht den Nutznießern nur während des Aufenthalts im Wirkungsbereich zur Verfügung.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K4V4): Es können bis zu fünf
+Personen bestimmt werden.
+Aura der Wärme (Spruch)
+Schulen: Feuer 3
+Typus: Aura, Elementarkontrolle
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 13 Ticks
+Reichweite: Zauberer
+Wirkung: Für den Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte
+Wesen seiner Wahl gilt die vorherrschende
+Kältestufe als um 2 Punkte gesenkt bzw. die
+vorherrschende Hitzestufe als um 2 Punkte
+erhöht. Die Modifikation gilt nur während
+des Aufenthalts im Wirkungsbereich.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K3V3): Es können bis zu fünf
+Personen bestimmt werden.
+Aura des Anführers (Spruch)
+Schulen: Stärkung 5
+Typus: Aura, Moral
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 21 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte Wesen seiner Wahl erhalten jeweils
+einen Bonus in Höhe von 2 Punkten auf
+den Geistigen Widerstand, den Körperlichen Widerstand, die Verteidigung sowie
+alle durchgeführten Angriffe. Zudem sind
+sie immun gegen die Zustände Angsterfüllt
+und Panisch. Die Boni gelten nur während
+des Aufenthalts im Wirkungsbereich.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K5V5): Es können bis zu fünf
+Personen bestimmt werden.
+Ausdauer stärken (Spruch)
+Schulen: Heilung 0, Stärkung 0
+Typus: Körper stärken
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Für die Bestimmung einer Überanstrengung gilt die Konstitution des Zauberers als um 2 Punkte erhöht. Zähigkeit-Proben zur Abwehr des Zustands Erschöpft erhalten einen Bonus in Höhe von 2 Punkten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Die Konstitution
+gilt für Überanstrengung als um 3 Punkte
+erhöht. Der Bonus auf Zähigkeit-Proben
+steigt auf 3 Punkte.
+Bärenstärke (Spruch)
+Schulen: Stärkung 4, Verwandlung 4
+Typus: Körper stärken
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 4 Punkten auf alle Proben, in
+die seine Stärke einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Der Bonus erhöht
+sich auf 5 Punkte.
+Beflügelte Waffe (Spruch)
+Schulen: Kampf 3, Wind 2
+Typus: Waffe
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: Berührung
+Wirkung: Die Waffe wird durch die Kraft
+des Windes beflügelt, was Angriffe mit ihr
+leichter macht. Der Benutzer der Waffe
+erhält einen Bonus in Höhe von 2 Punkten
+auf seine Proben für Angriffe mit dieser
+Waffe.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Bonus erhöht
+sich auf 3 Punkte.
+Beherrschung aufheben
+(Spruch)
+Schulen: Bann 1, Beherrschung 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Alle momentan auf das Ziel wirkenden Beherrschungszauber werden aufgehoben, solange sie maximal Grad 3 aufweisen.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es werden Zauber bis
+Grad 5 aufgehoben.
+Beschleunigen (Spruch)
+Schulen: Bewegung 1, Stärkung 2
+Typus: Bewegung stärken
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Geschwindigkeit des Zauberers erhöht sich um 2 Punkte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Geschwindigkeit
+erhöht sich um insgesamt 4 Punkte.
+Bestienform (Spruch)
+Schulen: Natur 5, Verwandlung 4
+Typus: Gestalt, Tiere
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verwandelt sich in
+ein Wesen des Typus Monster oder Tier
+der Größenklasse 2-7. Es können nur Kreaturen bis Monstergrad (als Einzelgegner)
+3 gewählt werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+•Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+•1 EG (Kosten +K4V4): Die Kreatur ist ein besonders prachtvolles Exemplar. Alle Proben
+auf Fertigkeiten, die von der Tiergestalt
+übernommen wurden, erhalten einen Bonus in Höhe von 2 Punkten.
+Blenden (Spruch)
+Schulen: Illusion 2, Licht 1
+Typus: Leuchten
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Vor den Augen des Ziels blitzt
+ein grelles Licht auf, welches ihm den Zustand Geblendet 1 verleiht (nicht mehrfach
+gleichzeitig möglich).
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Das Ziel erhält den Zustand Geblendet 2.
+Blick in die Sonne (Spruch)
+Schulen: Licht 1
+Typus: Leuchten
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer ist immun gegen
+den Zustand Geblendet, wenn dieser aus
+der Einwirkung von natürlichem Licht oder
+Lichtmagie resultiert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Zauberer ist
+komplett immun gegen den Zustand Geblendet.
+Blitze rufen (Spruch)
+Schulen: Natur 5, Wind 4
+Typus: Elektrizität, Herbeirufung, Schaden
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 7 Ticks
+Reichweite: 25 m
+Wirkung: Der Zauberer ruft eine Wolke herbei, die über dem gesamten Wirkungsbereich schwebt. Aus dieser kann er Blitze
+gegen im Wirkungsbereich befindliche
+Ziele hervorschießen lassen. Dazu würfelt
+er als sofortige Aktion mit seiner für den
+Zauber verwendeten Magieschule einen
+Angriff gegen die Verteidigung des Ziels
+(Dauer: 5 Ticks) und richtet im Falle eines
+Erfolgs 2W6+5 Punkte Elektrizitätsschaden
+an. Während der Zauberer die Wolke kontrolliert, kann er keine anderen Aktionen
+225
+vollführen. Er kann maximal so viele Blitze
+aus der Wolke hervorschießen lassen, wie
+er Fertigkeitspunkte in der verwendeten
+Magieschule besitzt. Ist diese Maximalzahl
+erreicht, endet der Zauber automatisch.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 1 EG (Kosten +K4V4): Die Ziele erhalten
+zusätzlich für 30 Ticks den Zustand Benommen 1.
+Blitzschlag (Spruch)
+Schulen: Kampf 3, Wind 2
+Typus: Elektrizität, Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 6V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer wirft seinem Ziel
+einen Blitz entgegen. Der Getroffene erleidet 2W10+2 Punkte Elektrizitätsschaden
+mit dem Waffenmerkmal Scharf 2 (S. 186).
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +2V2): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Benommen 1.
+Chamäleon (Spruch)
+Schulen: Illusion 3, Natur 3
+Typus: Tarnung
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer passt sich dem natürlichen Hintergrund an und ist kaum
+noch zu erkennen. Proben zu seiner Entdeckung erhalten einen Malus in Höhe von
+4 Punkten. Wenn er sich nicht bewegt, beträgt der Malus sogar 12 Punkte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Malus erhöht
+sich auf 6 Punkte bzw. 18 Punkte.
+Dunkelheit (Spruch)
+Schulen: Schatten 1
+Typus: Verhüllung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Rund um den Zauberer vertiefen
+sich die Schatten, Licht wird schwächer.
+Die Lichtverhältnisse verschlechtern sich
+dadurch um 1 Stufe.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K1V1): Die Lichtverhältnisse
+sinken um insgesamt 2 Stufen.
+Durch Wände gehen (Spruch)
+Schulen: Bewegung 4
+Typus: Wand
+Schwierigkeit: 27
+Kosten: 16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann sich durch eine
+Wand bewegen, die nicht dicker als 1 m ist.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +4V4): Eine Wand mit einer Stärke von bis zu 2 m kann durchquert werden.
+Einäschern (Spruch)
+Schulen: Feuer 5, Kampf 5
+Typus: Explosion, Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 10V4
+Zauberdauer: 12 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel des Zaubers wird von einer explosiven Flammenwolke eingehüllt
+und erleidet dadurch 2W6 Punkte Feuerschaden. Außerdem erhält es für 30 Ticks
+den Zustand Brennend 3.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Das Ziel erhält statt
+dem normalen Zustand für 45 Ticks den
+Zustand Brennend 4.
+Einfrieren (Spruch)
+Schulen: Kampf 2, Wasser 1
+Typus: Eis, Schaden
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 3V1
+Zauberdauer: 5 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erleidet 1W6+3 Punkte
+Kälteschaden und erhält für 30 Ticks den
+Zustand Lahm.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +1V1): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Benommen 1.
+Eins mit dem Feuer (Spruch)
+Schulen: Feuer 5, Verwandlung 5
+Typus: Gestalt
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Körper des Zauberers verwandelt sich in eine lodernde Gestalt aus Feuer, behält aber seine Statur bei. Er erhält
+einen Bonus in Höhe von 5 Punkten auf
+seine Schadensreduktion und seine Berührungen richten bei ausreichender Dauer Brandschaden 3 an, während er selbst
+immun gegen Hitze- und Feuerschaden ist.
+Kleidung und Ausrüstung sind nicht von
+der Verwandlung betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K5V5): Gegenstände bis Last
+4 werden mitverwandelt.
+Einstellung erspüren (Spruch)
+Schulen: Erkenntnis 2
+Typus: Einstellung
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 8V2
+Zauberdauer: 7 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erfährt die Einstellung des Ziels gegenüber einer Person, einer Angelegenheit oder einer Idee, mit der
+das Ziel in diesem Moment konfrontiert ist.
+Dieser Zauber benötigt weder Formel noch
+Geste.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Während Sozialer Konflikte mit dem Ziel erhält der Zauberer für
+bis zu eine Stunde einen Bonus in Höhe
+von 2 Punkten auf die im Rahmen des Konfliktes verwendeten Fertigkeiten.
+226
+Einstellung verbessern (Spruch)
+Schulen: Beherrschung 0
+Typus: Einstellung
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K1
+Zauberdauer: 3 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer verbessert die Einstellung des Ziels gegenüber einer von ihm
+bestimmten Person, Idee oder Sache um 1
+Stufe (maximal auf Aufgeschlossen). Dieser
+Zauber benötigt weder Formel noch Geste.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Einstellung verbessert sich um insgesamt 2 Stufen (maximal auf Hilfsbereit).
+Einstellung verschlechtern
+(Spruch)
+Schulen: Beherrschung 0
+Typus: Einstellung
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K1
+Zauberdauer: 3 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer verschlechtert die
+Einstellung des Ziels gegenüber einer von
+ihm bestimmten Person, Idee oder Sache
+um 1 Stufe (maximal auf Ablehnend). Dieser Zauber benötigt weder Formel noch
+Geste.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Einstellung verschlechtert sich um insgesamt 2 Stufen
+(maximal auf Feindlich).
+Eiserne Aura (Spruch)
+Schulen: Schutz 2, Stärkung 2
+Typus: Aura, Körper stärken
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte Wesen seiner Wahl erhalten jeweils
+einen Bonus in Höhe von 2 Punkten auf die
+Verteidigung. Die Boni gelten nur während
+des Aufenthalts im Wirkungsbereich.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K2V2): Es können bis zu fünf
+Wesen bestimmt werden.
+Eisglätte (Spruch)
+Schulen: Wasser 2
+Typus: Eis
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Der Boden wird im Wirkungsbereich mit einer spiegelglatten Eisschicht
+überzogen, wodurch zur Überquerung die
+Regeln zum Balancieren (S. 102) zum Tragen kommen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 1 EG (Kosten +K2V2): Die Schwierigkeit
+der zum Balancieren nötigen AkrobatikProben erhöht sich um 5 Punkte.
+Eisiges Gefängnis (Spruch)
+Schulen: Wasser 4
+Typus: Eis, Wand
+Schwierigkeit: 27
+Kosten: 16V4
+Zauberdauer: 17 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft um das
+Ziel eine trübe und unbewegliche Kuppel
+aus Eis mit einem Radius von bis zu 3 Metern. Sie weist eine Härte von 5 und eine
+Haltbarkeit von 24 auf, kann also zerstört
+werden.
+Wirkungsdauer: 1 Stunde
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsdauer
+• 1 EG (Kosten +4V4): Die Kältestufe erhöht
+sich innerhalb der Kuppel um 2 Stufen.
+Eislanze (Spruch)
+Schulen: Kampf 3, Wasser 2
+Typus: Eis, Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 5V2
+Zauberdauer: 9 Ticks
+Reichweite: 25 m
+Wirkung: Der Zauberer wirft eine Lanze aus
+scharfkantigen Eiskristallen auf das Ziel.
+Der Getroffene erleidet 2W10 Punkte Kälteschaden und den Zustand Lahm für 30
+Ticks.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +2V1): Der Zauberer wirft
+zeitgleich eine weitere Eislanze auf ein
+zweites Ziel, das maximal so viel Punkte
+Verteidigung wie das Hauptziel besitzt.
+Ende des Weges (Ritus)
+Schulen: Tod 1, Schicksal 1
+Typus: Nekromantie
+Schwierigkeit: 18
+Kosten: 1
+Zauberdauer: 1 Minute
+Reichweite: Berührung
+Wirkung: Ein Leichnam wird dauerhaft vor
+unheiligen Schändungen geschützt. Ihn betreffende Zauber der Typen Geisterwesen
+oder Nekromantie erhalten einen Malus in
+Höhe von 4 Punkten.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Der Malus erhöht sich
+auf 6 Punkte.
+Entzünden (Spruch)
+Schulen: Feuer 1
+Typus: Objekt
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 6 Ticks
+Reichweite: Berührung
+Wirkung: Ein unbelebtes und auf natürlichem Wege brennbares Objekt erhält für
+30 Ticks den Zustand Brennend 1.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Der Zustand endet
+nicht nach 30 Ticks, sondern erst wenn
+das Objekt verbrannt ist oder das Feuer
+gelöscht wurde.
+Erdbeben (Ritus)
+Schulen: Fels 5
+Typus: Elementarkontrolle
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 12 Minuten
+Reichweite: 50 Meter
+Wirkung: Ein Erdbeben erschüttert den Wirkungsbereich. Gebäude erleiden Schaden
+in Höhe von 50 Punkten, während Wesen
+eine Akrobatik-Probe gegen 35 gelingen
+muss, um nicht zu Boden zu fallen und als
+liegend zu gelten.
+Wirkungsbereich: 25 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 2 EG (Kosten +5V5): Der Schaden gegen
+Gebäude erhöht sich auf 60, die Schwierigkeit der Akrobatik-Probe auf 40.
+Erde zu Schlamm (Spruch)
+Schulen: Fels 2, Verwandlung 3, Wasser 3
+Typus: Wildnis
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 10 Ticks
+Reichweite: 25 m
+227
+Wirkung: Im Wirkungsbereich befindliche Erde
+verwandelt sich in Schlamm und wird zu
+Schwierigem Gelände. Der Boden trocknet
+nach Wirken des Zaubers auf natürliche Weise.
+Wirkungsbereich: 25 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 1 EG (Kosten +2V2): Erde im Wirkungsbereich wird zu Sehr Schwierigem Gelände.
+Erdstoß (Spruch)
+Schulen: Fels 2
+Typus: Elementarkontrolle
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Ein Erdstoß erschüttert den Wirkungsbereich. Gebäude erleiden Schaden in Höhe
+von 15 Punkten, während Wesen eine Akrobatik-Probe gegen 20 gelingen muss, um nicht
+zu Boden zu fallen und als liegend zu gelten.
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verzehrter Fokus, Verstärken (s. u.),
+Wirkungsbereich
+• 2 EG (Kosten +2V2): Der Schaden gegen
+Gebäude erhöht sich auf 18, die Schwierigkeit der Akrobatik-Probe auf 25.
+Erfrischung (Spruch)
+Schulen: Heilung 0
+Typus: Bewegung stärken
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Der Zauber unterdrückt 1
+Stufe des Zustands Erschöpft.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Es werden insgesamt 3 Stufen des Zustands unterdrückt.
+Erinnerungslücke (Spruch)
+Schulen: Beherrschung 3
+Typus: Gedächtnis
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Sämtliche Erinnerungen an Ereignisse der vergangenen Stunde werden aus
+dem Gedächtnis des Ziels entfernt.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Sämtliche Erinnerungen an Ereignisse seit der letzten Ruhephase werden entfernt.
+Erkenntnis fälschen (Spruch)
+Schulen: Illusion 4
+Typus: Gedanken, Konter
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Die Gedanken des Zauberers werden um einen zufälligen Strom aus Bildern und Erinnerungen ergänzt, wodurch
+Erkenntniszauber vom Typus Gedanken
+einen Malus in Höhe von 10 Punkten erhalten, wenn sie gegen den Geistigen Widerstand des Zauberers gerichtet sind. Die
+Existenz des täuschenden Zaubers kann
+nur mit einer gelungenen WahrnehmungProbe gegen 30 bemerkt werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Der Malus erhöht
+sich auf 15 Punkte.
+Erkenntnis stören (Spruch)
+Schulen: Bann 1, Erkenntnis 2, Illusion 1
+Typus: Konter
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Gegen Erkenntniszauber erhält der
+Zauberer einen Bonus in Höhe von 2 Punkten auf seinen Geistigen Widerstand.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Bonus erhöht
+sich auf 3 Punkte.
+Eulengespür (Spruch)
+Schulen: Schicksal 3, Stärkung 4
+Typus: Körper stärken
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 8 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer ist von Weisheit und
+Voraussicht erfüllt. Dadurch erhält er einen Bonus in Höhe von 3 Punkten auf alle
+Proben, in die seine Intuition einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Der Bonus erhöht
+sich auf 4 Punkte.
+Falsches Gesicht (Spruch)
+Schulen: Illusion 1
+Typus: Tarnung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Das Gesicht des Zauberers wird
+durch das einer zufälligen anderen Person
+ersetzt. Sobald der Zauberer redet oder
+Grimassen schneidet, kann die Illusion
+mit einer Wahrnehmung-Probe gegen 21
+durchschaut werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Zauberer kann
+das Gesicht einer ihm vom Aussehen her
+bekannten Person vortäuschen.
+Feenwesen bannen (Spruch)
+Schulen: Bann 4
+Typus: Feenwesen, Wesen bannen
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 16V4
+Zauberdauer: 17 Ticks
+Reichweite: 10 m
+Wirkung: Ein Wesen des Typus Feenwesen
+wird zurück in die Feenwelt geworfen. Innerhalb dieser kann der Zauber nicht angewandt werden.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +4V4): Ein zweites Wesen
+gleichen oder niedrigeren Körperlichen
+Widerstands kann gebannt werden.
+228
+Feenwesen beherrschen
+(Spruch)
+Schulen: Beherrschung 4
+Typus: Feenwesen, Kontrolle
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer unterwirft ein Wesen des Typus Feenwesen seinen Befehlen.
+Es folgt allen seinen Anweisungen unabhängig aller Konsequenzen. Das Wesen bewegt sich nicht ohne explizite Anweisung
+aus der Wirkungsweite des kanalisierten
+Zaubers (S. 195) hinaus.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Ein zweites Wesen
+gleichen oder niedrigeren Geistigen Widerstands kann beherrscht werden.
+Fels formen (Ritus)
+Schulen: Fels 3
+Typus: Objekt
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 1 Minute
+Reichweite: Berührung
+Wirkung: Der Zauberer kann 5 Kubikmeter
+Stein verformen, als handelte es sich um
+warmen Wachs. Sollen spezifische Objekte
+gebildet werden, können EdelhandwerkProben verlangt werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Es können weitere 5
+Kubikmeter verformt werden.
+Felsgeschoss (Spruch)
+Schulen: Fels 1, Kampf 1
+Typus: Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 3V1
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer schleudert dem Ziel
+ein Felsgeschoss entgegen, welches 1W10
+Punkte Felsschaden verursacht. Zudem bedarf es einer gelungenen Akrobatik- oder
+Athletik-Probe gegen 15 (erhöht um die
+Fertigkeitspunkte des Zauberers in der
+verwendeten Magieschule), um nicht vom
+Aufprall umgeworfen zu werden und als
+liegend zu gelten.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Die Schwierigkeit der
+Akrobatik-Probe beträgt 20 + Fertigkeitspunkte des Zauberers.
+Felshände (Spruch)
+Schulen: Fels 3
+Typus: Beschwörung
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 11 Ticks
+Reichweite: 5 m
+Wirkung: Zwei steinerne Klauen schießen aus dem Boden empor und führen
+Nahkampfangriffe gegen vom Zauberer
+bestimmte Ziele durch. Als Kampffertigkeitswert gilt der Fertigkeitswert in
+Felsmagie, die Verteidigung beträgt 18,
+die Waffengeschwindigkeit 10, der Felsschaden 1W6+3 und die Schadensreduktion 4, zudem verfügt jede Klaue über 5
+Lebenspunkte und eine Gesundheitsstufe. An Meisterschaften kann Umklammern eingesetzt werden. Die Klauen
+sind ortsgebunden und können lediglich
+Ziele in Nahkampfentfernung zu ihnen
+angreifen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Es erscheinen insgesamt drei Felsklauen.
+Felswesen rufen I (Spruch)
+Schulen: Fels 2
+Typus: Beschwörung, Felswesen, Magisches
+Wesen I
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer beschwört ein Wesen der Typen Felswesen und Magisches
+Wesen I, das all seinen Anweisungen folgt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Es wird ein zweites
+Wesen der gleichen Art beschworen.
+Felszerstörung (Spruch)
+Schulen: Fels 5
+Typus: Schaden
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 20 Ticks
+Reichweite: 25 m
+Wirkung: Erde und Fels im Umkreis sowie
+alle daraus bestehenden Konstruktionen
+oder Wesen erleiden 75 Punkte Schaden.
+Wirkungsbereich: 10 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 2 EG (Kosten +5V5): Der Schaden erhöht
+sich auf 100 Punkte.
+Fernsicht (Ritus)
+Schulen: Erkenntnis 4
+Typus: Sinne, Wahrnehmung
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 4 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann einen bis zu 10
+Kilometer entfernten Ort sehen, hören und
+riechen, als wäre er dort. Eine Interaktion
+ist jedoch nicht möglich. Es können nur solche Plätze ausgewählt werden, die von der
+Position des Zauberers aus sichtbar sind.
+Auch lassen sich weder der genaue Punkt
+noch die Blickrichtung verändern, nachdem der Zauber einmal gewirkt wurde.
+Während der Wirkungsdauer ist der Zauberer nicht dazu in der Lage, sein Umfeld
+wahrzunehmen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Der Zauberer ist dazu
+in der Lage, während der Wirkungsdauer
+sein Umfeld wahrzunehmen.
+Feuerball (Spruch)
+Schulen: Feuer 4, Kampf 5
+Typus: Explosion, Schaden
+Schwierigkeit: 27
+Kosten: 15V5
+Zauberdauer: 19 Ticks
+Reichweite: 25 m
+Wirkung: Der Zauberer schleudert einen Feuerball auf einen Zielpunkt, der bei Aufprall explodiert und jedem Wesen und Objekt in 5 m
+Umkreis 2W10 Punkte Feuerschaden zufügt.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +6V6): Die Ziele erhalten zusätzlich für 30 Ticks den Zustand Brennend 2.
+Feuerstrahl (Spruch)
+Schulen: Feuer 1, Kampf 2
+Typus: Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 5V2
+Zauberdauer: 8 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer wirft einen Feuerstrahl auf einen Gegner. Der Getroffene
+erleidet 2W6+5 Punkte Feuerschaden.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +1V1): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Brennend 1.
+229
+Flamme (Spruch)
+Schulen: Feuer 0
+Typus: Objekt
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Eine Flamme entsteht in der Hand
+des Zauberers oder auf einem Objekt, mit
+der etwa eine Pfeife entzündet werden
+kann. Größere Objekte lassen sich mit diesem Zauber nicht anzünden
+Wirkungsdauer: 30 Sekunden
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.), Wirkungsdauer
+• 1 EG (Kosten +1V1): Es kann mit dem richtigen Material auch bis zur Größe eines Lagerfeuers Feuer entzündet werden.
+Flammende Waffe (Spruch)
+Schulen: Feuer 1, Kampf 1
+Typus: Waffe
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Eine Waffe wird mit Flammen
+überzogen. Sie leuchtet fackelhell und
+richtet 1 Punkt zusätzlichen Feuerschaden
+an, ohne dabei den Träger einzuschränken. Dieser Zauber ist nicht mit anderen
+Zaubern kombinierbar, die ebenfalls die
+Typen Schaden und Waffe aufweisen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Die Klinge richtet 2
+Punkte Feuerschaden an.
+Flammenhand (Spruch)
+Schulen: Feuer 1, Kampf 1
+Typus: Hand
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Hand des Zauberers wird
+mit Flammen überzogen, so dass sie
+fackelhell leuchtet. Im unbewaffneten
+Nahkampf richtet der Zauber echten
+Feuerschaden an und hat mit seinen
+waffenlosen Angriffen das Waffenmerkmal Scharf 2 (S. 186), ohne dass er dabei
+selbst eingeschränkt ist. Dieser Zauber
+ist nicht mit anderen Zaubern des Typus
+Hand kombinierbar.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Hand leuchtet
+nicht so hell wie eine Fackel, sondern so
+hell wie ein Lagerfeuer. Der Schaden erhöht
+sich um 2 Punkte echten Feuerschaden.
+Flammenherrschaft (Spruch)
+Schulen: Feuer 2
+Typus: Elementarkontrolle
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer beherrscht ein bereits
+brennendes, natürliches Feuer der Stufen
+1-3. Er kann es sowohl abschwächen, also den
+Brandschaden um eine Stufe senken, als auch
+heißer brennen lassen und damit den Brandschaden um 1 Stufe erhöhen. Außerdem vermag er es in einfache Formen zu dirigieren.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Es kann auch ein Feuer der Stufen 4-5 beherrscht werden.
+Flammenkegel (Spruch)
+Schulen: Feuer 3, Kampf 4
+Typus: Schaden
+Schwierigkeit: 24
+Kosten: 12V4
+Zauberdauer: 15 Ticks
+Reichweite: 5 m
+Wirkung: Ein Flammenkegel schießt vom Zauberer aus nach vorne und richtet bei allen
+Wesen und Objekten, die sich innerhalb des
+Flammenkegels aufhalten, 2W6 Punkte Feuerschaden an. Der Flammenkegel ist am Ort
+seines Entstehens einen halben Meter breit
+und wächst mit jedem Meter, den er sich
+vom Zauberer entfernt, um einen weiteren
+halben Meter in die Breite, bis zu einem Maximum von 3 Metern Breite. Wird die Reichweite des Flammenkegels vergrößert, wächst
+er entsprechend langsamer in die Breite.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Getroffene Wesen und
+Objekte erhalten zusätzlich für 15 Ticks
+den Zustand Brennend 2.
+Flammenschild (Spruch)
+Schulen: Feuer 3, Schutz 4
+Typus: Schild, Schutzfeld
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer umgibt sich mit einem Schild aus lodernden Flammen. Während er selbst nicht davon beeinträchtigt
+wird, erleidet jedes Wesen, das sich ihm
+für länger als 15 Ticks auf 2 Meter nähert,
+für 15 Ticks den Zustand Brennend 2.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die nötige Zeit der
+Nähe wird auf 5 Ticks reduziert.
+Flammenwand (Spruch)
+Schulen: Feuer 4
+Typus: Wand
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 15 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft eine
+schnurgerade und unverrückbare Wand
+aus Flammen von 20 cm Dicke mit einer
+beliebig verteilbaren Fläche von bis zu
+10 m². Bewegen sich Wesen oder Objekte durch sie hindurch, erhalten sie 8W6
+Punkte Feuerschaden. Die maximale
+Wirkungsweite kanalisierter Zauber (S.
+195) gilt für diesen Zauber als verzehnfacht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Das Durchqueren
+verursacht zusätzlich für 30 Ticks den Zustand Brennend 1.
+Fliegen (Spruch)
+Schulen: Bewegung 5, Wind 5
+Typus: Elementarkontrolle
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhebt sich in die
+Lüfte und kann sich mit einer Geschwindigkeit fortbewegen, die seiner doppelten
+Mystik entspricht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K5V5): Die Geschwindigkeit
+entspricht seiner vierfachen Mystik.
+Fluch brechen (Spruch)
+Schulen: Bann 2, Schicksal 3
+Typus: Fluch, Zauber brechen
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Alle momentan auf das Ziel wirkenden Zauber des Typus Fluch bzw. Zustände mit der Ursache Fluch werden
+aufgehoben, solange die verursachenden
+Zauber maximal Grad 3 aufweisen.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +2V2): Es werden Zauber und
+Ursachen bis Grad 5 aufgehoben.
+230
+Fluch der Schmerzen (Spruch)
+Schulen: Schicksal 2, Tod 2
+Typus: Fluch
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer verflucht sein Ziel so,
+dass es den Zustand Verwundet 1 erhält.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Das Ziel erhält den Zustand Verwundet 2.
+Fremde Gestalt (Ritus)
+Schulen: Verwandlung 5
+Typus: Impersonation
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer nimmt das Aussehen einer anderen Person an, einschließlich seiner Größe, Statur und Stimme. Soll
+die Erscheinung einer bestimmten Person
+erworben werden, können nur solche Eigenheiten übernommen werden, die dem
+Zauberer bekannt sind. Ist die Person einem Gegenüber gut bekannt, vermag dieser die Täuschung zu erkennen, wenn er
+sich mindestens 5 Minuten lang mit dem
+Zauberer auseinandersetzt und ihm eine
+Probe auf Wahrnehmung gegen 33 oder
+eine vergleichende Empathie-Probe gegen die Redegewandtheit des Zauberers
+gelingt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K5V5): Der Schwierigkeit
+einer etwaigen Wahrnehmung-Probe
+beträgt 40. Eine etwaige Empathie-Probe
+erhält einen Malus in Höhe von 3 Punkten.
+Freund der Tiere (Spruch)
+Schulen: Natur 0
+Typus: Einstellung, Tiere
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer wirkt vertrauter auf
+alle Wesen mit dem Typus Tier. Er erhält
+einen Bonus in Höhe von 1 Punkt auf Tierführung-Proben und die Einstellung jedes
+Tieres ihm gegenüber wird um 1 Stufe verbessert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Einstellung wird
+um eine weitere Stufe verbessert.
+Furcht (Spruch)
+Schulen: Beherrschung 1
+Typus: Moral
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 4V1
+Zauberdauer: 4 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erhält den Zustand Angsterfüllt.
+Wirkungsdauer: 60 Ticks
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsdauer
+• 2 EG (Kosten +1V1): Das Ziel ist nicht in der
+Lage, den Zauberer anzugreifen. Dieser Effekt hält genauso lange an wie der Zustand
+Angsterfüllt.
+Gedächtnis verändern (Ritus)
+Schulen: Beherrschung 4
+Typus: Gedächtnis
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 16V4
+Zauberdauer: 15 Minuten
+Reichweite: Berührung
+Wirkung: Erinnerungen, die bis zu einer
+Stunde zurückliegen, werden nach Belieben des Zauberers verändert.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +4V4): Die Erinnerungen dürfen bis zu einer Woche zurückliegen.
+Gedankenlesen (Spruch)
+Schulen: Erkenntnis 4
+Typus: Gedächtnis, Gedanken
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K16V4
+Zauberdauer: 15 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer erhält Einblick in die
+aktuellen Gedankengänge der Zielperson,
+kann aber nicht in seine Erinnerungen eindringen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 3 EG (Kosten +K4V4): Der Zauberer kann
+auch gezielt in die Erinnerungen des Ziels
+eindringen, was pro einzelner Erinnerung
+etwa 1 Stunde dauert.
+Gedankenschutz (Spruch)
+Schulen: Beherrschung 2, Schutz 1
+Typus: Gedanken
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Gegen Beherrschungszauber erhält das Ziel einen Bonus in Höhe von 3
+Punkten auf seinen Geistigen Widerstand.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Bonus erhöht
+sich auf 4 Punkte.
+Gegenstand beschädigen
+(Spruch)
+Schulen: Kampf 0
+Typus: Objekt, Schaden
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Ein unbelebtes Objekt erleidet 5
+Schadenspunkte.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Der Schaden erhöht
+sich auf 10 Punkte.
+Gegenstand bewegen (Spruch)
+Schulen: Bewegung 1
+Typus: Objekt, Telekinese
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer kann einen Gegenstand bis Last 2, der nicht von einer anderen Person kontrolliert wird, mit Hilfe
+seiner Geisteskraft und einer Geschwin-
+231
+digkeit von 1 durch die Luft bewegen oder
+manipulieren. Dabei kann er nur einfache
+Bewegungen wie etwa das Drehen eines
+Schlüssels im Schloss durchführen, nicht
+aber feinmotorische Tätigkeiten wie das
+Öffnen eines Schlosses mit einem Dietrich.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Es kann ein Gegenstand bis Last 4 bewegt werden.
+Gegenstand verbessern (Ritus)
+Schulen: Stärkung 3
+Typus: Objekt
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 2 Minuten
+Reichweite: Berührung
+Wirkung: Die Gegenstandsqualität eines
+Objekts erhöht sich um 2 Punkte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Die Gegenstandsqualität erhöht sich um insgesamt 4 Punkte.
+Gegenzauber (Spruch)
+Schulen: Bann 2
+Typus: Konter
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: 8V2
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Führt das Ziel gerade einen Zaubervorgang durch, erhält es einen Malus in
+Höhe von 8 Punkten auf seine Probe.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Der Malus erhöht sich
+auf 12 Punkte.
+Geh noch nicht (Spruch)
+Schulen: Heilung 1, Tod 2
+Typus: Leben
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauber hält die Lebenskraft
+eines Sterbenden in dessen Körper. Die
+Wirkung der Zustände Sterbend 1 und
+Sterbend 2 wird ausgesetzt, während die
+Wirkungsdauer einer etwaigen Zustandsursache weiterläuft.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Auch die Wirkung
+des Zustands Sterbend 3 wird ausgesetzt.
+Gehör verbessern (Spruch)
+Schulen: Erkenntnis 1, Stärkung 1, Verwandlung 2
+Typus: Sinne
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 3 Punkten auf jede Wahrnehmung-Probe, die sein Gehör betrifft.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Bonus erhöht
+sich auf 5 Punkte.
+Geisterblick (Spruch)
+Schulen: Tod 0, Erkenntnis 3
+Typus: Anderswelt
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann seinen parallelen
+Standort in der Geisterwelt sehen, hören
+und riechen, als wäre er dort. Eine Interaktion ist jedoch nicht möglich. Während der
+Wirkungsdauer ist der Zauberer nicht dazu
+in der Lage, sein Umfeld wahrzunehmen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Der Zauberer ist dazu
+in der Lage, während der Wirkungsdauer
+sein Umfeld wahrzunehmen.
+Geisterdolch (Spruch)
+Schulen: Kampf 0
+Typus: Herbeirufung, Waffe
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erschafft eine durchscheinende Waffe mit den Werten eines
+Dolchs.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Der Schaden der
+Waffe erhöht sich um 1 Punkt. Diese Verstärkung wirkt nicht, wenn der Zauber mit
+Zaubern kombiniert wird, die die Typen
+Schaden und Waffe aufweisen.
+Geister rufen I (Spruch)
+Schulen: Tod 1
+Typus: Beschwörung, Geisterwesen, Magisches Wesen I
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer beschwört ein Wesen
+der Typen Geisterwesen und Magisches
+Wesen I, das all seinen Anweisungen folgt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Es wird ein zweites
+Wesen derselben Art beschworen.
+Geistersprache (Spruch)
+Schulen: Tod 1, Erkenntnis 2
+Typus: Geisterwesen, Verständigung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann mit Wesen
+des Typus Geisterwesen kommunizieren.
+Diese sind ihm gegenüber nicht notwendigerweise freundlich gesonnen, aber in der
+Regel zumindest interessiert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Einstellung von
+Wesen des Typus Geisterwesen gegenüber
+dem Zauberer verbessert sich um 1 Stufe.
+Geistreise (Ritus)
+Schulen: Tod 5
+Typus: Anderswelt, Nekromantie
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 5 Minuten
+Reichweite: Zauberer
+Wirkung: Der Geist des Zauberers löst sich
+von seinem Körper, sodass er die Geisterwelt betreten und mit ihren Bewohnern
+interagieren kann. Sein Leib fällt währenddessen in eine Trance. Endet der Zauber,
+kehrt der Geist auf der Stelle zurück.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K5V5): Der Zauberer verfügt
+in der Geisterwelt über eine Schadensreduktion in Höhe von 5 Punkten.
+Geräuschhexerei (Spruch)
+Schulen: Illusion 0
+Typus: Geräusch
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer lässt ein kurzes und
+nicht zu komplexes Geräusch wie etwa ein
+Türknarren oder ein Bellen entstehen. Dieser Zauber benötigt keine Formel.
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Statt eines einfachen
+Geräuschs handelt es sich um bis zu fünf
+Worte mit der Stimme des Zauberers.
+232
+Geruch (Spruch)
+Schulen: Illusion 1, Wind 1
+Typus: Geruch
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 5 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft einen beliebigen Geruch. Dieser Zauber benötigt
+keine Formel.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 2 EG (Kosten +K1V1): Wesen im Wirkungsbereich erhalten den Zustand Benommen
+1.
+Geschoss verzaubern (Spruch)
+Schulen: Kampf 1
+Typus: Pfeil, Schaden, Waffe
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Schaden von bis zu fünf Geschossen erhöht sich um jeweils 2 Punkte.
+Während des Abschussvorgangs unterliegen die Geschosse nicht den Regeln zur
+maximalen Wirkungsweite kanalisierter
+Zauber. Dieser Zauber ist nicht mit anderen Zaubern kombinierbar, die ebenfalls
+die Typen Schaden und Waffe aufweisen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Schaden erhöht
+sich um insgesamt 3 Punkte.
+Gesicht ändern (Spruch)
+Schulen: Verwandlung 1
+Typus: Impersonation, Tarnung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Gesichtszüge des Zauberers
+verändern sich leicht, sodass es einer gelungenen Wahrnehmung-Probe gegen 18
+bedarf, um ihn wiederzuerkennen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Schwierigkeit der
+Wahrnehmung-Probe beträgt 21.
+Giftbann (Spruch)
+Schulen: Heilung 3
+Typus: Gift, Leben
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Alle derzeit im Körper befindlichen
+Gifte werden aufgehoben, solange sie maximal Grad 3 aufweisen und nicht den Zustand Siechtum verleihen.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es werden Gifte bis
+Grad 5 ohne den Zustand Siechtum aufgehoben.
+Gift erkennen (Spruch)
+Schulen: Erkenntnis 3, Heilung 1
+Typus: Gift, Hellsicht
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauber offenbart die Wirkung
+und den Grad aller derzeit im Körper befindlichen Gifte. Zudem gewährt er einen
+Bonus in Höhe von 2 Punkten auf damit im
+Zusammenhang stehende Heilkunde- oder
+Heilungsmagie-Proben.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Zusätzlich wird die
+ursprüngliche und noch übrige Wirkungsdauer der einzelnen Gifte offenbart, ebenso wie die Anwendungsweise.
+Gleißende Barriere (Spruch)
+Schulen: Licht 1, Schutz 3
+Typus: Leuchten, Wand
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft eine schnurgerade und unverrückbare Wand aus gleißendem Licht von 20 cm Dicke mit einer beliebig verteilbaren Fläche von bis zu 10 m².
+Ihre Härte beträgt 2 Punkte, ihre Haltbarkeit
+6 Punkte. Die Barriere erhöht die Lichtverhältnisse im Umkreis von 5 Metern um 2
+Stufen. Sie kann zerstört werden, was den
+Zauber beendet. Die maximale Wirkungsweite kanalisierter Zauber (S. 195) gilt für
+diesen Zauber als verzehnfacht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Wird die Wand im
+Nahkampf attackiert, erhalten die Angreifer den Zustand Geblendet 1. Außerdem
+verbessert sie die Lichtverhältnisse im Umkreis von 5 Metern um insgesamt 3 Stufen.
+Gleißender Schild (Spruch)
+Schulen: Licht 2, Schutz 3
+Typus: Leuchten, Schild, Schutzfeld
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer umgibt sich mit einem
+Schild aus gleißendem Licht. Wird er im Nahkampf attackiert, erhalten die Angreifer den
+Zustand Geblendet 1 (max. 1 mal gleichzeitig). Zudem verbessern sich die Lichtverhältnisse im Umkreis von 10 Metern um 1 Stufe.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Angreifer im Nahkampf erhalten den Zustand Geblendet 2,
+die Lichtverhältnisse verbessern sich um
+insgesamt 2 Stufen.
+Glück (Spruch)
+Schulen: Schicksal 0
+Typus: Segen
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält für seinen
+nächsten Wurf einen Bonus in Höhe von
+1 Punkt.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 2 Punkte.
+Großer Magieschutz (Spruch)
+Schulen: Schutz 3
+Typus: Konter
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Alle gegen das Ziel gerichteten
+Zauber erhalten einen Malus in Höhe von
+4 Punkten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Malus erhöht
+sich auf 6 Punkte.
+Haarfarbe (Spruch)
+Schulen: Verwandlung 0
+Typus: Impersonation
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Das Haupthaar oder -fell des Zauberers nimmt die von ihm gewünschten
+Farben an.
+Wirkungsdauer: kanalisiert
+233
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Auch die restliche
+Körperbehaarung kann verändert werden.
+Halluzination (Spruch)
+Schulen: Beherrschung 3, Illusion 3
+Typus: Halluzination
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: K12V3
+Zauberdauer: 14 Ticks
+Reichweite: 10 m
+Wirkung: Die Wahrnehmung des Ziels wird
+um eine einzelne vom Zauberer bestimmte
+Halluzination ergänzt, die nicht von der Realität unterschieden werden kann. Hierbei
+kann nicht das gesamte Umfeld verändert
+werden, sondern der Umgebung nur etwas
+hinzugefügt werden. Die Halluzination darf
+nicht größer als menschengroß sein und
+kann keine Geräusche machen, sich aber
+bewegen. Entsprechend kann beispielsweise
+die Illusion einer verfolgenden Riesenspinne
+geschaffen werden, nicht aber einer sich mit
+dem Opfer unterhaltenden Person. Dieser
+Zauber benötigt weder Formel noch Geste.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Es kann eine zweite
+Halluzination erschaffen werden.
+Härte (Spruch)
+Schulen: Fels 0, Schutz 0, Stärkung 0
+Typus: Objekt
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Ticks
+Reichweite: Berührung
+Wirkung: Die Härte eines unbelebten Objekts erhöht sich um 1 Punkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Die Härte erhöht sich
+um insgesamt 2 Punkte.
+Hauch der Geister (Spruch)
+Schulen: Tod 0, Erkenntnis 1
+Typus: Geisterwesen, Wahrnehmung
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer verspürt ein leichtes
+Frösteln, wenn sich ein Wesen des Typus
+Geisterwesen im Wirkungsbereich aufhält.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.), Wirkungsbereich
+• 1 EG (Kosten +K1V1): Der Zauberer weiß, in
+welcher Richtung sich die Geister befinden,
+ohne jedoch die Entfernung zu kennen.
+Heilung (Ritus)
+Schulen: Heilung 3
+Typus: Leben
+Schwierigkeit: 24
+Kosten: 12V5
+Zauberdauer: 1 Minute
+Reichweite: Berührung
+Wirkung: Der Zauber regeneriert 16 Lebenspunkte.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Es werden insgesamt
+24 Lebenspunkte regeneriert.
+Heilung stärken (Spruch)
+Schulen: Heilung 2, Stärkung 2
+Typus: Leben, Regeneration
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 3 Ticks
+Reichweite: Zauberer
+Wirkung: Die Regeneration der Lebenspunkte in der nächsten Ruhephase wird um 5
+Punkte erhöht.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Es werden in der
+nächsten Ruhephase insgesamt 10 zusätzliche Lebenspunkte regeneriert.
+Hohe Segnung (Ritus)
+Schulen: Schicksal 3
+Typus: Segen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 2 Minuten
+Reichweite: Berührung
+Wirkung: Das Ziel erhält einen Bonus in
+Höhe von 2 Punkten auf alle Fertigkeitsproben und Widerstandswerte.
+Wirkungsdauer: 1 Stunde
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +3V3): Der Bonus erhöht sich
+auf 3 Punkte.
+Inneres Leuchten (Spruch)
+Schulen: Licht 4
+Typus: Leuchten, Segen
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer hat durch ein sanftes
+inneres Leuchten eine gute Wirkung auf
+andere. Dadurch erhält er einen Bonus in
+Höhe von 4 Punkten auf alle Proben, in die
+seine Ausstrahlung einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Der Bonus erhöht
+sich auf 5 Punkte.
+Insektenschwarm (Spruch)
+Schulen: Natur 3
+Typus: Beschwörung, Tiere
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 12 Ticks
+Reichweite: 10 m
+Wirkung: Das Ziel des Zaubers wird von einem Schwarm Insekten umschwirrt, die
+seine Konzentration stören und ihn verlangsamen. Jede kontinuierliche Aktion
+wird um 2 Ticks verlängert.
+Wirkungsdauer: 5 Minuten
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsdauer
+• 2 EG (Kosten +3V3): Jede kontinuierliche
+Aktion wird um 3 Ticks verlängert.
+Kälteschild (Spruch)
+Schulen: Schutz 3, Wasser 2
+Typus: Eis, Schild, Schutzfeld
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer umgibt sich mit einem Schild aus frostiger Kälte. Während er
+selbst nicht davon beeinträchtigt wird, erleidet jedes Wesen nach jeweils 15 vollen
+Ticks Aufenthalt in einem Abstand von maximal 2 m Kälteschaden in Höhe von 2W6
+Punkten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Betroffene Wesen
+erhalten zusätzlich den Zustand Benommen 1.
+Katzenaugen (Spruch)
+Schulen: Schatten 1, Verwandlung 2, Erkenntnis 1
+Typus: Sinne
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Lichtverhältnisse verbessern
+sich für den Zauberer um 1 Stufe.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Lichtverhältnisse
+verbessern sich für den Zauberer um insgesamt 2 Stufen.
+234
+Katzenreflexe (Spruch)
+Schulen: Bewegung 2, Stärkung 3
+Typus: Bewegung stärken, Körper stärken
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 2 Punkten auf alle Proben, in
+die seine Beweglichkeit einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Die Initiative des Zauberers ist außerdem um 2 Punkte gesenkt.
+Katzenwäsche (Spruch)
+Schulen: Wasser 0
+Typus: Objekt, Reinigung
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Ein Gegenstand oder ein Körperteil
+des Abenteurers wird augenblicklich von
+Dreck und Schmutz gereinigt, als ob er gründlich in Seifenwasser gewaschen worden wäre.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Es kann der gesamte
+Körper des Zauberers oder ein kompletter
+Satz Kleidung als Ziel gewählt werden.
+Kettenblitz (Spruch)
+Schulen: Kampf 4, Wind 3
+Typus: Elektrizität, Schaden
+Schwierigkeit: Höchste Verteidigung der
+Ziele
+Kosten: 12V3
+Zauberdauer: 11 Ticks
+Reichweite: 25 Meter
+Wirkung: Bis zu drei Ziele werden nacheinander von einem Blitzschlag getroffen. Das
+erste Ziel muss sich in der Reichweite des
+Zaubers befinden, die jeweils folgenden
+Ziele dürfen maximal 5 Meter vom vorhergehenden Ziel entfernt stehen. Das erste
+Ziel erhält 3W6+6 Punkte Elektrizitätsschaden, jedes weitere dann die Hälfte des
+Schadens des vorhergehenden Ziels.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Die Ziele erhalten
+zusätzlich für 30 Ticks den Zustand Benommen 2.
+Kleiner Magieschutz (Spruch)
+Schulen: Schutz 0
+Typus: Konter
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Gegen das Ziel gerichtete Zauber
+erhalten einen Malus in Höhe von 1 Punkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Der Malus erhöht
+sich auf 2 Punkte.
+Kleintierform (Spruch)
+Schulen: Natur 3, Verwandlung 2
+Typus: Gestalt, Tiere
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verwandelt sich in
+ein nicht flugfähiges Wesen des Typus Tier
+der Größenklasse 1, sowie bis maximal
+Monstergrad (als Einzelgegner) 1.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Das Tier ist ein besonders prachtvolles Exemplar. Alle Proben
+auf Fertigkeiten, die von der Tiergestalt
+übernommen wurden, erhalten einen Bonus in Höhe von 2 Punkten.
+Kometenwurf (Spruch)
+Schulen: Feuer 2, Kampf 3
+Typus: Explosion, Waffe
+Schwierigkeit: 21
+Kosten: 9V3
+Zauberdauer: 7 Ticks
+Reichweite: Berührung
+Wirkung: Ein Wurfgeschoss wird mit magischer Macht aufgeladen. Wird es anschließend geworfen, erleiden alle Wesen und
+Objekte in 5 Metern Umkreis um den Aufprallort 1W6+3 Punkte Feuerschaden. Der
+Zauber endet automatisch nach dem Auftreffen oder nachdem die Wirkungsdauer
+verstrichen ist.
+Wirkungsdauer: 1 Minute
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Schaden,
+Verstärken (s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +3V3): Die Ziele erhalten zusätzlich für 30 Ticks den Zustand Brennend 1.
+Komm zu mir (Spruch)
+Schulen: Bewegung 4
+Typus: Telekinese
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 16V4
+Zauberdauer: 9 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel wird umgehend und auf
+möglichst direktem Weg zum Zauberer
+bewegt. Hindernisse werden dabei umgangen. Die Bewegung erfolgt sofortig und
+ohne Zeitverlust mit Auslösen des Zaubers.
+Sollte das Ziel sich gerade in einer kontinuierlichen Aktion befunden haben, muss es
+eine Entschlossenheit-Probe wie nach den
+Regeln zur Störung kontinuierlicher Aktionen (S. 167) ablegen. Die Schwierigkeit
+hierfür beträgt 18. Das Ziel kann nicht von
+Gelegenheitsangriffen von Gegnern getroffen werden, von denen es sich weg oder an
+denen es sich vorbei bewegt.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +4V4): Das Ziel kann von Gelegenheitsangriffen getroffen werden, sofern der Zauberer dies wünscht.
+Krallen (Spruch)
+Schulen: Verwandlung 0
+Typus: Tiere
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Aus den Händen des Zauberers
+wachsen scharfe Krallen. Seine waffenlosen
+Nahkampfangriffe verursachen dadurch
+echten Schaden statt Betäubungsschaden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Der Schaden erhöht
+sich zusätzlich um 1 Punkt.
+Kreischen (Spruch)
+Schulen: Illusion 2
+Typus: Geräusch
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Ein lautes und schrilles illusionäres
+Geräusch geht vom Zauberer aus, das bei allen Wesen in 5 Metern Umkreis den Zustand
+Benommen 2 für 30 Ticks verursacht. Der
+Zauberer selbst ist nicht davon betroffen.
+235
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +2V2): Die Betroffenen erhalten zusätzlich für 30 Ticks den Zustand
+Lahm.
+Lähmung (Spruch)
+Schulen: Beherrschung 3, Bewegung 2
+Typus: Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Das Ziel erhält den Zustand Lahm.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Ein zweites in Reichweite befindliches Ziel mit gleichem oder
+niedrigerem Körperlichen Widerstand kann
+verzaubert werden.
+Last (Spruch)
+Schulen: Fels 1
+Typus: Objekt
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Die Last eines Objekts wird um 3
+Stufen erhöht, es wird auf magische Weise
+schwerer. Dadurch wird das Objekt schwieriger zu transportieren.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Last wird um insgesamt 5 Stufen erhöht.
+Lasten heben (Spruch)
+Schulen: Bewegung 2
+Typus: Telekinese
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann bis zu 6 Punkte
+Last auf telekinetischem Weg tragen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zauberer kann
+insgesamt bis zu 8 Punkte Last tragen.
+Lebensband (Spruch)
+Schulen: Heilung 3, Schicksal 2
+Typus: Leben, Verständigung
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Sämtlicher Schaden, den ein vom
+Zauberer bestimmtes Wesen erleidet, wird
+auf ein anderes vom Zauberer bestimmtes Wesen übertragen. Zur Verzauberung
+müssen beide Ziele gleichzeitig berührt
+werden und beide müssen dem Zauber
+freiwillig zustimmen. Der Zauber endet automatisch mit dem Ableben des Schaden
+empfangenden Wesens.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Auch die Auswirkung
+von Giften und Krankheiten werden übertragen.
+Lebenskraft stärken (Spruch)
+Schulen: Heilung 1, Stärkung 2
+Typus: Körper stärken, Leben
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält 6 zusätzliche
+Lebenspunkte, die im Falle erlittener Schadenspunkte zuerst verbraucht werden. Es ist
+möglich, dadurch temporär über einen Vorrat an Lebenspunkten zu verfügen, der über
+das natürliche Maximum hinausgeht (ebenso gelten die Regeln zu maximalen Boni auf
+abgeleitete Werte für diesen Zauber nicht).
+Sollte der Zauberer bereits verwundet sein,
+gelten weiter seine aktuellen Wundabzüge.
+Der Zauber endet automatisch, wenn die 6
+zusätzlichen Lebenspunkte aufgebraucht
+wurden. Dieser Zauber ist nicht mit anderen
+Zaubern kombinierbar, die ebenfalls die Typen Körper stärken und Leben besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zauberer erhält
+insgesamt 8 zusätzliche Lebenspunkte.
+Lebensraub (Spruch)
+Schulen: Tod 3
+Typus: Leben, Schaden
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer entzieht einem Opfer 3W6+5 Lebenspunkte und überträgt
+sie auf ein Wesen seiner Wahl. Beide Ziele
+müssen gleichzeitig berührt werden. Die
+Lebenspunkte können auf diesem Wege
+nicht über das natürliche Maximum hinaus
+angehoben werden.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Die Anzahl der entzogenen Lebenspunkte erhöht sich auf 4W6+5.
+Leben verhüllen (Spruch)
+Schulen: Schutz 3, Tod 2
+Typus: Leben, Verhüllung
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Die Lebensaura des Zauberers
+wird unterdrückt. Untote und andere Wesen, die Lebenskraft spüren, nehmen ihn
+als totes Objekt wahr, solange ihr Geistiger
+Widerstand nicht mindestens 20 beträgt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zauberer wird
+nicht wahrgenommen, wenn der Geistige
+Widerstand nicht mindestens 25 beträgt.
+Leib aus Licht (Spruch)
+Schulen: Licht 4, Verwandlung 5
+Typus: Gestalt, Leuchten
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 21 Ticks
+Reichweite: Zauberer
+Wirkung: Der Körper des Zauberers verwandelt sich in eine strahlende Gestalt
+aus Licht, behält aber seine Statur bei. Er
+erhält einen Bonus in Höhe von 4 Punkten auf seine Schadensreduktion und ist
+immun gegen den Zustand Geblendet,
+während alle Wesen, die ihn im Nahkampf
+attackieren, den Zustand Geblendet 1 erhalten. Zudem verbessern sich die Lichtverhältnisse im Umkreis von 10 Metern
+um 1 Stufe. Kleidung und Ausrüstung sind
+nicht von der Verwandlung betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Gegenstände bis Last
+4 werden mitverwandelt.
+Leichte Heilung (Spruch)
+Schulen: Heilung 2
+Typus: Leben
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauber regeneriert 6 Lebenspunkte.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +2V2): Es werden insgesamt
+10 Lebenspunkte regeneriert.
+236
+Leichtes Ziel (Spruch)
+Schulen: Kampf 3, Schicksal 2
+Typus: Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 5 m
+Wirkung: Die Verteidigung des Ziels wird um
+2 Punkte gesenkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Die Verteidigung
+wird um 3 Punkte gesenkt.
+Leichtigkeit (Spruch)
+Schulen: Wind 1
+Typus: Objekt
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Die Last eines Objekts wird um 2
+Stufen gesenkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Last wird um insgesamt 3 Stufen gesenkt.
+Levitieren (Spruch)
+Schulen: Bewegung 3, Wind 3
+Typus: Elementarkontrolle, Telekinese
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer beginnt zu schweben und kann sich mit einer Geschwindigkeit von 1 fortbewegen. Es ist ihm dabei
+nicht möglich, höher als 10 Meter aufzusteigen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Geschwindigkeit
+erhöht sich auf 2, die Maximalhöhe auf 15
+Meter.
+Licht (Spruch)
+Schulen: Licht 0
+Typus: Leuchten
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer verbreitet einen
+sanften Schein, der die Lichtverhältnisse
+um 1 Stufe verbessert.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.), Wirkungsbereich
+• 1 EG (Kosten +K1V1): Die Lichtverhältnisse
+verbessern sich um insgesamt 2 Stufen.
+Lichtbann (Spruch)
+Schulen: Bann 3, Schatten 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 11 Ticks
+Reichweite: 10 m
+Wirkung: Ein einzelner Lichtzauber wird aufgehoben, solange er maximal Grad 3 aufweist. Handelt es sich um einen Zauber mit
+Wirkungsbereich, genügt es, wenn sich ein
+Teil von diesem innerhalb der Reichweite
+befindet.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es wird ein Zauber bis
+Grad 5 aufgehoben.
+Lichtblitz (Spruch)
+Schulen: Licht 3
+Typus: Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 4V1
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer schleudert dem Ziel
+einen sengenden Lichtstrahl entgegen, der
+2W6 Punkte Lichtschaden verursacht. Zudem erhält das Opfer für 30 Ticks den Zustand Geblendet 1.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 2 EG (Kosten +2V2): Der Zustand wird auf
+Geblendet 2 erhöht.
+Lichtbrücke (Ritus)
+Schulen: Licht 4
+Typus: Wand
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 6 Minuten
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft eine
+schnurgerade und unverrückbare, waagerechte Brücke aus reinem Licht mit einer
+beliebig verteilbaren Fläche von bis zu 10
+m². Ihre Härte beträgt 7 Punkte, ihre Haltbarkeit 24 Punkte. Sie kann also zerstört
+werden, was den Zauber beendet. 5 m um
+die Brücke herum werden die Lichtverhältnisse um 1 Stufe verbessert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Die Fläche beträgt bis
+zu 20 m².
+Lichter Schutz (Spruch)
+Schulen: Licht 5
+Typus: Aura, Segen
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei
+weitere bei Auslösung des Zaubers festgelegte Wesen seiner Wahl werden durch
+die Kraft des Lichtes geschützt, solange
+sie sich im Wirkungsbereich des Zaubers
+aufhalten. Wesen der Typen Schattenwesen, Untoter und Wesen der Finsternis müssen eine Entschlossenheit-Probe
+gegen 27 ablegen, um sie angreifen zu
+können. Sollten diese Wesen ihrerseits
+angegriffen werden, müssen sie keine
+Probe ablegen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K5V5): Eventuelle Angriffe
+oben genannter Wesen werden gegen die
+Nutznießer um 3 Punkte erschwert.
+Lichtertanz (Spruch)
+Schulen: Illusion 0, Licht 0
+Typus: Leuchten
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft bunte, flackernde Lichter. Diese können beispielsweise Wesen ablenken oder ihm einen Bonus in Höhe von 2 Punkten auf passende
+Darbietung-Proben geben.
+Wirkungsdauer: 1 Minute
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.),
+Wirkungsdauer
+• 3 EG (Kosten +1V1): Der Bonus auf Darbietung-Proben erhöht sich auf 3 Punkte.
+Lichtkugel (Spruch)
+Schulen: Licht 1
+Typus: Leuchten
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft eine strahlende Kugel, welche die Lichtverhältnisse um
+2 Stufen verbessert. Sie kann mit GSW 10 frei
+durch die Luft gelenkt werden, solange sie
+sich innerhalb der Reichweite des Zaubers
+und des Sichtfelds des Zauberers befindet.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Lichtverhältnisse
+werden um insgesamt 3 Stufen verbessert.
+237
+Machtexplosion (Spruch)
+Schulen: Kampf 4
+Typus: Schaden
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 8V3
+Zauberdauer: 9 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer greift seinen Gegner
+mit roher magischer Kraft an und verursacht 5W6 Punkte Schaden. Schadensreduktion wirkt gegen diesen Zauber nicht.
+Das Ziel erhält für 30 Ticks den Zustand
+Erschöpft 2.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +1V1) Das Ziel erhält zusätzlich für 30 Ticks den Zustand Benommen 1.
+Magie erkennen (Spruch)
+Schulen: Erkenntnis 0
+Typus: Hellsicht, Wahrnehmung
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 2 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erkennt die Stärke der
+Magie in seinem direkten Sichtbereich.
+Möchte es anschließend ein Objekt oder
+einen Ort untersuchen, erhält es einen Bonus in Höhe von 1 Punkt auf eine eventuelle Arkane Kunde-Probe.
+Wirkungsdauer: 5 Sekunden
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.),
+Wirkungsdauer
+• 1 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 2 Punkte.
+Magie erschöpfen (Spruch)
+Schulen: Bann 1
+Typus: Schwächung
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 4V1
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: 8 unverbrauchte Fokuspunkte des
+Opfers gelten als erschöpft.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Es werden 12 Fokuspunkte betroffen.
+Magie verzehren (Spruch)
+Schulen: Bann 3
+Typus: Schwächung
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 12V3
+Zauberdauer: 12 Ticks
+Reichweite: 10 m
+Wirkung: 18 unverbrauchte Fokuspunkte
+des Opfers gelten als verzehrt. Verfügt das
+Opfer nicht mehr über eine ausreichende
+Anzahl an unverbrauchten Fokuspunkten,
+werden auch erschöpfte Punkte betroffen.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Es werden 24 Fokuspunkte betroffen.
+Magische Botschaft (Spruch)
+Schulen: Erkenntnis 1
+Typus: Botschaft
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 5 Ticks
+Reichweite: 50 Meter
+Wirkung: Der Zauberer übermittelt dem Ziel
+eine gedankliche Botschaft aus maximal 5
+Worten. Er muss das Ziel entweder kennen
+oder sehen. Das Ziel hört die Botschaft in
+der Stimme des Zauberers.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Es können maximal 15
+Worte übermittelt werden.
+Magische Fessel (Spruch)
+Schulen: Beherrschung 2
+Typus: Mental
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Dem Geist des Ziels fällt es schwerer, seinen Körper zu Bewegungen anzuregen, wodurch alle auf Beweglichkeit beruhenden Proben einen Malus in Höhe von 2
+Punkten erhalten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Malus erhöht
+sich auf 3 Punkte.
+Magische Finte (Spruch)
+Schulen: Illusion 1
+Typus: Tarnung
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Die Bewegungen des Ziels werden durch verwirrende Illusionen überlagert. Während der Wirkungsdauer können
+keinerlei Gelegenheitsangriffe gegen es
+durchgeführt werden. Das Fokussieren der
+Magie für diesen Zauber provoziert ebenfalls keine Gelegenheitsangriffe.
+Wirkungsdauer: 15 Ticks
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +1V1): Normale Angriffe gegen den Zauberer erhalten einen Malus in
+Höhe von 1 Punkt.
+Magischer Kompass (Spruch)
+Schulen: Erkenntnis 0, Natur 0
+Typus: Wildnis
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erkennt intuitiv die
+Himmelsrichtungen, wodurch er einen Bonus in Höhe von 2 Punkten auf alle Proben
+zur Orientierung erhält.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 3 Punkte.
+Magischer Panzer (Spruch)
+Schulen: Schutz 3
+Typus: Rüstung, Schutzfeld
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 11 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer umhüllt seinen Körper mit einer schimmernden, aber sehr
+widerstandsfähigen Schicht aus purer Magie, die seine Verteidigung um 4 Punkte erhöht. Dieser Zauber ist nicht mit anderen
+Zaubern kombinierbar, die ebenfalls die
+Typen Rüstung und Schutzfeld besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Erhöhung beträgt
+5 Punkte.
+Magische Rüstung (Spruch)
+Schulen: Schutz 1
+Typus: Rüstung, Schutzfeld
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer umhüllt seinen Körper
+mit einer schimmernden Schicht aus purer
+Magie, die seine Verteidigung um 2 Punkte
+erhöht. Dieser Zauber ist nicht mit anderen
+Zaubern kombinierbar, die ebenfalls die Typen Rüstung und Schutzfeld besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Erhöhung beträgt
+3 Punkte.
+238
+Magischer Schlag (Spruch)
+Schulen: Kampf 1
+Typus: Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 3
+Zauberdauer: 4 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel wird von einem unsichtbaren magischen Angriff getroffen und erleidet 1W6+1 Punkte Schaden. Schadensreduktion wirkt gegen diesen Zauber nicht.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Erschöpft 1.
+Magisches Schloss (Spruch)
+Schulen: Schutz 1
+Typus: Objekt
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer verstärkt ein Schloss,
+dessen Stufe um 1 Stufe ansteigt und damit schwieriger zu öffnen ist.
+Wirkungsdauer: 1 Tag
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 1 EG (Kosten +1V1): Die Qualität erhöht
+sich um insgesamt 2 Stufen.
+Magisches Schlüsselloch
+(Spruch)
+Schulen: Erkenntnis 3
+Typus: Wand
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann durch eine bis
+zu 20 cm dicke Wand sehen, als ob es sich
+um dünnes milchiges Glas handelt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Zauberer kann
+durch bis zu 1 m Wand hindurchschauen.
+Magisches Zwiegespräch
+(Ritus)
+Schulen: Erkenntnis 3
+Typus: Botschaft
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 4 Minuten
+Reichweite: 50 m
+Wirkung: Der Zauberer kann einem einzelnen und beim Zaubervorgang bestimmten
+Ziel gedankliche Botschaften in Form von
+Worten übertragen, sodass ein Gespräch
+möglich ist, wenn beide Seiten den Zauber
+beherrschen und wirken. Er muss das Ziel
+entweder kennen oder sehen. Dieser Zauber benötigt keine Formel.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Zusätzlich zu Worten
+können auch Bilder übermittelt werden.
+Magnetismus (Spruch)
+Schulen: Fels 3
+Typus: Elementarkontrolle
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 13 Ticks
+Reichweite: 10 m
+Wirkung: Der Boden im Wirkungsbereich
+wird stark magnetisch. Kampfhandlungen
+mit Metallwaffen erhalten einen Malus in
+Höhe von 4 Punkten, zudem verdoppelt
+sich die Behinderung von Metallrüstungen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 1 EG (Kosten +K3V3): Der Malus erhöht
+sich auf 5 Punkte.
+Marionette (Ritus)
+Schulen: Beherrschung 5
+Typus: Kontrolle
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K20V5
+Zauberdauer: 18 Minuten
+Reichweite: 10 m
+Wirkung: Der Zauberer übernimmt die
+Kontrolle über den Körper des Ziels (max.
+GK 7) und bestimmt dessen Handlungen.
+Seine Sinne werden durch jene des Betroffenen ersetzt, während dieser zwar
+bei Bewusstsein bleibt und die Kontrolle
+über seinen Geist behält, jedoch keine
+eigenständigen Tätigkeiten mehr vollführen kann. Mit diesem Zauber belegte Wesen sind mit einer Empathie-Probe gegen
+27 als von einem Beherrschungszauber
+beeinflusst erkennbar.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K5V5): Zusätzlich zu den
+Sinnen des Ziels verfügt der Zauberer auch
+über die eigenen.
+Maskerade (Ritus)
+Schulen: Illusion 4
+Typus: Impersonation
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 4 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer verändert illusionär
+seine gesamte Gestalt und übernimmt das
+Aussehen einer anderen Person. Die Verkleidung erstreckt sich auf alle optischen
+Eigenheiten der imitierten Person, die dem
+Zauberer bekannt sind. Ein Muttermal am
+Oberschenkel ist beispielsweise nicht betroffen, wenn der Zauberer das Ziel nur mit
+langen Hosen gesehen hat. Ist die Person
+einem Gegenüber gut bekannt, vermag dieser die Täuschung zu erkennen, wenn er den
+Zauberer mindestens 5 Minuten beobachten kann und ihm eine Probe auf Wahrnehmung gegen 33 gelingt. Die falsche Stimme
+kann den Zauberer auch ohne Probe gegenüber Bekannten der Person entlarven.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Die Maskerade erstreckt sich auch auf Stimme und Geruch,
+sofern sie dem Zauberer bekannt sind. Ist
+die Person einem Gegenüber gut bekannt,
+vermag dieser die Täuschung zu erkennen,
+wenn er sich mindestens 5 Minuten lang mit
+dem Zauberer auseinandersetzt und ihm
+eine vergleichende Empathie-Probe gegen
+die Redegewandtheit des Zauberers gelingt.
+Metall erhitzen (Spruch)
+Schulen: Feuer 2
+Typus: Objekt
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Berührung
+Wirkung: Ein metallenes Objekt erhitzt sich
+so stark, dass eine ausreichend lange Berührung den gleichen Schaden mit sich
+bringt wie Brandschaden der Stufe 1.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Schaden entspricht Brandschaden der Stufe 2.
+Moral erhöhen (Spruch)
+Schulen: Beherrschung 1
+Typus: Moral
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Die Moral des Ziels wird einer vom
+Zauberer benannten Unternehmung gegenüber erhöht. Dadurch wird es immun
+gegen den Zustand Angsterfüllt, wenn es
+ihm noch nicht unterliegt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Das Ziel wird zusätzlich immun gegen den Zustand Panisch,
+wenn es ihm noch nicht unterliegt.
+239
+Nachtsicht (Spruch)
+Schulen: Erkenntnis 4, Schatten 3
+Typus: Sinne
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Die Lichtverhältnisse verbessern
+sich für den Zauberer um 3 Stufen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Lichtverhältnisse
+verbessern sich um insgesamt 4 Stufen.
+Nacht zum Tag (Spruch)
+Schulen: Licht 5
+Typus: Leuchten, Zauber brechen
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 17 Ticks
+Reichweite: Zauberer
+Wirkung: Die Lichtverhältnisse werden um
+4 Stufen verbessert, zudem wird die Wirkung aller Schattenzauber unterdrückt, solange sie maximal Grad 3 aufweisen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 25 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K5V5): Die Wirkung von Schattenzaubern bis Grad 5 wird unterdrückt.
+Nebelgestalt (Spruch)
+Schulen: Verwandlung 5, Wasser 5, Wind 4
+Typus: Gestalt
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verwandelt sich in
+eine Gestalt aus Nebel und vermag sich
+selbst durch kleinste Ritzen zu zwängen.
+Er erhält die Merkmale Körperlos und Verwundbarkeit gegen Feuerschaden (siehe S.
+265). Seine Geschwindigkeit in dieser Form
+entspricht seiner Mystik. Kleidung und
+Ausrüstung sind nicht von der Verwandlung betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Gegenstände bis
+Last 4 werden mitverwandelt.
+ Nebel rufen (Spruch)
+Schulen: Wasser 3, Wind 3
+Typus: Herbeirufung
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 11 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauber erschafft eine dichte
+Nebelwolke, in der die Sichtweite auf 5
+Meter begrenzt ist und die Lichtverhältnisse um 1 Stufe verschlechtert sind.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 25 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K3V3): Die Sichtweite sinkt
+auf 2 Meter, die Lichtverhältnisse verschlechtern
+sich um insgesamt 2 Stufen.
+Nebelsicht (Spruch)
+Schulen: Erkenntnis 1, Wasser 1, Wind 1
+Typus: Sinne
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Aus Nebel, Dampf und Wolken
+resultierende Abzüge auf die Sicht können
+ignoriert werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Zaubernde erhält
+sogar einen Bonus in Höhe von 2 Punkten auf
+Wahrnehmung-Proben in nebliger Umgebung.
+Objektillusion (Spruch)
+Schulen: Illusion 1
+Typus: Objekt, Trugbild
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer kann ein Objekt als
+ein anderes ähnlicher Größe erscheinen lassen, etwa ein Stück Rinde als Münze oder
+einen Stock als Schwert. Lediglich die Sicht
+ist von dem Zauber betroffen. Das Objekt
+darf maximal eine Last von 4 aufweisen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Auch die übrigen Sinne sind betroffen.
+Panoptikum (Ritus)
+Schulen: Illusion 5
+Typus: Trugbild
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 20 Minuten
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft eine komplexe, bis zu 50 m² umfassende bewegte
+und alle Sinne bis auf den Tastsinn betreffende Illusion. Dies kann beispielsweise ein aufmarschierendes Heer, eine
+Menschenmasse im Thronsaal oder eine
+wütende Rinderherde sein. Der Zauber
+selbst unterliegt zwar den Regeln zur maximalen Wirkungsweite kanalisierter Zauber (S. 195), es genügt jedoch, wenn der
+Zauberer sich nah genug an einem Teil der
+Illusion befindet.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K5V5): Die Illusion kann bis
+zu 100 m² umfassen.
+240
+Pech (Spruch)
+Schulen: Schicksal 1
+Typus: Fluch
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erhält für seinen nächsten
+Wurf einen Malus in Höhe von 2 Punkten.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Der Malus erhöht sich
+auf 3 Punkte.
+Prophezeiung (Ritus)
+Schulen: Erkenntnis 4, Schicksal 3
+Typus: Prophezeiung
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 1 Minute
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält eine undeutliche Weissagung über die nahe
+Zukunft oder das Schicksal einer Person,
+eines Gegenstands oder einer Unternehmung.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 3 EG (Kosten +3V3): Der Zauberer erhält
+eine deutlichere Weissagung.
+Ranken (Spruch)
+Schulen: Natur 2
+Typus: Pflanzen
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 8 Ticks
+Reichweite: 10 m
+Wirkung: Aus dem Boden schießen Ranken
+hervor, die sich um die Beine aller Wesen
+im Wirkungsbereich schlingen. Wer sich
+darin aufhält oder sich hindurch bewegt,
+muss eine erfolgreiche Akrobatik- oder
+Athletik-Probe gegen 20 ablegen, sonst
+gilt er als ringend. Diese Probe muss alle
+20 Ticks wiederholt werden, wenn der
+Wirkungsbereich nicht verlassen wird.
+Aus dem Zustand Ringend kann sich ganz
+normal durch ein Befreien aus der Umklammerung (S. 164) gelöst werden, die
+Schwierigkeit hierfür beträgt 24. Die Ranken können zwar abgeschlagen werden,
+wachsen jedoch sofort wieder nach.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 1 EG (Kosten +K2V2): Auch bei gelungener Akrobatik- oder Athletik-Probe zählt
+der Wirkungsbereich zusätzlich noch als
+Schwieriges Gelände.
+Rankenpfeil (Spruch)
+Schulen: Kampf 2, Natur 3
+Typus: Pflanzen, Pfeil, Waffe
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Berührung
+Wirkung: Aus einem mit diesem Zauber
+belegten Geschoss schießen nach dem
+Aufprall Ranken hervor, die sich um den
+Getroffenen winden und ihm den Zustand
+Ringend verleihen. Aus diesem kann sich
+ganz normal durch ein Befreien aus der
+Umklammerung (S. 164) gelöst werden,
+die Schwierigkeit hierfür beträgt 24. Die
+Ranken können zwar abgeschlagen werden, wachsen jedoch sofort wieder nach,
+selbst wenn der Pfeil entfernt wurde. Eine
+mit einem Rankenpfeil beschossene Mauer überwuchert mit Ranken, die als Kletterhilfe dienen können. Der Zauber unterliegt
+nicht der Regel zur maximalen Wirkungsweite kanalisierter Zauber.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Die Schwierigkeit für
+das Befreien aus der Umklammerung beträgt 27.
+Regeneration (Spruch)
+Schulen: Heilung 5
+Typus: Leben, Regeneration
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer regeneriert pro Tick
+1 Lebenspunkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K5V5): Der Zauberer regeneriert pro Tick insgesamt 2 Lebenspunkte.
+Reparatur (Spruch)
+Schulen: Heilung 2, Verwandlung 2
+Typus: Objekt
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 5 Ticks
+Reichweite: Berührung
+Wirkung: Einem demolierten oder angeschlagenen Objekt mit einer maximalen Last von
+6 wird seine ursprüngliche Form zurückgegeben.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Die maximale Last beträgt 8.
+Rindenhaut (Spruch)
+Schulen: Natur 1, Schutz 1, Verwandlung 1
+Typus: Haut, Pflanzen, Rüstung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 3 Ticks
+Reichweite: Zauberer
+Wirkung: Die Haut des Zauberers wird borkig
+und hart. Er erhält einen Bonus in Höhe von
+jeweils 1 Punkt auf seine Verteidigung und
+seine Schadensreduktion. Dieser Zauber ist
+nicht mit anderen Zaubern kombinierbar,
+die ebenfalls den Typus Haut besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Bonus auf die
+Schadensreduktion erhöht sich auf 2 Punkte.
+Rüstung schwächen (Spruch)
+Schulen: Kampf 3, Verwandlung 2
+Typus: Rüstung, Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 5 m
+Wirkung: Die Schadensreduktion des Ziels
+wird um 2 Punkte gesenkt (Minimum 0).
+Hiervon ist nur Schadensreduktion von getragenen Rüstungen betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Auch sämtliche anderen Arten von Schadensreduktion werden
+betroffen, wie etwa aus natürlicher Rüstung oder aus Magie.
+Sanfter Fall (Spruch)
+Schulen: Bewegung 1, Wind 0
+Typus: Bewegung stärken, Telekinese
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Erleidet der Zauberer Fallschaden,
+wird dieser um eine Stufe gesenkt. Die Begrenzung für die Abfederung eines Sturzes
+(siehe S. 174) zählt hierbei nicht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Fallschaden wird um
+2 Stufen gesenkt.
+241
+Säurestrahl (Spruch)
+Schulen: Kampf 3, Wasser 4
+Typus: Säure, Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 7V2
+Zauberdauer: 9 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer schießt einen Säurestrahl auf das Ziel ab, der 3W6+3 Punkte
+Säureschaden verursacht. Der Schaden des
+Zaubers hat die Waffenmerkmale Scharf 3
+und Durchdringung 3 (S. 186).
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 1 EG (Kosten +2V2): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Verwundet 1.
+Schadenswelle (Spruch)
+Schulen: Kampf 3
+Typus: Schaden
+Schwierigkeit: 24
+Kosten: 12V4
+Zauberdauer: 12 Ticks
+Reichweite: Zauberer
+Wirkung: Eine Welle magischer Macht verursacht bei bis zu drei vom Zauberer beim
+Auslösen festgelegten Wesen seiner Wahl
+in 5 m Umkreis 2W6+3 Punkte Schaden,
+der Schadensreduktion ignoriert.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Schaden,
+Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Die Ziele erhalten
+zusätzlich für 30 Ticks den Zustand Erschöpft 2.
+Schadenszirkel (Spruch)
+Schulen: Kampf 5
+Typus: Schaden
+Schwierigkeit: 30
+Kosten: 22V7
+Zauberdauer: 17 Ticks
+Reichweite: Zauberer
+Wirkung: Eine Welle magischer Macht verursacht bei bis zu fünf vom Zauberer beim
+Auslösen festgelegten Wesen seiner Wahl in
+5 m Umkreis 3W6+3 Punkte Schaden, der
+Schadensreduktion ignoriert. Außerdem
+erhalten alle Ziele den Zustand Erschöpft 1.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Schaden,
+Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Den Zielen muss zusätzlich eine Akrobatik-Probe gegen 35
+gelingen, um nicht umgeworfen zu werden und als liegend zu gelten. Außerdem
+erhalten sie für 60 Ticks den Zustand
+Erschöpft 2, statt des oben genannten Zustands.
+Schattenbann (Spruch)
+Schulen: Bann 3, Licht 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 11 Ticks
+Reichweite: 10 m
+Wirkung: Ein einzelner Schattenzauber wird
+aufgehoben, solange er maximal Grad 3
+aufweist. Handelt es sich um einen Zauber
+mit Wirkungsbereich, genügt es, wenn sich
+ein Teil von diesem innerhalb der Reichweite befindet.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es wird ein Zauber bis
+Grad 5 aufgehoben.
+Schatten beleben (Spruch)
+Schulen: Schatten 3
+Typus: Belebung
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Aus dem Schatten des Zauberers
+löst sich eine schwarze Gestalt gleicher
+Statur und Größenklasse. Die übrigen Abgeleiteten Werte des Wesens entsprechen
+den um 3 Punkte verschlechterten abgeleiteten Werten des Zauberers. Auf seine Proben (mit den Werten des Zauberers) erhält
+es ebenfalls einen Malus in Höhe von 3
+Punkten. Das Wesen besitzt das Merkmal
+Schwächlich (S. 265). Es führt die Befehle
+des Zauberers bedingungslos aus, vermag
+aber nicht zu zaubern oder zu sprechen.
+Wird es getötet, erleidet der Zauberer
+2W6 Punkte Schaden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die abgeleiteten
+Werte des Wesens entsprechen den um 2
+Punkte gesenkten abgeleiteten Werten des
+Zauberers. Der Malus auf Proben beträgt
+nur noch 2 Punkte.
+Schattenleib (Spruch)
+Schulen: Schatten 4, Verwandlung 5
+Typus: Gestalt
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 21 Ticks
+Reichweite: Zauberer
+Wirkung: Der Körper des Zauberers verwandelt sich in eine schwarze Schattengestalt,
+behält aber seine Statur bei. Er erhält einen Bonus in Höhe von 4 Punkten auf seine Schadensreduktion und 7 Punkten auf
+seine Heimlichkeit, sowie eine Verwundbarkeit gegen Lichtschaden. Kleidung und
+Ausrüstung sind nicht von der Verwandlung betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Gegenstände bis Last
+4 werden mitverwandelt.
+Schattenmantel (Spruch)
+Schulen: Schatten 1
+Typus: Verhüllung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer hüllt sich in tiefe
+Schatten, die ihn bei Stillstand verbergen.
+Wahrnehmung-Proben, um ihn mit den
+Augen zu entdecken, erhalten einen Malus
+in Höhe von 4 Punkten, sofern er sich nicht
+bewegt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Malus gilt auch
+bei Bewegung des Zauberers.
+Schattenpfeil (Spruch)
+Schulen: Kampf 3, Schatten 2
+Typus: Schaden
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 6V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer schleudert einen
+nadelspitzen Pfeil aus Dunkelheit auf
+das Ziel. Dieser verursacht 2W10 Punkte Schattenschaden und hat die Waffenmerkmale Scharf 3 und Durchdringung 2
+(S. 186).
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Schaden, Verstärken (s. u.), Verzehrter
+Fokus
+• 2 EG (Kosten +2V1): Das Ziel erhält zusätzlich für 30 Ticks den Zustand Blutend 1.
+Schattenrüstzeug (Spruch)
+Schulen: Schatten 4
+Typus: Herbeirufung, Objekt
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verfestigt Schatten
+und formt aus ihnen einen Ausrüstungsgegenstand der Qualität 0 mit einer maximalen Last von 4, sei es eine Waffe, ein Seil,
+ein Umhang oder ein Hammer.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Die Qualität beträgt 2.
+242
+Schattenschleier (Spruch)
+Schulen: Schatten 0
+Typus: Verhüllung
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Ein dünner Schleier aus Schatten
+bedeckt den Zauberer. Die Lichtverhältnisse sind für ihn um 1 Stufe verschlechtert. In
+starkem Sonnenschein ist darüber hinaus
+die Hitzestufe für ihn um 1 Stufe gesenkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Die Hitzestufe ist für
+ihn um 2 Stufen gesenkt.
+Schattenspiel (Spruch)
+Schulen: Schatten 0
+Typus: Trugbild
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 2 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer kann die Bewegungen eines einzelnen Schattens mit einer
+Fläche von bis zu 10 m² kontrollieren. Der
+Schatten bleibt dabei aber stets auf einer
+Oberfläche.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.)
+• 1 EG (Kosten +K1V1): Die Fläche kann bis
+zu 20 m² betragen.
+Schattensprung (Spruch)
+Schulen: Bewegung 5, Schatten 4
+Typus: Bewegung stärken
+Schwierigkeit: 27
+Kosten: 16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer tritt in einen Schatten hinein und im selben Moment aus
+einem anderen Schatten heraus, der maximal 50 Meter entfernt sein darf. Er muss
+den zweiten Schatten sehen können.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +4V4): Der Zauberer kann ein
+Wesen bis maximal Größenklasse 6 mitnehmen, indem er es berührt.
+Schattenwaffe (Spruch)
+Schulen: Schatten 1
+Typus: Verhüllung, Waffe
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Eine mit diesem Spruch verzauberte Waffe ist außerhalb eines Kampfes
+kaum zu erkennen. Es bedarf einer gelungenen Wahrnehmung-Probe gegen 20,
+um sie auszumachen. Die Waffe richtet 1
+Punkt zusätzlichen Schattenschaden gegen
+Wesen des Typus Lichtwesen an.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Schwierigkeit
+der Wahrnehmung-Probe beträgt 25.
+Schattenwand
+(Spruch)
+Schulen: Schatten 2
+Typus: Wand
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft
+eine schnurgerade und unverrückbare
+Wand aus festen Schatten von 20 cm
+Dicke mit einer beliebig verteilbaren Fläche von bis zu 10 m². Sie ist
+vollkommen lichtundurchlässig und dämpft Geräusche,
+sodass mit dem Gehör im
+Zusammenhang stehende
+Wahrnehmung-Proben einen Malus in Höhe von
+6 Punkten erhalten. Ihre
+Härte beträgt 4 Punkte,
+ihre Haltbarkeit 12 Punkte. Sie kann also zerstört
+werden, was den Zauber
+beendet. Die maximale
+Wirkungsweite kanalisierter Zauber (S.
+195) gilt für diesen Zauber als verzehnfacht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Malus erhöht
+sich auf 8 Punkte.
+Schicksalsband (Ritus)
+Schulen: Beherrschung 5, Schicksal 4
+Typus: Mental
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 16V4
+Zauberdauer: 5 Minuten
+Reichweite: Berührung
+Wirkung: Der Zauberer gibt dem Ziel eine
+einzelne Anweisung, jeder Verstoß dagegen verursacht 4W6 Punkte Schaden.
+Handelt es sich um einen längerfristigen
+Auftrag, wird der Schaden am Ende jeden
+Tages verursacht, an dem das Ziel sich
+nicht zumindest bemüht, auf dessen Erfolg
+hinzuwirken.
+Wirkungsdauer: 1 Monat
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +4V4): Der Zauberer kann
+zwei miteinander verknüpfte Anweisungen
+geben, wodurch es jedoch nicht zu einer
+Verdoppelung des Schadens kommt.
+Schlaf (Spruch)
+Schulen: Beherrschung 2
+Typus: Mental
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: 8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erhält den Zustand Benommen 3.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +2V2): Das Ziel erhält stattdessen den Zustand Schlafend.
+Schloss öffnen (Spruch)
+Schulen: Bewegung 3
+Typus: Objekt, Telekinese
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauber öffnet ein maximal
+durchschnittliches Schloss.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Der Zauber öffnet ein
+maximal gutes Schloss.
+243
+Schmerzen ignorieren
+(Spruch)
+Schulen: Heilung 4, Stärkung 5
+Typus: Körper stärken
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird beinahe unempfindlich gegen Schmerzen. Eventuelle
+Wundabzüge sinken um 6 Punkte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Die Wundabzüge sinken um 8 Punkte.
+Schmerzen widerstehen
+(Spruch)
+Schulen: Heilung 2, Stärkung 2
+Typus: Körper stärken
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird unempfindlicher gegen Schmerzen. Eventuelle Wundabzüge sinken um 3 Punkte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Die Wundabzüge sinken um 4 Punkte.
+Schockgriff (Spruch)
+Schulen: Kampf 1, Wind 1
+Typus: Elektrizität, Hand
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Hand des Zauberers wird von
+zuckenden Blitzen überzogen. Im unbewaffneten Nahkampf richten seine Angriffe echten Elektrizitätsschaden an und besitzen das Waffenmerkmal Durchdringung
+1 (S. 186). Dieser Zauber ist nicht mit anderen Zaubern des Typus Hand kombinierbar.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Zusätzlich richtet der
+Zauberer im unbewaffneten Nahkampf 2
+Punkte echten Elektritzitätsschaden an.
+Schreckgestalt (Spruch)
+Schulen: Illusion 3
+Typus: Moral, Trugbild
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Das Äußere des Zauberers nimmt
+die Erscheinung einer alptraumhaften Gestalt an, einschließlich dazu passender Geräusche und Gerüche. Jedes Wesen, das
+sich ihm auf 5 Meter nähert, erhält den
+Zustand Angsterfüllt, wenn sein Geistiger
+Widerstand nicht mindesten 24 beträgt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Betroffene Wesen erhalten den Zustand Panisch, wenn ihr Geistiger
+Widerstand nicht mind. 19 Punkte beträgt.
+Schriftverständnis (Ritus)
+Schulen: Erkenntnis 2
+Typus: Verständigung
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer vermag jede natürliche, diesseitige Schrift zu lesen. Er erhält
+dabei lediglich ein intuitives Verständnis für
+das Geschriebene, bemerkt also etwa keine
+stilistischen Feinheiten. Kodierte Texte in
+fremden Schriften werden zwar verstanden,
+ihr Inhalt wird aber nicht entschlüsselt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zauberer vermag
+auch jede Schrift zu schreiben.
+Schutz aufheben (Spruch)
+Schulen: Bann 2
+Typus: Zauber brechen
+Schwierigkeit: 21
+Kosten: 8V2
+Zauberdauer: 8 Ticks
+Reichweite: 5 m
+Wirkung: Ein vom Zauberer bestimmter Zauber bis maximal Grad 2, der mindestens einen der Typen Haut, Rüstung, Schild oder
+Schutzfeld aufweist, wird beendet.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es werden entsprechende Zauber bis Grad 3 aufgehoben.
+Schützende Hand (Spruch)
+Schulen: Schicksal 0
+Typus: Segen
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält beim ersten
+Angriff, der während der Wirkungsdauer
+gegen ihn gerichtet wird, einen Bonus in
+Höhe von 1 Punkt auf den passenden Widerstandswert.
+Wirkungsdauer: 1 Stunde
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.), Wirkungsdauer
+• 1 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 2 Punkte.
+Schutz vor Angriffen (Spruch)
+Schulen: Schicksal 5, Schutz 5
+Typus: Einstellung, Segen
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer strahlt ein überwältigendes Maß an Friedfertigkeit aus, sodass
+es einer gelungenen EntschlossenheitProbe gegen 35 bedarf, um einen Angriff
+gegen ihn auszuführen. Attackiert er einen
+Gegner von sich aus, verfällt die Wirkung
+des Zaubers auf den Angegriffenen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K5V5): Die Schwierigkeit beträgt 40.
+Schutz vor Elektrizität (Spruch)
+Schulen: Schutz 2, Wind 2
+Typus: Elektrizität, Schutzfeld
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Sämtlicher gegen den Zauberer
+gerichteter Elektrizitätsschaden wird um 6
+Punkte gesenkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Entsprechender
+Schaden wird um 8 Punkte gesenkt.
+Schutz vor Elementen (Spruch)
+Schulen: Schutz 4
+Typus: Schutzfeld
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Sämtlicher gegen den Zauberer
+gerichteter Feuer-, Fels-, Elektrizitäts-,
+Wind-, Säure-, Wasser- und Kälteschaden
+wird um 10 Punkte gesenkt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Entsprechender
+Schaden wird um 12 Punkte gesenkt.
+244
+Schutz vor Feuer (Spruch)
+Schulen: Feuer 1, Schutz 1
+Typus: Schutzfeld
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Sämtlicher gegen den Zauberer
+gerichteter Feuerschaden wird um 4 Punkte gesenkt. Die Hitzestufe (S. 174) gilt für
+ihn als um 1 reduziert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Entsprechender
+Schaden wird um 6 Punkte gesenkt.
+Schutz vor Gift (Spruch)
+Schulen: Heilung 2, Natur 2, Schutz 3
+Typus: Gift, Körper stärken
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 3 Punkten auf seinen Körperlichen Widerstand gegen Vergiftungen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Bonus erhöht
+sich auf 4 Punkte,
+Schutz vor Kälte (Spruch)
+Schulen: Schutz 1, Wasser 1
+Typus: Eis, Schutzfeld
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Sämtlicher gegen den Zauberer
+gerichteter Kälteschaden wird um 4 Punkte
+gesenkt. Die Kältestufe (S. 175) gilt für ihn
+als um 1 reduziert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Entsprechender
+Schaden wird um 6 Punkte gesenkt.
+Schutz vor Untoten (Spruch)
+Schulen: Licht 1, Schutz 3, Tod 2
+Typus: Aura, Nekromantie
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer schafft eine Zone,
+innerhalb derer Wesen des Typus Untoter
+einen Malus in Höhe von 2 Punkten für alle
+Proben erhalten.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K2V2): Der Malus erhöht
+sich auf 4 Punkte.
+Schwächeanfall (Spruch)
+Schulen: Stärkung 2, Tod 1
+Typus: Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel erhält einen Malus in
+Höhe von 1 Punkt auf alle Proben, in die
+seine Stärke einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Malus erhöht
+sich auf 2 Punkte.
+Schwärze (Spruch)
+Schulen: Schatten 5
+Typus: Verhüllung
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 17 Ticks
+Reichweite: Zauberer
+Wirkung: Die Lichtverhältnisse werden um 4
+Stufen verschlechtert, zudem wird die Wirkung aller Lichtzauber unterdrückt, solange sie maximal Grad 3 aufweisen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 25 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K5V5): Die Wirkung von
+Lichtzaubern bis Grad 5 wird unterdrückt.
+Schwere Arme (Spruch)
+Schulen: Bewegung 2, Stärkung 3
+Typus: Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel kann seine Arme nur
+schwer heben. Alle seine Proben für Nahkampfangriffe und Fernkampfangriffe erhalten einen Malus in Höhe von 2 Punkten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Malus erhöht
+sich auf 3 Punkte.
+Sechster Sinn (Spruch)
+Schulen: Erkenntnis 2, Schicksal 1
+Typus: Prophezeiung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer verfügt über einen
+sechsten Sinn. Er erhält einen Bonus in Höhe
+von 3 Punkten auf Wahrnehmung-Proben,
+um eine Überraschung abzuwehren.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Das Bonus erhöht
+sich auf 5 Punkte.
+Segnung (Spruch)
+Schulen: Schicksal 1
+Typus: Segen
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 3 Ticks
+Reichweite: Berührung
+Wirkung: Ziel erhält einen Bonus von 1 Punkt
+auf alle Fertigkeiten und Widerstandswerte.
+Wirkungsdauer: 5 Minuten
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 2 Punkte.
+Selbstheilung (Spruch)
+Schulen: Heilung 1
+Typus: Leben
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauber gibt 3 Lebenspunkte.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +1V1): Es werden insgesamt 6
+Lebenspunkte regeneriert.
+Sicht verbessern (Spruch)
+Schulen: Erkenntnis 1, Stärkung 1, Verwandlung 2
+Typus: Sinne
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 3 Punkten auf jede Wahrnehmung-Probe, die seine Sicht betrifft.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Bonus erhöht
+sich auf 5 Punkte.
+245
+Sinne verstärken (Spruch)
+Schulen: Erkenntnis 3, Stärkung 3
+Typus: Sinne
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von 5 Punkten auf jede Wahrnehmung-Probe.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Bonus erhöht
+sich auf 7 Punkte.
+Spinnenlauf (Spruch)
+Schulen: Bewegung 3
+Typus: Bewegung stärken
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+auf Proben zum Klettern in Höhe von 4
+Punkten. Auch Proben, um etwa per Akrobatik nicht von einer Wand herabzustürzen,
+erhalten diesen Bonus. Darüber hinaus
+kann der Zauberer die Mali durch fehlende
+Ausrüstung ignorieren.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Bonus erhöht
+sich auf 6 Punkte.
+Sprachverständnis (Ritus)
+Schulen: Erkenntnis 2
+Typus: Verständigung
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer vermag jede natürliche diesseitige Sprache zu verstehen.
+Er erhält dabei lediglich ein intuitives
+Verständnis für das Gesagte, bemerkt
+also etwa keine stilistischen Feinheiten.
+Geheimsprachen oder ähnliche Kunstprodukte werden nicht übersetzt, ebenso
+wie eine Verständigung in fremden Sprachen über diesen Zauber nicht möglich
+ist. Auch ist es nicht möglich, Gelesenes
+zu verstehen, nur das gesprochene Wort
+ist betroffen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zauberer vermag es auch, stilistische Feinheiten zu
+verstehen.
+Sprung (Spruch)
+Schulen: Bewegung 1
+Typus: Bewegung stärken
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die normale Grund-Sprungweite
+des Abenteurers wird für einen Sprung
+verdreifacht.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +1V1): Die Grund-Sprungweite wird verfünffacht.
+Sprungbeine (Spruch)
+Schulen: Verwandlung 1
+Typus: Bewegung stärken
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die normale Grund-Sprungweite
+des Abenteurers wird um 50% erhöht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Die Grund-Sprungweite wird verdoppelt.
+Spuren der Vergangenheit
+(Ritus)
+Schulen: Erkenntnis 5
+Typus: Hellsicht
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 5 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält eine Vision
+seines Aufenthaltsortes aus früheren Zeiten. Ein umgekehrt chronologischer Strom
+an Bildern und Eindrücken aus der Vergangenheit stürzt über ihn herein, wobei die
+ältesten Eindrücke 100 Jahre zurückliegen.
+Auf diesem Wege lassen sich lediglich größere Veränderungen rekonstruieren, nicht
+einzelne Taten.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 3 EG (Kosten +5V5): Die ältesten Eindrücke
+liegen 1000 Jahre zurück.
+Spurlos in der Wildnis
+(Spruch)
+Schulen: Bewegung 3, Natur 2
+Typus: Aura, Wildnis
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 8 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte Wesen seiner Wahl hinterlassen kaum
+eine Fährte. Jagdkunst-Proben zu ihrer
+Verfolgung erhalten einen Malus in Höhe
+von 6 Punkten. Dieser gilt nur für Spuren,
+die innerhalb des Wirkungsbereichs hinterlassen wurden.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K2V2): Es können bis zu fünf
+Personen bestimmt werden.
+Stahlhaut (Spruch)
+Schulen: Fels 4, Schutz 4
+Typus: Haut, Rüstung
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 25 Ticks
+Reichweite: Zauberer
+Wirkung: Die Haut des Zauberers wird
+hart wie Stahl und schimmert metallisch. Er erhält einen Bonus in Höhe von
+jeweils 4 Punkten auf seine Verteidigung
+und seine Schadensreduktion. Dieser
+Zauber ist nicht mit anderen Zaubern
+kombinierbar, die ebenfalls den Typus
+Haut besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K4V4): Der Bonus auf die SR
+erhöht sich auf 5 Punkte.
+Standfest (Spruch)
+Schulen: Bewegung 1, Fels 1
+Typus: Körper stärken
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Wird versucht, den Zauberer zurückzudrängen oder umzuwerfen, erhält er
+einen Bonus in Höhe von 2 Punkten auf die
+entsprechende Fertigkeit bzw. von 1 Punkt
+auf den entsprechenden Widerstandswert,
+um dem entgegen zu wirken.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Bonus beträgt 4
+bzw. 2 Punkte.
+246
+Stein (Spruch)
+Schulen: Fels 0
+Typus: Herbeirufung
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erschafft ein bis zu
+faustgroßes Objekt aus Stein, das eine einfache geometrische Form aufweist.
+Wirkungsdauer: 5 Minuten
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.), Wirkungsdauer
+• 1 EG (Kosten +1V1): Wird der Stein als Geschoss oder Wurfwaffe verwendet, erhöht
+sich der Schaden
+um 1 Punkt.
+
+Steinfaust (Spruch)
+Schulen: Fels 1, Verwandlung 1
+Typus: Hand, Körper stärken
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Eine Hand des Zauberers verwandelt sich in Stein. Seine waffenlosen
+Nahkampfangriffe verursachen dadurch
+echten Schaden statt Betäubungsschaden,
+außerdem erhält er im Handgemenge das
+Waffenmerkmal Defensiv 1 (S. 186). Dieser
+Zauber ist nicht mit anderen Zaubern des
+Typus Hand kombinierbar.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Zusätzlich richtet der
+Zauberer im unbewaffneten Nahkampf 2
+Punkte echten Felsschaden an.
+Steinhaut (Spruch)
+Schulen: Fels 2, Schutz 2, Verwandlung 2
+Typus: Haut, Rüstung
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Die Haut des Zauberers wird hart
+wie Fels. Er erhält einen Bonus in Höhe
+von jeweils 2 Punkten auf seine Verteidigung und seine Schadensreduktion. Dieser
+Zauber ist nicht mit anderen Zaubern kombinierbar, die ebenfalls den Typus Haut
+besitzen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Der Bonus auf die SR
+erhöht sich auf 3 Punkte.
+Steinwand (Spruch)
+Schulen: Fels 2
+Typus: Wand
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft eine
+schnurgerade und unverrückbare Wand
+aus festem Stein von 20 cm Dicke mit einer
+beliebig verteilbaren Fläche von bis zu 10
+m². Ihre Härte beträgt 4 Punkte, ihre Haltbarkeit 12 Punkte. Sie kann also zerstört
+werden, was den Zauber beendet. Die
+maximale Wirkungsweite kanalisierter
+Zauber (S. 195) gilt für diesen Zauber
+als verzehnfacht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus,
+Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Die Härte erhöht sich
+auf 6 Punkte, die Haltbarkeit auf 18 Punkte.
+Stille (Spruch)
+Schulen: Illusion 1
+Typus: Geräusch
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Alle Geräusche, die im Wirkungsbereich entstehen oder diesen passieren,
+werden gedämpft, wodurch entsprechende Wahrnehmung-Proben einen Malus in
+Höhe von 4 Punkten erhalten.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K1V1): Der Malus erhöht
+sich auf 8 Punkte.
+Stimme kopieren (Spruch)
+Schulen: Illusion 3, Verwandlung 3
+Typus: Impersonation
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer nimmt die Stimme
+einer anderen Person an. Soll es sich um
+jene einer bestimmten Person handeln,
+können nur solche Eigenheiten übernommen werden, die dem Zauberer
+bekannt sind. Die Täuschung kann von
+Bekannten der Person mit einer vergleichenden Probe auf Empathie gegen
+die Redegewandtheit des Zauberers bemerkt werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Eine etwaige Redegewandtheit-Probe des Zauberers, um die
+Sprechweise überzeugend zu imitieren, erhält einen Bonus in Höhe von 3 Punkten.
+Stoß (Spruch)
+Schulen: Bewegung 0, Wind 0
+Typus: Telekinese
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 1
+Zauberdauer: 2 Ticks
+Reichweite: 5 Meter
+Wirkung: Das Ziel wird 1 Meter zurückgestoßen und verliert 1 Tick.
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.)
+• 1 EG (Kosten +1V1): Dem Ziel muss zusätzlich eine Akrobatik-Probe gegen 15 gelingen, um nicht zu stürzen und den Zustand
+liegend zu erhalten.
+Stürmischer Wind (Spruch)
+Schulen: Wind 4
+Typus: Elementarkontrolle
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 18 Ticks
+Reichweite: 10 m
+Wirkung: Der Zauberer erschafft einen
+Wirbelsturm. Fernkampfangriffe im oder
+durch den Wirkungsbereich verfehlen
+automatisch ihr Ziel. Darin befindlichen
+Wesen muss alle 10 Ticks eine AkrobatikProbe gegen 25 gelingen, um nicht zu
+Boden zu stürzen und als liegend zu gelten. Außerdem erhalten sie im gleichen
+Abstand 1W6 Punkte Schaden durch herumfliegende Objekte, sofern solche vorhanden sind. Zudem wird ihre Geschwindigkeit halbiert.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+247
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
+• 1 EG (Kosten +K4V4): Der Zauberer kann
+den Wirkungsbereich innerhalb der Reichweite mit einer Geschwindigkeit von 3 verschieben.
+Suggestion (Spruch)
+Schulen: Beherrschung 2
+Typus: Halluzination
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 7 Ticks
+Reichweite: Berührung
+Wirkung: Der Betroffene erhält eine Suggestion nach Willen des Zauberers, sei
+es eine Idee, ein Vorurteil oder Ähnliches. Sprechen nichts Offensichtliches
+oder die moralischen Prinzipien der
+Person dagegen, hält er diese für seine eigene Eingebung und wird sie gemäß seinem Naturell verfolgen. Dieser
+Zauber unterliegt nicht den Regeln zur
+maximalen Wirkungsweite kanalisierter
+Zauber (S. 195) und benötigt weder Formel noch Geste.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Das Ziel wird die Suggestion selbst dann als seine Idee erachten,
+wenn Offensichtliches dagegen spricht,
+aber weiterhin seinen eigenen moralischen
+Grundsätzen folgen.
+Text verschlüsseln (Spruch)
+Schulen: Erkenntnis 1
+Typus: Verständigung
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Zauberer macht ein Schriftstück von einer Seite unlesbar, Buchstaben erscheinen verschwommen oder wild
+durcheinander gewürfelt. Wird ein von
+ihm bestimmtes Losungswort gesprochen,
+nimmt der Text wieder seine ursprüngliche
+Form an.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +1V1): Es wird ein ganzes
+Buch unlesbar gemacht.
+Tiere beherrschen (Spruch)
+Schulen: Beherrschung 3, Natur 2
+Typus: Kontrolle, Tiere
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Ein einzelnes Wesen des Typus
+Tier bis maximal Größenklasse 7 wird
+unter den Willen des Zauberers gezwungen. Es kann einfache Kommandos im
+Rahmen seiner natürlichen Fähigkeiten
+ausführen. Das Wesen bewegt sich nicht
+ohne explizite Anweisung aus der Wirkungsweite des kanalisierten Zaubers
+(Seite 195) hinaus.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Ein zweites Wesen
+gleichen oder niedrigeren Geistigen Widerstands kann beherrscht werden.
+Tiere beruhigen (Spruch)
+Schulen: Natur 1
+Typus: Einstellung, Tiere
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Die Einstellung eines Wesens des
+Typus Tier oder Monster bis maximal Größenklasse 6 wird gegenüber allen anderen
+Wesen auf Neutral gesetzt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Die Einstellung wird
+auf Hilfsbereit gesetzt.
+Tierform (Spruch)
+Schulen: Natur 4, Verwandlung 3
+Typus: Gestalt, Tiere
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verwandelt sich in
+ein nicht flugfähiges Wesen des Typus Tier
+der Größenklasse 1 bis 5 sowie bis maximal
+Monstergrad (als Einzelgegner) 2.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Kreatur ist ein besonders prachtvolles Exemplar. Alle Proben
+auf Fertigkeiten, die von der Tiergestalt
+übernommen wurden, erhalten einen Bonus in Höhe von 2 Punkten.
+Tierischer Bote (Ritus)
+Schulen: Beherrschung 3, Natur 1
+Typus: Botschaft, Tiere
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 4V1
+Zauberdauer: 1 Minute
+Reichweite: Berührung
+Wirkung: Ein einzelnes Wesen des Typus Tier
+bis maximal Größenklasse 3, das dem Zauberer gegenüber mindestens die Einstellung
+Neutral aufweist, überbringt eine schriftliche
+Nachricht an einen dem Zauberer bekannten
+Ort und verschwindet anschließend. Innerhalb eines Tages können Landtiere zwischen
+10 (z.B. kleine Säugetiere) und 50 km (z.B.
+Wölfe oder Wildschweine) zurücklegen, Vögel sogar zwischen 50 (Singvögel) und 200
+km (weit wandernde Zugvögel).
+Wirkungsdauer: 1 Tag
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 1 EG (Kosten +1V1): Das Tier überbringt die
+Botschaft nicht nur an einen Ort, sondern
+dort sogar einer bestimmten, dem Zauberer bekannten Person.
+Tiersinne (Spruch)
+Schulen: Erkenntnis 2, Natur 1
+Typus: Sinne, Tiere
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer nimmt die Welt statt
+durch seine eigenen Sinne durch die eines
+beim Zaubervorgang berührten Wesens
+mit dem Typus Tier bis maximal Größenklasse 5 wahr, das dem Zauberer gegenüber mindestens die Einstellung Neutral
+aufweist. Währenddessen kann er seine
+eigenen Sinne nicht benutzen, sondern
+sieht, riecht, fühlt und hört nur das, was
+das Tier in diesem Moment wahrnimmt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Zauberer kann
+neben den Tiersinnen auch noch seine
+normalen Sinne benutzen.
+Tiersprache (Spruch)
+Schulen: Erkenntnis 4, Natur 4
+Typus: Tiere, Verständigung
+Schwierigkeit: 27
+Kosten: 16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer ist in der Lage, mit
+einem bestimmten Wesen des Typus Tier
+begrenzt zu kommunizieren, solange es
+ihm gegenüber mindestens die Einstellung
+Neutral aufweist. Es handelt sich nicht um
+ein echtes Gespräch, vielmehr kann er dem
+Wesen Fragen stellen, die diese im Rahmen seiner Sinneswahrnehmung, Denkfähigkeit und Laune beantworten kann.
+Wirkungsdauer: 5 Minuten
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +4V4): Der Zauber wirkt auch
+mit Wesen des Typus Monster.
+248
+Todesfluch (Spruch)
+Schulen: Schicksal 5, Tod 4
+Typus: Fluch
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 16V4
+Zauberdauer: 16 Ticks
+Reichweite: 5 m
+Wirkung: Dieser Zauber zerreißt die Verbindung
+zwischen Körper und Lebenskraft des Opfers.
+Es erhält den Zustand Sterbend 1 (Fluch).
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 3 EG (Kosten +4V4): Das Opfer erhält den
+Zustand Sterbend 2 (Fluch).
+Todesschutz (Ritus)
+Schulen: Schutz 5, Tod 4
+Typus: Leben
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 5 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauber schützt den Zauberer
+in begrenztem Maße vor dem Tod. Sollte
+er innerhalb der Wirkungsdauer eigentlich
+sterben (egal aus welchem Grund), erhält
+er stattdessen den Zustand Bewusstlos,
+eventuelle negative Lebenspunkte werden
+geheilt. Etwaige Zustände werden nicht
+geheilt, ebenso wie sonstige Quellen des
+Sterbens (wie etwa Ertrinken, wenn der
+Zauberer sich unter Wasser befindet) nicht
+ausgesetzt werden. Der Zauber endet, sobald er einmal seine Wirkung entfaltet hat.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Bei Auslösung des
+Zaubers werden auch etwaige SterbendZustände geheilt.
+Totaler Zauberbann (Spruch)
+Schulen: Bann 5
+Typus: Wesen bannen, Zauber brechen
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 18 Ticks
+Reichweite: 10 m
+Wirkung: Alle auf dem Ziel liegenden Zauber
+werden aufgehoben. Ist das Ziel ein beschworenes Wesen, wird es zusätzlich zurück in seine Domäne geworfen. Handelt es
+sich um einen Zauber mit Wirkungsbereich,
+genügt es, wenn sich ein Teil von diesem innerhalb der Reichweite befindet. Handelt es
+sich bei dem Ziel um ein Artefakt bis maximal Artefaktqualität 5, so wird die Wirkung
+des Artefaktes für 30 Minuten blockiert.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +5V5): Die Auswirkungen des
+Zauber erstrecken sich auf bis zu 2 Ziele.
+Totenschlaf (Ritus)
+Schulen: Tod 4
+Typus: Mental
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: 16V4
+Zauberdauer: 5 Minuten
+Reichweite: Berührung
+Wirkung: Das Ziel fällt in einen todesähnlichen Schlaf und erhält den Zustand Schlafend. In diesem Zustand benötigt es weder
+Luft noch Wasser oder Nahrung, auch altert
+es nicht. Die Wirkungen von Giften und
+Krankheiten werden unterbrochen, ebenso
+wie die Zustände Blutend und Sterbend. Die
+Person kann durch Gewalteinwirkung geweckt werden, wacht aber anders als üblich
+nicht durch Lärm oder ähnliches auf.
+Wirkungsdauer: 100 Jahre
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +4V4): Der Zauberer kann
+eine Bedingung benennen, bei deren Eintreten der Zauber sofort endet.
+Trugbild (Spruch)
+Schulen: Illusion 2
+Typus: Trugbild
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer erschafft eine statische Illusion bis maximal Größenklasse 6,
+die Sicht und Gehör betrifft.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Die Illusion kann
+auch bewegt sein.
+Über Wasser gehen (Spruch)
+Schulen: Bewegung 4, Wasser 3
+Typus: Bewegung stärken, Elementarkontrolle
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann über Wasserflächen gehen, als handelte es sich um
+festes Gestein, auch vermag er nicht unter Wasser gezogen zu werden. Handelt
+es sich um ein fließendes Gewässer, wird
+er zusammen mit der obersten Wasserschicht abgetrieben, während bei starkem
+Wellengang Akrobatik-Proben verlangt
+werden können, um Stürze zu vermeiden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+– • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Geschwindigkeit
+des Zauberers erhöht sich um 2 Punkte,
+wenn er sich auf dem Wasser fortbewegt.
+Umgebung erhitzen (Spruch)
+Schulen: Feuer 4
+Typus: Elementarkontrolle
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 17 Ticks
+Reichweite: 10 m
+Wirkung: Die Hitzestufe erhöht sich um 3
+Stufen.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus,
+Wirkungsbereich
+• 2 EG (Kosten +K4V4): Die Hitzestufe erhöht
+sich um insgesamt 5 Stufen.
+Unauffälligkeit (Spruch)
+Schulen: Beherrschung 3, Illusion 1
+Typus: Tarnung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird so unauffällig,
+dass vorbeikommende Personen achtlos
+an ihm vorbeigehen und er sich durch
+Volksmassen bewegen kann, ohne bemerkt zu werden. Der Zauber hilft nur eingeschränkt, wenn gezielt nach dem Zauberer gesucht wird oder Personen besonders
+aufmerksam auf alle Passanten achten
+(wie etwa Wachen am Burgtor), gibt dann
+jedoch einen Bonus in Höhe von 2 Punkten
+auf Heimlichkeit-Proben.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Bonus steigt auf
+3 Punkte.
+Unsichtbares Objekt (Spruch)
+Schulen: Illusion 4
+Typus: Tarnung
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 9 Ticks
+Reichweite: Berührung
+Wirkung: Ein Objekt bis maximal Last 10
+wird unsichtbar und kann entsprechend
+nicht mehr gesehen werden. Es macht weiterhin Geräusche, ebenso wie es eventuell
+Spuren hinterlässt (etwa wenn es über
+sandigen Boden gerollt wird).
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Es kann ein Gegenstand
+bis Last 20 unsichtbar gemacht werden.
+249
+Unsichtbarkeit (Spruch)
+Schulen: Illusion 5
+Typus: Tarnung
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird unsichtbar, hinterlässt jedoch weiterhin Spuren und verursacht Geräusche. Ausrüstung und Waffen werden von der Unsichtbarkeit eingeschlossen, sofern sie am Körper getragen
+oder in der Hand gehalten werden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K5V5): Ein durchgehend berührter Gegenstand bis zu der Größe einer
+Kutsche wird von der Unsichtbarkeit eingeschlossen.
+Untote bannen (Spruch)
+Schulen: Bann 2, Licht 2, Tod 3
+Typus: Nekromantie, Wesen bannen
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: 8V2
+Zauberdauer: 7 Ticks
+Reichweite: 10 m
+Wirkung: Ein Wesen des Typus Untoter
+wird vernichtet, wenn ihm eine Zähigkeit-Probe gegen 15 misslingt.
+Gelingt die Probe, erleidet das Wesen 3W6 Schaden.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus,
+Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +2V2): Ein zweites Wesen mit gleichem oder geringerem
+Körperlichen Widerstand wird betroffen.
+Untote erheben (Ritus)
+Schulen: Tod 3
+Typus: Nekromantie
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 5 Minuten
+Reichweite: Berührung
+Wirkung: Ein totes Wesen wird zu einem
+Geschöpf des Typus Untoter. Aus frischen
+Leichnamen werden Wandelnde Leichname (siehe S. 282), während aus skelettierten Toten Skelette werden (siehe S. 279).
+Die erhobenen Untoten gehorchen den
+Befehlen des Zauberers.
+Wirkungsdauer: 1 Tag
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 1 EG (Kosten +3V3): Das Wesen erhält 15
+Erfahrungspunkte, die nach Willen des
+Zauberers nach den Regeln zum Steigern
+von Abenteurern verteilt werden.
+Untote schwächen (Spruch)
+Schulen: Bann 1, Licht 1, Tod 2
+Typus: Schwächung
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K4V1
+Zauberdauer: 4 Ticks
+Reichweite: 10 m
+Wirkung: Ein Wesen des Typus Untoter erhält einen Malus in Höhe von 4 Punkten
+auf alle Proben.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Malus erhöht
+sich auf 6 Punkte.
+Unzerstörbar (Spruch)
+Schulen: Fels 4, Schutz 5
+Typus: Objekt
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 6 Ticks
+Reichweite: Berührung
+Wirkung: Ein unbelebtes Objekt kann nicht
+mehr beschädigt oder zerstört werden.
+Es erhält seine übliche Verformbarkeit
+bei, ebenso wie sein Gewicht. Auf die
+Schutzwirkung von Rüstungen oder den
+Schaden von Waffen hat dieser Zauber keine Auswirkungen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 3 EG (Kosten +K4V4): Sollte es sich um eine
+Rüstung handeln, steigt außerdem deren
+Schadensreduktion um 1 Punkt.
+Verdammung (Spruch)
+Schulen: Schicksal 4
+Typus: Fluch
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 17 Ticks
+Reichweite: 5 m
+Wirkung: Geistiger Widerstand und Körperlicher Widerstand eines einzelnen Ziels
+werden um jeweils 5 Punkte gesenkt
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Beide Werte werden
+um jeweils 7 Punkte gesenkt.
+Verdorren (Spruch)
+Schulen: Natur 4, Tod 5
+Typus: Alter, Fluch, Pflanzen
+Schwierigkeit: Verteidigung des Ziels
+Kosten: 16V4
+Zauberdauer: 14 Ticks
+Reichweite: Berührung
+Wirkung: Eine berührte Pflanze oder ein Wesen des Typus Pflanze verdorrt und stirbt.
+Anderen Wesen muss eine Zähigkeit-Probe
+gegen 25 gelingen, um nicht den Zustand
+Sterbend 3 (Fluch) zu erhalten.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +4V4): Die Schwierigkeit der
+Zähigkeit-Probe erhöht sich auf 30.
+Verhängnis (Spruch)
+Schulen: Schicksal 3
+Typus: Fluch
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Alle Proben des Ziels zählen auch
+bei einem Würfelergebnis von insgesamt 4
+als Patzer.
+Wirkungsdauer: 1 Tag
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 1 EG (Kosten +3V3): Auch ein Ergebnis von
+5 zählt als Patzer.
+Verhüllung (Spruch)
+Schulen: Schatten 2
+Typus: Verhüllung
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 4 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird von fließenden
+Schatten umgeben, die ihn verbergen, seine Schritte dämpfen und seine Umrisse
+verfälschen. Er erhält einen Bonus in Höhe
+von 3 Punkten auf Heimlichkeit-Proben.
+250
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Bonus erhöht
+sich auf 5 Punkte.
+Verjüngen (Ritus)
+Schulen: Schicksal 4, Verwandlung 4
+Typus: Alter
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 4 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird um 20 Jahre
+verjüngt, bleibt jedoch mindestens 1 Jahr
+alt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Der Zauberer wird
+um 30 Jahre verjüngt, das Mindestalter beträgt weiter 1 Jahr.
+Versteinern (Spruch)
+Schulen: Fels 4, Verwandlung 5
+Typus: Gestalt
+Schwierigkeit: Körperlicher Widerstand des
+Ziels
+Kosten: K16V4
+Zauberdauer: 17 Ticks
+Reichweite: Berührung
+Wirkung: Das Ziel des Zaubers wird in unnatürlich harten Stein (Härte 8, Haltbarkeit
+16) verwandelt. Es kann seine Umwelt
+noch wahrnehmen, sich aber nicht mehr
+bewegen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Die Härte steigt auf
+10, die Haltbarkeit auf 20.
+Verstummen (Spruch)
+Schulen: Beherrschung 1
+Typus: Mental
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Das Ziel verliert seine Stimme und
+kann auch keine anderen Laute verursachen, die darauf basieren. In Bezug auf das
+Wirken von Zaubern gelten hierdurch die
+Regeln zur weggelassenen Komponente
+Formel (S. 198).
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Ein zweites Wesen
+gleichen oder niedrigeren Geistigen Widerstands verstummt.
+Verwandlung beenden
+(Spruch)
+Schulen: Bann 1, Verwandlung 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 10 Ticks
+Reichweite: Berührung
+Wirkung: Alle momentan auf das Ziel wirkenden Verwandlungszauber werden
+aufgehoben, solange sie maximal Grad 3
+aufweisen.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es werden Zauber bis
+Grad 5 aufgehoben.
+Verwirren (Spruch)
+Schulen: Beherrschung 1
+Typus: Halluzination
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: K4V1
+Zauberdauer: 2 Ticks
+Reichweite: Berührung
+Wirkung: Der Geist des Ziels wird verwirrt,
+wodurch es einen Malus in Höhe von 1
+Punkt für alle Proben erhält, in die sein
+Verstand einfließt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Malus erhöht
+sich auf 2 Punkte.
+Vogelform (Spruch)
+Schulen: Natur 4, Verwandlung 3
+Typus: Gestalt, Tiere
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer verwandelt sich in
+ein flugfähiges Wesen des Typus Tier der
+Größenklasse 1 bis maximal Monstergrad
+(als Einzelgegner) 2.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Die Kreatur ist ein besonders prachtvolles Exemplar. Alle Proben
+auf Fertigkeiten, die von der Tiergestalt
+übernommen wurden, erhalten einen Bonus in Höhe von 2 Punkten.
+Wachstum (Spruch)
+Schulen: Heilung 1, Natur 1
+Typus: Pflanzen
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 3 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer lässt eine Pflanze bis zur
+Größe eines Busches innerhalb von 1 Minute
+bis hin zu ihrer natürlichen Größe wachsen
+und reifen. Dadurch kann etwa ein Durchgang
+verborgen, Nahrung zur Reife gebracht oder
+eine Kletterhilfe geschaffen werden.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +1V1): Die Pflanze wächst bis
+zum Anderthalbfachen ihrer natürlichen
+Größe an.
+Waffe aus Licht (Spruch)
+Schulen: Licht 3
+Typus: Leuchten, Herbeirufung, Waffe
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erschafft eine beliebige Nahkampfwaffe aus strahlendem
+Licht, welche die Lichtverhältnisse im Umkreis von 5 Metern um 1 Stufe verbessert.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Schaden erhöht
+sich um 2 Punkte Lichtschaden. Diese Verstärkung ist nicht mit Zaubern kombinierbar,
+die die Typen Schaden und Waffe aufweisen.
+Waffe des Lichtes (Spruch)
+Schulen: Kampf 2, Licht 2
+Typus: Leuchten, Schaden, Waffe
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 5 Ticks
+Reichweite: Berührung
+Wirkung: Der Schaden einer mit diesem
+Zauber belegten Waffe erhöht sich um 1
+Punkt Lichtschaden. Angriffe mit ihr sind
+um 2 Punkte erleichtert, wenn sie gegen
+Wesen der Typen Untoter, Geisterwesen
+oder Schattenwesen durchgeführt werden.
+Außerdem verbessert sie die Lichtverhältnisse im Umkreis von 5 Metern um 1 Stufe.
+Dieser Zauber ist nicht mit anderen Zaubern kombinierbar, die ebenfalls die Typen
+Schaden und Waffe aufweisen.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K2V2): Der Zusatzschaden
+erhöht sich auf 2 Punkte Lichtschaden, die
+Lichtverhältnisse verbessern sich um insgesamt 2 Stufen.
+251
+Wahrer Blick (Spruch)
+Schulen: Bann 0, Erkenntnis 1, Illusion 2
+Typus: Hellsicht, Sinne
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer ist in der Lage, mit
+seinen normalen Sinnen eine Illusion zu
+durchschauen. Dies erfordert eine Wahrnehmung-Probe gegen die um drei Punkte
+erhöhte Schwierigkeit des Illusionszaubers.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Probe geht gegen die normale Schwierigkeit des Illusionszaubers.
+Wärme (Spruch)
+Schulen: Feuer 0
+Typus: Elementarkontrolle
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Die Hitzestufe erhöht sich für den
+Zauberer um 1 Stufe bzw. die Kältestufe
+sinkt um 1 Stufe.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Hitzestufe erhöht
+bzw. die Kältestufe senkt sich um insgesamt 2 Stufen.
+Wasseratmung (Spruch)
+Schulen: Verwandlung 3, Wasser 3
+Typus: Tiere
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann unter Wasser
+atmen, solange er nicht tiefer als 10 Meter
+taucht. Seine Atmung an Land wird nicht
+beeinträchtigt.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K3V3): Der Zauberer kann
+beliebig tief tauchen, ohne seine Atemfähigkeit zu verlieren.
+Wasser finden (Spruch)
+Schulen: Erkenntnis 2, Natur 1, Wasser 1
+Typus: Wahrnehmung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erfährt die Richtung
+der nächsten Quelle trinkbaren Wassers.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +K1V1): Der Zauberer erfährt
+zusätzlich die Entfernung der nächsten
+Trinkwasserquelle.
+Wasserherrschaft (Spruch)
+Schulen: Wasser 5
+Typus: Elementarkontrolle
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer kann das im Wirkungsbereich befindliche Wasser beliebig
+dirigieren, solange es sich nicht innerhalb
+eines Wesens befindet.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K5V5): Der Zauberer kann
+das Wasser beliebig in Eis oder Dampf verwandeln.
+Wasser reinigen (Spruch)
+Schulen: Natur 1, Wasser 0
+Typus: Elementarkontrolle, Gift, Reinigung
+Schwierigkeit: 15
+Kosten: 1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Der Zauber reinigt bis zu 10 Liter
+verschmutzter Flüssigkeit. Betroffen sind
+nur natürliche Krankheitserreger, Giftstoffe oder Verunreinigungen, nicht aber
+alchemistische Stoffe. Auch Alkohol oder
+Salz gelten nicht als Verunreinigungen.
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 3 EG (Kosten +1V1): Es werden bis zu 100
+Liter gereinigt.
+
+Wasserschwall (Spruch)
+Schulen: Wasser 4
+Typus: Schaden
+Schwierigkeit: 27
+Kosten: 10V3
+Zauberdauer: 12 Ticks
+Reichweite: 10 m
+Wirkung: Ein 2 Meter breiter Wasserschwall
+richtet bei allen Wesen, die sich zwischen
+dem Zauberer und dem Zielpunkt befinden,
+2W6 Punkte Wasser-Betäubungsschaden
+an. Die getroffenen müssen eine Akrobatikoder Athletik-Probe gegen 15 (erhöht um
+die Fertigkeitspunkte des Zauberers) ablegen, um nicht vom Aufprall umgeworfen zu
+werden und als liegend zu gelten.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite,
+Schaden, Verstärken (s. u.), Verzehrter Fokus
+• 1 EG (Kosten +3V3): Getroffene Wesen erhalten zusätzlich für 30 Ticks den Zustand
+Benommen 1.
+Weg durch die Natur (Spruch)
+Schulen: Bewegung 3, Natur 3
+Typus: Aura, Wildnis
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer und bis zu drei weitere beim Auslösen des Zaubers festgelegte
+Wesen seiner Wahl bewegen sich mit Leichtigkeit durch die Natur. Jegliches Terrain
+zählt für sie maximal als Rand der Wildnis
+und sie erhalten einen Bonus in Höhe von
+3 Punkten auf Überleben-Proben mit Bezug
+auf das Reisen. Die Boni gelten nur während
+des Aufenthalts im Wirkungsbereich.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K3V3): Es können bis zu fünf
+Personen bestimmt werden.
+252
+Weihe (Spruch)
+Schulen: Schicksal 1
+Typus: Objekt, Segen, Waffe
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Der Zauberer weiht einen Gegenstand seiner Gottheit oder den Kräften des
+Schicksals, wodurch er einen zusätzlichen
+Bonus in Höhe von 1 Punkt auf alle Fertigkeiten gewährt, für die er eingesetzt wird.
+Wirkungsdauer: 1 Stunde
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsdauer
+• 2 EG (Kosten +1V1): Der Bonus erhöht sich
+auf 2 Punkte.
+Wetterkontrolle (Ritus)
+Schulen: Natur 5, Wind 5
+Typus: Elementarkontrolle, Wildnis
+Schwierigkeit: 30
+Kosten: 20V5
+Zauberdauer: 10 Minuten
+Reichweite: Zauberer
+Wirkung: Der Zauberer ist in der Lage, das
+Wetter um ihn herum beliebig zu verändern. Er kann Stürme erschaffen oder
+besänftigen, Schneefall rufen oder strahlenden Sonnenschein. Dabei können Kälteund Hitzestufe maximal um 3 Stufen verändert werden. Nach Ende der Wirkungsdauer normalisiert sich das Wetter wieder.
+Wirkungsdauer: 1 Stunde
+Wirkungsbereich: 500 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich,
+Wirkungsdauer
+• 1 EG (Kosten +5V5): Kälte- und Hitzestufe
+können beliebig verändert werden.
+Widerstände erhöhen
+(Spruch)
+Schulen: Schutz 4, Stärkung 3
+Typus: Körper stärken
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 17 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus
+in Höhe von jeweils 2 Punkten auf seine
+Widerstandswerte.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Der Bonus erhöht
+sich auf 3 Punkte.
+Wiederherstellung (Spruch)
+Schulen: Heilung 4
+Typus: Leben
+Schwierigkeit: 27
+Kosten: 16V6
+Zauberdauer: 14 Ticks
+Reichweite: Berührung
+Wirkung: Das Ziel regeneriert alle Lebenspunkte, zudem werden alle Zustände aufgehoben, die Folge von Angriffen sind.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus
+• 1 EG (Kosten +4V4): Zusätzlich werden alle
+Gifte und Krankheiten aufgehoben, sofern sie
+maximal den Zustand Siechtum 2 verleihen.
+Willenloser Diener (Ritus)
+Schulen: Beherrschung 4
+Typus: Kontrolle
+Schwierigkeit: Geistiger Widerstand des Ziels
+Kosten: K16V4
+Zauberdauer: 5 Minuten
+Reichweite: Berührung
+Wirkung: Der Zauberer unterwirft ein kulturschaffendes Wesen seinen Befehlen. Es folgt
+allen seinen Anweisungen, sofern sie ihm
+nicht unmittelbar und unabwendbar den Tod
+bedeuten. Das Wesen bewegt sich nicht ohne
+explizite Anweisung aus der Wirkungsweite
+des kanalisierten Zaubers (S. 195) hinaus. Mit
+diesem Zauber belegte Wesen sind mit einer
+Empathie-Probe gegen 27 als von einem Beherrschungszauber beeinflusst erkennbar.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Ein zweites Wesen
+gleichen oder niedrigeren Geistigen Widerstands kann beherrscht werden.
+Windschild (Spruch)
+Schulen: Schutz 2, Wind 3
+Typus: Schild, Schutzfeld
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 9 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer umgibt sich mit einem Schild aus tobendem Wind, welcher
+Fernkampfangriffen gegen ihn einen Malus
+in Höhe von 6 Punkten verleiht.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Der Malus erhöht
+sich auf 9 Punkte.
+Windstoß (Spruch)
+Schulen: Wind 3
+Typus: Elementarkontrolle
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 12 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer beschwört einen
+konstanten und etwa 10 m weit reichenden Windstoß, der von ihm selbst ausgeht
+und stark genug ist, ein kleines Segelboot
+langsam anzutreiben. Wird er gegen ein
+Wesen gerichtet, muss diesem alle 10 Ticks
+eine Akrobatik-Probe gegen 20 gelingen,
+um nicht umgestoßen zu werden und als
+liegend zu gelten.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Der Zauberer kann
+die Richtung des Stoßes während der Wirkungsdauer beliebig verändern.
+Wolkenpfad (Spruch)
+Schulen: Wind 2
+Typus: Elementarkontrolle
+Schwierigkeit: 21
+Kosten: K8V2
+Zauberdauer: 6 Ticks
+Reichweite: 5 m
+Wirkung: Der Zauberer verfestigt die vor ihm
+befindliche Luft zu einer schnurgeraden,
+waagerechten und unsichtbaren Brücke
+mit einer beliebig verteilbaren Fläche von
+bis zu 10 m². Ihre Härte beträgt 4 Punkte,
+ihre Haltbarkeit 12 Punkte. Sie kann also
+zerstört werden, was den Zauber beendet. Sie zerbirst außerdem, wenn sie mit
+mehr als drei Personen oder entsprechend
+schweren Gegenständen belastet wird.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K2V2): Die Brücke kann mit
+bis zu 15 Personen (oder entsprechend
+schweren Gegenständen) belastet werden.
+Zauber bannen (Spruch)
+Schulen: Bann 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: 12V3
+Zauberdauer: 12 Ticks
+Reichweite: 10 m
+Wirkung: Ein nicht kanalisierter Zauber wird
+aufgehoben, solange er maximal Grad 3
+aufweist. Handelt es sich um einen Zauber
+mit Wirkungsbereich, genügt es, wenn sich
+ein Teil von diesem innerhalb der Reichweite befindet. Ein kanalisierter Zauber
+bis maximal Grad 3 wird nur aufgehoben,
+sofern dem Zauberer dieses Zaubers eine
+Entschlossenheit-Probe gegen 21 misslingt.
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +3V3): Es werden nach den
+obigen Regeln Zauber bis Grad 4 aufgehoben.
+253
+Zauberfeder (Spruch)
+Schulen: Bewegung 0
+Typus: Telekinese
+Schwierigkeit: 15
+Kosten: K1
+Zauberdauer: 1 Tick
+Reichweite: Berührung
+Wirkung: Eine Schreibfeder notiert alles, was
+der Zauberer sagt. Pergament und Tinte
+werden normal verbraucht. Wird die Feder
+erneut berührt, endet der Zauber.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Verstärken (s. u.)
+• 2 EG (Kosten +K1V1): Die Feder vermag
+zusätzlich Bilder nach einer Beschreibung zu zeichnen. Die Qualität hängt von
+einer Edelhandwerk-Probe des Zauberers ab.
+Zauber unterdrücken (Spruch)
+Schulen: Bann 3
+Typus: Zauber brechen
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 12 Ticks
+Reichweite: 10 m
+Wirkung: Ein kanalisierter Zauber wird während der Wirkungsdauer unterdrückt, solange er maximal Grad 3 aufweist.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K3V3): Es werden Zauber bis
+Grad 4 unterdrückt.
+Zauber zurückwerfen (Spruch)
+Schulen: Bann 4
+Typus: Konter
+Schwierigkeit: 27
+Kosten: K16V4
+Zauberdauer: 14 Ticks
+Reichweite: Zauberer
+Wirkung: Wird der Zauberer direktes Opfer eines Zaubers, vermag er diesen auf
+den Anwender zurückzuwerfen. Dazu
+muss ihm eine Entschlossenheit-Probe
+gelingen, deren Schwierigkeit der Schwierigkeit des ursprünglichen Zaubers + 3
+entspricht. Gelingt die Probe, wirkt der
+Zauber auf den ursprünglichen Urheber.
+Misslingt die Probe, wirkt der Zauber regulär auf den Zauberer.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K4V4): Die Schwierigkeit
+der Entschlossenheit-Probe beträgt die ursprüngliche Schwierigkeit des Zaubers.
+Zauberer behindern (Spruch)
+Schulen: Bann 0
+Typus: Konter
+Schwierigkeit: Geistiger Widerstand des
+Ziels
+Kosten: 1
+Zauberdauer: 2 Ticks
+Reichweite: 10 m
+Wirkung: Führt das Ziel gerade einen Zaubervorgang durch, wird die Zauberdauer
+um 4 Ticks verlängert. Bricht es den Vorgang ab, entfällt die Verlängerung.
+Erfolgsgrade:
+• Auslösezeit, Reichweite, Verstärken (s. u.)
+• 2 EG (Kosten +1V1): Die Zauberdauer des
+Ziels wird um 5 Ticks verlängert.
+Zone der Bannung (Spruch)
+Schulen: Bann 3, Schutz 4
+Typus: Konter
+Schwierigkeit: 24
+Kosten: K12V3
+Zauberdauer: 10 Ticks
+Reichweite: Zauberer
+Wirkung: Innerhalb des Wirkungsbereichs
+erhalten alle Zauberproben einen Malus in
+Höhe von 4 Punkten.
+Wirkungsdauer: kanalisiert
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich
+• 2 EG (Kosten +K3V3): Der Malus erhöht
+sich auf 6 Punkte.
+Zufall bannen (Spruch)
+Schulen: Schicksal 5
+Typus: Segen
+Schwierigkeit: 30
+Kosten: K20V5
+Zauberdauer: 15 Ticks
+Reichweite: 10 m
+Wirkung: Eine beliebige einzelne Probe
+oder anderweitiger Würfelwurf wird nicht
+geworfen, stattdessen wird das Ergebnis
+bestimmt. Im Anschluss endet der Zauber.
+Die den Wurf ‚ausführende‘ Person muss
+sich innerhalb der Reichweite befinden.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K5V5): Die Bestimmung eines zweiten Würfelwurfs ist möglich.
+Zunge des Diplomaten
+(Spruch)
+Schulen: Stärkung 1
+Typus: Verständigung
+Schwierigkeit: 18
+Kosten: K4V1
+Zauberdauer: 1 Tick
+Reichweite: Zauberer
+Wirkung: Der Zauberer erhält einen Bonus in
+Höhe von jeweils 1 Punkt auf alle Proben in
+den Fertigkeiten Diplomatie und Redegewandtheit.
+Wirkungsdauer: kanalisiert
+Erfolgsgrade:
+• Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
+• 2 EG (Kosten +K1V1): Der Bonus erhöht
+sich auf 2 Punkte.
