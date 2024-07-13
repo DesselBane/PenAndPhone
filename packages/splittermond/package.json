@@ -14,8 +14,8 @@
     "@pen-and-phone/core": "workspace:*"
   },
   "devDependencies": {
-    "type-fest": "4.10.3",
-    "typescript": "5.4.2",
-    "vue-tsc": "2.0.6"
+    "type-fest": "4.21.0",
+    "typescript": "5.5.3",
+    "vue-tsc": "2.0.26"
   }
 }
