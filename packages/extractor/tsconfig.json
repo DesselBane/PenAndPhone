@@ -2,11 +2,10 @@
   "include": ["src/**/*"],
   "extends": ["@pen-and-phone/config/tsconfig.json"],
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
-    "lib": [],
-    "types": ["node"],
+    "types": ["node", "vitest"],
     "noErrorTruncation": true,
     "noEmit": false
   }

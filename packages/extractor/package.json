@@ -2,19 +2,22 @@
   "name": "@pen-and-phone/extractor",
   "version": "0.0.1",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
   "keywords": [],
   "type": "module",
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@pen-and-phone/config": "workspace:*",
-    "@types/node": "20.14.10"
+    "@types/node": "20.14.10",
+    "vitest": "2.0.2"
   },
   "dependencies": {
     "tsx": "4.16.2"
   },
   "volta": {
-    "node": "20.15.1"
+    "extends": "../../package.json"
   }
 }

@@ -19,7 +19,8 @@ Wirkungsdauer
 • 1 EG (Kosten +1V1): Der Zauberer weiß, in
 welcher Richtung sich die Wesen befinden,
 ohne jedoch die Entfernung zu kennen.
-Allverständnis (Spruch)
+Allverständnis
+(Spruch)
 Schulen: Erkenntnis 5
 Typus: Verständigung
 Schwierigkeit: 30
@@ -39,8 +40,7 @@ Erfolgsgrade:
 • Auslösezeit, Erschöpfter Fokus, Verstärken
 (s. u.), Verzehrter Fokus, Wirkungsdauer
 • 2 EG (Kosten +5V5): Alle Wesen können außerdem verstehen, was der Zauberer sagt.
-Aura der Entschlossenheit
-(Spruch)
+Aura der Entschlossenheit(Spruch)
 Schulen: Stärkung 1
 Typus: Aura, Moral
 Schwierigkeit: 18
@@ -58,8 +58,7 @@ Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus, Wirkungsbereich
 • 2 EG (Kosten +K1V1): Es können bis zu fünf
 Personen bestimmt werden.
-Aura der Kontramagie
-(Spruch)
+Aura der Kontramagie(Spruch)
 Schulen: Bann 4
 Typus: Aura, Konter, Schaden
 Schwierigkeit: 27
@@ -116,8 +115,7 @@ Erfolgsgrade:
 (s. u.), Verzehrter Fokus, Wirkungsbereich
 • 1 EG (Kosten +K5V5): Es können bis zu fünf
 Wesen festgelegt werden.
-Aura der Schmerzlosigkeit
-(Spruch)
+Aura der Schmerzlosigkeit(Spruch)
 Schulen: Heilung 5
 Typus: Aura, Körper stärken
 Schwierigkeit: 30
@@ -224,8 +222,7 @@ Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
 • 2 EG (Kosten +K1V1): Der Bonus erhöht
 sich auf 3 Punkte.
-Beherrschung aufheben
-(Spruch)
+Beherrschung aufheben(Spruch)
 Schulen: Bann 1, Beherrschung 3
 Typus: Zauber brechen
 Schwierigkeit: 24
@@ -471,8 +468,7 @@ Wirkungsdauer: kanalisiert
 Erfolgsgrade:
 • Auslösezeit, Verstärken (s. u.)
 • 2 EG (Kosten +K1V1): Die Einstellung verbessert sich um insgesamt 2 Stufen (maximal auf Hilfsbereit).
-Einstellung verschlechtern
-(Spruch)
+Einstellung verschlechtern(Spruch)
 Schulen: Beherrschung 0
 Typus: Einstellung
 Schwierigkeit: Geistiger Widerstand des
@@ -750,8 +746,7 @@ Erfolgsgrade:
 gleichen oder niedrigeren Körperlichen
 Widerstands kann gebannt werden.
 228
-Feenwesen beherrschen
-(Spruch)
+Feenwesen beherrschen(Spruch)
 Schulen: Beherrschung 4
 Typus: Feenwesen, Kontrolle
 Schwierigkeit: Geistiger Widerstand des
@@ -1178,8 +1173,7 @@ Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
 • 1 EG (Kosten +K2V2): Der Bonus erhöht
 sich auf 4 Punkte.
-Gegenstand beschädigen
-(Spruch)
+Gegenstand beschädigen(Spruch)
 Schulen: Kampf 0
 Typus: Objekt, Schaden
 Schwierigkeit: 15
@@ -2336,8 +2330,7 @@ Erfolgsgrade:
 (s. u.), Verzehrter Fokus, Wirkungsdauer
 • 1 EG (Kosten +1V1): Die Qualität erhöht
 sich um insgesamt 2 Stufen.
-Magisches Schlüsselloch
-(Spruch)
+Magisches Schlüsselloch(Spruch)
 Schulen: Erkenntnis 3
 Typus: Wand
 Schwierigkeit: 24
@@ -2966,8 +2959,7 @@ Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
 • 1 EG (Kosten +K1V1): Die Schwierigkeit
 der Wahrnehmung-Probe beträgt 25.
-Schattenwand
-(Spruch)
+Schattenwand(Spruch)
 Schulen: Schatten 2
 Typus: Wand
 Schwierigkeit: 21
@@ -3043,8 +3035,7 @@ Erfolgsgrade:
 • 1 EG (Kosten +3V3): Der Zauber öffnet ein
 maximal gutes Schloss.
 243
-Schmerzen ignorieren
-(Spruch)
+Schmerzen ignorieren(Spruch)
 Schulen: Heilung 4, Stärkung 5
 Typus: Körper stärken
 Schwierigkeit: 27
@@ -3057,8 +3048,7 @@ Wirkungsdauer: kanalisiert
 Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Verstärken (s. u.), Verzehrter Fokus
 • 1 EG (Kosten +K4V4): Die Wundabzüge sinken um 8 Punkte.
-Schmerzen widerstehen
-(Spruch)
+Schmerzen widerstehen(Spruch)
 Schulen: Heilung 2, Stärkung 2
 Typus: Körper stärken
 Schwierigkeit: 21
@@ -3463,8 +3453,7 @@ Erfolgsgrade:
 (s. u.), Verzehrter Fokus
 • 3 EG (Kosten +5V5): Die ältesten Eindrücke
 liegen 1000 Jahre zurück.
-Spurlos in der Wildnis
-(Spruch)
+Spurlos in der Wildnis(Spruch)
 Schulen: Bewegung 3, Natur 2
 Typus: Aura, Wildnis
 Schwierigkeit: 21
@@ -4180,8 +4169,7 @@ Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
 • 2 EG (Kosten +K1V1): Ein zweites Wesen
 gleichen oder niedrigeren Geistigen Widerstands verstummt.
-Verwandlung beenden
-(Spruch)
+Verwandlung beenden(Spruch)
 Schulen: Bann 1, Verwandlung 3
 Typus: Zauber brechen
 Schwierigkeit: 24
@@ -4456,8 +4444,7 @@ Erfolgsgrade:
 Wirkungsdauer
 • 1 EG (Kosten +5V5): Kälte- und Hitzestufe
 können beliebig verändert werden.
-Widerstände erhöhen
-(Spruch)
+Widerstände erhöhen(Spruch)
 Schulen: Schutz 4, Stärkung 3
 Typus: Körper stärken
 Schwierigkeit: 24
@@ -4680,8 +4667,7 @@ Wirkungsdauer: kanalisiert
 Erfolgsgrade:
 • Auslösezeit, Kanalisierter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus
 • 2 EG (Kosten +K5V5): Die Bestimmung eines zweiten Würfelwurfs ist möglich.
-Zunge des Diplomaten
-(Spruch)
+Zunge des Diplomaten(Spruch)
 Schulen: Stärkung 1
 Typus: Verständigung
 Schwierigkeit: 18

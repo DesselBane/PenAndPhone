@@ -1,0 +1,190 @@
+export class AssertionError extends Error {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options)
+  }
+}
+export class ParseError extends Error {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options)
+  }
+}
+
+export function isIncludedInDefinition<const TValue>(
+  definition: readonly TValue[],
+  data: unknown
+): data is TValue {
+  return definition.includes(data as any)
+}
+export function assertIsIncludedInDefinition<const TValue>(
+  definition: readonly TValue[],
+  data: unknown
+): asserts data is TValue {
+  if (!isIncludedInDefinition(definition, data)) {
+    throw new AssertionError(
+      `Expected ${String(data)} to be part of ${definition}`
+    )
+  }
+}
+
+export const ZEITEINHEITEN = [
+  'ticks',
+  'sekunden',
+  'minuten',
+  'stunden',
+] as const
+export type Zeiteinheit = (typeof ZEITEINHEITEN)[number]
+export type Zeitlänge = [menge: number, einheit: Zeiteinheit]
+export function parseZeitlänge(data: unknown): Zeitlänge | ParseError {
+  const formatExpectMessage =
+    'Expected the format of "<number><space><zeiteinheit>"'
+  if (typeof data !== 'string') {
+    return new ParseError(
+      `Can only parse string but got data ${String(data)} with type ${typeof data}`
+    )
+  }
+
+  const parts = data.trim().toLowerCase().split(' ')
+
+  if (parts.length !== 2) {
+    return new ParseError(
+      `${formatExpectMessage} but received too many/few spaces. Received ${parts.length - 1} spaces for string ${data}`
+    )
+  }
+
+  const [amountString, einheit] = parts
+
+  if (!isIncludedInDefinition(ZEITEINHEITEN, einheit)) {
+    return new ParseError(
+      `${formatExpectMessage} but received ${einheit} in place of zeiteinheit.`
+    )
+  }
+
+  const amount = Number.parseFloat(amountString)
+
+  if (Number.isNaN(amount) || !Number.isInteger(amount)) {
+    return new ParseError(
+      `${formatExpectMessage} but received ${amountString} instead on integer.`
+    )
+  }
+
+  return [amount, einheit]
+}
+
+export type Zauberdauer = Zeitlänge | 'Kanalisiert' | 'Sofort' | 'Permanent'
+
+export type FokusKosten = [
+  erschöpft: number,
+  kanalisiert: number,
+  verzehrt: number,
+]
+
+export type Reichweite =
+  | 'Zauberer'
+  | 'Behrührung'
+  | [menge: number, einheit: 'meter']
+
+export const HELDENGRADE = [1, 2, 3, 4] as const
+export type HeldenGrad = (typeof HELDENGRADE)[number]
+
+export const FÄHIGKEITSVERSTÄRKUNGEN = [
+  'Auslösezeit',
+  'Kanalisierter Fokus',
+  'Verzehrter Fokus',
+  'Erschöpfter Fokus',
+  'Verstärken',
+] as const
+export type Fähigkeitsverstärkung = (typeof FÄHIGKEITSVERSTÄRKUNGEN)[number]
+
+export const ZAUBERSCHULEN = [
+  'Erkenntnis',
+  'Schutz',
+  'Stärkung',
+  'Bann',
+  'Heilung',
+  'Schatten',
+  'Feuer',
+  'Verwandlung',
+  'Kampf',
+  'Wind',
+  'Beherrschung',
+  'Bewegung',
+  'Natur',
+  'Illusion',
+  'Licht',
+  'Wasser',
+  'Tod',
+  'Schicksal',
+  'Fels',
+] as const
+export type Zauberschule = (typeof ZAUBERSCHULEN)[number]
+
+export const ZAUBERARTEN = ['Spruch', 'Ritus'] as const
+export type Zauberart = (typeof ZAUBERARTEN)[number]
+
+export const TYPI = [
+  'Wahrnehmung',
+  'Verständigung',
+  'Aura',
+  'Moral',
+  'Konter',
+  'Schaden',
+  'Körper stärken',
+  'Leben',
+  'Verhüllung',
+  'Elementarkontrolle',
+  'Waffe',
+  'Zauber brechen',
+  'Bewegung stärken',
+  'Gestalt',
+  'Tiere',
+  'Leuchten',
+  'Elektrizität',
+  'Herbeirufung',
+  'Tarnung',
+  'Wand',
+  'Explosion',
+  'Eis',
+  'Einstellung',
+  'Nekromantie',
+  'Objekt',
+  'Wildnis',
+  'Gedächtnis',
+  'Gedanken',
+  'Feenwesen',
+  'Wesen bannen',
+  'Kontrolle',
+  'Beschwörung',
+  'Felswesen',
+  'Magisches',
+  'Sinne',
+  'Hand',
+  'Schild',
+  'Schutzfeld',
+  'Fluch',
+  'Impersonation',
+  'Telekinese',
+  'Anderswelt',
+  'Geisterwesen',
+  'Magisches Wesen I',
+  'Geräusch',
+  'Geruch',
+  'Pfeil',
+  'Gift',
+  'Hellsicht',
+  'Segen',
+  'Halluzination',
+  'Regeneration',
+  'Reinigung',
+  'Schwächung',
+  'Botschaft',
+  'Mental',
+  'Rüstung',
+  'Trugbild',
+  'Prophezeiung',
+  'Pflanzen',
+  'Haut',
+  'Säure',
+  'Belebung',
+  'Alter',
+] as const
+export type Typus = (typeof TYPI)[number]

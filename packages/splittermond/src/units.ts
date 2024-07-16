@@ -28,3 +28,29 @@ export type Fähigkeitsverstärkungen =
   | 'Verzehrter Fokus'
   | 'Erschöpfter Fokus'
   | 'Verstärken'
+
+export const ZAUBERSCHULEN = [
+  'Erkenntnis',
+  'Schutz',
+  'Stärkung',
+  'Bann',
+  'Heilung',
+  'Schatten',
+  'Feuer',
+  'Verwandlung',
+  'Kampf',
+  'Wind',
+  'Beherrschung',
+  'Bewegung',
+  'Natur',
+  'Illusion',
+  'Licht',
+  'Wasser',
+  'Tod',
+  'Schicksal',
+  'Fels',
+] as const
+export type Zauberschule = (typeof ZAUBERSCHULEN)[number]
+
+export const ZAUBERARTEN = ['Spruch', 'Ritus'] as const
+export type Zauberart = (typeof ZAUBERARTEN)[number]

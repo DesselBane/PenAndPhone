@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "src/units.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -17,5 +18,8 @@
     "type-fest": "4.21.0",
     "typescript": "5.5.3",
     "vue-tsc": "2.0.26"
+  },
+  "volta": {
+    "extends": "../../package.json"
   }
 }

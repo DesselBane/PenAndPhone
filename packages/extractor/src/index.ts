@@ -1,32 +1,10 @@
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
-
-type Zauberschule =
-  | 'Erkenntnis'
-  | 'Schutz'
-  | 'Stärkung'
-  | 'Bann'
-  | 'Heilung'
-  | 'Schatten'
-  | 'Feuer'
-  | 'Verwandlung'
-  | 'Kampf'
-  | 'Wind'
-  | 'Beherrschung'
-  | 'Bewegung'
-  | 'Natur'
-  | 'Illusion'
-  | 'Licht'
-  | 'Wasser'
-  | 'Tod'
-  | 'Schicksal'
-  | 'Fels'
-
-type Grad = 1 | 2 | 3 | 4
+import { HeldenGrad, Zauberschule } from './units.js'
 
 type Zauber = {
   title: string
-  schulen: [Zauberschule, Grad][]
+  schulen: [Zauberschule, HeldenGrad][]
   typus: string
   schwierigkeit: string
   kosten: string
