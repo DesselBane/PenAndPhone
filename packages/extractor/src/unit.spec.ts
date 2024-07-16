@@ -3,6 +3,7 @@ import {
   FokusKosten,
   ParseError,
   parseFokusKosten,
+  parseZauberverstärkung,
   parseZeitlänge,
 } from './units.js'
 
@@ -71,6 +72,7 @@ describe('units', () => {
   })
 
   describe('FokusKosten', () => {
+    // TODO K1V1 should be valid
     it.each<{
       title: string
       input: string
@@ -117,6 +119,76 @@ describe('units', () => {
       if (error === true) {
         expect(result).toBeInstanceOf(ParseError)
       }
+    })
+  })
+
+  describe('Erfolgsgrade', () => {
+    it.each<{
+      title: string
+      input: string
+      output: ReturnType<typeof parseZauberverstärkung>
+    }>([
+      {
+        title: 'Good: all, Verstärken single line',
+        input:
+          '• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus• 1 EG (Kosten +1V1): Das Ziel erhält den Zustand Geblendet 2.',
+        output: [
+          ['Auslösezeit'],
+          ['Erschöpfter Fokus'],
+          ['Reichweite'],
+          ['Verzehrter Fokus'],
+          [
+            'Verstärken',
+            1,
+            [0, 0, 1],
+            'Das Ziel erhält den Zustand Geblendet 2.',
+          ],
+        ],
+      },
+      {
+        title: 'Good: all, Verstärken double line',
+        input:
+          '• Auslösezeit, Erschöpfter Fokus, Reichweite, Verstärken (s. u.), Verzehrter Fokus• 4 EG (Kosten +1V1): Die Hand leuchtet nicht so hell wie eine Fackel, sondern so hell wie ein Lagerfeuer. Der Schaden erhöht sich um 2 Punkte echten Feuerschaden.',
+        output: [
+          ['Auslösezeit'],
+          ['Erschöpfter Fokus'],
+          ['Reichweite'],
+          ['Verzehrter Fokus'],
+          [
+            'Verstärken',
+            4,
+            [0, 0, 1],
+            'Die Hand leuchtet nicht so hell wie eine Fackel, sondern so hell wie ein Lagerfeuer. Der Schaden erhöht sich um 2 Punkte echten Feuerschaden.',
+          ],
+        ],
+      },
+      {
+        title: 'Good: no Verstärken',
+        input: '• Auslösezeit, Erschöpfter Fokus, Reichweite, Verzehrter Fokus',
+        output: [
+          ['Auslösezeit'],
+          ['Erschöpfter Fokus'],
+          ['Reichweite'],
+          ['Verzehrter Fokus'],
+        ],
+      },
+      {
+        title: 'Good: only Verstärken',
+        input:
+          '• Verstärken (s. u.)• 1 EG (Kosten +1V1): Das Ziel erhält den Zustand Geblendet 2.',
+        output: [
+          [
+            'Verstärken',
+            1,
+            [0, 0, 1],
+            'Das Ziel erhält den Zustand Geblendet 2.',
+          ],
+        ],
+      },
+    ])('$title', ({ input, output }) => {
+      const result = parseZauberverstärkung(input)
+
+      expect(result).toEqual(output)
     })
   })
 })
