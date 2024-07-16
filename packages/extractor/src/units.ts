@@ -34,14 +34,9 @@ export const ZEITEINHEITEN = [
 ] as const
 export type Zeiteinheit = (typeof ZEITEINHEITEN)[number]
 export type Zeitlänge = [menge: number, einheit: Zeiteinheit]
-export function parseZeitlänge(data: unknown): Zeitlänge | ParseError {
+export function parseZeitlänge(data: string): Zeitlänge | ParseError {
   const formatExpectMessage =
     'Expected the format of "<number><space><zeiteinheit>"'
-  if (typeof data !== 'string') {
-    return new ParseError(
-      `Can only parse string but got data ${String(data)} with type ${typeof data}`
-    )
-  }
 
   const parts = data.trim().toLowerCase().split(' ')
 
@@ -70,13 +65,79 @@ export function parseZeitlänge(data: unknown): Zeitlänge | ParseError {
   return [amount, einheit]
 }
 
-export type Zauberdauer = Zeitlänge | 'Kanalisiert' | 'Sofort' | 'Permanent'
+export const SIMPLE_ZAUBERDAUER = [
+  'Kanalisiert',
+  'Sofort',
+  'Permanent',
+] as const
+export type SimpleZauberdauer = (typeof SIMPLE_ZAUBERDAUER)[number]
+export type Zauberdauer = Zeitlänge | SimpleZauberdauer
+export function parseZauberdauer(data: string): Zauberdauer | ParseError {
+  if (isIncludedInDefinition(SIMPLE_ZAUBERDAUER, data)) {
+    return data
+  }
+
+  const zeitlänge = parseZeitlänge(data)
+  if (!(zeitlänge instanceof ParseError)) {
+    return zeitlänge
+  }
+
+  return new ParseError(
+    `Expected either a SimpleZauberdauer or a Zeitlänge. Received ${data}`,
+    { cause: zeitlänge }
+  )
+}
 
 export type FokusKosten = [
   erschöpft: number,
   kanalisiert: number,
   verzehrt: number,
 ]
+export function parseFokusKosten(data: string): FokusKosten | ParseError {
+  const regEx = new RegExp(/^(K?\d+)(V\d+)?$/)
+  const retVal: FokusKosten = [0, 0, 0]
+  const parts = data.trim().match(regEx)
+  const parseError = new ParseError(
+    `Expected input to match the following regex: ${regEx} but it did not. Received: ${data}`
+  )
+
+  if (parts == null) {
+    return parseError
+  }
+
+  let firstPart = parts[1]
+  const secondPart = parts[2]
+
+  const isKanalisiert = firstPart.startsWith('K')
+
+  if (isKanalisiert) {
+    firstPart = firstPart.slice(1)
+  }
+
+  let firstPartAmount = Number.parseInt(firstPart)
+  let secondPartAmount = 0
+
+  if (secondPart != null) {
+    secondPartAmount = Number.parseInt(secondPart.slice(1))
+  }
+
+  firstPartAmount = firstPartAmount - secondPartAmount
+
+  if (firstPartAmount < 0) {
+    return new ParseError(
+      'Verzehrt can not be greater then Erschöpft/Kanalisiert.'
+    )
+  }
+
+  if (isKanalisiert) {
+    retVal[1] = firstPartAmount
+  } else {
+    retVal[0] = firstPartAmount
+  }
+  retVal[2] = secondPartAmount
+
+  return retVal
+}
 
 export type Reichweite =
   | 'Zauberer'

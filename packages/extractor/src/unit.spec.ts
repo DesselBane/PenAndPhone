@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { ParseError, parseZeitlänge } from './units.js'
+import {
+  FokusKosten,
+  ParseError,
+  parseFokusKosten,
+  parseZeitlänge,
+} from './units.js'
 
 describe('units', () => {
   describe('zeitlänge', () => {
@@ -13,7 +18,7 @@ describe('units', () => {
       },
       {
         title: 'normalizes',
-        input: '2 Stunden',
+        input: ' 2 Stunden  ',
         error: false,
         response: [2, 'stunden'],
         errorMessage: null,
@@ -53,13 +58,6 @@ describe('units', () => {
         response: null,
         errorMessage: '"<number><space><zeiteinheit>"',
       },
-      {
-        title: 'doesnt accept non string',
-        input: [2, 3],
-        error: true,
-        response: null,
-        errorMessage: 'Can only parse string',
-      },
     ])('$title', ({ input, error, response, errorMessage }) => {
       const result = parseZeitlänge(input)
 
@@ -68,6 +66,56 @@ describe('units', () => {
         expect((result as ParseError).message).toContain(errorMessage)
       } else {
         expect(result).toEqual(response)
+      }
+    })
+  })
+
+  describe('FokusKosten', () => {
+    it.each<{
+      title: string
+      input: string
+      output?: FokusKosten
+      error?: true
+    }>([
+      {
+        title: 'parses erschöpft',
+        input: '1',
+        output: [1, 0, 0],
+      },
+      {
+        title: 'parses kanalisiert',
+        input: 'K11',
+        output: [0, 11, 0],
+      },
+      {
+        title: 'parses erschöpft + verzehrt',
+        input: '4V2',
+        output: [2, 0, 2],
+      },
+      {
+        title: 'parses kanalisiert + verzehrt',
+        input: 'K44V22',
+        output: [0, 22, 22],
+      },
+      {
+        title: 'error on negative erschöpft',
+        input: '4V8',
+        error: true,
+      },
+      {
+        title: 'error on invalid string',
+        input: 'tomato',
+        error: true,
+      },
+    ])('$title', ({ input, output, error }) => {
+      const result = parseFokusKosten(input)
+
+      if (output != null) {
+        expect(result).toEqual(output)
+      }
+
+      if (error === true) {
+        expect(result).toBeInstanceOf(ParseError)
       }
     })
   })
