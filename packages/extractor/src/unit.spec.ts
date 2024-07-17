@@ -82,22 +82,22 @@ describe('units', () => {
       {
         title: 'parses erschöpft',
         input: '1',
-        output: [1, 0, 0],
+        output: [1, 0, false],
       },
       {
         title: 'parses kanalisiert',
         input: 'K11',
-        output: [0, 11, 0],
+        output: [11, 0, true],
       },
       {
         title: 'parses erschöpft + verzehrt',
         input: '4V2',
-        output: [2, 0, 2],
+        output: [4, 2, false],
       },
       {
         title: 'parses kanalisiert + verzehrt',
         input: 'K44V22',
-        output: [0, 22, 22],
+        output: [44, 22, true],
       },
       {
         title: 'error on negative erschöpft',
@@ -140,7 +140,7 @@ describe('units', () => {
           [
             'Verstärken',
             1,
-            [0, 0, 1],
+            [1, 1, false],
             'Das Ziel erhält den Zustand Geblendet 2.',
           ],
         ],
@@ -157,7 +157,7 @@ describe('units', () => {
           [
             'Verstärken',
             4,
-            [0, 0, 1],
+            [1, 1, false],
             'Die Hand leuchtet nicht so hell wie eine Fackel, sondern so hell wie ein Lagerfeuer. Der Schaden erhöht sich um 2 Punkte echten Feuerschaden.',
           ],
         ],
@@ -175,15 +175,30 @@ describe('units', () => {
       {
         title: 'Good: only Verstärken',
         input:
-          '• Verstärken (s. u.)• 1 EG (Kosten +1V1): Das Ziel erhält den Zustand Geblendet 2.',
+          '• Verstärken (s. u.)• 1 EG (Kosten +K1V1): Das Ziel erhält den Zustand Geblendet 2.',
         output: [
           [
             'Verstärken',
             1,
-            [0, 0, 1],
+            [1, 1, true],
             'Das Ziel erhält den Zustand Geblendet 2.',
           ],
         ],
+      },
+      {
+        title: 'Bad: invalid Zauberverstärkungsart',
+        input: '• Auslösezeit, Erschöpfter Fokus, Tomato, Verzehrter Fokus',
+        output: new ParseError(
+          'Unknown verstärkung: "Tomato" within • Auslösezeit, Erschöpfter Fokus, Tomato, Verzehrter Fokus'
+        ),
+      },
+      {
+        title: 'Bad: Verstärken without description',
+        input:
+          '• Auslösezeit, Erschöpfter Fokus, Verstärken (s. u.), Verzehrter Fokus',
+        output: new ParseError(
+          'Found "Verstärken" but not its description. Data: • Auslösezeit, Erschöpfter Fokus, Verstärken (s. u.), Verzehrter Fokus'
+        ),
       },
     ])('$title', ({ input, output }) => {
       const result = parseZauberverstärkung(input)

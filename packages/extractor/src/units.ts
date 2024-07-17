@@ -89,13 +89,13 @@ export function parseZauberdauer(data: string): Zauberdauer | ParseError {
 }
 
 export type FokusKosten = [
-  erschöpft: number,
-  kanalisiert: number,
+  total: number,
   verzehrt: number,
+  kanalisiert: boolean,
 ]
 export function parseFokusKosten(data: string): FokusKosten | ParseError {
   const regEx = new RegExp(/^(K?\d+)(V\d+)?$/)
-  const retVal: FokusKosten = [0, 0, 0]
+  const retVal: FokusKosten = [0, 0, false]
   const parts = data.trim().match(regEx)
   const parseError = new ParseError(
     `Expected input to match the following regex: ${regEx} but it did not. Received: ${data}`
@@ -108,33 +108,23 @@ export function parseFokusKosten(data: string): FokusKosten | ParseError {
   let firstPart = parts[1]
   const secondPart = parts[2]
 
-  const isKanalisiert = firstPart.startsWith('K')
+  retVal[2] = firstPart.startsWith('K')
 
-  if (isKanalisiert) {
+  if (retVal[2]) {
     firstPart = firstPart.slice(1)
   }
 
-  let firstPartAmount = Number.parseInt(firstPart)
-  let secondPartAmount = 0
+  retVal[0] = Number.parseInt(firstPart)
 
   if (secondPart != null) {
-    secondPartAmount = Number.parseInt(secondPart.slice(1))
+    retVal[1] = Number.parseInt(secondPart.slice(1))
   }
 
-  firstPartAmount = firstPartAmount - secondPartAmount
-
-  if (firstPartAmount < 0) {
+  if (retVal[1] > retVal[0]) {
     return new ParseError(
       'Verzehrt can not be greater then Erschöpft/Kanalisiert.'
     )
   }
-
-  if (isKanalisiert) {
-    retVal[1] = firstPartAmount
-  } else {
-    retVal[0] = firstPartAmount
-  }
-  retVal[2] = secondPartAmount
 
   return retVal
 }
