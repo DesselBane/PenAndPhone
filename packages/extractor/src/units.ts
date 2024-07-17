@@ -3,6 +3,7 @@ export class AssertionError extends Error {
     super(message, options)
   }
 }
+
 export class ParseError extends Error {
   constructor(message: string, options?: ErrorOptions) {
     super(message, options)
@@ -15,6 +16,7 @@ export function isIncludedInDefinition<const TValue>(
 ): data is TValue {
   return definition.includes(data as any)
 }
+
 export function assertIsIncludedInDefinition<const TValue>(
   definition: readonly TValue[],
   data: unknown
@@ -34,6 +36,7 @@ export const ZEITEINHEITEN = [
 ] as const
 export type Zeiteinheit = (typeof ZEITEINHEITEN)[number]
 export type Zeitlänge = [menge: number, einheit: Zeiteinheit]
+
 export function parseZeitlänge(data: string): Zeitlänge | ParseError {
   const formatExpectMessage =
     'Expected the format of "<number><space><zeiteinheit>"'
@@ -72,6 +75,7 @@ export const SIMPLE_ZAUBERDAUER = [
 ] as const
 export type SimpleZauberdauer = (typeof SIMPLE_ZAUBERDAUER)[number]
 export type Zauberdauer = Zeitlänge | SimpleZauberdauer
+
 export function parseZauberdauer(data: string): Zauberdauer | ParseError {
   if (isIncludedInDefinition(SIMPLE_ZAUBERDAUER, data)) {
     return data
@@ -93,6 +97,7 @@ export type FokusKosten = [
   verzehrt: number,
   kanalisiert: boolean,
 ]
+
 export function parseFokusKosten(data: string): FokusKosten | ParseError {
   const regEx = new RegExp(/^(K?\d+)(V\d+)?$/)
   const retVal: FokusKosten = [0, 0, false]
@@ -153,6 +158,7 @@ export type Zauberverstärkung =
       fokusKosten: FokusKosten,
       beschreibung: string,
     ]
+
 export function parseZauberverstärkung(
   data: string
 ): Zauberverstärkung[] | ParseError {
@@ -251,6 +257,37 @@ export const ZAUBERSCHULEN = [
 ] as const
 export type Zauberschule = (typeof ZAUBERSCHULEN)[number]
 
+export type Zauberschulvorrausetzung = [Zauberschule, HeldenGrad]
+
+export function parseZauberschulvorrausetzung(
+  data: string
+): Zauberschulvorrausetzung[] | ParseError {
+  const retVal: Zauberschulvorrausetzung[] = []
+
+  const parts = data.trim().split(',')
+
+  for (const part of parts) {
+    const [schule, grad] = part
+      .trim()
+      .split(' ')
+      .filter((x) => x !== '')
+
+    if (!isIncludedInDefinition(ZAUBERSCHULEN, schule)) {
+      return new ParseError(`Unknown schule: "${schule}" detected in "${data}"`)
+    }
+    const gradParsed = Number.parseFloat(grad)
+
+    if (!isIncludedInDefinition(HELDENGRADE, gradParsed)) {
+      return new ParseError(
+        `Invalid Heldengrad received: "${grad}" valid values are: "${HELDENGRADE}" in "${data}"`
+      )
+    }
+    retVal.push([schule, gradParsed])
+  }
+
+  return retVal
+}
+
 export const ZAUBERARTEN = ['Spruch', 'Ritus'] as const
 export type Zauberart = (typeof ZAUBERARTEN)[number]
 
@@ -327,6 +364,7 @@ export type ZauberSchwierigkeit =
   | 'Körperlicher Wiederstand'
   | 'Geistiger Wiederstand'
   | 'Verteidigung'
+
 export function parseZauberschwierigkeit(
   data: string
 ): ZauberSchwierigkeit | ParseError {
@@ -387,6 +425,7 @@ export function classify(data: string) {
 
   return 'None'
 }
+
 export function parseZauber(data: string[]): Zauber | ParseError {
   const zauber: Partial<Zauber> = {}
 
@@ -395,6 +434,41 @@ export function parseZauber(data: string[]): Zauber | ParseError {
 
     if (currentRow == null) {
       return new ParseError('Unexpected end of data')
+    }
+
+    const classification = classify(currentRow)
+
+    switch (classification) {
+      case 'Spruch':
+        zauber.art = 'Spruch'
+        zauber.name = currentRow.replace('(Spruch)', '').trim()
+        break
+      case 'Ritus':
+        zauber.art = 'Ritus'
+        zauber.name = currentRow.replace('(Ritus)', '').trim()
+        break
+      case 'Schulen':
+        break
+      case 'Typus':
+        break
+      case 'Schwierigkeit':
+        break
+      case 'Kosten':
+        break
+      case 'Zauberdauer':
+        break
+      case 'Reichweite':
+        break
+      case 'Wirkung':
+        break
+      case 'Wirkungsdauer':
+        break
+      case 'Wirkungsbereich':
+        break
+      case 'Erfolgsgrade':
+        break
+      case 'None':
+        break
     }
   }
 }

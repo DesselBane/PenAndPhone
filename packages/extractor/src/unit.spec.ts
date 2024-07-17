@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest'
 import {
   classify,
   FokusKosten,
+  HELDENGRADE,
   ParseError,
   parseFokusKosten,
+  parseZauberschulvorrausetzung,
   parseZauberverstärkung,
   parseZeitlänge,
 } from './units.js'
@@ -69,6 +71,59 @@ describe('units', () => {
       } else {
         expect(result).toEqual(response)
       }
+    })
+  })
+
+  describe('zauberschulvorraussetzung', () => {
+    it.each<{
+      title: string
+      input: string
+      output: ReturnType<typeof parseZauberschulvorrausetzung>
+    }>([
+      {
+        title: 'Good: Simple',
+        input: 'Erkenntnis 1',
+        output: [['Erkenntnis', 1]],
+      },
+      {
+        title: 'Good: Double',
+        input: 'Erkenntnis 1, Schutz 1',
+        output: [
+          ['Erkenntnis', 1],
+          ['Schutz', 1],
+        ],
+      },
+      {
+        title: 'Good: Whitespasces',
+        input: '  Erkenntnis  1,  Schutz  1   ',
+        output: [
+          ['Erkenntnis', 1],
+          ['Schutz', 1],
+        ],
+      },
+      {
+        title: 'Bad: Unknown schule',
+        input: 'Tomato 1',
+        output: new ParseError(
+          'Unknown schule: "Tomato" detected in "Tomato 1"'
+        ),
+      },
+      {
+        title: 'Bad: Not an integer',
+        input: 'Erkenntnis 1.5',
+        output: new ParseError(
+          `Invalid Heldengrad received: "1.5" valid values are: "${HELDENGRADE}" in "Erkenntnis 1.5"`
+        ),
+      },
+      {
+        title: 'Bad: Not a valid heldengrad',
+        input: 'Erkenntnis 10',
+        output: new ParseError(
+          `Invalid Heldengrad received: "10" valid values are: "${HELDENGRADE}" in "Erkenntnis 10"`
+        ),
+      },
+    ])('$title: $input', ({ input, output }) => {
+      expect(parseZauberschulvorrausetzung(input)).toEqual(output)
     })
   })
 
@@ -269,29 +324,3 @@ describe('units', () => {
     })
   })
 })
-
-/**
-
-Schulen: Erkenntnis 1, Schutz 1
-Typus: Wahrnehmung
-Schwierigkeit: 18
-Kosten: 4V1
-Zauberdauer: 2 Ticks
-Reichweite: Zauberer
-Wirkung: Der Zauberer wird alarmiert, wenn
-eines oder mehrere Wesen der Größenklasse 2 oder höher den Wirkungsbereich betritt. Er vermag dabei keinen genauen Ort zu
-bestimmen, sondern lediglich die pure Anwesenheit festzustellen, ebenso wenig kann
-er Angaben zur Anzahl machen. Es ist möglich, bis zu zehn bestimmte Wesen seiner
-Wahl von der Alarmierung auszunehmen.
-Wirkungsdauer: 6 Stunden
-Wirkungsbereich: 5 m
-Erfolgsgrade:
-• Auslösezeit, Erschöpfter Fokus, Verstärken
-(s. u.), Verzehrter Fokus, Wirkungsbereich,
-Wirkungsdauer
-• 1 EG (Kosten +1V1): Der Zauberer weiß, in
-welcher Richtung sich die Wesen befinden,
-ohne jedoch die Entfernung zu kennen.
- *
- *
- */
