@@ -1,29 +1,5 @@
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
-import {
-  FokusKosten,
-  HeldenGrad,
-  Reichweite,
-  Typus,
-  Zauberschule,
-  ZauberSchwierigkeit,
-  Zauberverstärkung,
-  Zeitlänge,
-} from './units.js'
-
-type Zauber = {
-  title: string
-  schulen: [Zauberschule, HeldenGrad][]
-  typus: Typus
-  schwierigkeit: ZauberSchwierigkeit
-  kosten: FokusKosten
-  reichweite: Reichweite
-  zauberdauer: Zeitlänge
-  wirkung: string
-  wirkungsdauer: Zeitlänge
-  wirkungsbereich?: Reichweite
-  erfolgsgrade: Zauberverstärkung[]
-}
 
 function parseZauber(filePath: string) {
   const data = readFileSync(filePath).toString()

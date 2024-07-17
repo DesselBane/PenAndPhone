@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  classify,
   FokusKosten,
   ParseError,
   parseFokusKosten,
@@ -206,4 +207,91 @@ describe('units', () => {
       expect(result).toEqual(output)
     })
   })
+
+  describe('parse Zauber', () => {
+    describe('classify', () => {
+      it.each<{ input: string; classification: ReturnType<typeof classify> }>([
+        {
+          input: 'Alarm (Spruch)',
+          classification: 'Spruch',
+        },
+        {
+          input: 'Alarm (Ritus)',
+          classification: 'Ritus',
+        },
+        {
+          input: 'Schulen: Erkenntnis 1, Schutz 1',
+          classification: 'Schulen',
+        },
+        {
+          input: 'Typus: Wahrnehmung',
+          classification: 'Typus',
+        },
+        {
+          input: 'Schwierigkeit: 18',
+          classification: 'Schwierigkeit',
+        },
+        {
+          input: 'Kosten: 4V1',
+          classification: 'Kosten',
+        },
+        {
+          input: 'Zauberdauer: 2 Ticks',
+          classification: 'Zauberdauer',
+        },
+        {
+          input: 'Reichweite: Zauberer',
+          classification: 'Reichweite',
+        },
+        {
+          input: 'Wirkung: Der Zauberer wird alarmiert, wenn',
+          classification: 'Wirkung',
+        },
+        {
+          input: 'Wirkungsdauer: 6 Stunden',
+          classification: 'Wirkungsdauer',
+        },
+        {
+          input: 'Wirkungsbereich: 5 m',
+          classification: 'Wirkungsbereich',
+        },
+        {
+          input: 'Erfolgsgrade:',
+          classification: 'Erfolgsgrade',
+        },
+        {
+          input: '• Auslösezeit, Erschöpfter Fokus, Verstärken',
+          classification: 'None',
+        },
+      ])('$classification: $input', ({ input, classification }) => {
+        expect(classify(input)).toBe(classification)
+      })
+    })
+  })
 })
+
+/**
+
+Schulen: Erkenntnis 1, Schutz 1
+Typus: Wahrnehmung
+Schwierigkeit: 18
+Kosten: 4V1
+Zauberdauer: 2 Ticks
+Reichweite: Zauberer
+Wirkung: Der Zauberer wird alarmiert, wenn
+eines oder mehrere Wesen der Größenklasse 2 oder höher den Wirkungsbereich betritt. Er vermag dabei keinen genauen Ort zu
+bestimmen, sondern lediglich die pure Anwesenheit festzustellen, ebenso wenig kann
+er Angaben zur Anzahl machen. Es ist möglich, bis zu zehn bestimmte Wesen seiner
+Wahl von der Alarmierung auszunehmen.
+Wirkungsdauer: 6 Stunden
+Wirkungsbereich: 5 m
+Erfolgsgrade:
+• Auslösezeit, Erschöpfter Fokus, Verstärken
+(s. u.), Verzehrter Fokus, Wirkungsbereich,
+Wirkungsdauer
+• 1 EG (Kosten +1V1): Der Zauberer weiß, in
+welcher Richtung sich die Wesen befinden,
+ohne jedoch die Entfernung zu kennen.
+ *
+ *
+ */

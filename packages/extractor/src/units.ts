@@ -355,3 +355,52 @@ export function parseZauberschwierigkeit(
     `Data must be a number or include Verteidigung, Geistiger Wiederstand or Körperlicher Wiederstand but it did not. Got ${data}`
   )
 }
+
+export type Zauber = {
+  name: string
+  art: Zauberart
+  schulen: [Zauberschule, HeldenGrad][]
+  typus: Typus
+  schwierigkeit: ZauberSchwierigkeit
+  kosten: FokusKosten
+  reichweite: Reichweite
+  zauberdauer: Zeitlänge
+  wirkung: string
+  wirkungsdauer: Zeitlänge
+  wirkungsbereich?: Reichweite
+  erfolgsgrade: Zauberverstärkung[]
+}
+
+export function classify(data: string) {
+  if (data.includes('(Spruch)')) return 'Spruch'
+  if (data.includes('(Ritus)')) return 'Ritus'
+  if (data.includes('Schulen:')) return 'Schulen'
+  if (data.includes('Typus:')) return 'Typus'
+  if (data.includes('Schwierigkeit:')) return 'Schwierigkeit'
+  if (data.includes('Kosten:')) return 'Kosten'
+  if (data.includes('Zauberdauer:')) return 'Zauberdauer'
+  if (data.includes('Reichweite:')) return 'Reichweite'
+  if (data.includes('Wirkung:')) return 'Wirkung'
+  if (data.includes('Wirkungsdauer:')) return 'Wirkungsdauer'
+  if (data.includes('Wirkungsbereich:')) return 'Wirkungsbereich'
+  if (data.includes('Erfolgsgrade:')) return 'Erfolgsgrade'
+
+  return 'None'
+}
+export function parseZauber(data: string[]): Zauber | ParseError {
+  const zauber: Partial<Zauber> = {}
+
+  while (data.length > 0) {
+    const currentRow = data.pop()
+
+    if (currentRow == null) {
+      return new ParseError('Unexpected end of data')
+    }
+  }
+}
+
+export function parseAllZauber(data: string[]): Zauber[] {
+  const retVal: Zauber[] = []
+
+  return retVal
+}
