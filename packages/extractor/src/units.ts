@@ -1,12 +1,43 @@
+import type { ReadonlyDeep } from 'type-fest'
+
+const isIntegerRegex = new RegExp(/^\d+$/)
+
+export type ErrorContext = ReadonlyDeep<Record<string, unknown>>
+
 export class AssertionError extends Error {
   constructor(message: string, options?: ErrorOptions) {
     super(message, options)
   }
 }
 
-export class ParseError extends Error {
-  constructor(message: string, options?: ErrorOptions) {
-    super(message, options)
+export class ParseError<TCause extends Error = Error> extends Error {
+  public readonly context?: ErrorContext
+  public readonly cause?: TCause
+
+  constructor(
+    message: string,
+    context?: ErrorContext & {
+      cause?: TCause
+    }
+  ) {
+    super(message)
+    this.cause = context?.cause
+    const newContext = { ...context }
+    delete newContext.cause
+    this.context = newContext
+  }
+
+  toString() {
+    return JSON.stringify(this, null, '  ')
+  }
+  toJSON() {
+    return {
+      name: 'ParseError',
+      message: this.message,
+      cause: this.cause,
+      context: this.context,
+      stackTrace: this.stack?.split('\n'),
+    }
   }
 }
 
@@ -57,13 +88,13 @@ export function parseZeitlänge(data: string): Zeitlänge | ParseError {
     )
   }
 
-  const amount = Number.parseFloat(amountString)
-
-  if (Number.isNaN(amount) || !Number.isInteger(amount)) {
+  if (!isIntegerRegex.test(amountString)) {
     return new ParseError(
       `${formatExpectMessage} but received ${amountString} instead on integer.`
     )
   }
+
+  const amount = Number.parseInt(amountString)
 
   return [amount, einheit]
 }
@@ -76,7 +107,9 @@ export const SIMPLE_ZAUBERDAUER = [
 export type SimpleZauberdauer = (typeof SIMPLE_ZAUBERDAUER)[number]
 export type Zauberdauer = Zeitlänge | SimpleZauberdauer
 
-export function parseZauberdauer(data: string): Zauberdauer | ParseError {
+export function parseZauberdauer(
+  data: string
+): Zauberdauer | ParseError<ParseError> {
   if (isIncludedInDefinition(SIMPLE_ZAUBERDAUER, data)) {
     return data
   }
@@ -134,10 +167,32 @@ export function parseFokusKosten(data: string): FokusKosten | ParseError {
   return retVal
 }
 
+export const SIMPLE_REICHWEITEN = ['Zauberer', 'Behrührung'] as const
+export type SimpleReichweite = (typeof SIMPLE_REICHWEITEN)[number]
+export const REICHWEITE_EINHEITEN = ['meter'] as const
+export type ReichweiteEinheit = (typeof REICHWEITE_EINHEITEN)[number]
+
 export type Reichweite =
-  | 'Zauberer'
-  | 'Behrührung'
-  | [menge: number, einheit: 'meter']
+  | SimpleReichweite
+  | [menge: number, einheit: ReichweiteEinheit]
+
+export function parseReichweite(data: string): Reichweite | ParseError {
+  if (isIncludedInDefinition(SIMPLE_REICHWEITEN, data)) {
+    return data
+  }
+  if (/^\d+ meter$/.test(data)) {
+    return [Number.parseInt(data.split(' ')[0]), 'meter']
+  }
+
+  return new ParseError(
+    `Data did not match the format "<number><space><einheit>" nor was it a valid value.`,
+    {
+      data,
+      validValues: SIMPLE_REICHWEITEN,
+      validEinheiten: REICHWEITE_EINHEITEN,
+    }
+  )
+}
 
 export const HELDENGRADE = [1, 2, 3, 4] as const
 export type HeldenGrad = (typeof HELDENGRADE)[number]
@@ -161,7 +216,7 @@ export type Zauberverstärkung =
 
 export function parseZauberverstärkung(
   data: string
-): Zauberverstärkung[] | ParseError {
+): Zauberverstärkung[] | ParseError<ParseError> {
   const retVal: Zauberverstärkung[] = []
   const parts = data
     .trim()
@@ -275,9 +330,12 @@ export function parseZauberschulvorrausetzung(
     if (!isIncludedInDefinition(ZAUBERSCHULEN, schule)) {
       return new ParseError(`Unknown schule: "${schule}" detected in "${data}"`)
     }
-    const gradParsed = Number.parseFloat(grad)
+    const gradParsed = Number.parseInt(grad)
 
-    if (!isIncludedInDefinition(HELDENGRADE, gradParsed)) {
+    if (
+      !isIntegerRegex.test(grad) ||
+      !isIncludedInDefinition(HELDENGRADE, gradParsed)
+    ) {
       return new ParseError(
         `Invalid Heldengrad received: "${grad}" valid values are: "${HELDENGRADE}" in "${data}"`
       )
@@ -359,22 +417,20 @@ export const TYPI = [
 ] as const
 export type Typus = (typeof TYPI)[number]
 
-export type ZauberSchwierigkeit =
-  | number
-  | 'Körperlicher Wiederstand'
-  | 'Geistiger Wiederstand'
-  | 'Verteidigung'
+export const SIMPLE_ZAUBERSCHWIERIGKEITEN = [
+  'Körperlicher Wiederstand',
+  'Geistiger Wiederstand',
+  'Verteidigung',
+]
+export type SimpleZauberschwierigkeit =
+  (typeof SIMPLE_ZAUBERSCHWIERIGKEITEN)[number]
+export type ZauberSchwierigkeit = number | SimpleZauberschwierigkeit
 
 export function parseZauberschwierigkeit(
   data: string
 ): ZauberSchwierigkeit | ParseError {
-  const numberSchwierigkeit = Number.parseFloat(data)
-
-  if (
-    Number.isInteger(numberSchwierigkeit) &&
-    !Number.isNaN(numberSchwierigkeit)
-  ) {
-    return numberSchwierigkeit
+  if (isIntegerRegex.test(data)) {
+    return Number.parseInt(data)
   }
 
   const lowerData = data.toLowerCase()
@@ -390,14 +446,18 @@ export function parseZauberschwierigkeit(
   }
 
   return new ParseError(
-    `Data must be a number or include Verteidigung, Geistiger Wiederstand or Körperlicher Wiederstand but it did not. Got ${data}`
+    `Data was neither a number nor included it a valid value.`,
+    {
+      data,
+      validValues: SIMPLE_ZAUBERSCHWIERIGKEITEN,
+    }
   )
 }
 
 export type Zauber = {
   name: string
   art: Zauberart
-  schulen: [Zauberschule, HeldenGrad][]
+  schulen: Zauberschulvorrausetzung[]
   typus: Typus
   schwierigkeit: ZauberSchwierigkeit
   kosten: FokusKosten
@@ -426,15 +486,16 @@ export function classify(data: string) {
   return 'None'
 }
 
-export function parseZauber(data: string[]): Zauber | ParseError {
+export function parseZauber(data: string[]): Zauber | ParseError<ParseError> {
   const zauber: Partial<Zauber> = {}
 
   while (data.length > 0) {
-    const currentRow = data.pop()
+    const currentRow = data.shift()
 
     if (currentRow == null) {
       return new ParseError('Unexpected end of data')
     }
+    const currentRightSide = currentRow.split(':')[1]?.trim()
 
     const classification = classify(currentRow)
 
@@ -448,16 +509,72 @@ export function parseZauber(data: string[]): Zauber | ParseError {
         zauber.name = currentRow.replace('(Ritus)', '').trim()
         break
       case 'Schulen':
+        const schulen = parseZauberschulvorrausetzung(currentRightSide)
+        if (schulen instanceof ParseError) {
+          return new ParseError(`Could not parse Schulen`, {
+            cause: schulen,
+            currentRow,
+            data,
+          })
+        }
+        zauber.schulen = schulen
         break
       case 'Typus':
+        const typus = currentRightSide
+        if (!isIncludedInDefinition(TYPI, typus)) {
+          return new ParseError('Could not parse Typus', {
+            received: typus,
+            validValues: TYPI,
+            currentRow,
+            data,
+          })
+        }
+        zauber.typus = typus
         break
       case 'Schwierigkeit':
+        const schwierigkeit = parseZauberschwierigkeit(currentRightSide)
+        if (schwierigkeit instanceof ParseError) {
+          return new ParseError('Could not parse Schwierigkeit', {
+            cause: schwierigkeit,
+            currentRow,
+            data,
+          })
+        }
+        zauber.schwierigkeit = schwierigkeit
+
         break
       case 'Kosten':
+        const kosten = parseFokusKosten(currentRightSide)
+        if (kosten instanceof ParseError) {
+          return new ParseError('Could not parse Kosten', {
+            cause: kosten,
+            currentRow,
+            data,
+          })
+        }
+        zauber.kosten = kosten
         break
       case 'Zauberdauer':
+        const dauer = parseZeitlänge(currentRightSide)
+        if (dauer instanceof ParseError) {
+          return new ParseError('Could not parse Zauberdauer', {
+            cause: dauer,
+            currentRow,
+            data,
+          })
+        }
+        zauber.zauberdauer = dauer
         break
       case 'Reichweite':
+        const reichweite = parseReichweite(currentRightSide)
+        if (reichweite instanceof ParseError) {
+          return new ParseError('Could not parse Reichweite', {
+            cause: reichweite,
+            currentRow,
+            data,
+          })
+        }
+        zauber.reichweite = reichweite
         break
       case 'Wirkung':
         break
@@ -471,6 +588,8 @@ export function parseZauber(data: string[]): Zauber | ParseError {
         break
     }
   }
+  // TODO remove cast
+  return zauber as Zauber
 }
 
 export function parseAllZauber(data: string[]): Zauber[] {
